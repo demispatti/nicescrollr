@@ -10,6 +10,11 @@
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  */
+
+h2.icomoon, h3.icomoon {
+    padding-left: 20px;
+}
+
 .dp-submit-button-wrap, .dp-submit-button-wrap-2, .settings_page_nicescrollr_settings .submit {
     box-sizing: border-box;
     width: 100%;
@@ -32,12 +37,11 @@ p.alertify-message {
     -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, .1), 0 0 40px rgba(0, 0, 0, .06) inset;
     -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, .1), 0 0 40px rgba(0, 0, 0, .06) inset;
     box-shadow: 0 1px 4px rgba(0, 0, 0, .1), 0 0 40px rgba(0, 0, 0, .06) inset;
-    transition: all .2s ease-in-out
+    transition: all .2s ease-in-out;
 }
 
 .alertify {
     background: #FFF;
-    border: 10px solid #E5E5E5;
     border: 10px solid rgba(229, 229, 229, .8);
     border-radius: 8px;
     box-shadow: 0 3px 3px rgba(0, 0, 0, .3);
@@ -115,7 +119,8 @@ p.alertify-message {
 }
 
 .settings_page_nicescrollr_settings .submit {
-    height: 20px
+    height: 20px;
+    padding-right: 12px;
 }
 
 .dp-submit-button-wrap {
@@ -199,14 +204,21 @@ p.alertify-message {
 }
 
 #backTop {
+    color: white;
+    position: fixed;
     bottom: 40px;
-    right: 120px;
-    background: url(../../../vendor/backtop/images/uparr-36-w.png) center center no-repeat #5b9dd9 !important;
-    display: none
+    right: 40px;
+    background: url(../images/uparr-36-w.png) center center no-repeat #47a8d8 !important;
+    display: none;
+    opacity: 1;
+}
+
+#backTop.is-visible {
+    display: inline;
 }
 
 #backTop.black {
-    background: url(../../../vendor/backtop/images/uparr-36-w.png) center center no-repeat !important;
+    background: url(../images/uparr-36-w.png) center center no-repeat !important;
     transition: all .2s
 }
 
@@ -216,32 +228,32 @@ p.alertify-message {
     transition: all .2s
 }
 
-::-webkit-input-placeholder {
+#nsr_form ::-webkit-input-placeholder {
     color: #a0a9b9
 }
 
-:-moz-placeholder {
+#nsr_form :-moz-placeholder {
     color: #A0A9B9
 }
 
-::-moz-placeholder {
+#nsr_form ::-moz-placeholder {
     color: #A0A9B9
 }
 
-:-ms-input-placeholder {
+#nsr_form :-ms-input-placeholder {
     color: #A0A9B9;
-    background-color: #eee
+    /*background-color: #eee*/
 }
 
-div.fancy-select {
+#nsr_form div.fancy-select {
     position: relative
 }
 
-div.fancy-select.disabled {
+#nsr_form div.fancy-select.disabled {
     opacity: .5
 }
 
-div.fancy-select select:focus + div.trigger {
+#nsr_form div.fancy-select select:focus + div.trigger {
     border: 1px solid #e5e5e5;
     -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, .1), 0 0 40px rgba(0, 0, 0, .06) inset;
     -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, .1), 0 0 40px rgba(0, 0, 0, .06) inset;
@@ -249,11 +261,11 @@ div.fancy-select select:focus + div.trigger {
     transition: all .12s ease-in-out
 }
 
-div.fancy-select select:focus + div.trigger.open {
+#nsr_form div.fancy-select select:focus + div.trigger.open {
     box-shadow: none
 }
 
-div.fancy-select div.trigger {
+#nsr_form div.fancy-select div.trigger {
     border-radius: 2px;
     cursor: pointer;
     white-space: nowrap;
@@ -276,7 +288,7 @@ div.fancy-select div.trigger {
     box-shadow: 0 1px 2px rgba(0, 0, 0, .07) inset
 }
 
-div.fancy-select div.trigger:after {
+#nsr_form div.fancy-select div.trigger:after {
     content: "";
     display: block;
     position: absolute;
@@ -288,17 +300,17 @@ div.fancy-select div.trigger:after {
     right: 10px
 }
 
-div.fancy-select div.trigger.open {
+#nsr_form div.fancy-select div.trigger.open {
     background: #f6f6f6;
     border: 1px solid #e2e2e2;
     box-shadow: none
 }
 
-div.fancy-select div.trigger.open:after {
+#nsr_form div.fancy-select div.trigger.open:after {
     border-top: 1px solid #e2e2e2
 }
 
-div.fancy-select ul.options {
+#nsr_form div.fancy-select ul.options {
     list-style: none;
     margin: 0;
     position: absolute;
@@ -315,7 +327,6 @@ div.fancy-select ul.options {
     transition: opacity 200ms ease-out, top 200ms ease-out, visibility 200ms ease-out;
     -webkit-transition: opacity 200ms ease-out, top 200ms ease-out, visibility 200ms ease-out;
     -moz-transition: opacity 200ms ease-out, top 200ms ease-out, visibility 200ms ease-out;
-    -ms-transition: opacity 200ms ease-out, top 200ms ease-out, visibility 200ms ease-out;
     -o-transition: opacity 200ms ease-out, top 200ms ease-out, visibility 200ms ease-out;
     border: 1px solid #e2e2e2;
     -webkit-box-shadow: 2px 2px 4px rgba(0, 0, 0, .4), 0 0 40px rgba(0, 0, 0, .1) inset;
@@ -323,14 +334,13 @@ div.fancy-select ul.options {
     box-shadow: 2px 2px 4px rgba(0, 0, 0, .4), 0 0 40px rgba(0, 0, 0, .1) inset
 }
 
-div.fancy-select ul.options.open {
+#nsr_form div.fancy-select ul.options.open {
     visibility: visible;
     top: 30px;
     opacity: 1;
     transition: opacity 300ms ease-out, top 300ms ease-out;
     -webkit-transition: opacity 300ms ease-out, top 300ms ease-out;
     -moz-transition: opacity 300ms ease-out, top 300ms ease-out;
-    -ms-transition: opacity 300ms ease-out, top 300ms ease-out;
     -o-transition: opacity 300ms ease-out, top 300ms ease-out;
     border: 1px solid #e2e2e2;
     -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, .5), 0 0 40px rgba(0, 0, 0, .06) inset;
@@ -338,27 +348,25 @@ div.fancy-select ul.options.open {
     box-shadow: 0 1px 4px rgba(0, 0, 0, .5), 0 0 40px rgba(0, 0, 0, .06) inset
 }
 
-div.fancy-select ul.options.overflowing {
+#nsr_form div.fancy-select ul.options.overflowing {
     top: auto;
     bottom: 40px;
     transition: opacity 200ms ease-out, bottom 200ms ease-out, visibility 200ms ease-out;
     -webkit-transition: opacity 200ms ease-out, bottom 200ms ease-out, visibility 200ms ease-out;
     -moz-transition: opacity 200ms ease-out, bottom 200ms ease-out, visibility 200ms ease-out;
-    -ms-transition: opacity 200ms ease-out, bottom 200ms ease-out, visibility 200ms ease-out;
     -o-transition: opacity 200ms ease-out, bottom 200ms ease-out, visibility 200ms ease-out
 }
 
-div.fancy-select ul.options.overflowing.open {
+#nsr_form div.fancy-select ul.options.overflowing.open {
     top: auto;
     bottom: 50px;
     transition: opacity 200ms ease-out, bottom 200ms ease-out;
     -webkit-transition: opacity 200ms ease-out, bottom 200ms ease-out;
     -moz-transition: opacity 200ms ease-out, bottom 200ms ease-out;
-    -ms-transition: opacity 200ms ease-out, bottom 200ms ease-out;
     -o-transition: opacity 200ms ease-out, bottom 200ms ease-out
 }
 
-div.fancy-select ul.options li {
+#nsr_form div.fancy-select ul.options li {
     padding: 3px 0 3px 6px;
     margin: 0;
     background: #fff;
@@ -367,15 +375,14 @@ div.fancy-select ul.options li {
     transition: all 150ms ease-out;
     -webkit-transition: all 150ms ease-out;
     -moz-transition: all 150ms ease-out;
-    -ms-transition: all 150ms ease-out;
     -o-transition: all 150ms ease-out
 }
 
-div.fancy-select ul.options li.selected {
+#nsr_form div.fancy-select ul.options li.selected {
     background: #f6f6f6
 }
 
-div.fancy-select ul.options li.hover {
+#nsr_form div.fancy-select ul.options li.hover {
     background: #f2f2f2
 }
 
@@ -534,36 +541,35 @@ div.fancy-select ul.options li.hover {
     margin-top: 6px
 }
 
-.wrap h2.nsr-page-title:not(.nav-tab-wrapper) {
-    font-family: fugaz_one_regular, 'Open Sans', sans-serif;
-    font-size: 36px;
+.wrap .nsr-page-title:not(.nav-tab-wrapper) {
+    font-size: 24px;
     font-weight: 500;
     box-sizing: border-box;
     max-width: 480px;
     padding: 50px 40px 30px 12px;
     margin: 0;
-    color: #d2d2d2;
-    text-shadow: 3px 4px 5px #000;
+    color: #404040;
+    text-shadow: 3px 4px 5px rgba(0, 0, 0, 0.2);
     width: 360px;
     text-align: left
 }
 
-.form-table-wrap, .form-table-wrap tbody, .form-table-wrap tbody tr, .nicescrollr_settings_toggle, form#nsr_form, form#nsr_form table, h2.nav-tab-wrapper {
+.form-table-wrap, .form-table-wrap tbody, .form-table-wrap tbody tr, .nicescrollr_settings_toggle, form#nsr_form, form#nsr_form table, .nav-tab-wrapper {
     box-sizing: border-box;
     width: 100%;
     max-width: 480px
 }
 
-h2.nav-tab-wrapper {
+.nav-tab-wrapper {
     padding: 30px 0 0 12px;
     margin: 0
 }
 
-h2.nav-tab-wrapper, h3.nav-tab-wrapper {
+.nav-tab-wrapper {
     border-bottom: none
 }
 
-.wrap h2 a.nav-tab {
+.wrap a.nav-tab {
     font-family: 'Open Sans', sans-serif;
     font-weight: 500;
     color: #0a1318;
@@ -589,7 +595,7 @@ h2.nav-tab-wrapper, h3.nav-tab-wrapper {
     z-index: 1
 }
 
-.wrap h2 a.nav-tab:before {
+.wrap a.nav-tab:before {
     color: #24465a;
     font-family: icomoon, sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -721,7 +727,7 @@ h2.nav-tab-wrapper, h3.nav-tab-wrapper {
     -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, .1), 0 0 40px rgba(0, 0, 0, .06) inset
 }
 
-.form-table th {
+#nsr_form .form-table th {
     font-size: 14px;
     font-weight: 400;
     height: 40px;
@@ -730,17 +736,17 @@ h2.nav-tab-wrapper, h3.nav-tab-wrapper {
     top: 25px
 }
 
-.form-table td > div {
+#nsr_form .form-table td > div {
     padding: 0;
     margin: 0;
     top: 0
 }
 
-input {
-    box-shadow: 0 1px 4px rgba(0, 0, 0, .1), 0 0 40px rgba(0, 0, 0, .06) inset
+#nsr_form input {
+    box-shadow: 0 1px 4px rgba(0, 0, 0, .06), 0 0 40px rgba(0, 0, 0, .03) inset
 }
 
-/*.validation-error-focus, */input[type=text]:active, input[type=text]:focus {
+#nsr_form input[type=text]:active, #nsr_form input[type=text]:focus {
     -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .09) inset, 0 1px 4px rgba(0, 0, 0, .09);
     -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, .09) inset, 0 1px 4px rgba(0, 0, 0, .09);
     box-shadow: 0 1px 2px rgba(0, 0, 0, .09) inset, 0 1px 4px rgba(0, 0, 0, .09);

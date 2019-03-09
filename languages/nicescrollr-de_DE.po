@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Nicescrollr\n"
-"POT-Creation-Date: 2015-08-19 03:38+0100\n"
-"PO-Revision-Date: 2015-08-19 03:38+0100\n"
+"POT-Creation-Date: 2015-10-25 23:24+0100\n"
+"PO-Revision-Date: 2015-10-25 23:24+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -10,7 +10,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.7.3\n"
-"X-Poedit-Basepath: ..\n"
+"X-Poedit-Basepath: C:\\wamp\\projects\\nicescrollr.dev\\www\\wp-content"
+"\\plugins\\nicescrollr\\\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
 "esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
@@ -19,15 +20,15 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: admin/class-nsr-admin.php:224
+#: admin/class-nsr-admin.php:246
 msgid "Plugin support"
 msgstr "Plugin-Unterstützung"
 
-#: admin/class-nsr-admin.php:225
+#: admin/class-nsr-admin.php:247
 msgid "Rate plugin"
 msgstr "Plugin bewerten"
 
-#: admin/class-nsr-admin.php:226
+#: admin/class-nsr-admin.php:248
 msgid "Donate"
 msgstr "Spenden"
 
@@ -86,33 +87,33 @@ msgstr ""
 "mir das Problem bitte auf der <a href='https://wordpress.org/plugins/"
 "nicescrollr/' target='_blank'>Plugin Homepage</a>."
 
-#: admin/menu/class-nsr-menu.php:456
+#: admin/menu/class-nsr-menu.php:446
 msgid "Nicescrollr"
 msgstr "Nicescrollr"
 
-#: admin/menu/class-nsr-menu.php:480
+#: admin/menu/class-nsr-menu.php:471
 msgid "Frontend"
 msgstr "Frontend"
 
-#: admin/menu/class-nsr-menu.php:481
+#: admin/menu/class-nsr-menu.php:473
 msgid "Backend"
 msgstr "Backend"
 
-#: admin/menu/class-nsr-menu.php:482
+#: admin/menu/class-nsr-menu.php:475
 msgid "Plugin"
 msgstr "Plugin"
 
-#: admin/menu/class-nsr-menu.php:594
+#: admin/menu/class-nsr-menu.php:587
 msgid "One more try and your browser will burst into flames ;-)"
 msgstr "Du kommst hier net rein..."
 
-#: admin/menu/class-nsr-menu.php:605 admin/menu/class-nsr-menu.php:622
+#: admin/menu/class-nsr-menu.php:598 admin/menu/class-nsr-menu.php:614
 msgid "All done! Please refresh the page for the settings to take effect."
 msgstr ""
 "Alles erledigt! Aktualisieren Sie bitte die Seite, damit die Einstellungen "
 "wirksam werden."
 
-#: admin/menu/class-nsr-menu.php:611 admin/menu/class-nsr-menu.php:628
+#: admin/menu/class-nsr-menu.php:604 admin/menu/class-nsr-menu.php:620
 msgid "Couldn't reset the settings. Please try again."
 msgstr ""
 "Die Einstellungen konnten nicht zurückgesetzt werden. Bitte versuchen Sie es "
@@ -159,490 +160,500 @@ msgid "Enable or disable Nicescroll."
 msgstr "Nicescroll aktivieren oder deaktivieren."
 
 #: admin/menu/includes/class-nsr-options.php:69
+msgid "Default Scrollbar"
+msgstr "Standard-Scrollbar"
+
+#: admin/menu/includes/class-nsr-options.php:72
+msgid "Use the browsers default scrollbar instead of the customizable one."
+msgstr ""
+"Zeige die Standard-Scrollbar des Browsers anstelle der Nicescroll-Scrollbar "
+"an."
+
+#: admin/menu/includes/class-nsr-options.php:80
 msgid "Cursor Color"
 msgstr "Cursor Color"
 
-#: admin/menu/includes/class-nsr-options.php:72
+#: admin/menu/includes/class-nsr-options.php:83
 msgid "Choose cursor color."
 msgstr "Cursorfarbe wählen."
 
-#: admin/menu/includes/class-nsr-options.php:80
+#: admin/menu/includes/class-nsr-options.php:91
 msgid "Cursor Opacity Minimum"
 msgstr "Cursor Opacity Minimum"
 
-#: admin/menu/includes/class-nsr-options.php:83
+#: admin/menu/includes/class-nsr-options.php:94
 msgid "Set opacity for when the cursor is inactive."
 msgstr "Transparenz bei inaktivem Cursor wählen."
 
-#: admin/menu/includes/class-nsr-options.php:91
+#: admin/menu/includes/class-nsr-options.php:102
 msgid "Cursor Opacity Maximum"
 msgstr "Cursor Opacity Maximum"
 
-#: admin/menu/includes/class-nsr-options.php:94
+#: admin/menu/includes/class-nsr-options.php:105
 msgid "Set opacity for when the cursor is active."
 msgstr "Transparenz bei aktivem Cursor wählen."
 
-#: admin/menu/includes/class-nsr-options.php:102
+#: admin/menu/includes/class-nsr-options.php:113
 msgid "Cursor Width"
 msgstr "Cursor Width"
 
-#: admin/menu/includes/class-nsr-options.php:105
+#: admin/menu/includes/class-nsr-options.php:116
 msgid "Set cursor width (in pixel)."
 msgstr "Cursorbreite wählen (in Pixel)."
 
-#: admin/menu/includes/class-nsr-options.php:113
+#: admin/menu/includes/class-nsr-options.php:124
 msgid "Cursor Border Width"
 msgstr "Cursor Border Width"
 
-#: admin/menu/includes/class-nsr-options.php:116
+#: admin/menu/includes/class-nsr-options.php:127
 msgid "Set cursor border width (in pixel)."
 msgstr "Cursorrahmenbreite wählen (in Pixel)."
 
-#: admin/menu/includes/class-nsr-options.php:124
+#: admin/menu/includes/class-nsr-options.php:135
 msgid "Cursor Border State"
 msgstr "Cursor Border State"
 
-#: admin/menu/includes/class-nsr-options.php:127
+#: admin/menu/includes/class-nsr-options.php:138
 msgid "Select cursor border state."
 msgstr "Anzeigeart des Cursorrahmens wählen."
 
-#: admin/menu/includes/class-nsr-options.php:132
-#: admin/menu/includes/class-nsr-settings.php:462
-#: admin/menu/includes/class-nsr-validation.php:523
+#: admin/menu/includes/class-nsr-options.php:143
+#: admin/menu/includes/class-nsr-settings.php:477
+#: admin/menu/includes/class-nsr-validation.php:521
 msgid "none"
 msgstr "keine"
 
-#: admin/menu/includes/class-nsr-options.php:135
+#: admin/menu/includes/class-nsr-options.php:146
 msgid "Cursor Border Color"
 msgstr "Cursor Border Color"
 
-#: admin/menu/includes/class-nsr-options.php:138
+#: admin/menu/includes/class-nsr-options.php:149
 msgid "Set cursor border color."
 msgstr "Cursorrahmenfarbe wählen."
 
-#: admin/menu/includes/class-nsr-options.php:146
+#: admin/menu/includes/class-nsr-options.php:157
 msgid "Cursor Border Radius"
 msgstr "Cursor Border Radius"
 
-#: admin/menu/includes/class-nsr-options.php:149
+#: admin/menu/includes/class-nsr-options.php:160
 msgid "Set cursor border radius (in pixel)."
 msgstr "Radius des Cursorrahmens wählen (in Pixel)."
 
-#: admin/menu/includes/class-nsr-options.php:157
+#: admin/menu/includes/class-nsr-options.php:168
 msgid "Rail Background"
 msgstr "Scrolleiste"
 
-#: admin/menu/includes/class-nsr-options.php:160
+#: admin/menu/includes/class-nsr-options.php:171
 msgid "Change the background color of the rail, or leave it blank."
 msgstr "Ändern der Hintergrundfarbe der Scrollleiste."
 
-#: admin/menu/includes/class-nsr-options.php:168
+#: admin/menu/includes/class-nsr-options.php:179
 msgid "Autohide Mode"
 msgstr "Autohide Mode"
 
-#: admin/menu/includes/class-nsr-options.php:171
+#: admin/menu/includes/class-nsr-options.php:182
 msgid "Select auto-hide mode."
 msgstr "Automatisches Verbergen einstellen."
 
-#: admin/menu/includes/class-nsr-options.php:177
-#: admin/menu/includes/class-nsr-options.php:346
-#: admin/menu/includes/class-nsr-options.php:529
-#: admin/menu/includes/class-nsr-settings.php:472
-#: admin/menu/includes/class-nsr-settings.php:488
-#: admin/menu/includes/class-nsr-settings.php:530
-#: admin/menu/includes/class-nsr-validation.php:533
-#: admin/menu/includes/class-nsr-validation.php:549
-#: admin/menu/includes/class-nsr-validation.php:591
+#: admin/menu/includes/class-nsr-options.php:188
+#: admin/menu/includes/class-nsr-options.php:357
+#: admin/menu/includes/class-nsr-options.php:540
+#: admin/menu/includes/class-nsr-settings.php:487
+#: admin/menu/includes/class-nsr-settings.php:503
+#: admin/menu/includes/class-nsr-settings.php:545
+#: admin/menu/includes/class-nsr-validation.php:531
+#: admin/menu/includes/class-nsr-validation.php:547
+#: admin/menu/includes/class-nsr-validation.php:589
 msgid "off"
 msgstr "aus"
 
-#: admin/menu/includes/class-nsr-options.php:178
-#: admin/menu/includes/class-nsr-settings.php:475
-#: admin/menu/includes/class-nsr-validation.php:536
+#: admin/menu/includes/class-nsr-options.php:189
+#: admin/menu/includes/class-nsr-settings.php:490
+#: admin/menu/includes/class-nsr-validation.php:534
 msgid "on"
 msgstr "ein"
 
-#: admin/menu/includes/class-nsr-options.php:179
-#: admin/menu/includes/class-nsr-settings.php:478
-#: admin/menu/includes/class-nsr-validation.php:539
+#: admin/menu/includes/class-nsr-options.php:190
+#: admin/menu/includes/class-nsr-settings.php:493
+#: admin/menu/includes/class-nsr-validation.php:537
 msgid "cursor"
 msgstr "Cursor"
 
-#: admin/menu/includes/class-nsr-options.php:198
+#: admin/menu/includes/class-nsr-options.php:209
 msgid "Z-Index"
 msgstr "Z-Index"
 
-#: admin/menu/includes/class-nsr-options.php:200
+#: admin/menu/includes/class-nsr-options.php:211
 msgid "Set z-index."
 msgstr "Z-Index wählen."
 
-#: admin/menu/includes/class-nsr-options.php:208
+#: admin/menu/includes/class-nsr-options.php:219
 msgid "Scroll Speed"
 msgstr "Scroll Speed"
 
-#: admin/menu/includes/class-nsr-options.php:210
+#: admin/menu/includes/class-nsr-options.php:221
 msgid "Set scrolling speed."
 msgstr "Scrollgeschwindigkeit einstellen."
 
-#: admin/menu/includes/class-nsr-options.php:218
+#: admin/menu/includes/class-nsr-options.php:229
 msgid "Mouse Scroll Step"
 msgstr "Mouse Scroll Step"
 
-#: admin/menu/includes/class-nsr-options.php:220
+#: admin/menu/includes/class-nsr-options.php:231
 msgid "Set scrolling speed for the mousewheel."
 msgstr "Scrollgeschwindigkeit des Mausrades einstellen."
 
-#: admin/menu/includes/class-nsr-options.php:228
+#: admin/menu/includes/class-nsr-options.php:239
 msgid "Touch Behaviour"
 msgstr "Touch Behaviour"
 
-#: admin/menu/includes/class-nsr-options.php:230
+#: admin/menu/includes/class-nsr-options.php:241
 msgid "Enable cursor-drag scrolling for touch-enabled computers."
 msgstr "Scrollen durch Ziehen (für Computer mit Touchscreen)."
 
-#: admin/menu/includes/class-nsr-options.php:238
+#: admin/menu/includes/class-nsr-options.php:249
 msgid "Hardware Acceleration"
 msgstr "Hardware Acceleration"
 
-#: admin/menu/includes/class-nsr-options.php:240
+#: admin/menu/includes/class-nsr-options.php:251
 msgid "Switch hardware acceleration on or off."
 msgstr "Hardware-Beschleunigung ein- oder ausschalten."
 
-#: admin/menu/includes/class-nsr-options.php:248
+#: admin/menu/includes/class-nsr-options.php:259
 msgid "Transitions"
 msgstr "Transitions"
 
-#: admin/menu/includes/class-nsr-options.php:250
+#: admin/menu/includes/class-nsr-options.php:261
 msgid "Switch transitions on or off."
 msgstr "Übergänge ein- oder ausschalten."
 
-#: admin/menu/includes/class-nsr-options.php:258
+#: admin/menu/includes/class-nsr-options.php:269
 msgid "Box Zoom"
 msgstr "Box Zoom"
 
-#: admin/menu/includes/class-nsr-options.php:260
+#: admin/menu/includes/class-nsr-options.php:271
 msgid "Enable zoom for box content."
 msgstr "Box-Inhalte zoomen."
 
-#: admin/menu/includes/class-nsr-options.php:268
+#: admin/menu/includes/class-nsr-options.php:279
 msgid "Double Click Zoom"
 msgstr "Double Click Zoom"
 
-#: admin/menu/includes/class-nsr-options.php:270
+#: admin/menu/includes/class-nsr-options.php:281
 msgid "Zoom activated when double click on box (\"Box Zoom\" must be \"on\")."
 msgstr "Zoom bei Doppelklick auf Box (erfordert \"Box Zoom\")."
 
-#: admin/menu/includes/class-nsr-options.php:278
+#: admin/menu/includes/class-nsr-options.php:289
 msgid "Gesture Zoom"
 msgstr "Gesture Zoom"
 
-#: admin/menu/includes/class-nsr-options.php:280
+#: admin/menu/includes/class-nsr-options.php:291
 msgid "Zoom on pitch in/out on box (For touch devices, set \"Box Zoom\" on)."
 msgstr "Zoom durch Geste für Touch-Devices (erfordert \"Box Zoom\")."
 
-#: admin/menu/includes/class-nsr-options.php:288
+#: admin/menu/includes/class-nsr-options.php:299
 msgid "Grab-Cursor"
 msgstr "Grab-Cursor"
 
-#: admin/menu/includes/class-nsr-options.php:290
+#: admin/menu/includes/class-nsr-options.php:301
 msgid "Display \"grab\" icon (\"Touch Behavior\" must be possible and \"on\")."
 msgstr "Packen des Cursors auf Touch-Devices erleichtern."
 
-#: admin/menu/includes/class-nsr-options.php:308
+#: admin/menu/includes/class-nsr-options.php:319
 msgid "iFrame Autoresize"
 msgstr "iFrame Autoresize"
 
-#: admin/menu/includes/class-nsr-options.php:310
+#: admin/menu/includes/class-nsr-options.php:321
 msgid "Switch auto-resize for iFrames on or off."
 msgstr "Automatische Grössenänderung für iFrames ein- oder ausschalten."
 
-#: admin/menu/includes/class-nsr-options.php:318
+#: admin/menu/includes/class-nsr-options.php:329
 msgid "Cursor Minimum Height"
 msgstr "Cursor Minimum Height"
 
-#: admin/menu/includes/class-nsr-options.php:320
+#: admin/menu/includes/class-nsr-options.php:331
 msgid "Set the minimum cursor height."
 msgstr "Mindesthöhe des Cursors einstellen."
 
-#: admin/menu/includes/class-nsr-options.php:328
+#: admin/menu/includes/class-nsr-options.php:339
 msgid "Preserve Native Scrolling"
 msgstr "Preserve Native Scrolling"
 
-#: admin/menu/includes/class-nsr-options.php:330
+#: admin/menu/includes/class-nsr-options.php:341
 msgid "Scroll native scrollable areas with mouse."
 msgstr "Scrollbare Bereiche mit Nicescroll scrollen."
 
-#: admin/menu/includes/class-nsr-options.php:338
+#: admin/menu/includes/class-nsr-options.php:349
 msgid "Rail Offset"
 msgstr "Rail Offset"
 
-#: admin/menu/includes/class-nsr-options.php:340
+#: admin/menu/includes/class-nsr-options.php:351
 msgid "Add offset for rail position or disable it."
 msgstr "Aussenabstand der Cursorleiste wählen oder deaktivieren."
 
-#: admin/menu/includes/class-nsr-options.php:347
-#: admin/menu/includes/class-nsr-options.php:449
-#: admin/menu/includes/class-nsr-settings.php:491
-#: admin/menu/includes/class-nsr-settings.php:520
-#: admin/menu/includes/class-nsr-validation.php:552
-#: admin/menu/includes/class-nsr-validation.php:581
+#: admin/menu/includes/class-nsr-options.php:358
+#: admin/menu/includes/class-nsr-options.php:460
+#: admin/menu/includes/class-nsr-settings.php:506
+#: admin/menu/includes/class-nsr-settings.php:535
+#: admin/menu/includes/class-nsr-validation.php:550
+#: admin/menu/includes/class-nsr-validation.php:579
 msgid "top"
 msgstr "oben"
 
-#: admin/menu/includes/class-nsr-options.php:348
-#: admin/menu/includes/class-nsr-options.php:439
-#: admin/menu/includes/class-nsr-settings.php:494
-#: admin/menu/includes/class-nsr-settings.php:507
-#: admin/menu/includes/class-nsr-validation.php:555
-#: admin/menu/includes/class-nsr-validation.php:568
+#: admin/menu/includes/class-nsr-options.php:359
+#: admin/menu/includes/class-nsr-options.php:450
+#: admin/menu/includes/class-nsr-settings.php:509
+#: admin/menu/includes/class-nsr-settings.php:522
+#: admin/menu/includes/class-nsr-validation.php:553
+#: admin/menu/includes/class-nsr-validation.php:566
 msgid "left"
 msgstr "links"
 
-#: admin/menu/includes/class-nsr-options.php:352
+#: admin/menu/includes/class-nsr-options.php:363
 msgid "Bounce Scroll"
 msgstr "Bounce Scroll"
 
-#: admin/menu/includes/class-nsr-options.php:354
+#: admin/menu/includes/class-nsr-options.php:365
 msgid "Mobile-like scroll bouncing at the end of content."
 msgstr "Federndes Scrollverhalten bei Inhaltsende."
 
-#: admin/menu/includes/class-nsr-options.php:362
+#: admin/menu/includes/class-nsr-options.php:373
 msgid "Spacebar"
 msgstr "Spacebar"
 
-#: admin/menu/includes/class-nsr-options.php:364
+#: admin/menu/includes/class-nsr-options.php:375
 msgid "Page down-scrolling with the spacebar."
 msgstr "Runterscrollen via Leertaste."
 
-#: admin/menu/includes/class-nsr-options.php:372
+#: admin/menu/includes/class-nsr-options.php:383
 msgid "Rail Padding Top"
 msgstr "Rail Padding Top"
 
-#: admin/menu/includes/class-nsr-options.php:374
+#: admin/menu/includes/class-nsr-options.php:385
 msgid "Set rail padding top."
 msgstr "Innenabstand oben zum Cursor hin wählen."
 
-#: admin/menu/includes/class-nsr-options.php:382
+#: admin/menu/includes/class-nsr-options.php:393
 msgid "Rail Padding Right"
 msgstr "Rail Padding Right"
 
-#: admin/menu/includes/class-nsr-options.php:384
+#: admin/menu/includes/class-nsr-options.php:395
 msgid "Set rail padding right."
 msgstr "Innenabstand rechts zum Cursor hin wählen."
 
-#: admin/menu/includes/class-nsr-options.php:392
+#: admin/menu/includes/class-nsr-options.php:403
 msgid "Rail Padding Bottom"
 msgstr "Rail Padding Bottom"
 
-#: admin/menu/includes/class-nsr-options.php:394
+#: admin/menu/includes/class-nsr-options.php:405
 msgid "Set rail padding bottom."
 msgstr "Innenabstand unten zum Cursor hin wählen."
 
-#: admin/menu/includes/class-nsr-options.php:402
+#: admin/menu/includes/class-nsr-options.php:413
 msgid "Rail Padding Left"
 msgstr "Rail Padding Left"
 
-#: admin/menu/includes/class-nsr-options.php:404
+#: admin/menu/includes/class-nsr-options.php:415
 msgid "Set rail padding left."
 msgstr "Innenabstand links zum Cursor hin wählen."
 
-#: admin/menu/includes/class-nsr-options.php:412
+#: admin/menu/includes/class-nsr-options.php:423
 msgid "Outline"
 msgstr "Outline"
 
-#: admin/menu/includes/class-nsr-options.php:414
+#: admin/menu/includes/class-nsr-options.php:425
 msgid "For chrome browser, disable outline."
 msgstr "\"Kontur verbergen\" (für Chrome Browser)."
 
-#: admin/menu/includes/class-nsr-options.php:422
+#: admin/menu/includes/class-nsr-options.php:433
 msgid "Horizontal Rail"
 msgstr "Horizontal Rail"
 
-#: admin/menu/includes/class-nsr-options.php:424
+#: admin/menu/includes/class-nsr-options.php:435
 msgid "Let Nicescroll manage horizontal scrolling."
 msgstr "Horizontales Scrollen mittels Nicescroll."
 
-#: admin/menu/includes/class-nsr-options.php:432
+#: admin/menu/includes/class-nsr-options.php:443
 msgid "Rail Alignment Horizontal"
 msgstr "Rail Alignment Horizontal"
 
-#: admin/menu/includes/class-nsr-options.php:434
+#: admin/menu/includes/class-nsr-options.php:445
 msgid "Select alignment of horizontal rail."
 msgstr "Ausrichtung horizontale Cursorleiste."
 
-#: admin/menu/includes/class-nsr-options.php:439
-#: admin/menu/includes/class-nsr-settings.php:504
-#: admin/menu/includes/class-nsr-validation.php:565
+#: admin/menu/includes/class-nsr-options.php:450
+#: admin/menu/includes/class-nsr-settings.php:519
+#: admin/menu/includes/class-nsr-validation.php:563
 msgid "right"
 msgstr "rechts"
 
-#: admin/menu/includes/class-nsr-options.php:442
+#: admin/menu/includes/class-nsr-options.php:453
 msgid "Rail Alignment Vertical"
 msgstr "Rail Alignment Vertical"
 
-#: admin/menu/includes/class-nsr-options.php:444
+#: admin/menu/includes/class-nsr-options.php:455
 msgid "Select alignment of vertical rail."
 msgstr "Ausrichtung vertikale Cursorleiste."
 
-#: admin/menu/includes/class-nsr-options.php:449
-#: admin/menu/includes/class-nsr-settings.php:517
-#: admin/menu/includes/class-nsr-validation.php:578
+#: admin/menu/includes/class-nsr-options.php:460
+#: admin/menu/includes/class-nsr-settings.php:532
+#: admin/menu/includes/class-nsr-validation.php:576
 msgid "bottom"
 msgstr "unten"
 
-#: admin/menu/includes/class-nsr-options.php:452
+#: admin/menu/includes/class-nsr-options.php:463
 msgid "Translate3D"
 msgstr "Translate3D"
 
-#: admin/menu/includes/class-nsr-options.php:454
+#: admin/menu/includes/class-nsr-options.php:465
 msgid "Switch translate3d on or off."
 msgstr "Translate3D ein- oder ausschalten."
 
-#: admin/menu/includes/class-nsr-options.php:462
+#: admin/menu/includes/class-nsr-options.php:473
 msgid "Mouse Wheel"
 msgstr "Mouse Wheel"
 
-#: admin/menu/includes/class-nsr-options.php:464
+#: admin/menu/includes/class-nsr-options.php:475
 msgid "Let Nicescroll manage mousewheel events."
 msgstr "Mausrad-Events durch Nicescroll steuern lassen."
 
-#: admin/menu/includes/class-nsr-options.php:472
+#: admin/menu/includes/class-nsr-options.php:483
 msgid "Keyboard"
 msgstr "Keyboard"
 
-#: admin/menu/includes/class-nsr-options.php:474
+#: admin/menu/includes/class-nsr-options.php:485
 msgid "Let Nicescroll manage keyboard events."
 msgstr "Keyboard-Events durch Nicescroll steuern lassen."
 
-#: admin/menu/includes/class-nsr-options.php:482
+#: admin/menu/includes/class-nsr-options.php:493
 msgid "Smooth Scroll"
 msgstr "Smooth Scroll"
 
-#: admin/menu/includes/class-nsr-options.php:484
+#: admin/menu/includes/class-nsr-options.php:495
 msgid "Scroll with ease movement."
 msgstr "\"Sanftes\" Scrollverhalten ein- oder ausschalten."
 
-#: admin/menu/includes/class-nsr-options.php:492
+#: admin/menu/includes/class-nsr-options.php:503
 msgid "Sensitive Rail"
 msgstr "Sensitive Rail"
 
-#: admin/menu/includes/class-nsr-options.php:494
+#: admin/menu/includes/class-nsr-options.php:505
 msgid "Scrolling trough click on rail."
 msgstr "Scrollen durch Klick auf die Cursorleiste."
 
-#: admin/menu/includes/class-nsr-options.php:502
+#: admin/menu/includes/class-nsr-options.php:513
 msgid "Mouse Lock API"
 msgstr "Mouse Lock API"
 
-#: admin/menu/includes/class-nsr-options.php:503
+#: admin/menu/includes/class-nsr-options.php:514
 msgid "extended"
 msgstr "erweitert"
 
-#: admin/menu/includes/class-nsr-options.php:522
+#: admin/menu/includes/class-nsr-options.php:533
 msgid "Cursor Fixed Height"
 msgstr "Cursor Fixed Height"
 
-#: admin/menu/includes/class-nsr-options.php:524
+#: admin/menu/includes/class-nsr-options.php:535
 msgid "Select cursor fixed height or disable it."
 msgstr "Feste Cursorhöhe einstellen oder deaktivieren."
 
-#: admin/menu/includes/class-nsr-options.php:532
+#: admin/menu/includes/class-nsr-options.php:543
 msgid "Direction Lock Dead Zone"
 msgstr "Direction Lock Dead Zone"
 
-#: admin/menu/includes/class-nsr-options.php:534
+#: admin/menu/includes/class-nsr-options.php:545
 msgid "Choose dead zone (in pixel) for direction lock activation."
 msgstr "\"Totzone\" für Scroll-Richtungswechsel (in Pixel)."
 
-#: admin/menu/includes/class-nsr-options.php:542
+#: admin/menu/includes/class-nsr-options.php:553
 msgid "Autohide Delay"
 msgstr "Autohide Delay"
 
-#: admin/menu/includes/class-nsr-options.php:544
+#: admin/menu/includes/class-nsr-options.php:555
 msgid "Delay in miliseconds for fading out the scrollbar."
 msgstr "Verzögerungszeit für das automatische Verbergen (im Millisekunden)."
 
-#: admin/menu/includes/class-nsr-options.php:552
+#: admin/menu/includes/class-nsr-options.php:563
 msgid "Native Parent Scrolling"
 msgstr "Native Parent Scrolling"
 
-#: admin/menu/includes/class-nsr-options.php:554
+#: admin/menu/includes/class-nsr-options.php:565
 msgid "Detect bottom of content and let parent scroll, as native scroll does."
 msgstr "Scrollen bei Inhaltsende gemäss Browservoreinstellung."
 
-#: admin/menu/includes/class-nsr-options.php:562
+#: admin/menu/includes/class-nsr-options.php:573
 msgid "Scroll On Selection"
 msgstr "Scroll On Selection"
 
-#: admin/menu/includes/class-nsr-options.php:564
+#: admin/menu/includes/class-nsr-options.php:575
 msgid "Auto-scrolling of content while selecting text."
 msgstr "Automatisches Scrollen beim markieren von langen Textabschnitten."
 
-#: admin/menu/includes/class-nsr-options.php:572
+#: admin/menu/includes/class-nsr-options.php:583
 msgid "Overflow-X"
 msgstr "Overflow-X"
 
-#: admin/menu/includes/class-nsr-options.php:574
+#: admin/menu/includes/class-nsr-options.php:585
 msgid "Enable or disable overflow-x."
 msgstr "Overflow-X ein- oder ausschalten."
 
-#: admin/menu/includes/class-nsr-options.php:582
+#: admin/menu/includes/class-nsr-options.php:593
 msgid "Overflow-Y"
 msgstr "Overflow-Y"
 
-#: admin/menu/includes/class-nsr-options.php:584
+#: admin/menu/includes/class-nsr-options.php:595
 msgid "Enable or disable overflow-y."
 msgstr "Overflow-Y ein- oder ausschalten."
 
-#: admin/menu/includes/class-nsr-options.php:592
+#: admin/menu/includes/class-nsr-options.php:603
 msgid "Cursor Drag Speed"
 msgstr "Cursor Drag Speed"
 
-#: admin/menu/includes/class-nsr-options.php:594
+#: admin/menu/includes/class-nsr-options.php:605
 msgid "Choose the momentum on cursor drag."
 msgstr "Das \"Drehmoment\" für das Ziehen des Cursors einstellen."
 
-#: admin/menu/includes/class-nsr-options.php:602
+#: admin/menu/includes/class-nsr-options.php:613
 msgid "RTL-Mode"
 msgstr "RTL-Mode"
 
-#: admin/menu/includes/class-nsr-options.php:604
+#: admin/menu/includes/class-nsr-options.php:615
 msgid "Enable or disable rtl-mode."
 msgstr "RTL-Modus ein- oder ausschalten."
 
-#: admin/menu/includes/class-nsr-options.php:612
+#: admin/menu/includes/class-nsr-options.php:623
 msgid "Cursor Drag On Touch"
 msgstr "Cursor Drag On Touch"
 
-#: admin/menu/includes/class-nsr-options.php:614
+#: admin/menu/includes/class-nsr-options.php:625
 msgid "Enable or disable cursor drag on touch."
 msgstr "Cursor durch Berührung ziehen."
 
-#: admin/menu/includes/class-nsr-options.php:637
+#: admin/menu/includes/class-nsr-options.php:648
 msgid "backTop"
 msgstr "BackTop"
 
-#: admin/menu/includes/class-nsr-options.php:639
+#: admin/menu/includes/class-nsr-options.php:650
 msgid "Activate or deactivate backTop."
 msgstr "BackTop-Feature aktivieren oder deaktivieren."
 
-#: admin/menu/includes/class-nsr-options.php:646
+#: admin/menu/includes/class-nsr-options.php:657
 msgid "scrollTo"
 msgstr "ScrollTo"
 
-#: admin/menu/includes/class-nsr-options.php:648
+#: admin/menu/includes/class-nsr-options.php:659
 msgid "Activate or deactivate scrollTo."
 msgstr "ScrollTo-Feature aktivieren oder deaktivieren."
 
-#: admin/menu/includes/class-nsr-options.php:880
+#: admin/menu/includes/class-nsr-options.php:897
 msgid "Basic Settings"
 msgstr "Grundlegende Einstellungen"
 
-#: admin/menu/includes/class-nsr-options.php:887
+#: admin/menu/includes/class-nsr-options.php:904
 msgid "Extended Settings"
 msgstr "Erweiterte Einstellungen"
 
-#: admin/menu/includes/class-nsr-options.php:894
+#: admin/menu/includes/class-nsr-options.php:911
 msgid "Plugin Settings"
 msgstr "Plugin-Einstellungen"
 
@@ -686,8 +697,8 @@ msgstr "Einstellungen zurücksetzen"
 msgid "Reset"
 msgstr "Zurücksetzen"
 
-#: admin/menu/includes/class-nsr-validation.php:618
-#: admin/menu/includes/class-nsr-validation.php:728
+#: admin/menu/includes/class-nsr-validation.php:616
+#: admin/menu/includes/class-nsr-validation.php:726
 msgid ""
 "Your input didn't pass validation. This value must be a hexadecimal color "
 "value. It was reset to its default. To customize it, please input a color "
@@ -698,7 +709,7 @@ msgstr ""
 "Farbe an zu passen, geben Sie bitte einen Wert à la \"#FFF\" oder \"#0073AA"
 "\" ein."
 
-#: admin/menu/includes/class-nsr-validation.php:629
+#: admin/menu/includes/class-nsr-validation.php:627
 msgid ""
 "Your input didn't pass validation. This value must be a positive number "
 "between 0 and 1, with max two decimal places (or left blank)."
@@ -707,7 +718,7 @@ msgstr ""
 "positiv sein und zwischen 0 (Null) und 1 liegen, und er darf bis zu zwei "
 "Nachkommastellen beinhalten (oder Feld leer lassen)."
 
-#: admin/menu/includes/class-nsr-validation.php:640
+#: admin/menu/includes/class-nsr-validation.php:638
 msgid ""
 "Your input didn't pass validation. This value must be a positive number "
 "between 0 and 1, with max two decimal places. It was reset to it's default."
@@ -717,8 +728,8 @@ msgstr ""
 "Nachkommastellen beinhalten. Der Wert wurde auf seinen Standardwert "
 "zurückgesetzt."
 
-#: admin/menu/includes/class-nsr-validation.php:651
-#: admin/menu/includes/class-nsr-validation.php:662
+#: admin/menu/includes/class-nsr-validation.php:649
+#: admin/menu/includes/class-nsr-validation.php:660
 msgid ""
 "Your input didn't pass validation. This value must be a positive, integer "
 "pixel value including 0 (zero). It was reset to it's default."
@@ -727,7 +738,7 @@ msgstr ""
 "positiver, ganzzahliger Wert inklusive 0 (Null) sein. Er wurde mit dem "
 "Standardwert belegt."
 
-#: admin/menu/includes/class-nsr-validation.php:673
+#: admin/menu/includes/class-nsr-validation.php:671
 msgid ""
 "Your input didn't pass validation. This value must be a hexadecimal color "
 "value. (It was reset to its default.) To customize it, please input a color "
@@ -738,7 +749,7 @@ msgstr ""
 "Farbe an zu passen, geben Sie bitte einen Wert à la \"#FFF\" oder \"#0073AA"
 "\" ein."
 
-#: admin/menu/includes/class-nsr-validation.php:684
+#: admin/menu/includes/class-nsr-validation.php:682
 msgid ""
 "Your input didn't pass validation. This value must be a positive, integer "
 "pixel value or left blank. It was reset to it's default."
@@ -747,7 +758,7 @@ msgstr ""
 "positiver, ganzzahliger Wert inklusive 0 (Null) sein. Er wurde mit dem "
 "Standardwert belegt."
 
-#: admin/menu/includes/class-nsr-validation.php:695
+#: admin/menu/includes/class-nsr-validation.php:693
 msgid ""
 "Your input didn't pass validation. This value must be an integer value. It "
 "was reset to it's default."
@@ -756,7 +767,7 @@ msgstr ""
 "ganzzahliger Wert inklusive 0 (Null) sein. Er wurde mit dem Standardwert "
 "belegt."
 
-#: admin/menu/includes/class-nsr-validation.php:706
+#: admin/menu/includes/class-nsr-validation.php:704
 msgid ""
 "Your input didn't pass validation. This value must be a positive integer but "
 "must not be 0 (zero). To aviod unwanted scrolling behaviour, the scrollspeed "
@@ -767,7 +778,7 @@ msgstr ""
 "positiver, ganzzahliger Wert sein, und er darf nicht 0 (Null) betragen. Der "
 "Wert wurde auf den Standardwert zurückgesetzt."
 
-#: admin/menu/includes/class-nsr-validation.php:717
+#: admin/menu/includes/class-nsr-validation.php:715
 msgid ""
 "Your input didn't pass validation. This value must be a positive integer but "
 "it must not be 0 (zero). To aviod unwanted scrolling behaviour, it was reset "
@@ -777,7 +788,7 @@ msgstr ""
 "positiver, ganzzahliger Wert sein, und er darf nicht 0 (Null) betragen. Der "
 "Wert wurde auf den Standardwert zurückgesetzt."
 
-#: admin/menu/includes/class-nsr-validation.php:739
+#: admin/menu/includes/class-nsr-validation.php:737
 msgid ""
 "Your input didn't pass validation. This value must be a positive integer "
 "including 0 (zero). It was reset to it's default."
@@ -786,7 +797,7 @@ msgstr ""
 "positiver, ganzzahliger Wert inklusive 0 (Null) sein. Er wurde mit dem "
 "Standardwert belegt."
 
-#: admin/menu/includes/class-nsr-validation.php:750
+#: admin/menu/includes/class-nsr-validation.php:748
 msgid ""
 "Your input didn't pass validation. This value must be a positive integer "
 "including 0 (zero) or left blank."
@@ -794,7 +805,7 @@ msgstr ""
 "Die Eingabe konnte nicht erfolgreich validiert werden. Dieser Wert muss ein "
 "positiver, ganzzahliger Wert inklusive 0 (Null) sein (oder Feld leer lassen)."
 
-#: admin/menu/includes/class-nsr-validation.php:761
+#: admin/menu/includes/class-nsr-validation.php:759
 msgid ""
 "Your input didn't pass validation. This value must be a positive integer "
 "including 0 (zero) or left blank. To customize it, please have a look at its "
@@ -803,7 +814,7 @@ msgstr ""
 "Die Eingabe konnte nicht erfolgreich validiert werden. Dieser Wert muss ein "
 "positiver, ganzzahliger Wert inklusive 0 (Null) sein (oder Feld leer lassen)."
 
-#: admin/menu/includes/class-nsr-validation.php:772
+#: admin/menu/includes/class-nsr-validation.php:770
 msgid ""
 "Your input didn't pass validation. This value must be a positive integer "
 "including 0 (zero) or left blank. It represents the delay in miliseconds. "
@@ -811,7 +822,7 @@ msgstr ""
 "Die Eingabe konnte nicht erfolgreich validiert werden. Dieser Wert muss ein "
 "positiver, ganzzahliger Wert inklusive 0 (Null) sein (oder Feld leer lassen)."
 
-#: admin/menu/includes/class-nsr-validation.php:783
+#: admin/menu/includes/class-nsr-validation.php:781
 msgid ""
 "Your input didn't pass validation. This value must be a positive number with "
 "max two decimal places or left blank. Please review its placeholder."

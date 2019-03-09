@@ -11,169 +11,282 @@
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  */
 
-(function ($) {
-    'use strict';
+jQuery(function ($)
+{
+	"use strict";
 
-    $(document).ready(function () {
+	class NSR_MENU {
 
-        /*--------------------------------------------------
-         * Color Picker
-         *------------------------------------------------*/
-        $('.cursorcolor, .cursorbordercolor, .background').wpColorPicker();
 
-        /*--------------------------------------------------
-         * Form Table Wrap
-         *------------------------------------------------*/
-        $('.form-table td').wrapInner('<div class="form-table-td-wrap"></div>');
+		constructor()
+		{
+			this.offset = 980;
+			this.scrollDuration = 700;
+			this.body = $('body');
+			this.window = $(window);
+		}
 
-        /*--------------------------------------------------
-         * Fancy Select
-         *------------------------------------------------*/
-        $('.nsr-fancy-select').fancySelect();
 
-        /*--------------------------------------------------
-         * Upper Settings Toggle
-         *------------------------------------------------*/
-        var toggles = $('form#nsr_form h3');
-        var tables = $("table.form-table");
+		init()
+		{
+			if (nsrMenu.backtop_enabled)
+			{
+				this.createBackTop();
+			}
 
-        // Hides the tables initially.
-        tables.css({display: 'none'});
+			this.setObjects();
+			this.wrapTable();
 
-        // Sets the button.
-        var upperToggle = toggles.eq(0);
-        upperToggle.addClass('icomoon icomoon-equalizer nicescrollr_settings_toggle');
+			// Hides the tables initially.
+			this.tables.css({display: 'none'});
 
-        // Sets the element to toggle the visibility of the upper settings table.
-        var upperPanel = tables.eq(0);
+			if (nsrMenu.scrollto_enabled)
+			{
+				this.enableScrollTo();
+			}
 
-        // Adds the class.
-        upperPanel.addClass('upper-panel');
+			if (nsrMenu.locale == 'de_DE')
+			{
+				this.localizeCheckboxes();
+			}
 
-        // Sets the initial display.
-        upperPanel.css('display', 'inline-block').animate({
-            height: '100%'
-        }, 600 );
+			this.initUpperPanel();
+			this.initLowerPanel();
+			this.bind();
+		}
 
-        // Toggle the extended settings panel
-        upperToggle.click(function (event) {
-            event = event || window.event;
-            event.preventDefault();
 
-            upperPanel.slideToggle(600);
-        });
+		setObjects()
+		{
+			/*--------------------------------------------------
+			 * Color Picker
+			 *------------------------------------------------*/
+			this.colorpicker = $('.cursorcolor, .cursorbordercolor, .background').wpColorPicker();
 
-        /*--------------------------------------------------
-         * Lower Settings Toggle
-         *------------------------------------------------*/
-        // Set the button
-        var lowerToggle = toggles.eq(1);
-        lowerToggle.addClass('icomoon icomoon-equalizer nicescrollr_settings_toggle');
+			/*--------------------------------------------------
+			 * Form Table Wrap
+			 *------------------------------------------------*/
+			this.wrap = $('.form-table td');
 
-        // Set the element to toggle
-        var lowerPanel = tables.eq(1);
+			/*--------------------------------------------------
+			 * Fancy Select
+			 *------------------------------------------------*/
+			this.fancyselect = $('.nsr-fancy-select').fancySelect();
 
-        // Wrap it for styling purposes
-        lowerPanel.addClass('lower-panel');
+			/*--------------------------------------------------
+			 * Upper Settings Panel
+			 *------------------------------------------------*/
+			this.toggles = $('form#nsr_form h2');
+			this.tables = $("table.form-table");
 
-        // Set the initial display
-        lowerPanel.css('display', 'none');
+			this.upperToggle = this.toggles.eq(0);
+			this.upperToggle.addClass('icomoon icomoon-equalizer nicescrollr_settings_toggle');
+			// Sets the element to toggle the visibility of the upper settings table.
+			this.upperPanel = this.tables.eq(0);
 
-        // Toggle the extended settings panel
-        lowerToggle.click(function (event) {
-            event = event || window.event;
-            event.preventDefault();
+			/*--------------------------------------------------
+			 * Lower Settings Panel
+			 *------------------------------------------------*/
+			this.lowerToggle = this.toggles.eq(1);
+			this.lowerToggle.addClass('icomoon icomoon-equalizer nicescrollr_settings_toggle');
+			// Set the element to toggle
+			this.lowerPanel = this.tables.eq(1);
 
-            lowerPanel.slideToggle(600);
-            lowerPanel.css('display', 'inline-block');
-        });
+			/*--------------------------------------------------
+			 * BackTop
+			 *------------------------------------------------*/
+			this.backTop = $('#backTop');
+		}
 
-        /*--------------------------------------------------
-         * backTop
-         *------------------------------------------------*/
-        if (nsrMenu.backtop_enabled) {
 
-            // Adds the element for the button
-            $('.settings_page_nicescrollr_settings').after("<a id='backTop' class='dp-backTop'></a>");
+		wrapTable()
+		{
+			this.wrap.wrapInner('<div class="form-table-td-wrap"></div>');
+		}
 
-            $('#backTop').backTop({'position': 400, 'speed': 500, 'color': 'black'});
-        }
+		createBackTop()
+		{
+			// Adds the element for the button
+			this.body.after("<a id='backTop' class='dp-backTop'></a>");
+		}
 
-        /*--------------------------------------------------
-         * scrollTo
-         *------------------------------------------------*/
-        if (nsrMenu.scrollto_enabled) {
 
-            if ($('.error a').hasClass('nsr-validation-error')) {
+		enableScrollTo()
+		{
+			//let self = event.data.context;
+			this.errorLink = $('.error a');
 
-                upperPanel.css('display', 'inline-block');
-                lowerPanel.css('display', 'none');
+			if (nsrMenu.scrollto_enabled)
+			{
 
-                $('.nsr-validation-error').click(function (event) {
+				if (this.errorLink.hasClass('nsr-validation-error'))
+				{
 
-                    event = event || window.event;
-                    event.preventDefault();
+					this.upperPanel.css('display', 'inline-block');
+					this.lowerPanel.css('display', 'none');
 
-                    var address = $(this).attr('href');
+					this.errorLink.bind('click', {context: this}, this.scrollToOnClick);
+				}
 
-                    // If the target is a color picker and thus it is an anchor with an id and not an input element,
-                    // we change the targeted element to keep the scrollTo-functionality fully functional.
-                    if (address == '#cursorcolor' || address == '#cursorbordercolor' || address == '#background') {
+			}
+			else if (this.errorLink.hasClass('nsr-validation-error-no-scrollto'))
+			{
 
-                        var element = $('input' + address);
-                        var target = element.parent().prev();
-                        target.attr('id', $(this).attr('href'));
-                        $(this).removeAttr('id');
-                        $(this).parent().prev().attr('id', address);
-                    } else {
+				this.lowerPanel.css('display', 'inline-block');
+			}
+			else
+			{
 
-                        var target = $('input' + address);
-                    }
+				this.lowerPanel.css('display', 'none');
+			}
+		}
 
-                    if ($(this).data('index') >= nsrMenu.basic_options_count) {
 
-                        if (lowerPanel.css('display', 'none')) {
+		initUpperPanel()
+		{
+			this.upperToggle.addClass('icomoon icomoon-equalizer nicescrollr_settings_toggle');
+			// Adds the class.
+			this.upperPanel.addClass('upper-panel');
+			// Sets the initial display.
+			this.upperPanel.css('display', 'inline-block').animate({
+				height: '100%'
+			}, 320);
+		}
 
-                            lowerPanel.css('display', 'inline-block');
-                        }
-                    } else if ($(this).data('index') < nsrMenu.basic_options_count) {
 
-                        if (upperPanel.css('display', 'none')) {
+		initLowerPanel()
+		{
+			this.lowerToggle.addClass('icomoon icomoon-equalizer nicescrollr_settings_toggle');
+			// Wrap it for styling purposes
+			this.lowerPanel.addClass('lower-panel');
+			// Set the initial display
+			this.lowerPanel.css('display', 'none');
+		}
 
-                            upperPanel.css('display', 'inline-block');
-                        }
-                    }
 
-                    //target.focus();
-                    $(window).scrollTo(target, 400, {offset: -120});
+		localizeCheckboxes()
+		{
+			$('<style>.nsr-switch-label:before{content:"' + nsrMenu.Off + '";}</style>').appendTo('head');
+			$('<style>.nsr-switch-label:after{content:"' + nsrMenu.On + '";}</style>').appendTo('head');
+		}
 
-                    //target.addClass('validation-error-focus');
 
-                    target.focus();
+		bind()
+		{
+			this.upperToggle.bind('click', {context: this}, this.upperToggleOnClick);
+			this.lowerToggle.bind('click', {context: this}, this.lowerToggleOnClick);
 
-                    /*target.on('blur', function() {
-                        $(this).removeClass('.validation-error-focus');
-                    });*/
-                });
-            }
+			this.backTop.bind('click', {context: this}, this.onClick);
+			this.window.bind('scroll', {context: this}, this.onScroll);
+		}
 
-        } else if ($('.error a').hasClass('nsr-validation-error-no-scrollto')) {
 
-            lowerPanel.css('display', 'inline-block');
-        } else {
+		upperToggleOnClick(event)
+		{
+			let self = event.data.context;
 
-            lowerPanel.css('display', 'none');
-        }
+			self.upperPanel.slideToggle(320);
+		}
 
-        /*--------------------------------------------------
-         * Localisation for the text on the switches (checkboxes). @todo: May find a less ugly solution...
-         *------------------------------------------------*/
-        if (nsrMenu.locale == 'de_DE') {
 
-            $('<style>.nsr-switch-label:before{content:"' + nsrMenu.Off + '";}</style>').appendTo('head');
-            $('<style>.nsr-switch-label:after{content:"' + nsrMenu.On + '";}</style>').appendTo('head');
+		lowerToggleOnClick(event)
+		{
+			let self = event.data.context;
 
-        }
-    });
+			self.lowerPanel.slideToggle(320);
+			self.lowerPanel.css('display', 'inline-block');
+		}
 
-})(jQuery);
+
+		onClick(event)
+		{
+			let self = event.data.context;
+
+			self.body.animate({
+					scrollTop: 0
+				}, self.scrollDuration
+			);
+		}
+
+
+		onScroll(event)
+		{
+			let self = event.data.context;
+
+			if($(window).scrollTop() > self.offset)
+			{
+				self.backTop.addClass('is-visible');
+			}
+			else
+			{
+				self.backTop.removeClass('is-visible');
+			}
+		}
+
+
+		scrollToOnClick(event)
+		{
+
+			let self = event.data.context;
+
+			event = event || window.event;
+			event.preventDefault();
+
+			var address = $(this).attr('href');
+
+			// If the target is a color picker and thus it is an anchor with an id and not an input element,
+			// we change the targeted element to keep the scrollTo-functionality fully functional.
+			if (address == '#cursorcolor' || address == '#cursorbordercolor' || address == '#background')
+			{
+
+				var element = $('input' + address);
+				var target = element.parent().prev();
+				target.attr('id', $(this).attr('href'));
+				$(this).removeAttr('id');
+				$(this).parent().prev().attr('id', address);
+			}
+			else
+			{
+
+				var target = $('input' + address);
+			}
+
+			if ($(this).data('index') >= nsrMenu.basic_options_count)
+			{
+
+				if (self.lowerPanel.css('display') == 'none')
+				{
+
+					self.lowerPanel.css('display', 'inline-block');
+				}
+			}
+			else if ($(this).data('index') < nsrMenu.basic_options_count)
+			{
+
+				if (self.upperPanel.css('display') == 'none')
+				{
+
+					self.upperPanel.css('display', 'inline-block');
+				}
+			}
+
+			$(window).scrollTo(target, 400, {offset: -120});
+
+			target.focus();
+
+			/*target.on('blur', function() {
+			 	$(this).removeClass('.validation-error-focus');
+			 });*/
+		}
+
+	}
+
+	$(document).ready(function ()
+	{
+		let instance = new NSR_MENU();
+
+		instance.init();
+
+	});
+
+});
