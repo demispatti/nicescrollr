@@ -15,23 +15,25 @@ jQuery(function ($)
 {
 	"use strict";
 
-	class NSR_AJAX {
+	function Plugin() {}
+
+	Plugin.prototype = {
 
 
-		constructor()
+		constructor: function()
 		{
 
-		}
+		},
 
 
-		init()
+		init: function()
 		{
 			this.setObjects();
 			this.bind();
-		}
+		},
 
 
-		setObjects()
+		setObjects: function()
 		{
 
 			/*--------------------------------------------------
@@ -50,16 +52,16 @@ jQuery(function ($)
 				},
 				delay : 3000
 			});
-		}
+		},
 
 
-		bind()
+		bind: function()
 		{
 			this.resetbutton.bind('click', {context: this}, this.resetButtonOnClick);
-		}
+		},
 
 
-		resetButtonOnClick(event)
+		resetButtonOnClick: function(event)
 		{
 
 			event.preventDefault();
@@ -74,135 +76,106 @@ jQuery(function ($)
 				nonce  : $(this).attr("data-nonce")
 			};
 
-			if (section == 'all')
-			{
+			if (section == 'all') {
 
-				alertify.confirm(nsrAjax.resetAllConfirmation, function (e)
-				{
-					if (e)
-					{
-						$.post(ajaxurl, data, function (response)
-						{
+				alertify.confirm(nsrAjax.resetAllConfirmation, function (e) {
+					if (e) {
+						$.post(ajaxurl, data, function (response) {
 
-							if (response.success == true)
-							{
+							if (response.success == true) {
 
 								alertify.success(response.data.success);
 							}
-							else
-							{
+							else {
 
 								alertify.error(response.data.success);
 							}
 						});
 					}
-					else
-					{
+					else {
 
 						return false;
 					}
 				});
 
 			}
-			else if (section == 'plugin')
-			{
+			else if (section == 'plugin') {
 
-				alertify.confirm(nsrAjax.resetPluginConfirmation, function (e)
-				{
-					if (e)
-					{
-						$.post(ajaxurl, data, function (response)
-						{
+				alertify.confirm(nsrAjax.resetPluginConfirmation, function (e) {
+					if (e) {
+						$.post(ajaxurl, data, function (response) {
 
-							if (response.success == true)
-							{
+							if (response.success == true) {
 								alertify.success(response.data.success);
 							}
-							else
-							{
+							else {
 								alertify.error(response.data.success);
 							}
 						});
 					}
-					else
-					{
+					else {
 						return false;
 					}
 				});
 
 			}
-			else if (section == 'backend')
-			{
+			else if (section == 'backend') {
 
-				alertify.confirm(nsrAjax.resetBackendConfirmation, function (e)
-				{
-					if (e)
-					{
-						$.post(ajaxurl, data, function (response)
-						{
+				alertify.confirm(nsrAjax.resetBackendConfirmation, function (e) {
+					if (e) {
+						$.post(ajaxurl, data, function (response) {
 
-							if (response.success == true)
-							{
+							if (response.success == true) {
 
 								alertify.success(response.data.success);
 							}
-							else
-							{
+							else {
 
 								alertify.error(response.data.success);
 							}
 						});
 					}
-					else
-					{
+					else {
 
 						return false;
 					}
 				});
 
 			}
-			else if (section == 'frontend')
-			{
+			else if (section == 'frontend') {
 
-				alertify.confirm(nsrAjax.resetFrontendConfirmation, function (e)
-				{
-					if (e)
-					{
-						$.post(ajaxurl, data, function (response)
-						{
+				alertify.confirm(nsrAjax.resetFrontendConfirmation, function (e) {
+					if (e) {
+						$.post(ajaxurl, data, function (response) {
 
-							if (response.success == true)
-							{
+							if (response.success == true) {
 
 								alertify.success(response.data.success);
 							}
-							else
-							{
+							else {
 
 								alertify.error(response.data.success);
 							}
 						});
 					}
-					else
-					{
+					else {
 
 						return false;
 					}
 				});
 
 			}
-			else
-			{
+			else {
 
 				return false;
 			}
 		}
 
-	}
+	};
 
 	$(document).ready(function ()
 	{
-		let instance = new NSR_AJAX();
+		var instance = new Plugin();
 
 		instance.init();
 	});

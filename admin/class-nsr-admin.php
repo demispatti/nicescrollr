@@ -15,22 +15,15 @@
 class nsr_admin {
 
 	/**
-	 * The array holding the application keys.
-	 *
-	 * @since 0.1.0
-	 * @acces private
-	 * @var   array $keys
-	 */
-	private $keys;
-
-	/**
-	 * The reference to the loader class.
+	 * The domain of the plugin.
 	 *
 	 * @since  0.1.0
+	 *
 	 * @access private
-	 * @var    object $Loader
+	 *
+	 * @var string $domain
 	 */
-	private $Loader;
+	private $domain;
 
 	/**
 	 * The name of this view.
@@ -46,21 +39,20 @@ class nsr_admin {
 	 *
 	 * @since  0.1.0
 	 * @access private
-	 * @var    object $Nicescroll_Localisation
+	 * @var    object $nicescroll_localisation
 	 */
-	private $Nicescroll_Localisation;
+	private $nicescroll_localisation;
 
 	/**
 	 * Initializes the admin part of the plugin.
 	 *
 	 * @since 0.1.0
-	 * @param $keys
+	 * @param $app
 	 * @param $Loader
 	 */
-	public function __construct( $keys, $Loader ) {
+	public function __construct( $domain ) {
 
-		$this->keys = $keys;
-		$this->Loader = $Loader;
+		$this->domain = $domain;
 
 		$this->load_dependencies();
 		$this->initialize_settings_menu();
@@ -75,7 +67,6 @@ class nsr_admin {
 	 * @return void
 	 */
 	private function load_dependencies() {
-
 		// The classes that passes the settings to Nicescroll.
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . "includes/class-nsr-nicescroll-localisation.php";
 
@@ -85,7 +76,7 @@ class nsr_admin {
 		// The classes that defines the settings menu.
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . "admin/menu/class-nsr-menu.php";
 
-		$this->Nicescroll_Localisation = new nsr_nicescroll_localisation( $this->get_keys() );
+		$this->nicescroll_localisation = new nsr_nicescroll_localisation( $this->get_domain() );
 	}
 
 	/**
@@ -98,10 +89,10 @@ class nsr_admin {
 	 */
 	public function enqueue_scripts() {
 
-		$is_superseeded_by_cb_parallax_preserve_scrolling = false;//get_transient( 'cb_parallax_superseeds_nicescrollr_plugin_on_backend' ); //@todo idea maybe I'll see
+		$is_superseeded_by_cb_parallax_preserve_scrolling = false;
 
 		// Gets executed if Nicescroll is enabled in the frontend.
-		$option = get_option( $this->keys['option_group'] );
+		$option = get_option( 'nicescrollr_options' );
 
 		if( isset($option[ $this->view ]['enabled']) && $option[ $this->view ]['enabled'] ) {
 
@@ -113,36 +104,36 @@ class nsr_admin {
 
 				// NSR Nicescroll library
 				wp_enqueue_script(
-					$this->keys['plugin_name'] . '-inc-nicescroll-min-js',
+					'nicescrollr-inc-nicescroll-min-js',
 					plugin_dir_url( __FILE__ ) . '../vendor/nicescroll/jquery.nsr.nicescroll.min.js',
 					array(
 						'jquery',
 					),
-					$this->keys['plugin_version'],
+					'all',
 					true
 				);
 			} else {
 				// Nicescroll library
 				wp_enqueue_script(
-					$this->keys['plugin_name'] . '-inc-nicescroll-min-js',
+					'nicescrollr-inc-nicescroll-min-js',
 					plugin_dir_url( __FILE__ ) . '../vendor/nicescroll/jquery.nicescroll.min.js',
 					array(
 						'jquery',
 					),
-					$this->keys['plugin_version'],
+					'all',
 					true
 				);
 			}
 
 			// Nicescroll configuration file
 			wp_enqueue_script(
-				$this->keys['plugin_name'] . '-nicescroll-js',
+				'nicescrollr-nicescroll-js',
 				plugin_dir_url( __FILE__ ) . '../js/nicescroll.js',
 				array(
 					'jquery',
-					$this->keys['plugin_name'] . '-inc-nicescroll-min-js',
+					'nicescrollr' . '-inc-nicescroll-min-js',
 				),
-				$this->keys['plugin_version'],
+				'all',
 				true
 			);
 		}
@@ -159,22 +150,22 @@ class nsr_admin {
 	public function initialize_settings_menu() {
 
 		// Creates an instance of the "settings menu class" and registers the hooks that will be executed on it.
-		$Menu = new nsr_menu( $this->get_keys(), $this->get_loader() );
+		$Menu = new nsr_menu( $this->get_domain() );
 
-		$this->Loader->add_action( 'admin_menu', $Menu, 'add_options_page', 20 );
+		add_action( 'admin_menu', array( $Menu, 'add_options_page' ), 20 );
 
-		if( isset($_REQUEST['page']) && $_REQUEST['page'] !== $this->keys['settings_page'] ) {
+		if( isset($_REQUEST['page']) && $_REQUEST['page'] !== 'nicescrollr_settings' ) {
 			return;
 		}
 
-		$this->Loader->add_action( 'admin_enqueue_scripts', $Menu, 'enqueue_styles' );
-		$this->Loader->add_action( 'admin_enqueue_scripts', $Menu, 'enqueue_scripts' );
-		$this->Loader->add_action( 'admin_enqueue_scripts', $Menu, 'initialize_localisation', 100 );
-		$this->Loader->add_action( 'admin_notices', $Menu, 'admin_notice_display' );
-		$this->Loader->add_action( 'admin_menu', $Menu, 'set_section', 10 );
-		$this->Loader->add_action( 'admin_menu', $Menu, 'initialize_settings_section', 40 );
+		add_action( 'admin_enqueue_scripts', array( $Menu, 'enqueue_styles' ) );
+		add_action( 'admin_enqueue_scripts', array( $Menu, 'enqueue_scripts' ) );
+		add_action( 'admin_enqueue_scripts', array( $Menu, 'initialize_localisation' ), 100 );
+		add_action( 'admin_notices', array( $Menu, 'admin_notice_display' ) );
+		add_action( 'admin_menu', array( $Menu, 'set_section' ), 10 );
+		add_action( 'admin_menu', array( $Menu, 'initialize_settings_section' ), 40 );
 
-		$this->Loader->add_action( 'wp_ajax_reset_options', $Menu, 'reset_options' );
+		add_action( 'wp_ajax_reset_options', array( $Menu, 'reset_options' ) );
 	}
 
 	/**
@@ -191,9 +182,9 @@ class nsr_admin {
 			return;
 		}
 
-		$Help_Tab = new nsr_help_tab( $this->keys );
+		$Help_Tab = new nsr_help_tab( $this->get_domain() );
 
-		$this->Loader->add_action( 'in_admin_header', $Help_Tab, 'add_nsr_help_tab', 15 );
+		add_action( 'in_admin_header', array( $Help_Tab, 'add_nsr_help_tab' ), 15 );
 	}
 
 	/**
@@ -208,7 +199,7 @@ class nsr_admin {
 	public function initialize_localisation() {
 
 		// Gets executed if Nicescroll is enabled in the frontend.
-		$option = get_option( $this->keys['option_group'] );
+		$option = get_option( 'nicescrollr_options' );
 
 		if( isset($option[ $this->view ]['enabled']) && $option[ $this->view ]['enabled'] ) {
 
@@ -227,7 +218,7 @@ class nsr_admin {
 	 */
 	private function localize_nicescroll() {
 
-		$this->Nicescroll_Localisation->run( $this->view );
+		$this->nicescroll_localisation->run( $this->view );
 	}
 
 	/**
@@ -243,34 +234,26 @@ class nsr_admin {
 		$plugin = plugin_basename( 'nicescrollr/nsr.php' );
 
 		if( $file == $plugin ) {
-			$meta[] = '<a href="https://wordpress.org/support/plugin/nicescrollr" target="_blank">' . __( 'Plugin support', $this->keys['plugin_domain'] ) . '</a>';
-			$meta[] = '<a href="https://wordpress.org/support/view/plugin-reviews/nicescrollr" target="_blank">' . __( 'Rate plugin', $this->keys['plugin_domain'] ) . '</a>';
-			$meta[] = '<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=XLMMS7C62S76Q" target="_blank">' . __( 'Donate', $this->keys['plugin_domain'] ) . '</a>';
+			$meta[] = '<a href="https://wordpress.org/support/plugin/nicescrollr" target="_blank">' . __( 'Plugin support', $this->domain ) . '</a>';
+			$meta[] = '<a href="https://wordpress.org/support/view/plugin-reviews/nicescrollr" target="_blank">' . __( 'Rate plugin', $this->domain ) . '</a>';
+			$meta[] = '<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=XLMMS7C62S76Q" target="_blank">' . __( 'Donate', $this->domain ) . '</a>';
 		}
 
 		return $meta;
 	}
 
 	/**
-	 * Retrieves the application keys.
+	 * Retrieve the name of the domain.
 	 *
 	 * @since  0.1.0
-	 * @return array
-	 */
-	public function get_keys() {
-
-		return $this->keys;
-	}
-
-	/**
-	 * Retrieves the reference to the loader class.
 	 *
-	 * @since  0.1.0
-	 * @return object $Loader
+	 * @access private
+	 *
+	 * @return string $domain
 	 */
-	public function get_loader() {
+	private function get_domain() {
 
-		return $this->Loader;
+		return $this->domain;
 	}
 
 }

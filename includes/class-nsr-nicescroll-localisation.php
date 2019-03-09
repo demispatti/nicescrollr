@@ -15,22 +15,24 @@
 class nsr_nicescroll_localisation {
 
 	/**
-	 * The array holding the application keys.
+	 * The domain of the plugin.
 	 *
-	 * @since 0.1.0
-	 * @acces private
-	 * @var   array $keys
+	 * @since  0.1.0
+	 *
+	 * @access private
+	 *
+	 * @var string $domain
 	 */
-	private $keys;
+	private $domain;
 
 	/**
 	 * The reference to the options class.
 	 *
 	 * @since  0.1.0
 	 * @access private
-	 * @var    object $Options
+	 * @var    object $options
 	 */
-	private $Options;
+	private $options;
 
 	/**
 	 * The name of the view for the admin area.
@@ -44,11 +46,11 @@ class nsr_nicescroll_localisation {
 	/**
 	 * Kick off.
 	 *
-	 * @param array $keys
+	 * @param array $app
 	 */
-	public function __construct( $keys ) {
+	public function __construct( $domain ) {
 
-		$this->keys = $keys;
+		$this->domain = $domain;
 
 		$this->load_dependencies();
 	}
@@ -65,7 +67,7 @@ class nsr_nicescroll_localisation {
 		// The class that maintains all data like default values and their meta data.
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . "admin/menu/includes/class-nsr-options.php";
 
-		$this->Options = new nsr_options( $this->get_keys() );
+		$this->options = new nsr_options( $this->get_domain() );
 	}
 
 	/**
@@ -88,7 +90,7 @@ class nsr_nicescroll_localisation {
 	 */
 	private function localize_nicescroll( $view ) {
 
-		wp_localize_script( $this->keys['plugin_name'] . '-nicescroll-js', 'GlobalOptions', $this->get_nicescroll_configuration( $view ) );
+		wp_localize_script( 'nicescrollr' . '-nicescroll-js', 'GlobalOptions', $this->get_nicescroll_configuration( $view ) );
 	}
 
 	/**
@@ -103,12 +105,12 @@ class nsr_nicescroll_localisation {
 	 */
 	public function get_nicescroll_configuration( $view ) {
 
-		if( false !== get_option( $this->keys['option_group'] ) ) {
+		if( false !== get_option( 'nicescrollr_options' ) ) {
 
-			$options = get_option( $this->keys['option_group'] );
+			$options = get_option( 'nicescrollr_options' );
 		} else {
 
-			$options = $this->Options->get_default_options( $view );
+			$options = $this->options->get_default_options( $view );
 		}
 
 		$configuration = $options[ $view ];
@@ -119,14 +121,17 @@ class nsr_nicescroll_localisation {
 	}
 
 	/**
-	 * Retrieves the application keys.
+	 * Retrieve the name of the domain.
 	 *
 	 * @since  0.1.0
-	 * @return array
+	 *
+	 * @access private
+	 *
+	 * @return string $domain
 	 */
-	public function get_keys() {
+	private function get_domain() {
 
-		return $this->keys;
+		return $this->domain;
 	}
 
 }

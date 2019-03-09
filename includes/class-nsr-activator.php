@@ -63,12 +63,12 @@ class nsr_activator extends nsr {
 	private function check_for_options() {
 
 		// A reference to the class maintaining all plugin-related data.
-		$Options = new nsr_options( $this->keys );
+		$Options = new nsr_options( 'nicescrollr' );
 
 		// Loops trough the option groups and seeds the default options if there is no data in the database yet.
 		foreach( $Options->get_settings_sections() as $section ) {
 
-			if( false === get_option( $this->keys['option_group'] ) ) {
+			if( false === get_option( 'nicescrollr_options' ) ) {
 				$Options->seed_options( $section );
 			}
 		}

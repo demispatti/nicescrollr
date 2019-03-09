@@ -15,35 +15,54 @@
 class nsr_menu_localisation {
 
 	/**
-	 * The array holding the application keys.
+	 * The domain of the plugin.
 	 *
-	 * @since 0.1.0
-	 * @acces private
-	 * @var   array $keys
+	 * @since  0.1.0
+	 *
+	 * @access private
+	 *
+	 * @var string $domain
 	 */
-	private $keys;
+	private $domain;
 
 	/**
 	 * The reference to the options class.
 	 *
 	 * @since  0.1.0
 	 * @access private
-	 * @var    object $Options
+	 * @var    object $options
 	 */
-	private $Options;
+	private $options;
 
 	/**
 	 * Assigns the required parameters to its instance.
 	 *
 	 * @since  0.1.0
-	 * @param  array  $keys
+	 *
+*@param  array        $domain
 	 * @param  object $Plugin_Data
-	 * @return mixed
+	 *
+*@return void
 	 */
-	public function __construct( $keys, $Plugin_Data ) {
+	public function __construct( $domain ) {
 
-		$this->keys = $keys;
-		$this->Options = $Plugin_Data;
+		$this->domain = $domain;
+
+		$this->load_dependencies();
+	}
+
+	/**
+	 * Loads it's dependencies.
+	 *
+	 * @since  0.1.0
+	 * @access private
+	 * @return void
+	 */
+	private function load_dependencies() {
+		// The class that maintains all data like default values and their meta data.
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . "includes/class-nsr-options.php";
+
+		$this->options = new nsr_options( $this->get_domain() );
 	}
 
 	/**
@@ -68,11 +87,11 @@ class nsr_menu_localisation {
 	private function localize_script() {
 
 		wp_localize_script(
-			$this->keys['plugin_name'] . '-menu-js',
+			'nicescrollr-menu-js',
 			'nsrMenu',
 			array_merge(
 				$this->get_plugin_options(),
-				$this->get_basic_options_count(),
+				$this->options->count_basic_settings(),
 				$this->get_localized_strings_for_switches()
 			)
 		);
@@ -88,14 +107,14 @@ class nsr_menu_localisation {
 	 */
 	private function get_plugin_options() {
 
-		if( false !== get_option( $this->keys['option_group'] ) && '1' !== get_option( $this->keys['option_group'] ) ) {
+		if( false !== get_option( 'nicescrollr_options' ) && '1' !== get_option( 'nicescrollr_options' ) ) {
 
-			$options = get_option( $this->keys['option_group'] );
+			$options = get_option( 'nicescrollr_options' );
 
 			$plugin_options = $options['plugin'];
 		} else {
 
-			$plugin_options = $this->Options->get_plugin_options();
+			$plugin_options = $this->options->get_plugin_options();
 			$count = array();
 
 			foreach( $plugin_options as $key => $option ) {
@@ -124,7 +143,7 @@ class nsr_menu_localisation {
 	 */
 	private function get_basic_options_count() {
 
-		$count = $this->Options->count_basic_settings();
+		$count = $this->options->count_basic_settings();
 
 		return $count;
 	}
@@ -167,6 +186,20 @@ class nsr_menu_localisation {
 		$locale = array( 'locale' => get_locale() );
 
 		return $locale;
+	}
+
+	/**
+	 * Retrieve the name of the domain.
+	 *
+	 * @since  0.1.0
+	 *
+	 * @access private
+	 *
+	 * @return string $domain
+	 */
+	private function get_domain() {
+
+		return $this->domain;
 	}
 
 }

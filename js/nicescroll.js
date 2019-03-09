@@ -12,7 +12,6 @@
  */
 
 (function( $ ){
-	/*"use strict";*/
 
 	var html = $( "html" );
 
@@ -149,7 +148,7 @@
 		var styler = (opt && opt.styler) || $.nicescroll.options.styler;
 
 		if( styler ){
-			nw = preStyler( styler );
+			var nw = preStyler( styler );
 			$.extend( nw, opt );
 			opt = nw;
 		}

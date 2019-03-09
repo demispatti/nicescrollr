@@ -15,22 +15,24 @@
 class nsr_validation {
 
 	/**
-	 * The array holding the application keys.
+	 * The domain of the plugin.
 	 *
-	 * @since 0.1.0
-	 * @acces private
-	 * @var   array $keys
+	 * @since  0.1.0
+	 *
+	 * @access private
+	 *
+	 * @var string $domain
 	 */
-	private $keys;
+	private $domain;
 
 	/**
 	 * The reference to the options class.
 	 *
 	 * @since  0.1.0
 	 * @access private
-	 * @var    object $Options
+	 * @var    object $options
 	 */
-	private $Options;
+	private $options;
 
 	/**
 	 * The name of the section to be validated.
@@ -45,14 +47,15 @@ class nsr_validation {
 	 * Assigns the required parameters to its instance.
 	 *
 	 * @since 0.1.0
-	 * @param array  $keys
-	 * @param object $Options
+	 *
+     * @param array  $domain
+	 * @param object $options
 	 * @param string $section
 	 */
-	public function __construct( $keys, $Options, $section = false ) {
+	public function __construct( $domain, $options, $section = false ) {
 
-		$this->keys = $keys;
-		$this->Options = $Options;
+		$this->domain  = $domain;
+		$this->options = $options;
 		$this->section = $section;
 	}
 
@@ -115,8 +118,8 @@ class nsr_validation {
 	 */
 	private function validate( $input, $section ) {
 
-		$defaults = $this->Options->get_default_options( $section );
-		$notice_levels = $this->Options->get_notice_levels();
+		$defaults = $this->options->get_default_options( $section );
+		$notice_levels = $this->options->get_notice_levels();
 		$output = array();
 		$errors = array();
 
@@ -479,7 +482,7 @@ class nsr_validation {
 		// If there were errors and transients were created, we create one more containing the ids of the previously created ones.
 		if( isset($errors) && (!empty($errors)) ) {
 
-			set_transient( $this->keys['validation_transient'], $errors, 60 );
+			set_transient( 'nicescrollr_validation_transient', $errors, 60 );
 		}
 
 		return apply_filters( 'validate', $output, $input );
@@ -487,7 +490,7 @@ class nsr_validation {
 
 	private function merge_options( $valid, $section ) {
 
-		$options = get_option( $this->keys['option_group'] );
+		$options = get_option( 'nicescrollr_options' );
 
 		unset($options[ $section ]);
 
@@ -518,7 +521,7 @@ class nsr_validation {
 			switch( $option_key ) {
 
 				case($option_key === 'cursorborderstate');
-					if( isset($value) && $value == __( 'none', $this->keys['plugin_domain'] ) ) {
+					if( isset($value) && $value == __( 'none', $this->domain ) ) {
 
 						$output[ $option_key ] = 'none';
 					} else {
@@ -528,13 +531,13 @@ class nsr_validation {
 
 				case($option_key === 'autohidemode');
 
-					if( isset($value) && $value == __( 'off', $this->keys['plugin_domain'] ) ) {
+					if( isset($value) && $value == __( 'off', $this->domain ) ) {
 
 						$output[ $option_key ] = 'off';
-					} else if( isset($value) && $value == __( 'on', $this->keys['plugin_domain'] ) ) {
+					} else if( isset($value) && $value == __( 'on', $this->domain ) ) {
 
 						$output[ $option_key ] = 'on';
-					} else if( isset($value) && $value == __( 'cursor', $this->keys['plugin_domain'] ) ) {
+					} else if( isset($value) && $value == __( 'cursor', $this->domain ) ) {
 
 						$output[ $option_key ] = 'cursor';
 					} else {
@@ -544,13 +547,13 @@ class nsr_validation {
 
 				case($option_key === 'railoffset');
 
-					if( isset($value) && $value == __( 'off', $this->keys['plugin_domain'] ) ) {
+					if( isset($value) && $value == __( 'off', $this->domain ) ) {
 
 						$output[ $option_key ] = 'off';
-					} else if( isset($value) && $value == __( 'top', $this->keys['plugin_domain'] ) ) {
+					} else if( isset($value) && $value == __( 'top', $this->domain ) ) {
 
 						$output[ $option_key ] = 'top';
-					} else if( isset($value) && $value == __( 'left', $this->keys['plugin_domain'] ) ) {
+					} else if( isset($value) && $value == __( 'left', $this->domain ) ) {
 
 						$output[ $option_key ] = 'left';
 					} else {
@@ -560,10 +563,10 @@ class nsr_validation {
 
 				case($option_key === 'railalign');
 
-					if( isset($value) && $value == __( 'right', $this->keys['plugin_domain'] ) ) {
+					if( isset($value) && $value == __( 'right', $this->domain ) ) {
 
 						$output[ $option_key ] = 'right';
-					} else if( isset($value) && $value == __( 'left', $this->keys['plugin_domain'] ) ) {
+					} else if( isset($value) && $value == __( 'left', $this->domain ) ) {
 
 						$output[ $option_key ] = 'left';
 					} else {
@@ -573,10 +576,10 @@ class nsr_validation {
 
 				case($option_key === 'railvalign');
 
-					if( isset($value) && $value == __( 'bottom', $this->keys['plugin_domain'] ) ) {
+					if( isset($value) && $value == __( 'bottom', $this->domain ) ) {
 
 						$output[ $option_key ] = 'bottom';
-					} else if( isset($value) && $value == __( 'top', $this->keys['plugin_domain'] ) ) {
+					} else if( isset($value) && $value == __( 'top', $this->domain ) ) {
 
 						$output[ $option_key ] = 'top';
 					} else {
@@ -586,7 +589,7 @@ class nsr_validation {
 
 				case($option_key === 'cursorfixedheight');
 
-					if( isset($value) && $value == __( 'off', $this->keys['plugin_domain'] ) ) {
+					if( isset($value) && $value == __( 'off', $this->domain ) ) {
 
 						$output[ $option_key ] = 'off';
 					} else {
@@ -602,9 +605,6 @@ class nsr_validation {
 		return apply_filters( 'translate_to_default_locale', $output, $input );
 	}
 
-	/* ------------------------------------------------------------------------ *
-	 * Error Messages
-	 * ------------------------------------------------------------------------ */
 	/**
 	 * Returns the specified error message.
 	 *
@@ -613,7 +613,7 @@ class nsr_validation {
 	 */
 	public function cursorcolor_error_message() {
 
-		return new WP_Error( 'broke', __( "Your input didn't pass validation. This value must be a hexadecimal color value. It was reset to its default. To customize it, please input a color value like '#fff' or '#0073AA'.", $this->keys['plugin_domain'] ) );
+		return new WP_Error( 'broke', __( "Your input didn't pass validation. This value must be a hexadecimal color value. It was reset to its default. To customize it, please input a color value like '#fff' or '#0073AA'.", $this->domain ) );
 	}
 
 	/**
@@ -624,7 +624,7 @@ class nsr_validation {
 	 */
 	public function cursoropacitymin_error_message() {
 
-		return new WP_Error( 'broke', __( "Your input didn't pass validation. This value must be a positive number between 0 and 1, with max two decimal places (or left blank).", $this->keys['plugin_domain'] ) );
+		return new WP_Error( 'broke', __( "Your input didn't pass validation. This value must be a positive number between 0 and 1, with max two decimal places (or left blank).", $this->domain ) );
 	}
 
 	/**
@@ -635,7 +635,7 @@ class nsr_validation {
 	 */
 	public function cursoropacitymax_error_message() {
 
-		return new WP_Error( 'broke', __( "Your input didn't pass validation. This value must be a positive number between 0 and 1, with max two decimal places. It was reset to it's default.", $this->keys['plugin_domain'] ) );
+		return new WP_Error( 'broke', __( "Your input didn't pass validation. This value must be a positive number between 0 and 1, with max two decimal places. It was reset to it's default.", $this->domain ) );
 	}
 
 	/**
@@ -646,7 +646,7 @@ class nsr_validation {
 	 */
 	public function cursorwidth_error_message() {
 
-		return new WP_Error( 'broke', __( "Your input didn't pass validation. This value must be a positive, integer pixel value including 0 (zero). It was reset to it's default.", $this->keys['plugin_domain'] ) );
+		return new WP_Error( 'broke', __( "Your input didn't pass validation. This value must be a positive, integer pixel value including 0 (zero). It was reset to it's default.", $this->domain ) );
 	}
 
 	/**
@@ -657,7 +657,7 @@ class nsr_validation {
 	 */
 	public function cursorborderwidth_error_message() {
 
-		return new WP_Error( 'broke', __( "Your input didn't pass validation. This value must be a positive, integer pixel value including 0 (zero). It was reset to it's default.", $this->keys['plugin_domain'] ) );
+		return new WP_Error( 'broke', __( "Your input didn't pass validation. This value must be a positive, integer pixel value including 0 (zero). It was reset to it's default.", $this->domain ) );
 	}
 
 	/**
@@ -668,7 +668,7 @@ class nsr_validation {
 	 */
 	public function cursorbordercolor_error_message() {
 
-		return new WP_Error( 'broke', __( "Your input didn't pass validation. This value must be a hexadecimal color value. (It was reset to its default.) To customize it, please input a color value like '#fff' or '#0073AA'.", $this->keys['plugin_domain'] ) );
+		return new WP_Error( 'broke', __( "Your input didn't pass validation. This value must be a hexadecimal color value. (It was reset to its default.) To customize it, please input a color value like '#fff' or '#0073AA'.", $this->domain ) );
 	}
 
 	/**
@@ -679,7 +679,7 @@ class nsr_validation {
 	 */
 	public function cursorborderradius_error_message() {
 
-		return new WP_Error( 'broke', __( "Your input didn't pass validation. This value must be a positive, integer pixel value or left blank. It was reset to it's default.", $this->keys['plugin_domain'] ) );
+		return new WP_Error( 'broke', __( "Your input didn't pass validation. This value must be a positive, integer pixel value or left blank. It was reset to it's default.", $this->domain ) );
 	}
 
 	/**
@@ -690,7 +690,7 @@ class nsr_validation {
 	 */
 	public function zindex_error_message() {
 
-		return new WP_Error( 'broke', __( "Your input didn't pass validation. This value must be an integer value. It was reset to it's default.", $this->keys['plugin_domain'] ) );
+		return new WP_Error( 'broke', __( "Your input didn't pass validation. This value must be an integer value. It was reset to it's default.", $this->domain ) );
 	}
 
 	/**
@@ -701,7 +701,7 @@ class nsr_validation {
 	 */
 	public function scrollspeed_error_message() {
 
-		return new WP_Error( 'broke', __( "Your input didn't pass validation. This value must be a positive integer but must not be 0 (zero). To aviod unwanted scrolling behaviour, the scrollspeed was reset to its default. (Note: If you intended to disable the mousewheel, please visit the extended settings panel.)", $this->keys['plugin_domain'] ) );
+		return new WP_Error( 'broke', __( "Your input didn't pass validation. This value must be a positive integer but must not be 0 (zero). To aviod unwanted scrolling behaviour, the scrollspeed was reset to its default. (Note: If you intended to disable the mousewheel, please visit the extended settings panel.)", $this->domain ) );
 	}
 
 	/**
@@ -712,7 +712,7 @@ class nsr_validation {
 	 */
 	public function mousescrollstep_error_message() {
 
-		return new WP_Error( 'broke', __( "Your input didn't pass validation. This value must be a positive integer but it must not be 0 (zero). To aviod unwanted scrolling behaviour, it was reset to its default.", $this->keys['plugin_domain'] ) );
+		return new WP_Error( 'broke', __( "Your input didn't pass validation. This value must be a positive integer but it must not be 0 (zero). To aviod unwanted scrolling behaviour, it was reset to its default.", $this->domain ) );
 	}
 
 	/**
@@ -723,7 +723,7 @@ class nsr_validation {
 	 */
 	public function background_error_message() {
 
-		return new WP_Error( 'broke', __( "Your input didn't pass validation. This value must be a hexadecimal color value. It was reset to its default. To customize it, please input a color value like '#fff' or '#0073AA'.", $this->keys['plugin_domain'] ) );
+		return new WP_Error( 'broke', __( "Your input didn't pass validation. This value must be a hexadecimal color value. It was reset to its default. To customize it, please input a color value like '#fff' or '#0073AA'.", $this->domain ) );
 	}
 
 	/**
@@ -734,7 +734,7 @@ class nsr_validation {
 	 */
 	public function cursorminheight_error_message() {
 
-		return new WP_Error( 'broke', __( "Your input didn't pass validation. This value must be a positive integer including 0 (zero). It was reset to it's default.", $this->keys['plugin_domain'] ) );
+		return new WP_Error( 'broke', __( "Your input didn't pass validation. This value must be a positive integer including 0 (zero). It was reset to it's default.", $this->domain ) );
 	}
 
 	/**
@@ -745,7 +745,7 @@ class nsr_validation {
 	 */
 	public function railpadding_error_message() {
 
-		return new WP_Error( 'broke', __( "Your input didn't pass validation. This value must be a positive integer including 0 (zero) or left blank.", $this->keys['plugin_domain'] ) );
+		return new WP_Error( 'broke', __( "Your input didn't pass validation. This value must be a positive integer including 0 (zero) or left blank.", $this->domain ) );
 	}
 
 	/**
@@ -756,7 +756,7 @@ class nsr_validation {
 	 */
 	public function directionlockdeadzone_error_message() {
 
-		return new WP_Error( 'broke', __( "Your input didn't pass validation. This value must be a positive integer including 0 (zero) or left blank. To customize it, please have a look at its placeholder.", $this->keys['plugin_domain'] ) );
+		return new WP_Error( 'broke', __( "Your input didn't pass validation. This value must be a positive integer including 0 (zero) or left blank. To customize it, please have a look at its placeholder.", $this->domain ) );
 	}
 
 	/**
@@ -767,7 +767,7 @@ class nsr_validation {
 	 */
 	public function hidecursordelay_error_message() {
 
-		return new WP_Error( 'broke', __( "Your input didn't pass validation. This value must be a positive integer including 0 (zero) or left blank. It represents the delay in miliseconds. ", $this->keys['plugin_domain'] ) );
+		return new WP_Error( 'broke', __( "Your input didn't pass validation. This value must be a positive integer including 0 (zero) or left blank. It represents the delay in miliseconds. ", $this->domain ) );
 	}
 
 	/**
@@ -778,7 +778,7 @@ class nsr_validation {
 	 */
 	public function cursordragspeed_error_message() {
 
-		return new WP_Error( 'broke', __( "Your input didn't pass validation. This value must be a positive number with max two decimal places or left blank. Please review its placeholder.", $this->keys['plugin_domain'] ) );
+		return new WP_Error( 'broke', __( "Your input didn't pass validation. This value must be a positive number with max two decimal places or left blank. Please review its placeholder.", $this->domain ) );
 	}
 
 }

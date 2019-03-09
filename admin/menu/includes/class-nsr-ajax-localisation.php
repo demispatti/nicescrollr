@@ -15,13 +15,15 @@
 class nsr_ajax_localisation {
 
 	/**
-	 * The array holding the application keys.
+	 * The domain of the plugin.
 	 *
-	 * @since 0.1.0
-	 * @acces private
-	 * @var   array $keys
+	 * @since  0.1.0
+	 *
+	 * @access private
+	 *
+	 * @var string $domain
 	 */
-	private $keys;
+	private $domain;
 
 	/**
 	 * Assigns the required parameters to its instance.
@@ -30,9 +32,9 @@ class nsr_ajax_localisation {
 	 * @param $plugin_name
 	 * @param $plugin_domain
 	 */
-	public function __construct( $keys ) {
+	public function __construct( $domain ) {
 
-		$this->keys = $keys;
+		$this->domain = $domain;
 	}
 
 	/**
@@ -56,7 +58,7 @@ class nsr_ajax_localisation {
 	 */
 	private function localize_script() {
 
-		wp_localize_script( $this->keys['plugin_name'] . '-ajax-js', 'nsrAjax', array_merge( $this->get_confirmation_texts(), $this->get_confirmation_dialog_labels() ) );
+		wp_localize_script( 'nicescrollr-ajax-js', 'nsrAjax', array_merge( $this->get_confirmation_texts(), $this->get_confirmation_dialog_labels() ) );
 	}
 
 	/**
@@ -68,7 +70,7 @@ class nsr_ajax_localisation {
 	 */
 	private function get_reset_frontend_confirmation_text() {
 
-		$confirm_reset = __( "This resets the frontend view to it's defaults. Continue?", $this->keys['plugin_domain'] );
+		$confirm_reset = __( "This resets the frontend view to it's defaults. Continue?", $this->domain );
 
 		return $confirm_reset;
 	}
@@ -82,7 +84,7 @@ class nsr_ajax_localisation {
 	 */
 	private function get_reset_backend_confirmation_text() {
 
-		$confirm_reset = __( "This resets the backend view to it's defaults. Continue?", $this->keys['plugin_domain'] );
+		$confirm_reset = __( "This resets the backend view to it's defaults. Continue?", $this->domain );
 
 		return $confirm_reset;
 	}
@@ -96,7 +98,7 @@ class nsr_ajax_localisation {
 	 */
 	private function get_reset_plugin_confirmation_text() {
 
-		$confirm_reset = __( "This resets the plugin to it's defaults. Continue?", $this->keys['plugin_domain'] );
+		$confirm_reset = __( "This resets the plugin to it's defaults. Continue?", $this->domain );
 
 		return $confirm_reset;
 	}
@@ -110,7 +112,7 @@ class nsr_ajax_localisation {
 	 */
 	private function get_reset_all_confirmation_text() {
 
-		$confirm_reset = __( "This resets all Nicescrollr settings to their defaults. Continue?", $this->keys['plugin_domain'] );
+		$confirm_reset = __( "This resets all Nicescrollr settings to their defaults. Continue?", $this->domain );
 
 		return $confirm_reset;
 	}
@@ -142,8 +144,8 @@ class nsr_ajax_localisation {
 	public function get_confirmation_dialog_labels() {
 
 		$labels = array(
-			'okiDoki'   => __( 'ok', $this->keys['plugin_domain'] ),
-			'noWayJose' => __( 'cancel', $this->keys['plugin_domain'] ),
+			'okiDoki'   => __( 'ok', $this->domain ),
+			'noWayJose' => __( 'cancel', $this->domain ),
 		);
 
 		return $labels;

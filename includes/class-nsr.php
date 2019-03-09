@@ -15,36 +15,15 @@
 class nsr {
 
 	/**
-	 * The array holding the application keys.
-	 *
-	 * @since 0.1.0
-	 * @acces protected
-	 * @var   array $keys
-	 */
-	protected $keys;
-
-	/**
-	 * The reference to the loader class.
-	 *
-	 * @since 0.1.0
-	 * @acces private
-	 * @var   object $Loader
-	 */
-	private $Loader;
-
-	/**
-	 * Sets the application keys.
+	 * The domain of the plugin.
 	 *
 	 * @since  0.1.0
+	 *
 	 * @access private
-	 * @return void
+	 *
+	 * @var string $domain
 	 */
-	private function set_keys() {
-
-		$Keys = new nsr_keys();
-
-		$this->keys = $Keys->retrieve_keys();
-	}
+	private $domain;
 
 	/**
 	 * Defines the locale for this plugin.
@@ -57,25 +36,22 @@ class nsr {
 	private function set_locale() {
 
 		$Plugin_i18n = new nsr_i18n();
-		$Plugin_i18n->set_plugin_domain( $this->keys['plugin_domain'] );
+		$Plugin_i18n->set_domain( $this->domain );
 
-		$this->Loader->add_action( 'plugins_loaded', $Plugin_i18n, 'load_plugin_textdomain' );
+		add_action( 'plugins_loaded', array( $Plugin_i18n, 'load_plugin_textdomain' ) );
 	}
 
 	/**
 	 * Defines the core functionality of the plugin.
 	 *
 	 * @since  0.1.0
-	 * @return mixed / void
+	 * @return void
 	 */
 	public function __construct() {
 
+		$this->domain = 'nicescrollr';
 		$this->load_dependencies();
-		$this->set_keys();
 		$this->set_locale();
-
-		$this->define_admin_hooks();
-		$this->define_public_hooks();
 	}
 
 	/**
@@ -85,13 +61,6 @@ class nsr {
 	 * @access private
 	 */
 	private function load_dependencies() {
-
-		// The class that holds the application keys.
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-nsr-keys.php';
-
-		// The class responsible for orchestrating the actions and filters of the core plugin.
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-nsr-loader.php';
-
 		// The class responsible for defining internationalization functionality of the plugin.
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-nsr-i18n.php';
 
@@ -100,9 +69,6 @@ class nsr {
 
 		// The class responsible for defining all actions that occur in the public-facing side of the site.
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-nsr-public.php';
-
-		// The references
-		$this->Loader = new nsr_loader();
 	}
 
 	/**
@@ -114,11 +80,11 @@ class nsr {
 	 */
 	private function define_admin_hooks() {
 
-		$Admin = new nsr_admin( $this->get_keys(), $this->get_loader() );
+		$Admin = new nsr_admin( $this->get_domain() );
 
-		$this->Loader->add_action( 'admin_enqueue_scripts', $Admin, 'enqueue_scripts', 20 );
-		$this->Loader->add_action( 'admin_enqueue_scripts', $Admin, 'initialize_localisation', 100 );
-		$this->Loader->add_action( 'plugin_row_meta', $Admin, 'plugin_row_meta', 10, 2 );
+		add_action( 'admin_enqueue_scripts', array( $Admin, 'enqueue_scripts' ), 20 );
+		add_action( 'admin_enqueue_scripts', array( $Admin, 'initialize_localisation' ), 100 );
+		add_filter( 'plugin_row_meta', array( $Admin, 'plugin_row_meta' ), 10, 2 );
 	}
 
 	/**
@@ -130,10 +96,10 @@ class nsr {
 	 */
 	private function define_public_hooks() {
 
-		$Public = new nsr_public( $this->get_keys() );
+		$Public = new nsr_public( $this->get_domain() );
 
-		$this->Loader->add_action( 'wp_enqueue_scripts', $Public, 'enqueue_scripts', 20 );
-		$this->Loader->add_action( 'wp_enqueue_scripts', $Public, 'initialize_localisation', 21 );
+		add_action( 'wp_enqueue_scripts', array( $Public, 'enqueue_scripts' ), 20 );
+		add_action( 'wp_enqueue_scripts', array( $Public, 'initialize_localisation' ), 21 );
 	}
 
 	/**
@@ -144,29 +110,22 @@ class nsr {
 	 */
 	public function run() {
 
-		$this->Loader->run();
+		$this->define_admin_hooks();
+		$this->define_public_hooks();
 	}
 
 	/**
-	 * Retrieves the application keys.
+	 * Retrieve the name of the domain.
 	 *
 	 * @since  0.1.0
-	 * @return array
-	 */
-	public function get_keys() {
-
-		return $this->keys;
-	}
-
-	/**
-	 * Retrieves the reference to the loader class.
 	 *
-	 * @since  0.1.0
-	 * @return object
+	 * @access private
+	 *
+	 * @return string $domain
 	 */
-	public function get_loader() {
+	private function get_domain() {
 
-		return $this->Loader;
+		return $this->domain;
 	}
 
 }

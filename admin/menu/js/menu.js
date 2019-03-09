@@ -15,48 +15,42 @@ jQuery(function ($)
 {
 	"use strict";
 
-	class NSR_MENU {
+	function Plugin() {
+		this.offset = 980;
+		this.scrollDuration = 700;
+		this.body = $('body');
+		this.window = $(window);
+	}
 
+	Plugin.prototype = {
 
-		constructor()
+		init: function()
 		{
-			this.offset = 980;
-			this.scrollDuration = 700;
-			this.body = $('body');
-			this.window = $(window);
-		}
+			this.setObjects();
 
-
-		init()
-		{
-			if (nsrMenu.backtop_enabled)
-			{
+			if (nsrMenu.backtop_enabled) {
 				this.createBackTop();
 			}
 
-			this.setObjects();
 			this.wrapTable();
 
 			// Hides the tables initially.
 			this.tables.css({display: 'none'});
 
-			if (nsrMenu.scrollto_enabled)
-			{
+			if (nsrMenu.scrollto_enabled) {
 				this.enableScrollTo();
 			}
 
-			if (nsrMenu.locale == 'de_DE')
-			{
+			if (nsrMenu.locale == 'de_DE') {
 				this.localizeCheckboxes();
 			}
 
 			this.initUpperPanel();
 			this.initLowerPanel();
 			this.bind();
-		}
+		},
 
-
-		setObjects()
+		setObjects: function()
 		{
 			/*--------------------------------------------------
 			 * Color Picker
@@ -96,31 +90,26 @@ jQuery(function ($)
 			 * BackTop
 			 *------------------------------------------------*/
 			this.backTop = $('#backTop');
-		}
+		},
 
-
-		wrapTable()
+		wrapTable: function()
 		{
 			this.wrap.wrapInner('<div class="form-table-td-wrap"></div>');
-		}
+		},
 
-		createBackTop()
+		createBackTop: function()
 		{
-			// Adds the element for the button
 			this.body.after("<a id='backTop' class='dp-backTop'></a>");
-		}
+		},
 
-
-		enableScrollTo()
+		enableScrollTo: function()
 		{
-			//let self = event.data.context;
+			//var self = event.data.context;
 			this.errorLink = $('.error a');
 
-			if (nsrMenu.scrollto_enabled)
-			{
+			if (nsrMenu.scrollto_enabled) {
 
-				if (this.errorLink.hasClass('nsr-validation-error'))
-				{
+				if (this.errorLink.hasClass('nsr-validation-error')) {
 
 					this.upperPanel.css('display', 'inline-block');
 					this.lowerPanel.css('display', 'none');
@@ -129,20 +118,17 @@ jQuery(function ($)
 				}
 
 			}
-			else if (this.errorLink.hasClass('nsr-validation-error-no-scrollto'))
-			{
+			else if (this.errorLink.hasClass('nsr-validation-error-no-scrollto')) {
 
 				this.lowerPanel.css('display', 'inline-block');
 			}
-			else
-			{
+			else {
 
 				this.lowerPanel.css('display', 'none');
 			}
-		}
+		},
 
-
-		initUpperPanel()
+		initUpperPanel: function()
 		{
 			this.upperToggle.addClass('icomoon icomoon-equalizer nicescrollr_settings_toggle');
 			// Adds the class.
@@ -151,83 +137,73 @@ jQuery(function ($)
 			this.upperPanel.css('display', 'inline-block').animate({
 				height: '100%'
 			}, 320);
-		}
+		},
 
-
-		initLowerPanel()
+		initLowerPanel: function()
 		{
 			this.lowerToggle.addClass('icomoon icomoon-equalizer nicescrollr_settings_toggle');
 			// Wrap it for styling purposes
 			this.lowerPanel.addClass('lower-panel');
 			// Set the initial display
 			this.lowerPanel.css('display', 'none');
-		}
+		},
 
-
-		localizeCheckboxes()
+		localizeCheckboxes: function()
 		{
 			$('<style>.nsr-switch-label:before{content:"' + nsrMenu.Off + '";}</style>').appendTo('head');
 			$('<style>.nsr-switch-label:after{content:"' + nsrMenu.On + '";}</style>').appendTo('head');
-		}
+		},
 
-
-		bind()
+		bind: function()
 		{
 			this.upperToggle.bind('click', {context: this}, this.upperToggleOnClick);
 			this.lowerToggle.bind('click', {context: this}, this.lowerToggleOnClick);
 
 			this.backTop.bind('click', {context: this}, this.onClick);
 			this.window.bind('scroll', {context: this}, this.onScroll);
-		}
+		},
 
-
-		upperToggleOnClick(event)
+		upperToggleOnClick: function(event)
 		{
-			let self = event.data.context;
+			var self = event.data.context;
 
 			self.upperPanel.slideToggle(320);
-		}
+		},
 
-
-		lowerToggleOnClick(event)
+		lowerToggleOnClick: function(event)
 		{
-			let self = event.data.context;
+			var self = event.data.context;
 
 			self.lowerPanel.slideToggle(320);
 			self.lowerPanel.css('display', 'inline-block');
-		}
+		},
 
-
-		onClick(event)
+		onClick: function(event)
 		{
-			let self = event.data.context;
+			var self = event.data.context;
 
 			self.body.animate({
 					scrollTop: 0
 				}, self.scrollDuration
 			);
-		}
+		},
 
-
-		onScroll(event)
+		onScroll: function(event)
 		{
-			let self = event.data.context;
+			var self = event.data.context;
 
-			if($(window).scrollTop() > self.offset)
-			{
+			if ($(window).scrollTop() > self.offset) {
 				self.backTop.addClass('is-visible');
 			}
-			else
-			{
+			else {
 				self.backTop.removeClass('is-visible');
 			}
-		}
+		},
 
-
-		scrollToOnClick(event)
+		scrollToOnClick: function(event)
 		{
 
-			let self = event.data.context;
+			var self = event.data.context;
 
 			event = event || window.event;
 			event.preventDefault();
@@ -236,8 +212,7 @@ jQuery(function ($)
 
 			// If the target is a color picker and thus it is an anchor with an id and not an input element,
 			// we change the targeted element to keep the scrollTo-functionality fully functional.
-			if (address == '#cursorcolor' || address == '#cursorbordercolor' || address == '#background')
-			{
+			if (address == '#cursorcolor' || address == '#cursorbordercolor' || address == '#background') {
 
 				var element = $('input' + address);
 				var target = element.parent().prev();
@@ -245,26 +220,21 @@ jQuery(function ($)
 				$(this).removeAttr('id');
 				$(this).parent().prev().attr('id', address);
 			}
-			else
-			{
+			else {
 
 				var target = $('input' + address);
 			}
 
-			if ($(this).data('index') >= nsrMenu.basic_options_count)
-			{
+			if ($(this).data('index') >= nsrMenu.basic_options_count) {
 
-				if (self.lowerPanel.css('display') == 'none')
-				{
+				if (self.lowerPanel.css('display') == 'none') {
 
 					self.lowerPanel.css('display', 'inline-block');
 				}
 			}
-			else if ($(this).data('index') < nsrMenu.basic_options_count)
-			{
+			else if ($(this).data('index') < nsrMenu.basic_options_count) {
 
-				if (self.upperPanel.css('display') == 'none')
-				{
+				if (self.upperPanel.css('display') == 'none') {
 
 					self.upperPanel.css('display', 'inline-block');
 				}
@@ -275,15 +245,15 @@ jQuery(function ($)
 			target.focus();
 
 			/*target.on('blur', function() {
-			 	$(this).removeClass('.validation-error-focus');
+			 $(this).removeClass('.validation-error-focus');
 			 });*/
 		}
 
-	}
+	};
 
-	$(document).ready(function ()
+	$(document).on( 'ready', function ()
 	{
-		let instance = new NSR_MENU();
+		var instance = new Plugin();
 
 		instance.init();
 

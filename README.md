@@ -3,13 +3,13 @@
 Tags: nicescroll, scroll, scrollbar, scrolling, nice, frontend, backend, scrollen  
 
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=XLMMS7C62S76Q  
-Requires at least: 4.1
-Tested up to: 4.6.1
-Version: 0.3.0
-Stable tag: 0.3.0
-Contributors: demispatti  
-License: GPLv2 or later  
+Requires at least: 4.4
+Tested up to: 4.7
+Version: 0.4.0
+Stable tag: 0.4.0
+License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Contributors: demispatti
 
 == Description ==
 
@@ -55,9 +55,13 @@ Well, I provide some basic support on this plugins support page. I check that pl
 
 == Konwn Issues ==
 The backtop-button on the backend does not yet work with firefox.
-This will be fixed in the next release.
+This will be fixed in the next release
 
 == Changelog ==
+
+= Version 0.4.0 =
+1. Minor bug fixes
+2. Minor code optimisations
 
 = Version 0.3.0 =
 1. Updated the user interface, all options are available again

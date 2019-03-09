@@ -13,15 +13,17 @@
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  */
 class nsr_help_tab {
-
+	
 	/**
-	 * The array holding the application keys.
+	 * The domain of the plugin.
 	 *
-	 * @since 0.1.0
-	 * @acces protected
-	 * @var   array $keys
+	 * @since  0.1.0
+	 *
+	 * @access private
+	 *
+	 * @var string $domain
 	 */
-	protected $keys;
+	private $domain;
 
 	/**
 	 * The array containing the title and the content of the help tab.
@@ -41,7 +43,7 @@ class nsr_help_tab {
 	 */
 	private function set_tab() {
 
-		$this->tabs = array( __( 'HELP', $this->keys['plugin_domain'] ) => array( 'title' => __( 'Nicescrollr help', $this->keys['plugin_domain'] ) ) );
+		$this->tabs = array( __( 'HELP', $this->domain ) => array( 'title' => __( 'Nicescrollr help', $this->domain ) ) );
 	}
 
 	/**
@@ -52,9 +54,9 @@ class nsr_help_tab {
 	 * @param  $plugin_domain
 	 * @return mixed | void
 	 */
-	public function __construct( $keys ) {
+	public function __construct( $domain ) {
 
-		$this->keys = $keys;
+		$this->domain = $domain;
 
 		$this->set_tab();
 
@@ -76,11 +78,11 @@ class nsr_help_tab {
 
 		foreach( $this->tabs as $id => $data ) {
 
-			$title = __( $data['title'], $this->keys['plugin_domain'] );
+			$title = __( $data['title'], $this->domain );
 
 			get_current_screen()->add_help_tab( array(
 				'id'      => $id,
-				'title'   => __( $title, $this->keys['plugin_domain'] ),
+				'title'   => __( $title, $this->domain ),
 				'content' => $this->display_content_callback(),
 			) );
 		}
@@ -95,17 +97,17 @@ class nsr_help_tab {
 	 */
 	private function display_content_callback() {
 
-		$html = '<p>' . __( "This plugin integrates the Nicescroll jQuery plugin into your website.", $this->keys['plugin_domain'] ) . '</p>';
+		$html = '<p>' . __( "This plugin integrates the Nicescroll jQuery plugin into your website.", $this->domain ) . '</p>';
 
-		$html .= '<p>' . __( "For help regarding Nicescroll itself, please refer to the <a href='http://areaaperta.com/nicescroll/' target='_blank'>official Nicescroll homepage</a>.", $this->keys['plugin_domain'] ) . '</p>';
+		$html .= '<p>' . __( "For help regarding Nicescroll itself, please refer to the <a href='http://areaaperta.com/nicescroll/' target='_blank'>official Nicescroll homepage</a>.", $this->domain ) . '</p>';
 
 		$html .= '<br />';
 
-		$html .= '<p>' . __( "For your convenience, the backTop library is included with this plugin. If your theme already comes with this functionality, you can disable the plugin's integrated feature on the 'Plugin' settings page.", $this->keys['plugin_domain'] ) . '</p>';
+		$html .= '<p>' . __( "For your convenience, the backTop library is included with this plugin. If your theme already comes with this functionality, you can disable the plugin's integrated feature on the 'Plugin' settings page.", $this->domain ) . '</p>';
 
-		$html .= '<p>' . __( "Also, there is the scrollTo library included with this plugin. This makes it easy for you to navigate to those input fields that didn't pass validation. You can disable it on the 'Plugin' settings page.", $this->keys['plugin_domain'] ) . '</p>';
+		$html .= '<p>' . __( "Also, there is the scrollTo library included with this plugin. This makes it easy for you to navigate to those input fields that didn't pass validation. You can disable it on the 'Plugin' settings page.", $this->domain ) . '</p>';
 
-		$html .= '<p>' . __( "If you have any questions, comments or issues regarding this plugin, please visit the <a href='https://wordpress.org/plugins/nicescrollr/' target='_blank'>plugin homepage</a>.", $this->keys['plugin_domain'] ) . '</p>';
+		$html .= '<p>' . __( "If you have any questions, comments or issues regarding this plugin, please visit the <a href='https://wordpress.org/plugins/nicescrollr/' target='_blank'>plugin homepage</a>.", $this->domain ) . '</p>';
 
 		return $html;
 	}

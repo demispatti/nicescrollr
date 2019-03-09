@@ -15,24 +15,26 @@
 class nsr_reset_section {
 
 	/**
-	 * The array holding the application keys.
+	 * The domain of the plugin.
 	 *
-	 * @since 0.1.0
-	 * @acces private
-	 * @var   array $keys
+	 * @since  0.1.0
+	 *
+	 * @access private
+	 *
+	 * @var string $domain
 	 */
-	private $keys;
+	private $domain;
 
 	/**
 	 * Assigns the required parameter to its instance.
 	 *
 	 * @since 0.1.0
 	 * @param $plugin_domain
-	 * @return mixed
+	 * @return void
 	 */
-	public function __construct( $keys ) {
+	public function __construct( $domain ) {
 
-		$this->keys = $keys;
+		$this->domain = $domain;
 	}
 
 	/**
@@ -48,26 +50,26 @@ class nsr_reset_section {
 			array(
 				'id'    => 'reset_frontend',
 				'class' => 'nsr-reset-button',
-				'name'  => __( 'Reset Frontend', $this->keys['plugin_domain'] ),
-				'title' => __( 'Resets the settings for the frontend.', $this->keys['plugin_domain'] ),
+				'name'  => __( 'Reset Frontend', $this->domain ),
+				'title' => __( 'Resets the settings for the frontend.', $this->domain ),
 			),
 			array(
 				'id'    => 'reset_backend',
 				'class' => 'nsr-reset-button',
-				'name'  => __( 'Reset Backend', $this->keys['plugin_domain'] ),
-				'title' => __( 'Resets the settings for the backend.', $this->keys['plugin_domain'] ),
+				'name'  => __( 'Reset Backend', $this->domain ),
+				'title' => __( 'Resets the settings for the backend.', $this->domain ),
 			),
 			array(
 				'id'    => 'reset_plugin',
 				'class' => 'nsr-reset-button',
-				'name'  => __( 'Reset Plugin', $this->keys['plugin_domain'] ),
-				'title' => __( 'Resets the settings for the plugin.', $this->keys['plugin_domain'] ),
+				'name'  => __( 'Reset Plugin', $this->domain ),
+				'title' => __( 'Resets the settings for the plugin.', $this->domain ),
 			),
 			array(
 				'id'    => 'reset_all',
 				'class' => 'nsr-reset-button',
-				'name'  => __( 'Reset All', $this->keys['plugin_domain'] ),
-				'title' => __( 'Resets all Nicescrollr settings.', $this->keys['plugin_domain'] ),
+				'name'  => __( 'Reset All', $this->domain ),
+				'title' => __( 'Resets all Nicescrollr settings.', $this->domain ),
 			),
 		);
 
@@ -83,7 +85,7 @@ class nsr_reset_section {
 	 */
 	private function get_section_heading() {
 
-		return '<h2 class="nicescrollr_settings_toggle">' . __( 'Reset Settings', $this->keys['plugin_domain'] ) . '</h2>';
+		return '<h2 class="nicescrollr_settings_toggle">' . __( 'Reset Settings', $this->domain ) . '</h2>';
 	}
 
 	/**
@@ -108,7 +110,7 @@ class nsr_reset_section {
 			$html .= '<td>';
 			$html .= '<div class="form-table-td-wrap">';
 			$html .= '<p class="nsr-input-container">';
-			$html .= '<a name="' . $button['id'] . '" id="' . $button['id'] . '" class="button button-primary dp-button float-left ' . $button['class'] . '" title="' . $button['title'] . '" data-nonce="' . $nonce . '">' . __( 'Reset', $this->keys['plugin_domain'] ) . '</a>';
+			$html .= '<a name="' . $button['id'] . '" id="' . $button['id'] . '" class="button button-primary dp-button float-left ' . $button['class'] . '" title="' . $button['title'] . '" data-nonce="' . $nonce . '">' . __( 'Reset', $this->domain ) . '</a>';
 			$html .= '</p>';
 			$html .= '</div>';
 			$html .= '</td>';
@@ -127,7 +129,7 @@ class nsr_reset_section {
 	 * @since  0.1.0
 	 * @uses   get_section_heading()
 	 * @uses   get_table()
-	 * @return echo
+	 * @return void / echo string $html
 	 */
 	public function echo_section() {
 

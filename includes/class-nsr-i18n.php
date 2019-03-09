@@ -19,9 +19,9 @@ class nsr_i18n {
 	 *
 	 * @since  0.1.0
 	 * @access private
-	 * @var    string $plugin_domain
+	 * @var    string $domain
 	 */
-	private $plugin_domain;
+	private $domain;
 
 	/**
 	 * Sets the domain equal to that of the specified domain.
@@ -29,9 +29,9 @@ class nsr_i18n {
 	 * @since 0.1.0
 	 * @param string $domain
 	 */
-	public function set_plugin_domain( $plugin_domain ) {
+	public function set_domain( $domain ) {
 
-		$this->plugin_domain = $plugin_domain;
+		$this->domain = $domain;
 	}
 
 	/**
@@ -42,7 +42,7 @@ class nsr_i18n {
 	 */
 	public function load_plugin_textdomain() {
 
-		load_plugin_textdomain( $this->plugin_domain, false, dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages/' );
+		load_plugin_textdomain( $this->domain, false, dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages/' );
 	}
 
 }

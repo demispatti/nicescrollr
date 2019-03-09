@@ -15,13 +15,15 @@
 class nsr_public {
 
 	/**
-	 * The array holding the application keys.
+	 * The domain of the plugin.
 	 *
-	 * @since 0.1.0
-	 * @acces private
-	 * @var   array $keys
+	 * @since  0.1.0
+	 *
+	 * @access private
+	 *
+	 * @var string $domain
 	 */
-	private $keys;
+	private $domain;
 
 	/**
 	 * The name of this view.
@@ -37,28 +39,28 @@ class nsr_public {
 	 *
 	 * @since  0.1.0
 	 * @access private
-	 * @var    object $Options
+	 * @var    object $options
 	 */
-	private $Options;
+	private $options;
 
 	/**
 	 * The reference to the localisation class.
 	 *
 	 * @since  0.1.0
 	 * @access private
-	 * @var    object $Nicescroll_Localisation
+	 * @var    object $nicescroll_localisation
 	 */
-	private $Nicescroll_Localisation;
+	private $nicescroll_localisation;
 
 	/**
 	 * Initializes the public part of the plugin.
 	 *
 	 * @since 0.1.0
-	 * @param array $keys
+	 * @param array $app
 	 */
-	public function __construct( $keys ) {
+	public function __construct( $domain ) {
 
-		$this->keys = $keys;
+		$this->domain = $domain;
 
 		$this->load_dependencies();
 		$this->check_for_options();
@@ -75,13 +77,11 @@ class nsr_public {
 
 		// The class that holds all plugin-related data.
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . "admin/menu/includes/class-nsr-options.php";
-
-		$this->Options = new nsr_options( $this->get_keys() );
+		$this->options = new nsr_options( $this->get_domain() );
 
 		// The class responsible for passing the configuration to this plugin's instance of Nicescroll.
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-nsr-nicescroll-localisation.php';
-
-		$this->Nicescroll_Localisation = new nsr_nicescroll_localisation( $this->get_keys() );
+		$this->nicescroll_localisation = new nsr_nicescroll_localisation( $this->get_domain() );
 	}
 
 	/**
@@ -96,11 +96,11 @@ class nsr_public {
 	 */
 	public function check_for_options() {
 
-		$options = get_option( $this->keys['option_group'] );
+		$options = get_option( 'nicescrollr_options' );
 
 		if( !is_array( $options['frontend'] ) ) {
 
-			$this->Options->seed_options( 'frontend' );
+			$this->options->seed_options( 'frontend' );
 		}
 	}
 
@@ -124,7 +124,7 @@ class nsr_public {
 			return;
 		}
 
-		$option = get_option( $this->keys['option_group'] );
+		$option = get_option( 'nicescrollr_options' );
 
 		// We only enqueue these scripts if Nicescroll is enabled in the frontend.
 		if( isset($option[ $this->view ]['enabled']) && $option[ $this->view ]['enabled'] ) {
@@ -134,36 +134,36 @@ class nsr_public {
 
 				// NSR Nicescroll library
 				wp_enqueue_script(
-					$this->keys['plugin_name'] . '-inc-nicescroll-min-js',
+					'nicescrollr-inc-nicescroll-min-js',
 					plugin_dir_url( __FILE__ ) . '../vendor/nicescroll/jquery.nsr.nicescroll.min.js',
 					array(
 						'jquery',
 					),
-					$this->keys['plugin_version'],
+					'all',
 					true
 				);
 			} else {
 				// Nicescroll library
 				wp_enqueue_script(
-					$this->keys['plugin_name'] . '-inc-nicescroll-min-js',
+					'nicescrollr-inc-nicescroll-min-js',
 					plugin_dir_url( __FILE__ ) . '../vendor/nicescroll/jquery.nicescroll.min.js',
 					array(
 						'jquery',
 					),
-					$this->keys['plugin_version'],
+					'all',
 					true
 				);
 			}
 
 			// Nicescroll configuration file
 			wp_enqueue_script(
-				$this->keys['plugin_name'] . '-nicescroll-js',
+				'nicescrollr-nicescroll-js',
 				plugin_dir_url( __FILE__ ) . '../js/nicescroll.js',
 				array(
 					'jquery',
-					$this->keys['plugin_name'] . '-inc-nicescroll-min-js',
+					'nicescrollr-inc-nicescroll-min-js',
 				),
-				$this->keys['plugin_version'],
+				'all',
 				true
 			);
 		}
@@ -180,7 +180,7 @@ class nsr_public {
 	public function initialize_localisation() {
 
 		// Gets executed if Nicescroll is enabled in the frontend.
-		$option = get_option( $this->keys['option_group'] );
+		$option = get_option( 'nicescrollr_options' );
 
 		if( isset($option[ $this->view ]['enabled']) && $option[ $this->view ]['enabled'] ) {
 
@@ -199,18 +199,21 @@ class nsr_public {
 	 */
 	private function localize_view() {
 
-		$this->Nicescroll_Localisation->run( $this->view );
+		$this->nicescroll_localisation->run( $this->view );
 	}
 
 	/**
-	 * Retrieves the application keys.
+	 * Retrieve the name of the domain.
 	 *
 	 * @since  0.1.0
-	 * @return array
+	 *
+	 * @access private
+	 *
+	 * @return string $domain
 	 */
-	public function get_keys() {
+	private function get_domain() {
 
-		return $this->keys;
+		return $this->domain;
 	}
 
 }
