@@ -38,8 +38,7 @@ class Nsr_Ajax_Localisation {
 	 *
 	 * @since 0.1.0
 	 *
-	 * @param $plugin_name
-	 * @param $plugin_domain
+	 * @param string $domain
 	 */
 	public function __construct( $domain ) {
 
@@ -67,7 +66,7 @@ class Nsr_Ajax_Localisation {
 	 */
 	private function localize_script() {
 
-		$data = array_merge( $this->get_confirmation_texts(), $this->get_confirmation_dialog_labels(), array('admin_url' => admin_url( 'admin-ajax.php' )) );
+		$data = array_merge( $this->get_confirmation_texts(), $this->get_confirmation_dialog_labels(), array( 'admin_url' => admin_url( 'admin-ajax.php' ) ) );
 
 		wp_localize_script( 'nicescrollr-ajax-js', 'Nsr_Ajax', $data );
 	}
