@@ -2,17 +2,17 @@
 
 Tags: nicescroll, scroll, scrollbar, back to top, scroll to top, frontend, backend
 
-Requires at least: 4.6
-Tested up to: 5.1
-Requires PHP: 5.6
-Version: 0.7.1
-Stable tag: 0.7.1
-License: GPLv2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
-Author: demispatti
-Author URI: https://demispatti.ch
+Requires at least: 4.6  
+Tested up to: 5.1  
+Requires PHP: 5.6  
+Version: 0.7.1  
+Stable tag: 0.7.1  
+License: GPLv2 or later  
+License URI: http://www.gnu.org/licenses/gpl-2.0.html  
+Author: demispatti  
+Author URI: https://demispatti.ch  
 
-Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=XLMMS7C62S76Q
+Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=XLMMS7C62S76Q  
 
 == Description ==
 
