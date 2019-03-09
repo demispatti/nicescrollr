@@ -1,5 +1,10 @@
 <?php
 
+namespace Nicescrollr\Pub;
+
+use Nicescrollr\Includes as Includes;
+use Nicescrollr\Admin\Menu\Includes as MenuIncludes;
+
 /**
  * If this file is called directly, abort.
  */
@@ -8,18 +13,30 @@ if( ! defined( 'WPINC' ) ) {
 }
 
 /**
+ * Include dependencies.
+ */
+if( ! class_exists( 'Includes\Nsr_Nicescroll_Localisation' ) ) {
+	require_once NICESCROLLR_ROOT_DIR . 'includes/class-nicescroll-localisation.php';
+}
+if( ! class_exists( 'Includes\Nsr_Backtop_Localisation' ) ) {
+	require_once NICESCROLLR_ROOT_DIR . 'includes/class-backtop-localisation.php';
+}
+if( ! class_exists( 'MenuIncludes\Nsr_Options' ) ) {
+	require_once NICESCROLLR_ROOT_DIR . 'admin/menu/includes/class-options.php';
+}
+
+/**
  * The public-specific functionality of the plugin.
  *
- * @link              https://github.com/demispatti/nicescrollr
  * @since             0.1.0
  * @package           nicescrollr
  * @subpackage        nicescrollr/public
- * Author:            Demis Patti <demis@demispatti.ch>
- * Author URI:        http://demispatti.ch
+ * Author:            Demis Patti <wp@demispatti.ch>
+ * Author URI:        https://demispatti.ch
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  */
-class nsr_public {
+class Nsr_Public {
 
 	/**
 	 * The domain of the plugin.
@@ -46,27 +63,27 @@ class nsr_public {
 	 *
 	 * @since  0.1.0
 	 * @access private
-	 * @var    object $options
+	 * @var    MenuIncludes\Nsr_Options $Options
 	 */
-	private $options;
+	private $Options;
 
 	/**
 	 * The reference to the localisation class.
 	 *
 	 * @since  0.1.0
 	 * @access private
-	 * @var    nsr_nicescroll_localisation $nicescroll_localisation
+	 * @var    Includes\Nsr_Nicescroll_Localisation $Nicescroll_Localisation
 	 */
-	private $nicescroll_localisation;
+	private $Nicescroll_Localisation;
 
 	/**
 	 * The reference to the localisation class.
 	 *
 	 * @since  0.1.0
 	 * @access private
-	 * @var    nsr_backtop_localisation $backtop_localisation
+	 * @var    Includes\Nsr_Backtop_Localisation $Backtop_Localisation
 	 */
-	private $backtop_localisation;
+	private $Backtop_Localisation;
 
 	/**
 	 * The array that holds the stored option.
@@ -78,19 +95,47 @@ class nsr_public {
 	private $settings;
 
 	/**
-	 * Initializes the public part of the plugin.
+	 * The string that holds the '-min' prefix for the js and css file handles.
 	 *
-	 * @since 0.1.0
-	 *
-	 * @param array $app
+	 * @since  0.7.0
+	 * @access private
+	 * @var    string $handle_prefix
 	 */
-	public function __construct( $domain ) {
+	private $handle_prefix;
+
+	/**
+	 * The string that holds the '.min' prefix for the js and css file paths.
+	 *
+	 * @since  0.7.0
+	 * @access private
+	 * @var    string $file_prefix
+	 */
+	private $file_prefix;
+
+	private function set_prefixes() {
+
+		$this->handle_prefix = defined( 'NICESCROLLR_DEBUG' ) ? '' : '-min';
+		$this->file_prefix = defined( 'NICESCROLLR_DEBUG' ) ? '' : '.min';
+	}
+
+	/**
+	 * Nsr_Public constructor.
+	 *
+	 * @param $domain
+	 * @param MenuIncludes\Nsr_Options $Options
+	 * @param Includes\Nsr_Nicescroll_Localisation $Nicescroll_Localisation
+	 * @param Includes\Nsr_Backtop_Localisation $Backtop_Localisation
+	 */
+	public function __construct( $domain, $Options, $Nicescroll_Localisation, $Backtop_Localisation ) {
 
 		$this->domain = $domain;
+		$this->Options =$Options;
+		$this->Nicescroll_Localisation = $Nicescroll_Localisation;
+		$this->Backtop_Localisation = $Backtop_Localisation;
 
-		$this->load_dependencies();
+		$this->set_prefixes();
 
-		$this->settings = $this->options->get_options();
+		$this->settings = $this->Options->get_options();
 	}
 
 	/**
@@ -108,25 +153,6 @@ class nsr_public {
 	}
 
 	/**
-	 * Loads it's dependencies.
-	 *
-	 * @since  0.1.0
-	 * @access private
-	 * @return void
-	 */
-	private function load_dependencies() {
-
-		require_once plugin_dir_path( __DIR__ ) . 'admin/menu/includes/class-nsr-options.php';
-		$this->options = new nsr_options( $this->get_domain() );
-
-		require_once plugin_dir_path( __DIR__ ) . 'includes/class-nsr-nicescroll-localisation.php';
-		$this->nicescroll_localisation = new nsr_nicescroll_localisation( $this->get_domain() );
-
-		require_once plugin_dir_path( __DIR__ ) . 'includes/class-nsr-backtop-localisation.php';
-		$this->backtop_localisation = new nsr_backtop_localisation( $this->get_domain() );
-	}
-
-	/**
 	 * Registers the styles for the admin menu.
 	 *
 	 * @hooked_action
@@ -136,9 +162,12 @@ class nsr_public {
 	 */
 	public function enqueue_styles() {
 
+		$handle_prefix = $this->handle_prefix;
+		$file_prefix = $this->file_prefix;
+
 		if( isset( $this->settings['frontend']['bt_enabled'] ) && $this->settings['frontend']['bt_enabled'] ) {
 
-			wp_enqueue_style( 'nicescrollr-backtop-css', plugin_dir_url( __FILE__ ) . '../assets/backtop.css', array(), 'all' );
+			wp_enqueue_style( 'nicescrollr-backtop' . $handle_prefix . '-css', NICESCROLLR_ROOT_URL . 'assets/backtop' . $file_prefix . '.css', array(), 'all' );
 		}
 	}
 
@@ -152,6 +181,9 @@ class nsr_public {
 	 */
 	public function enqueue_scripts() {
 
+		$handle_prefix = $this->handle_prefix;
+		$file_prefix = $this->file_prefix;
+
 		// We only enqueue these scripts if Nicescroll is enabled in the frontend.
 		if( isset( $this->settings[$this->view]['enabled'] ) && $this->settings[$this->view]['enabled'] ) {
 
@@ -159,36 +191,53 @@ class nsr_public {
 			$easing_url = 'https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js';
 			$easing_cdn = wp_remote_get( $easing_url );
 			if( (int) wp_remote_retrieve_response_code( $easing_cdn ) !== 200 ) {
-
-				$easing_url = plugin_dir_url( __FILE__ ) . '../vendor/jquery-easing/jquery.easing.min.js';
+				$easing_url = NICESCROLLR_ROOT_URL . 'vendor/jquery-easing/jquery.easing.min.js';
 			}
-			wp_enqueue_script( 'nicescrollr-easing-min-js', $easing_url, array( 'jquery' ), 'all' );
+			wp_enqueue_script( 'nicescrollr-easing-min-js',
+				$easing_url,
+				array(
+					'jquery'
+				),
+				'all'
+			);
 
 			// Nicescroll Library
 			$nice_url = 'https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js';
 			$nice_cdn = wp_remote_get( $nice_url );
 			if( (int) wp_remote_retrieve_response_code( $nice_cdn ) !== 200 ) {
-
-				$nice_url = plugin_dir_url( __FILE__ ) . '../vendor/nicescroll/jquery.nicescroll.min.js';
+				$nice_url = NICESCROLLR_ROOT_URL . 'vendor/nicescroll/jquery.nicescroll.min.js';
 			}
-			wp_enqueue_script( 'nicescrollr-inc-nicescroll-min-js', $nice_url, array(
-				'jquery',
-				'nicescrollr-easing-min-js'
-			), 'all' );
+			wp_enqueue_script( 'nicescrollr-inc-nicescroll-min-js',
+				$nice_url,
+				array(
+					'jquery',
+					'nicescrollr-easing-min-js'
+				),
+				'all'
+			);
 
 			// Nicescroll Configuration File
-			wp_enqueue_script( 'nicescrollr-nicescroll-js', plugin_dir_url( __FILE__ ) . '../assets/nicescroll.js', array(
+			wp_enqueue_script( 'nicescrollr-nicescroll' . $handle_prefix . '-js',
+				NICESCROLLR_ROOT_URL . 'assets/nicescroll' . $file_prefix . '.js',
+				array(
 					'jquery',
 					'nicescrollr-inc-nicescroll-min-js',
-				), 'all' );
+				),
+				'all'
+			);
 		}
 
 		if( isset( $this->settings['frontend']['bt_enabled'] ) && $this->settings['frontend']['bt_enabled'] ) {
 
 			// Backtop
-			wp_enqueue_script( 'nicescrollr-backtop-js', plugin_dir_url( __FILE__ ) . '../assets/backtop.js', array(
+			wp_enqueue_script( 'nicescrollr-backtop' . $handle_prefix . '-js',
+				NICESCROLLR_ROOT_URL . 'assets/backtop' . $file_prefix . '.js',
+				array(
 					'jquery',
-				), 'all' );
+					'nicescrollr-nicescroll-min-js'
+				),
+				'all'
+			);
 		}
 	}
 
@@ -215,32 +264,18 @@ class nsr_public {
 	 *
 	 * @since  0.1.0
 	 * @uses   run()
-	 * @see    includes/class-nsr-nicescroll-localisation.php
+	 * @see    includes/class-Nsr-nicescroll-localisation.php
 	 * @access private
 	 * @return void
 	 */
 	private function localize_nicescroll() {
 
-		$this->nicescroll_localisation->run( $this->view );
+		$this->Nicescroll_Localisation->run( $this->view );
 	}
 
 	private function localize_backtop() {
 
-		$this->backtop_localisation->run( $this->view );
-	}
-
-	/**
-	 * Retrieve the name of the domain.
-	 *
-	 * @since  0.1.0
-	 *
-	 * @access private
-	 *
-	 * @return string $domain
-	 */
-	private function get_domain() {
-
-		return $this->domain;
+		$this->Backtop_Localisation->run( $this->view );
 	}
 
 }

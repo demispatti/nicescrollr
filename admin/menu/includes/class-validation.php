@@ -1,5 +1,9 @@
 <?php
 
+namespace Nicescrollr\Admin\Menu\Includes;
+
+use Nicescrollr\Admin\Menu\Includes as MenuIncludes;
+
 /**
  * If this file is called directly, abort.
  */
@@ -10,16 +14,15 @@ if( ! defined( 'WPINC' ) ) {
 /**
  * The class responsible for sanitizing and validating the user inputs.
  *
- * @link              https://github.com/demispatti/nicescrollr
  * @since             0.1.0
  * @package           nicescrollr
  * @subpackage        nicescrollr/admin/menu/includes
- * Author:            Demis Patti <demis@demispatti.ch>
- * Author URI:        http://demispatti.ch
+ * Author:            Demis Patti <wp@demispatti.ch>
+ * Author URI:        https://demispatti.ch
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  */
-class nsr_validation {
+class Nsr_Validation {
 
 	/**
 	 * The domain of the plugin.
@@ -37,9 +40,9 @@ class nsr_validation {
 	 *
 	 * @since  0.1.0
 	 * @access private
-	 * @var    nsr_options $options
+	 * @var    MenuIncludes\Nsr_Options $Options
 	 */
-	private $options;
+	private $Options;
 
 	/**
 	 * Assigns the required parameters to its instance.
@@ -47,13 +50,13 @@ class nsr_validation {
 	 * @since 0.1.0
 	 *
 	 * @param string $domain
-	 * @param nsr_options $options
+	 * @param MenuIncludes\Nsr_Options $Options
 	 * @param string $section
 	 */
-	public function __construct( $domain, $options, $section ) {
+	public function __construct( $domain, $Options ) {
 
 		$this->domain = $domain;
-		$this->options = $options;
+		$this->Options = $Options;
 	}
 
 	/**
@@ -67,7 +70,7 @@ class nsr_validation {
 	 */
 	public function run( $input, $section ) {
 
-		if( isset( $_SESSION['cb_parallax_upgrade'] ) || isset( $input['internal'] ) ) {
+		if( isset( $_SESSION['Nsr_Upgrade'] ) || isset( $input['internal'] ) ) {
 
 			return $input;
 		}
@@ -108,7 +111,7 @@ class nsr_validation {
 	 *
 	 * since  0.1.0
 	 * @uses   get_default_settings()
-	 * @see    admin/menu/includes/class-nsr-options.php
+	 * @see    admin/menu/includes/class-Nsr-options.php
 	 * @uses   translate_to_default_locale()
 	 *
 	 * @param  array $input
@@ -117,11 +120,12 @@ class nsr_validation {
 	 */
 	private function validate( $input, $section ) {
 
-		$defaults = (array) $this->options->get_default_settings( $section );
-		$notice_levels = $this->options->get_notice_levels();
+		$defaults = (array) $this->Options->get_default_settings( $section );
+		$notice_levels = $this->Options->get_notice_levels();
 		$output = array();
 		$errors = array();
 		$validation_value = null;
+		$rgba_pattern = '/(^[a-zA-Z]+$)|(#(?:[0-9a-f]{2}){2,4}|#[0-9a-f]{3}|(?:rgba?|hsla?)\((?:\d+%?(?:deg|rad|grad|turn)?(?:,|\s)+){2,3}[\s\/]*[\d\.]+%?\))/i';
 
 		$i = 0;
 		foreach( $input as $option_key => $value ) {
@@ -130,7 +134,7 @@ class nsr_validation {
 
 				case ( $option_key === 'cursorcolor' );
 
-					if( ! preg_match( '/^#[a-f0-9]{3,6}$/i', $value ) ) {
+					if( ! preg_match( $rgba_pattern, $value ) ) {
 
 						$value = $defaults[$option_key];
 						$errors[$option_key] = array(
@@ -239,7 +243,7 @@ class nsr_validation {
 
 				case ( $option_key === 'cursorbordercolor' );
 
-					if( isset( $value ) && ! preg_match( '/^#[a-f0-9]{3,6}$/i', $value ) ) {
+					if( isset( $value ) && ! preg_match( $rgba_pattern, $value ) ) {
 
 						$value = $defaults[$option_key];
 						$errors[$option_key] = array(
@@ -335,7 +339,7 @@ class nsr_validation {
 
 				case ( $option_key === 'background' );
 
-					if( '' !== $value && ! preg_match( '/^#[a-f0-9]{3,6}$/i', $value ) ) {
+					if( '' !== $value && ! preg_match( $rgba_pattern, $value ) ) {
 
 						$value = $defaults[$option_key];
 						$errors[$option_key] = array(
@@ -494,9 +498,9 @@ class nsr_validation {
 
 					break;
 
-				case ( $option_key === 'bt_background_color' );
+				case ( $option_key === 'bt_background_color' || $option_key === 'bt_hober_background_color' );
 
-					if( ! preg_match( '/^#[a-f0-9]{3,6}$/i', $value ) ) {
+					if( ! preg_match( $rgba_pattern, $value ) ) {
 
 						$value = $defaults[$option_key];
 						$errors[$option_key] = array(
@@ -510,9 +514,9 @@ class nsr_validation {
 
 					break;
 
-				case ( $option_key === 'bt_border_color' );
+				case ( $option_key === 'bt_border_color' || $option_key === 'bt_hover_border_color' );
 
-					if( ! preg_match( '/^#[a-f0-9]{3,6}$/i', $value ) ) {
+					if( ! preg_match( $rgba_pattern, $value ) ) {
 
 						$value = $defaults[$option_key];
 						$errors[$option_key] = array(
@@ -729,10 +733,10 @@ class nsr_validation {
 			$output[$key] = isset( $output[$key] ) ? $output[$key] : false;
 		}
 
-		if( get_locale() !== 'en_US' ) {
-
+		// @deprecated
+		/*if( get_locale() !== 'en_US' ) {
 			$output = $this->translate_to_default_locale( $output );
-		}
+		}*/
 
 		// If there were errors and transients were created, we create one more containing the ids of the previously created ones.
 		if( null !== $errors && ( ! empty( $errors ) ) ) {
@@ -773,7 +777,7 @@ class nsr_validation {
 
 		if( 'frontend' === $section || 'backend' === $section ) {
 
-			$option_args = array_merge( $this->options->get_settings_per_section( 'basic' ), $this->options->get_settings_per_section( 'extended' ), $this->options->get_settings_per_section( 'backtop' ) );
+			$option_args = array_merge( $this->Options->get_settings_per_section( 'basic' ), $this->Options->get_settings_per_section( 'extended' ), $this->Options->get_settings_per_section( 'backtop' ) );
 
 			// Make sure there is at least the option key with an empty value getting stored.
 			foreach( $option_args as $option_key => $args ) {
@@ -781,7 +785,7 @@ class nsr_validation {
 				if( ! isset( $valid[$option_key] ) ) {
 
 					if( $option_args['input_type'] === 'checkbox' ) {
-						$valid[$option_key] = 0;
+						$valid[$option_key] = '0';
 					}
 					if( $option_args['input_type'] === 'text' ) {
 						$valid[$option_key] = '';
@@ -824,6 +828,66 @@ class nsr_validation {
 		return $output;
 	}
 
+
+	private function set_unit( $option_key, $value, $unit ) {
+
+		$px_related_option_keys = array(
+			'cursorwidth',
+			'cursorborderwidth',
+			'cursorborderradius',
+			'cursorminheight',
+			'directionlockdeadzone',
+			'bt_border_width',
+			'bt_width',
+			'bt_height',
+			'bt_posx_from_right',
+			'bt_posy_from_bottom'
+		);
+		if( in_array( $option_key, $px_related_option_keys, true ) ) {
+
+			if( 'px' === $unit ) {
+
+				if( '0' !== $value ) {
+
+					return $value . 'px';
+				}
+
+				return $value;
+			}
+		}
+
+		$maybe_percent_related_option_keys = array(
+			'bt_border_radius_top_left',
+			'bt_border_radius_top_right',
+			'bt_border_radius_bottom_left',
+			'bt_border_radius_bottom_right'
+		);
+		if( in_array( $option_key, $maybe_percent_related_option_keys, true ) ) {
+
+			if( '%' === $unit ) {
+
+				if( '0' !== $value ) {
+
+					return $value . '%';
+				}
+
+				return $value;
+			}
+
+			if( 'px' === $unit ) {
+
+				if( '0' !== $value ) {
+
+					return $value . 'px';
+				}
+
+				return $value;
+			}
+		}
+
+		return false;
+	}
+
 	/**
 	 * Helper function, that translates "non-default-locale strings" into strings of the default locale.
 	 * This task is necessary, since Nicescroll needs some strings as parameters and they have to be served in English.
@@ -836,6 +900,8 @@ class nsr_validation {
 	 * @param  $input
 	 *
 	 * @return mixed
+	 *
+	 * @deprecated
 	 */
 	private function translate_to_default_locale( $input ) {
 
@@ -954,63 +1020,6 @@ class nsr_validation {
 		return apply_filters( 'translate_to_default_locale', $output, $input );
 	}
 
-	private function set_unit( $option_key, $value, $unit ) {
-
-		$px_related_option_keys = array(
-			'cursorwidth',
-			'cursorborderwidth',
-			'cursorborderradius',
-			'cursorminheight',
-			'directionlockdeadzone',
-			'bt_border_width',
-			'bt_width',
-			'bt_height',
-			'bt_posx_from_right',
-			'bt_posy_from_bottom'
-		);
-		if( in_array( $option_key, $px_related_option_keys, true ) ) {
-
-			if( 'px' === $unit ) {
-
-				if( '0' !== $value ) {
-
-					return $value . 'px';
-				}
-
-				return $value;
-			}
-		}
-
-		$maybe_percent_related_option_keys = array(
-			'bt_border_radius_top_left',
-			'bt_border_radius_top_right',
-			'bt_border_radius_bottom_left',
-			'bt_border_radius_bottom_right'
-		);
-		if( in_array( $option_key, $maybe_percent_related_option_keys, true ) ) {
-
-			if( '%' === $unit ) {
-
-				if( '0' !== $value ) {
-
-					return $value . '%';
-				}
-
-				return $value;
-			}
-
-			if( 'px' === $unit ) {
-
-				if( '0' !== $value ) {
-
-					return $value . 'px';
-				}
-
-				return $value;
-			}
-		}
-	}
-
 	/**
 	 * Returns the specified error message.
 	 *
@@ -1019,7 +1028,7 @@ class nsr_validation {
 	 */
 	public function cursorcolor_error_message() {
 
-		return new WP_Error( 'broke', __( "Your input didn't pass validation. This value must be a hexadecimal color value. It was reset to its default. To customize it, please input a color value like '#fff' or '#0073AA'.", $this->domain ) );
+		return new \WP_Error( 'broke', __( "Your input didn't pass validation. This value must be a hexadecimal color value. It was reset to its default. To customize it, please input a color value like '#fff' or '#0073AA'.", $this->domain ) );
 	}
 
 	/**
@@ -1030,7 +1039,7 @@ class nsr_validation {
 	 */
 	public function cursoropacitymin_error_message() {
 
-		return new WP_Error( 'broke', __( "Your input didn't pass validation. This value must be a positive number between 0 and 1, with max two decimal places (or left blank).", $this->domain ) );
+		return new \WP_Error( 'broke', __( "Your input didn't pass validation. This value must be a positive number between 0 and 1, with max two decimal places (or left blank).", $this->domain ) );
 	}
 
 	/**
@@ -1041,7 +1050,7 @@ class nsr_validation {
 	 */
 	public function cursoropacitymax_error_message() {
 
-		return new WP_Error( 'broke', __( "Your input didn't pass validation. This value must be a positive number between 0 and 1, with max two decimal places. It was reset to it's default.", $this->domain ) );
+		return new \WP_Error( 'broke', __( "Your input didn't pass validation. This value must be a positive number between 0 and 1, with max two decimal places. It was reset to it's default.", $this->domain ) );
 	}
 
 	/**
@@ -1052,7 +1061,7 @@ class nsr_validation {
 	 */
 	public function cursorwidth_error_message() {
 
-		return new WP_Error( 'broke', __( "Your input didn't pass validation. This value must be a positive, integer pixel value including 0 (zero). It was reset to it's default.", $this->domain ) );
+		return new \WP_Error( 'broke', __( "Your input didn't pass validation. This value must be a positive, integer pixel value including 0 (zero). It was reset to it's default.", $this->domain ) );
 	}
 
 	/**
@@ -1063,7 +1072,7 @@ class nsr_validation {
 	 */
 	public function cursorborderwidth_error_message() {
 
-		return new WP_Error( 'broke', __( "Your input didn't pass validation. This value must be a positive, integer pixel value including 0 (zero). It was reset to it's default.", $this->domain ) );
+		return new \WP_Error( 'broke', __( "Your input didn't pass validation. This value must be a positive, integer pixel value including 0 (zero). It was reset to it's default.", $this->domain ) );
 	}
 
 	/**
@@ -1074,7 +1083,7 @@ class nsr_validation {
 	 */
 	public function cursorbordercolor_error_message() {
 
-		return new WP_Error( 'broke', __( "Your input didn't pass validation. This value must be a hexadecimal color value. (It was reset to its default.) To customize it, please input a color value like '#fff' or '#0073AA'.", $this->domain ) );
+		return new \WP_Error( 'broke', __( "Your input didn't pass validation. This value must be a hexadecimal color value. (It was reset to its default.) To customize it, please input a color value like '#fff' or '#0073AA'.", $this->domain ) );
 	}
 
 	/**
@@ -1085,7 +1094,7 @@ class nsr_validation {
 	 */
 	public function cursorborderradius_error_message() {
 
-		return new WP_Error( 'broke', __( "Your input didn't pass validation. This value must be a positive, integer pixel value or left blank. It was reset to it's default.", $this->domain ) );
+		return new \WP_Error( 'broke', __( "Your input didn't pass validation. This value must be a positive, integer pixel value or left blank. It was reset to it's default.", $this->domain ) );
 	}
 
 	/**
@@ -1096,7 +1105,7 @@ class nsr_validation {
 	 */
 	public function zindex_error_message() {
 
-		return new WP_Error( 'broke', __( "Your input didn't pass validation. This value must be an integer value. It was reset to it's default.", $this->domain ) );
+		return new \WP_Error( 'broke', __( "Your input didn't pass validation. This value must be an integer value. It was reset to it's default.", $this->domain ) );
 	}
 
 	/**
@@ -1107,7 +1116,7 @@ class nsr_validation {
 	 */
 	public function scrollspeed_error_message() {
 
-		return new WP_Error( 'broke', __( "Your input didn't pass validation. This value must be a positive integer but must not be 0 (zero). To aviod unwanted scrolling behaviour, the scrollspeed was reset to its default. (Note: If you intended to disable the mousewheel, please visit the extended settings panel.)", $this->domain ) );
+		return new \WP_Error( 'broke', __( "Your input didn't pass validation. This value must be a positive integer but must not be 0 (zero). To aviod unwanted scrolling behaviour, the scrollspeed was reset to its default. (Note: If you intended to disable the mousewheel, please visit the extended settings panel.)", $this->domain ) );
 	}
 
 	/**
@@ -1118,7 +1127,7 @@ class nsr_validation {
 	 */
 	public function mousescrollstep_error_message() {
 
-		return new WP_Error( 'broke', __( "Your input didn't pass validation. This value must be a positive integer but it must not be 0 (zero). To aviod unwanted scrolling behaviour, it was reset to its default.", $this->domain ) );
+		return new \WP_Error( 'broke', __( "Your input didn't pass validation. This value must be a positive integer but it must not be 0 (zero). To aviod unwanted scrolling behaviour, it was reset to its default.", $this->domain ) );
 	}
 
 	/**
@@ -1129,7 +1138,7 @@ class nsr_validation {
 	 */
 	public function background_error_message() {
 
-		return new WP_Error( 'broke', __( "Your input didn't pass validation. This value must be a hexadecimal color value. It was reset to its default. To customize it, please input a color value like '#fff' or '#0073AA'.", $this->domain ) );
+		return new \WP_Error( 'broke', __( "Your input didn't pass validation. This value must be a hexadecimal color value. It was reset to its default. To customize it, please input a color value like '#fff' or '#0073AA'.", $this->domain ) );
 	}
 
 	/**
@@ -1140,7 +1149,7 @@ class nsr_validation {
 	 */
 	public function scrollbarid_error_message() {
 
-		return new WP_Error( 'broke', __( "Your input didn't pass validation. Do not enter '#'. The name must look somthing like 'nice_scrollbar', 'my-cool-div', 'scrollbar123' etc. It was reset to it\'s default value.", $this->domain ) );
+		return new \WP_Error( 'broke', __( "Your input didn't pass validation. Do not enter '#'. The name must look somthing like 'nice_scrollbar', 'my-cool-div', 'scrollbar123' etc. It was reset to it\'s default value.", $this->domain ) );
 	}
 
 	/**
@@ -1151,7 +1160,7 @@ class nsr_validation {
 	 */
 	public function cursorminheight_error_message() {
 
-		return new WP_Error( 'broke', __( "Your input didn't pass validation. This value must be a positive integer including 0 (zero). It was reset to it's default.", $this->domain ) );
+		return new \WP_Error( 'broke', __( "Your input didn't pass validation. This value must be a positive integer including 0 (zero). It was reset to it's default.", $this->domain ) );
 	}
 
 	/**
@@ -1162,7 +1171,7 @@ class nsr_validation {
 	 */
 	public function railpadding_error_message() {
 
-		return new WP_Error( 'broke', __( "Your input didn't pass validation. This value must be a positive integer including 0 (zero) or left blank.", $this->domain ) );
+		return new \WP_Error( 'broke', __( "Your input didn't pass validation. This value must be a positive integer including 0 (zero) or left blank.", $this->domain ) );
 	}
 
 	/**
@@ -1173,7 +1182,7 @@ class nsr_validation {
 	 */
 	public function directionlockdeadzone_error_message() {
 
-		return new WP_Error( 'broke', __( "Your input didn't pass validation. This value must be a positive integer including 0 (zero) or left blank. To customize it, please have a look at its placeholder.", $this->domain ) );
+		return new \WP_Error( 'broke', __( "Your input didn't pass validation. This value must be a positive integer including 0 (zero) or left blank. To customize it, please have a look at its placeholder.", $this->domain ) );
 	}
 
 	/**
@@ -1184,7 +1193,7 @@ class nsr_validation {
 	 */
 	public function hidecursordelay_error_message() {
 
-		return new WP_Error( 'broke', __( "Your input didn't pass validation. This value must be a positive integer including 0 (zero) or left blank. It represents the delay in miliseconds. ", $this->domain ) );
+		return new \WP_Error( 'broke', __( "Your input didn't pass validation. This value must be a positive integer including 0 (zero) or left blank. It represents the delay in miliseconds. ", $this->domain ) );
 	}
 
 	/**
@@ -1195,7 +1204,7 @@ class nsr_validation {
 	 */
 	public function cursordragspeed_error_message() {
 
-		return new WP_Error( 'broke', __( "Your input didn't pass validation. This value must be a positive number with max two decimal places or left blank. Please review its placeholder.", $this->domain ) );
+		return new \WP_Error( 'broke', __( "Your input didn't pass validation. This value must be a positive number with max two decimal places or left blank. Please review its placeholder.", $this->domain ) );
 	}
 
 	/**
@@ -1206,7 +1215,7 @@ class nsr_validation {
 	 */
 	public function character_not_allowed_error_message() {
 
-		return new WP_Error( 'broke', __( "Your input didn't pass validation. Please use numbers and/or alphabetical characters.", $this->domain ) );
+		return new \WP_Error( 'broke', __( "Your input didn't pass validation. Please use numbers and/or alphabetical characters.", $this->domain ) );
 	}
 
 	/**
@@ -1217,7 +1226,7 @@ class nsr_validation {
 	 */
 	public function bt_background_color_error_message() {
 
-		return new WP_Error( 'broke', __( "Your input didn't pass validation. This value must be a hexadecimal color value. It was reset to its default. To customize it, please input a color value like '#fff' or '#0073AA'.", $this->domain ) );
+		return new \WP_Error( 'broke', __( "Your input didn't pass validation. This value must be a hexadecimal color value. It was reset to its default. To customize it, please input a color value like '#fff' or '#0073AA'.", $this->domain ) );
 	}
 
 	/**
@@ -1228,7 +1237,7 @@ class nsr_validation {
 	 */
 	public function bt_border_color_error_message() {
 
-		return new WP_Error( 'broke', __( "Your input didn't pass validation. This value must be a hexadecimal color value. It was reset to its default. To customize it, please input a color value like '#fff' or '#0073AA'.", $this->domain ) );
+		return new \WP_Error( 'broke', __( "Your input didn't pass validation. This value must be a hexadecimal color value. It was reset to its default. To customize it, please input a color value like '#fff' or '#0073AA'.", $this->domain ) );
 	}
 
 	/**
@@ -1239,7 +1248,7 @@ class nsr_validation {
 	 */
 	public function bt_border_width_error_message() {
 
-		return new WP_Error( 'broke', __( "Your input didn't pass validation. This value must be a positive, integer pixel value including 0 (zero). It was reset to it's default.", $this->domain ) );
+		return new \WP_Error( 'broke', __( "Your input didn't pass validation. This value must be a positive, integer pixel value including 0 (zero). It was reset to it's default.", $this->domain ) );
 	}
 
 	/**
@@ -1250,7 +1259,7 @@ class nsr_validation {
 	 */
 	public function bt_width_error_message() {
 
-		return new WP_Error( 'broke', __( "Your input didn't pass validation. This value must be a positive, integer pixel value including 0 (zero). It was reset to it's default.", $this->domain ) );
+		return new \WP_Error( 'broke', __( "Your input didn't pass validation. This value must be a positive, integer pixel value including 0 (zero). It was reset to it's default.", $this->domain ) );
 	}
 
 	/**
@@ -1261,7 +1270,7 @@ class nsr_validation {
 	 */
 	public function bt_height_error_message() {
 
-		return new WP_Error( 'broke', __( "Your input didn't pass validation. This value must be a positive, integer pixel value including 0 (zero). It was reset to it's default.", $this->domain ) );
+		return new \WP_Error( 'broke', __( "Your input didn't pass validation. This value must be a positive, integer pixel value including 0 (zero). It was reset to it's default.", $this->domain ) );
 	}
 
 	/**
@@ -1272,7 +1281,7 @@ class nsr_validation {
 	 */
 	public function bt_border_radius_error_message() {
 
-		return new WP_Error( 'broke', __( "Your input didn't pass validation. This value must be a positive, integer pixel- or percent- value including 0 (zero). It was reset to it's default.", $this->domain ) );
+		return new \WP_Error( 'broke', __( "Your input didn't pass validation. This value must be a positive, integer pixel- or percent- value including 0 (zero). It was reset to it's default.", $this->domain ) );
 	}
 
 }

@@ -1,5 +1,9 @@
 <?php
 
+namespace Nicescrollr\Includes;
+
+use Nicescrollr\Admin\Menu\Includes as MenuIncludes;
+
 /**
  * If this file is called directly, abort.
  */
@@ -8,18 +12,24 @@ if( ! defined( 'WPINC' ) ) {
 }
 
 /**
+ * Include dependencies.
+ */
+if( ! class_exists( 'MenuIncludes\Nsr_Options' ) ) {
+	require_once NICESCROLLR_ROOT_DIR . 'admin/menu/includes/class-options.php';
+}
+
+/**
  * The class responsible for localizing the Nicescroll configuration file.
  *
- * @link              https://github.com/demispatti/nicescrollr
  * @since             0.1.0
  * @package           nicescrollr
  * @subpackage        nicescrollr/includes
- * Author:            Demis Patti <demis@demispatti.ch>
- * Author URI:        http://demispatti.ch
+ * Author:            Demis Patti <wp@demispatti.ch>
+ * Author URI:        https://demispatti.ch
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  */
-class nsr_nicescroll_localisation {
+class Nsr_Nicescroll_Localisation {
 
 	/**
 	 * The domain of the plugin.
@@ -37,9 +47,9 @@ class nsr_nicescroll_localisation {
 	 *
 	 * @since  0.1.0
 	 * @access private
-	 * @var    nsr_options $options
+	 * @var    MenuIncludes\Nsr_Options $Options
 	 */
-	private $options;
+	private $Options;
 
 	/**
 	 * The name of the view for the admin area.
@@ -51,28 +61,15 @@ class nsr_nicescroll_localisation {
 	public $view;
 
 	/**
-	 * Kick off.
+	 * Nsr_Nicescroll_Localisation constructor.
 	 *
-	 * @param array $app
+	 * @param $domain
+	 * @param MenuIncludes\Nsr_Options $Options
 	 */
-	public function __construct( $domain ) {
+	public function __construct( $domain, $Options ) {
 
 		$this->domain = $domain;
-
-		$this->load_dependencies();
-	}
-
-	/**
-	 * Loads it's dependencies.
-	 *
-	 * @since  0.1.0
-	 * @access private
-	 * @return void
-	 */
-	private function load_dependencies() {
-
-		require_once plugin_dir_path( __DIR__ ) . 'admin/menu/includes/class-nsr-options.php';
-		$this->options = new nsr_options( $this->get_domain() );
+		$this->Options = $Options;
 	}
 
 	/**
@@ -103,7 +100,7 @@ class nsr_nicescroll_localisation {
 	 */
 	public function get_nicescroll_configuration( $view ) {
 
-		$configuration = (array) $this->options->get_options( $view );
+		$configuration = (array) $this->Options->get_options( $view );
 
 		// Add the value which defines the view ( front- or backend) to the config-array.
 		$configuration['view'] = $view;
@@ -121,21 +118,7 @@ class nsr_nicescroll_localisation {
 	 */
 	private function localize_nicescroll( $view ) {
 
-		wp_localize_script( 'nicescrollr-nicescroll-js', 'nsr_options', $this->get_nicescroll_configuration( $view ) );
-	}
-
-	/**
-	 * Retrieve the name of the domain.
-	 *
-	 * @since  0.1.0
-	 *
-	 * @access private
-	 *
-	 * @return string $domain
-	 */
-	private function get_domain() {
-
-		return $this->domain;
+		wp_localize_script( 'nicescrollr-nicescroll-js', 'Nsr_Options', $this->get_nicescroll_configuration( $view ) );
 	}
 
 }

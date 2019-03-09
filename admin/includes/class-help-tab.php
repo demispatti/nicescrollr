@@ -1,5 +1,7 @@
 <?php
 
+namespace Nicescrollr\Admin\Includes;
+
 /**
  * If this file is called directly, abort.
  */
@@ -10,16 +12,15 @@ if( ! defined( 'WPINC' ) ) {
 /**
  * The class responsible for creating and displaying the help tab on this plugin's option page.
  *
- * @link              https://github.com/demispatti/nicescrollr
  * @since             0.1.0
  * @package           nicescrollr
  * @subpackage        nicescrollr/admin/includes
- * Author:            Demis Patti <demis@demispatti.ch>
- * Author URI:        http://demispatti.ch
+ * Author:            Demis Patti <wp@demispatti.ch>
+ * Author URI:        https://demispatti.ch
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  */
-class nsr_help_tab {
+class Nsr_Help_Tab {
 
 	/**
 	 * The domain of the plugin.

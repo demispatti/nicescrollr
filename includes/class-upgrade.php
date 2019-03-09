@@ -1,5 +1,9 @@
 <?php
 
+namespace Nicescrollr\Includes;
+
+use Nicescrollr\Admin\Menu\Includes as MenuIncludes;
+
 /**
  * If this file is called directly, abort.
  */
@@ -8,18 +12,43 @@ if( ! defined( 'WPINC' ) ) {
 }
 
 /**
+ * Include dependencies.
+ */
+if( ! class_exists( 'Includes\Admin\Menu\Nsr_Options' ) ) {
+	require_once NICESCROLLR_ROOT_DIR . 'admin/menu/includes/class-options.php';
+}
+
+/**
  * Executes function such as migrating image_options and refactoring existing meta_keys.
  *
- * @link              https://github.com/demispatti/nicescrollr/
  * @since             0.6.0
- * @package           nsr
- * @subpackage        nsr/includes
- * Author:            Demis Patti <demis@demispatti.ch>
- * Author URI:        http://demispatti.ch
+ * @package           Nsr
+ * @subpackage        Nsr/includes
+ * Author:            Demis Patti <wp@demispatti.ch>
+ * Author URI:        https://demispatti.ch
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  */
-class nsr_upgrade {
+class Nsr_Upgrade {
+
+	/**
+	 * The reference to the options class.
+	 *
+	 * @since  0.1.0
+	 * @access private
+	 * @var    MenuIncludes\Nsr_Options $Options
+	 */
+	private $Options;
+
+	/**
+	 * Nsr_Upgrade constructor.
+	 *
+	 * @param MenuIncludes\Nsr_Options $Options
+	 */
+	public function __construct( $Options ) {
+
+		$this->Options = $Options;
+	}
 
 	/**
 	 * Calls the function that upgrades the database.
@@ -53,8 +82,8 @@ class nsr_upgrade {
 		}
 
 		if( isset( $options['nicescrollr']['version'] ) && '0.5.4' === $options['nicescrollr']['version'] ) {
-			$options = new nsr_options( 'nicescrollr' );
-			$options->seed_options();
+			//$options = new Nsr_Options( 'nicescrollr' );
+			$this->Options->seed_options();
 		}
 
 		$this->update_options();

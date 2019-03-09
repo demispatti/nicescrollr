@@ -1,5 +1,12 @@
 <?php
 
+namespace Nicescrollr\Includes;
+
+use Nicescrollr\Admin as Admin;
+use Nicescrollr\Pub as Pub;
+use Nicescrollr\Includes as Includes;
+use Nicescrollr\Admin\Menu\Includes as MenuIncludes;
+
 /**
  * If this file is called directly, abort.
  */
@@ -8,18 +15,36 @@ if( ! defined( 'WPINC' ) ) {
 }
 
 /**
+ * Include dependencies.
+ */
+if( ! class_exists( 'Includes\Nsr_I18n' ) ) {
+	require_once NICESCROLLR_ROOT_DIR . 'includes/class-i18n.php';
+}
+if( ! class_exists( 'Includes\Nsr_Nicescroll_Localisation' ) ) {
+	require_once NICESCROLLR_ROOT_DIR . 'includes/class-nicescroll-localisation.php';
+}
+if( ! class_exists( 'Includes\Nsr_Backtop_Localisation' ) ) {
+	require_once NICESCROLLR_ROOT_DIR . 'includes/class-backtop-localisation.php';
+}
+if( ! class_exists( 'Admin\Nsr_Admin' ) ) {
+	require_once NICESCROLLR_ROOT_DIR . 'admin/class-admin.php';
+}
+if( ! class_exists( 'Pub\Nsr_Public' ) ) {
+	require_once NICESCROLLR_ROOT_DIR . 'public/class-public.php';
+}
+
+/**
  * The file that defines the core plugin class.
  *
- * @link              https://github.com/demispatti/nicescrollr
  * @since             0.1.0
  * @package           nicescrollr
  * @subpackage        nicescrollr/includes
- * Author:            demispatti <demis@demispatti.ch>
- * Author URI:        http://demispatti.ch
+ * Author:            demispatti <wp@demispatti.ch>
+ * Author URI:        https://demispatti.ch
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  */
-class nsr {
+class Nsr {
 
 	/**
 	 * The domain of the plugin.
@@ -33,6 +58,40 @@ class nsr {
 	private $domain;
 
 	/**
+	 * The reference to the options class.
+	 *
+	 * @since  0.1.0
+	 * @access private
+	 * @var    MenuIncludes\Nsr_Options $Options
+	 */
+	private $Options;
+
+	/**
+	 * The reference to the localisation class.
+	 *
+	 * @since  0.1.0
+	 * @access private
+	 * @var    Includes\Nsr_Nicescroll_Localisation $Nicescroll_Localisation
+	 */
+	private $Nicescroll_Localisation;
+
+	/**
+	 * The reference to the localisation class.
+	 *
+	 * @since  0.1.0
+	 * @access private
+	 * @var    Includes\Nsr_Backtop_Localisation $Backtop_Localisation
+	 */
+	private $Backtop_Localisation;
+
+	private function set_instances() {
+
+		$this->Options = new MenuIncludes\Nsr_Options( $this->domain );
+		$this->Nicescroll_Localisation = new Includes\Nsr_Nicescroll_Localisation($this->domain, $this->Options);
+		$this->Backtop_Localisation = new Includes\Nsr_Backtop_Localisation( $this->domain, $this->Options );
+	}
+
+	/**
 	 * Defines the core functionality of the plugin.
 	 *
 	 * @since  0.1.0
@@ -41,24 +100,9 @@ class nsr {
 	public function __construct() {
 
 		$this->domain = 'nicescrollr';
+		$this->set_instances();
 
-		$this->load_dependencies();
 		$this->set_locale();
-	}
-
-	/**
-	 * Loads it's dependencies.
-	 *
-	 * @since  0.1.0
-	 * @access private
-	 */
-	private function load_dependencies() {
-
-		require_once plugin_dir_path( __DIR__ ) . 'includes/class-nsr-i18n.php';
-
-		require_once plugin_dir_path( __DIR__ ) . 'admin/class-nsr-admin.php';
-
-		require_once plugin_dir_path( __DIR__ ) . 'public/class-nsr-public.php';
 	}
 
 	/**
@@ -71,10 +115,8 @@ class nsr {
 	 */
 	private function set_locale() {
 
-		$Plugin_i18n = new nsr_i18n();
-		$Plugin_i18n->set_domain( $this->domain );
-
-		add_action( 'plugins_loaded', array( $Plugin_i18n, 'load_plugin_textdomain' ) );
+		$Plugin_i18n = new Includes\Nsr_I18n($this->domain);
+		$Plugin_i18n->add_hooks();
 	}
 
 	/**
@@ -86,7 +128,11 @@ class nsr {
 	 */
 	private function define_admin_hooks() {
 
-		$admin = new nsr_admin( $this->get_domain() );
+		if( ! is_admin()){
+			return;
+		}
+
+		$admin = new Admin\Nsr_Admin( $this->domain, $this->Options, $this->Nicescroll_Localisation, $this->Backtop_Localisation );
 		$admin->add_hooks();
 	}
 
@@ -99,7 +145,11 @@ class nsr {
 	 */
 	private function define_public_hooks() {
 
-		$public = new nsr_public( $this->get_domain() );
+		if( is_admin() ) {
+			return;
+		}
+
+		$public = new Pub\Nsr_Public( $this->domain, $this->Options, $this->Nicescroll_Localisation, $this->Backtop_Localisation );
 		$public->add_hooks();
 	}
 
@@ -113,20 +163,6 @@ class nsr {
 
 		$this->define_admin_hooks();
 		$this->define_public_hooks();
-	}
-
-	/**
-	 * Retrieve the name of the domain.
-	 *
-	 * @since  0.1.0
-	 *
-	 * @access private
-	 *
-	 * @return string $domain
-	 */
-	private function get_domain() {
-
-		return $this->domain;
 	}
 
 }

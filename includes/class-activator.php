@@ -1,5 +1,9 @@
 <?php
 
+namespace Nicescrollr\Includes;
+
+use Nicescrollr\Admin\Menu\Includes as MenuIncludes;
+
 /**
  * If this file is called directly, abort.
  */
@@ -7,21 +11,27 @@ if( ! defined( 'WPINC' ) ) {
 	die;
 }
 
-require_once plugin_dir_path( __DIR__ ) . 'admin/menu/includes/class-nsr-options.php';
+/**
+ * Include dependencies.
+ */
+if( ! class_exists( 'Admin\Menu\Includes\Nsr_Options' ) ) {
+	require_once NICESCROLLR_ROOT_DIR . 'admin/menu/includes/class-options.php';
+}
+
+//require_once NICESCROLLR_ROOT_DIR . 'admin/menu/includes/class-options.php';
 
 /**
  * The class responsible for the plugin activation.
  *
- * @link              https://github.com/demispatti/nicescrollr
  * @since             0.1.0
  * @package           nicescrollr
  * @subpackage        nicescrollr/includes
- * Author:            Demis Patti <demis@demispatti.ch>
- * Author URI:        http://demispatti.ch
+ * Author:            Demis Patti <wp@demispatti.ch>
+ * Author URI:        https://demispatti.ch
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  */
-class nsr_activator extends nsr {
+class Nsr_Activator extends Nsr {
 
 	/**
 	 * The name of the capability.
@@ -42,7 +52,7 @@ class nsr_activator extends nsr {
 	 * @access   static
 	 * @return   void
 	 */
-	public static function activate() {
+	public static function activate( $domain ) {
 
 		// Gets the administrator role.
 		$role = get_role( 'administrator' );
@@ -54,7 +64,7 @@ class nsr_activator extends nsr {
 
 		// Checks for already stored options.
 		$Activator = new self();
-		$Activator->check_for_options();
+		$Activator->check_for_options( $domain );
 	}
 
 	/**
@@ -67,15 +77,15 @@ class nsr_activator extends nsr {
 	 * @access private
 	 * @return void
 	 */
-	private function check_for_options() {
+	private function check_for_options( $domain ) {
 
-		$nsr_options = new nsr_options( 'nicescrollr' );
+		$Options = new MenuIncludes\Nsr_Options( $domain );
 		$options = get_option( 'nicescrollr_options' );
 
 		// Seed initial options
 		if( false === $options ) {
-			foreach( $nsr_options::$settings_tabs as $i => $section ) {
-				$nsr_options->seed_options( $section );
+			foreach( $Options::$settings_tabs as $i => $section ) {
+				$Options->seed_options( $section );
 			}
 
 			return;
@@ -84,10 +94,10 @@ class nsr_activator extends nsr {
 		// Else add initial options per section if necessary
 		$options = get_option( 'nicescrollr_options' );
 		if( null === $options['frontend'] ) {
-			$nsr_options->seed_options( 'frontend' );
+			$Options->seed_options( 'frontend' );
 		}
 		if( null === $options['backend'] ) {
-			$nsr_options->seed_options( 'backend' );
+			$Options->seed_options( 'backend' );
 		}
 	}
 }

@@ -1,5 +1,9 @@
 <?php
 
+namespace Nicescrollr\Admin\Menu\Includes;
+
+use Nicescrollr\Admin\Menu\Includes as MenuIncludes;
+
 /**
  * If this file is called directly, abort.
  */
@@ -10,16 +14,15 @@ if( ! defined( 'WPINC' ) ) {
 /**
  * The class responsible for localizing the admin part of this plugin.
  *
- * @link              https://github.com/demispatti/nicescrollr
  * @since             0.1.0
  * @package           nicescrollr
  * @subpackage        nicescrollr/admin/menu/includes
- * Author:            Demis Patti <demis@demispatti.ch>
- * Author URI:        http://demispatti.ch
+ * Author:            Demis Patti <wp@demispatti.ch>
+ * Author URI:        https://demispatti.ch
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  */
-class nsr_menu_localisation {
+class Nsr_Menu_Localisation {
 
 	/**
 	 * The domain of the plugin.
@@ -37,24 +40,22 @@ class nsr_menu_localisation {
 	 *
 	 * @since  0.1.0
 	 * @access private
-	 * @var    nsr_options $options
+	 * @var    MenuIncludes\Nsr_Options $Options
 	 */
-	private $options;
+	private $Options;
 
 	/**
-	 * Assigns the required parameters to its instance.
+	 * Nsr_Menu_Localisation constructor.
 	 *
-	 * @since  0.1.0
-	 *
-	 * @param  string $domain
-	 *
-	 * @return void
+	 * @param $domain
+	 * @param MenuIncludes\Nsr_Options $Options
 	 */
-	public function __construct( $domain ) {
+	public function __construct( $domain, $Options ) {
 
 		$this->domain = $domain;
+		$this->Options = $Options;
 
-		$this->load_dependencies();
+		//$this->load_dependencies();
 	}
 
 	/**
@@ -64,13 +65,13 @@ class nsr_menu_localisation {
 	 * @access private
 	 * @return void
 	 */
-	private function load_dependencies() {
+	/*private function load_dependencies() {
 
 		// The class that maintains all data like default values and their meta data.
-		require_once plugin_dir_path( __DIR__ ) . 'includes/class-nsr-options.php';
+		require_once NICESCROLLR_ROOT_DIR . 'admin/menu/includes/class-options.php';
 
-		$this->options = new nsr_options( $this->get_domain() );
-	}
+		$this->options = new MenuIncludes\Nsr_Options( $this->get_domain() );
+	}*/
 
 	/**
 	 * Kicks off localisation of the menu.
@@ -93,7 +94,7 @@ class nsr_menu_localisation {
 	 */
 	private function localize_script() {
 
-		wp_localize_script( 'nicescrollr-menu-js', 'nsr_menu', array_merge( $this->options->count_basic_settings(), $this->options->count_extended_settings(), $this->get_localized_strings_for_switches() ) );
+		wp_localize_script( 'nicescrollr-menu-js', 'Nsr_Menu', array_merge( $this->Options->count_basic_settings(), $this->Options->count_extended_settings(), $this->get_localized_strings_for_switches() ) );
 	}
 
 	/**
@@ -120,20 +121,6 @@ class nsr_menu_localisation {
 		}
 
 		return $labels;
-	}
-
-	/**
-	 * Retrieve the name of the domain.
-	 *
-	 * @since  0.1.0
-	 *
-	 * @access private
-	 *
-	 * @return string $domain
-	 */
-	private function get_domain() {
-
-		return $this->domain;
 	}
 
 }

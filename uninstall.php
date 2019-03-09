@@ -17,7 +17,7 @@
  *
  * @link       https://github.com/demispatti/nicescrollr
  * @since      0.1.0
- * @package    nsr
+ * @package    Nsr
  */
 
 // If uninstall not called from WordPress, then exit.

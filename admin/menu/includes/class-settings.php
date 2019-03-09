@@ -1,5 +1,9 @@
 <?php
 
+namespace Nicescrollr\Admin\Menu\Includes;
+
+use Nicescrollr\Admin\Menu\Includes as AdminIncludes;
+
 /**
  * If this file is called directly, abort.
  */
@@ -8,18 +12,27 @@ if( ! defined( 'WPINC' ) ) {
 }
 
 /**
+ * Include dependencies.
+ */
+if( ! class_exists( 'AdminIncludes\Nsr_Options' ) ) {
+	require_once NICESCROLLR_ROOT_DIR . 'admin/menu/includes/class-options.php';
+}
+if( ! class_exists( 'AdminIncludes\Nsr_Validation' ) ) {
+	require_once NICESCROLLR_ROOT_DIR . 'admin/menu/includes/class-validation.php';
+}
+
+/**
  * The class that deals with the settings api.
  *
- * @link              https://github.com/demispatti/nicescrollr
  * @since             0.1.0
  * @package           nicescrollr
  * @subpackage        nicescrollr/admin/menu/includes
- * Author:            Demis Patti <demis@demispatti.ch>
- * Author URI:        http://demispatti.ch
+ * Author:            Demis Patti <wp@demispatti.ch>
+ * Author URI:        https://demispatti.ch
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  */
-class nsr_settings {
+class Nsr_Settings {
 
 	/**
 	 * The domain of the plugin.
@@ -55,35 +68,37 @@ class nsr_settings {
 	 *
 	 * @since  0.1.0
 	 * @access private
-	 * @var    nsr_options $options
+	 * @var    AdminIncludes\Nsr_Options $Options
 	 */
-	private $options;
+	private $Options;
 
 	/**
 	 * The reference to the validation class.
 	 *
 	 * @since  0.1.0
 	 * @access private
-	 * @var    nsr_validation $validation
+	 * @var    AdminIncludes\Nsr_Validation $Validation
 	 */
-	private $validation;
+	private $Validation;
 
 	private $stored_options;
 
 	/**
-	 * Kicks off the settings class.
+	 * Nsr_Settings constructor.
 	 *
-	 * @since 0.1.0
-	 *
-	 * @param array $app
-	 * @param string $section
+	 * @param $domain
+	 * @param $section
+	 * @param AdminIncludes\Nsr_Options $Options
+	 * @param AdminIncludes\Nsr_Validation $Validation
 	 */
-	public function __construct( $domain, $section ) {
+	public function __construct( $domain, $section, $Options, $Validation ) {
 
 		$this->domain = $domain;
 		$this->section = $section;
+		$this->Options = $Options;
+		$this->Validation = $Validation;
 
-		$this->load_dependencies();
+		//$this->load_dependencies();
 
 		$this->stored_options = get_option( 'nicescrollr_options' );
 	}
@@ -110,24 +125,24 @@ class nsr_settings {
 	 * @access private
 	 * @return void
 	 */
-	private function load_dependencies() {
+	/*private function load_dependencies() {
 
-		require_once plugin_dir_path( __DIR__ ) . 'includes/class-nsr-options.php';
-		$this->options = new nsr_options( $this->get_domain() );
+		//require_once NICESCROLLR_ROOT_DIR . 'admin/menu/includes/class-options.php';
+		$this->options = new AdminIncludes\Nsr_Options( $this->domain );
 
-		require_once plugin_dir_path( __DIR__ ) . 'includes/class-nsr-validation.php';
-		$this->validation = new nsr_validation( $this->get_domain(), $this->get_options_instance(), $this->get_section() );
-	}
+		//require_once NICESCROLLR_ROOT_DIR . 'admin/menu/includes/class-validation.php';
+		$this->validation = new AdminIncludes\Nsr_Validation( $this->domain, $this->get_options_instance(), $this->get_section() );
+	}*/
 
 	/**
 	 * Retrieves the reference to the "plugin data" class.
 	 *
 	 * @since  0.1.0
-	 * @return nsr_options $options
+	 * @return Nsr_Options $options
 	 */
 	public function get_options_instance() {
 
-		return $this->options;
+		return $this->Options;
 	}
 
 	/**
@@ -168,7 +183,7 @@ class nsr_settings {
 
 			$section = $_REQUEST['section'];
 		}
-		else if( isset( $_REQUEST['cb_parallax_upgrade'] ) ) {
+		else if( isset( $_REQUEST['Nsr_Upgrade'] ) ) {
 
 			return $input;
 		}
@@ -177,7 +192,7 @@ class nsr_settings {
 			$section = false;
 		}
 
-		$output = $this->validation->run( $input, $section );
+		$output = $this->Validation->run( $input, $section );
 
 		return $output;
 	}
@@ -189,7 +204,7 @@ class nsr_settings {
 	 *
 	 * @since  0.1.0
 	 * @uses   seed_default_options()
-	 * @see    admin/menu/includes/class-nsr-options.php
+	 * @see    admin/menu/includes/class-Nsr-options.php
 	 * @return void
 	 */
 	public function check_for_options() {
@@ -198,7 +213,7 @@ class nsr_settings {
 
 		if( false === $options ) {
 
-			$this->options->seed_options();
+			$this->Options->seed_options();
 		}
 		else if( ! isset( $options['frontend']['cursorcolor'] ) ) {
 
@@ -208,7 +223,7 @@ class nsr_settings {
 
 				if( key( $options ) !== $option_group ) {
 
-					$this->options->seed_options( $option_group );
+					$this->Options->seed_options( $option_group );
 				}
 			}
 		}
@@ -236,13 +251,13 @@ class nsr_settings {
 	 *
 	 * @since  0.1.0
 	 * @uses   get_default_settings()
-	 * @see    admin/menu/includes/class-nsr-options.php
+	 * @see    admin/menu/includes/class-Nsr-options.php
 	 * @access private
 	 * @return void
 	 */
 	private function set_default_options() {
 
-		$this->default_options = $this->options->get_default_settings( $this->section );
+		$this->default_options = $this->Options->get_default_settings( $this->section );
 	}
 
 	/**
@@ -253,19 +268,19 @@ class nsr_settings {
 	 * @since  0.1.0
 	 * @uses   get_section_heading()
 	 * @uses   get_options_meta()
-	 * @see    admin/menu/includes/class-nsr-options.php
+	 * @see    admin/menu/includes/class-Nsr-options.php
 	 * @return void
 	 */
 	public function initialize_options() {
 
-		$this->add_settings_section( $this->options->get_section_heading( 'basic' ) );
-		$this->add_settings_field( $this->options->get_args( 'basic' ) );
+		$this->add_settings_section( $this->Options->get_section_heading( 'basic' ) );
+		$this->add_settings_field( $this->Options->get_args( 'basic' ) );
 
-		$this->add_settings_section( $this->options->get_section_heading( 'extended' ) );
-		$this->add_settings_field( $this->options->get_args( 'extended' ) );
+		$this->add_settings_section( $this->Options->get_section_heading( 'extended' ) );
+		$this->add_settings_field( $this->Options->get_args( 'extended' ) );
 
-		$this->add_settings_section( $this->options->get_section_heading( 'backtop' ) );
-		$this->add_settings_field( $this->options->get_args( 'backtop' ) );
+		$this->add_settings_section( $this->Options->get_section_heading( 'backtop' ) );
+		$this->add_settings_field( $this->Options->get_args( 'backtop' ) );
 	}
 
 	/**
@@ -403,10 +418,10 @@ class nsr_settings {
 
 		$value = $this->get_option_value( $section, $option_key );
 
-		$html = '<label class="nsr-switch label-for-nsr-switch" title="' . $title . '">';
-		$html .= '<input type="checkbox" id="' . $option_key . '" class="nsr-switch-input nsr-input-checkbox" name="' . 'nicescrollr_options' . '[' . $option_key . ']" value="1" ' . checked( 1, isset( $value ) ? $value : 0, false ) . '>';
-		$html .= '<span class="nsr-switch-label" data-on="On" data-off="Off"></span>';
-		$html .= '<span class="nsr-switch-handle"></span>';
+		$html = '<label class="Nsr-switch label-for-Nsr-switch" title="' . $title . '">';
+		$html .= '<input type="checkbox" id="' . $option_key . '" class="Nsr-switch-input Nsr-input-checkbox" name="' . 'nicescrollr_options' . '[' . $option_key . ']" value="1" ' . checked( 1, isset( $value ) ? $value : 0, false ) . '>';
+		$html .= '<span class="Nsr-switch-label" data-on="On" data-off="Off"></span>';
+		$html .= '<span class="Nsr-switch-handle"></span>';
 		$html .= '</label>';
 
 		echo $html;
@@ -429,8 +444,8 @@ class nsr_settings {
 
 		$value = $this->get_option_value( $section, $option_key );
 
-		$html = '<p class="nsr-input-container">';
-		$html .= '<input type="text" id="' . $option_key . '" class="nsr-input-text" title="' . $title . '" name="' . 'nicescrollr_options' . '[' . $option_key . ']" Placeholder="' . $this->default_options[$option_key] . '" value="' . $value . '">';
+		$html = '<p class="Nsr-input-container">';
+		$html .= '<input type="text" id="' . $option_key . '" class="Nsr-input-text" title="' . $title . '" name="' . 'nicescrollr_options' . '[' . $option_key . ']" Placeholder="' . $this->default_options[$option_key] . '" value="' . $value . '">';
 		$html .= '</p>';
 
 		echo $html;
@@ -453,8 +468,9 @@ class nsr_settings {
 
 		$value = $this->get_option_value( $section, $option_key );
 
-		$html = '<p class="nsr-input-container">';
-		$html .= '<input type="text" id="' . $option_key . '" title="' . $title . '" name="' . 'nicescrollr_options' . '[' . $option_key . ']" Placeholder="' . $this->default_options[$option_key] . '" value="' . $value . '" class="' . $option_key . ' nsr-color-picker nsr-input-color-picker">';
+		$html = '<p class="Nsr-input-container">';
+		$html .= '<input type="text" id="' . $option_key . '" title="' . $title . '" name="' . 'nicescrollr_options' . '[' . $option_key . ']" Placeholder="' .
+			$this->default_options[$option_key] . '" value="' . $value . '" class="' . $option_key . ' Nsr-color-picker Nsr-input-color-picker"  data-alpha=”true” >';
 		$html .= '</p>';
 
 		echo $html;
@@ -479,16 +495,21 @@ class nsr_settings {
 
 		$retrieved_value = $this->get_option_value( $section, $option_key );
 
-		if( get_locale() !== 'en_US' ) {
-
+		// @deprecated
+		/*if( get_locale() !== 'en_US' ) {
 			$retrieved_value = $this->translate_to_custom_locale( $retrieved_value, $option_key );
-		}
+		}*/
 
-		$html = '<p class="nsr-input-container">';
-		$html .= '<select title="' . $title . '" name="' . 'nicescrollr_options' . '[' . $option_key . ']" class="floating-element fancy-select nsr-fancy-select nsr-input-select" id="' . $option_key . '">';
-		foreach( $select_values as $value ) {
+		$html = '<p class="Nsr-input-container">';
+		$html .= '<select title="' . $title . '" name="' . 'nicescrollr_options' . '[' . $option_key . ']" class="floating-element fancy-select Nsr-fancy-select Nsr-input-select" id="' . $option_key . '">';
+		foreach( $select_values as $attribute => $select_value ) {
+			$selected = '';
+			if( $retrieved_value === $select_value ) {
+				$selected = 'selected';
+			}
 
-			$html .= '<option value="' . $value . '"' . selected( $value, $retrieved_value, false ) . '>' . $value . '</option>';
+			//$html .= '<option value="' . $select_value . '" ' . selected( $select_value, $retrieved_value, false ) . '>' . $retrieved_value . '</option>';
+			$html .= '<option selected="' . $selected .'" value="' . $attribute . '">' . $select_value . '</option>';
 		}
 		$html .= '</select>';
 		$html .= '</p>';
@@ -504,9 +525,11 @@ class nsr_settings {
 	 *
 	 * @since  0.1.0
 	 *
-	 * @see    admin/menu/includes/class-nsr-validation.php | translate_to_default_locale()
+	 * @see    admin/menu/includes/class-Nsr-validation.php | translate_to_default_locale()
 	 *
 	 * @return string $output
+	 *
+	 * @deprecated
 	 */
 	public function translate_to_custom_locale( $string, $option_key ) {
 
@@ -606,20 +629,6 @@ class nsr_settings {
 		}
 
 		return $output;
-	}
-
-	/**
-	 * Retrieve the name of the domain.
-	 *
-	 * @since  0.1.0
-	 *
-	 * @access private
-	 *
-	 * @return string $domain
-	 */
-	private function get_domain() {
-
-		return $this->domain;
 	}
 
 }

@@ -5,19 +5,18 @@
  * @since             0.1.0
  * @package           nicescrollr
  * @subpackage        nicescrollr/js
- * Author:            Demis Patti <demis@demispatti.ch>
- * Author URI:        http://demispatti.ch
+ * Author:            Demis Patti <wp@demispatti.ch>
+ * Author URI:        https://demispatti.ch
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  */
-
-(function ($) {
-	"use strict";
+"use strict";
+jQuery(function ($) {
 
 	var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
-	function Plugin () {
-		this.nsr_options = nsr_options;
+	function Nicescrollr () {
+		this.nsr_options = Nsr_Options;
 		this.document = $(document);
 		this.window = $(window);
 		this.html = $("html");
@@ -25,8 +24,7 @@
 		this.adminbar = $('#wpadminbar');
 	}
 
-	Plugin.prototype = {
-
+	Nicescrollr.prototype = {
 		init: function () {
 			this.runNicescroll();
 			this.listenForDocumentChanges(this);
@@ -36,37 +34,47 @@
 			this.body.niceScroll(this.getNicescrollConfiguration());
 
 			if ('1' === this.nsr_options.default_scrollbar) {
+
 				// Remove Nicescroll's scrollbar
 				$('#ascrail2000, #ascrail2000-hr').remove();
+
 				// Set these styles
+				this.html.css({
+					'box-sizing': 'border-box',
+					'overflow-y': 'auto',
+					'-ms-overflow-style': 'none',
+					'overflow-style': 'none'
+				});
+				this.body.css({
+					'display': 'block',
+					'box-sizing': 'border-box',
+					'overflow-y': 'auto',
+					'-ms-overflow-style': 'scrollbar',
+					'overflow-style': 'scrollbar'
+				});
+			}
+			if ('0' === this.nsr_options.default_scrollbar){
+
 				if (this.nsr_options.view === 'frontend') {
+					this.html.css({
+						'-ms-overflow-style': 'none',
+						'overflow-style': 'none',
+						'white-space': 'nowrap',
+						'width': '100%',
+						'overflow-y': 'auto'
+					});
 					this.body.css({
-						'overflow-y': 'scroll',
-						'-ms-overflow-style': 'scrollbar',
-						'overflow-style': 'scrollbar'
+						'-ms-overflow-style': 'none',
+						'overflow-style': 'none',
+						'overflow-y': 'auto'
 					});
 				}
-				else {
-					this.body.css({
-						'overflow-y': 'scroll',
-						'-ms-overflow-style': 'scrollbar',
-						'overflow-style': 'scrollbar'
-					});
-				}
-			} else {
-				if (this.nsr_options.view === 'frontend') {
+				if (this.nsr_options.view === 'backend') {
 					this.html.css({
 						'overflow-y': 'hidden',
 						'-ms-overflow-style': 'none',
 						'overflow-style': 'none'
 					});
-					this.body.css({
-						'overflow-y': 'hidden',
-						'-ms-overflow-style': 'none',
-						'overflow-style': 'none'
-					});
-				}
-				else {
 					this.body.css({
 						'overflow-y': 'hidden',
 						'-ms-overflow-style': 'none',
@@ -200,11 +208,10 @@
 	};
 
 	$(document).ready(function () {
-
-		if (! isMobile && nsr_options.enabled === '1' || isMobile && nsr_options.enabled === '1' && nsr_options.mobile_devices_enabled === '1') {
-			var plugin = new Plugin();
-			plugin.init();
+		if (! isMobile && Nsr_Options.enabled === '1' || isMobile && Nsr_Options.enabled === '1' && Nsr_Options.mobile_devices_enabled === '1') {
+			var nicescrollr = new Nicescrollr();
+			nicescrollr.init();
 		}
 	});
 
-})(jQuery);
+});

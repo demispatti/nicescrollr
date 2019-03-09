@@ -1,5 +1,7 @@
 <?php
 
+namespace Nicescrollr\Admin\Menu\Includes;
+
 /**
  * If this file is called directly, abort.
  */
@@ -12,16 +14,15 @@ if( ! defined( 'WPINC' ) ) {
  *
  * @note              The terms 'basic' and 'extended' were created to divide
  *                    the available options into reasonable parts. That's just it.
- * @link              https://github.com/demispatti/nicescrollr
  * @since             0.1.0
  * @package           nicescrollr
  * @subpackage        nicescrollr/admin/menu/includes
- * Author:            Demis Patti <demis@demispatti.ch>
+ * Author:            Demis Patti <wp@demispatti.ch>
  * Author URI:        https://demispatti.ch
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  */
-class nsr_options {
+class Nsr_Options {
 
 	/**
 	 * The domain of the plugin.
@@ -79,8 +80,8 @@ class nsr_options {
 				'callback' => 'render_settings_field_callback',
 				'settings_group' => 'basic',
 				'title' => __( 'Choose cursor color.', $this->domain ),
-				'frontend_value' => '#424242',
-				'backend_value' => '#424242',
+				'frontend_value' => 'rgba(193, 193, 193, 1)',
+				'backend_value' => 'rgba(193, 193, 193, 1)',
 				'input_type' => 'color',
 				'notice_level' => 'notice-correction',
 				'select_values' => 'none',
@@ -112,7 +113,7 @@ class nsr_options {
 				'callback' => 'render_settings_field_callback',
 				'settings_group' => 'basic',
 				'title' => __( 'Set cursor width (in pixel).', $this->domain ),
-				'frontend_value' => '5px',
+				'frontend_value' => '8px',
 				'backend_value' => '12px',
 				'input_type' => 'text',
 				'notice_level' => 'notice-correction',
@@ -138,15 +139,15 @@ class nsr_options {
 				'backend_value' => 'solid',
 				'input_type' => 'select',
 				'notice_level' => 'none',
-				'select_values' => array( 'solid', 'dashed', 'dotted', 'double', __( 'none', $this->domain ) ),
+				'select_values' => array( 'solid' => 'solid', 'dashed' => 'dashed', 'dotted' => 'dotted', 'double' => 'double', 'none' => __( 'none', $this->domain ) ),
 			),
 			'cursorbordercolor' => array(
 				'name' => __( 'Cursor Border Color', $this->domain ),
 				'callback' => 'render_settings_field_callback',
 				'settings_group' => 'basic',
 				'title' => __( 'Set cursor border color.', $this->domain ),
-				'frontend_value' => '#fff',
-				'backend_value' => '#fff',
+				'frontend_value' => 'rgba(255, 255, 255, 1)',
+				'backend_value' => 'rgba(255, 255, 255, 1)',
 				'input_type' => 'color',
 				'notice_level' => 'notice-correction',
 				'select_values' => 'none',
@@ -156,7 +157,7 @@ class nsr_options {
 				'callback' => 'render_settings_field_callback',
 				'settings_group' => 'basic',
 				'title' => __( 'Set cursor border radius (in pixel).', $this->domain ),
-				'frontend_value' => '5px',
+				'frontend_value' => '8px',
 				'backend_value' => '12px',
 				'input_type' => 'text',
 				'notice_level' => 'notice-correction',
@@ -167,8 +168,8 @@ class nsr_options {
 				'callback' => 'render_settings_field_callback',
 				'settings_group' => 'basic',
 				'title' => __( 'Change the background color of the rail, or leave it blank.', $this->domain ),
-				'frontend_value' => '',
-				'backend_value' => '',
+				'frontend_value' => 'rgba(217, 217, 217, 1)',
+				'backend_value' => 'rgba(217, 217, 217, 1)',
 				'input_type' => 'color',
 				'notice_level' => 'notice-correction',
 				'select_values' => 'none',
@@ -208,9 +209,9 @@ class nsr_options {
 					'enabled',// true
 					'cursor',
 					'disabled',// false
-					__( 'leave', $this->domain ),
-					__( 'hidden', $this->domain ),
-					__( 'scroll', $this->domain ),
+					'leave' => __( 'leave', $this->domain ),
+					'hidden' => __( 'hidden', $this->domain ),
+					'scroll' => __( 'scroll', $this->domain ),
 				),
 			),
 			'default_scrollbar' => array(
@@ -370,9 +371,9 @@ class nsr_options {
 				'input_type' => 'select',
 				'notice_level' => 'none',
 				'select_values' => array(
-					__( 'false', $this->domain ),
-					__( 'top', $this->domain ),
-					__( 'left', $this->domain ),
+					'false' => __( 'false', $this->domain ),
+					'top' => __( 'top', $this->domain ),
+					'left' => __( 'left', $this->domain ),
 				),
 			),
 			'bouncescroll' => array(
@@ -472,7 +473,7 @@ class nsr_options {
 				'backend_value' => 'right',
 				'input_type' => 'select',
 				'notice_level' => 'none',
-				'select_values' => array( __( 'right', $this->domain ), __( 'left', $this->domain ) ),
+				'select_values' => array( 'right' => __( 'right', $this->domain ), 'left' => __( 'left', $this->domain ) ),
 			),
 			'railvalign' => array(
 				'name' => __( 'Rail Alignment Vertical', $this->domain ),
@@ -483,7 +484,7 @@ class nsr_options {
 				'backend_value' => 'bottom',
 				'input_type' => 'select',
 				'notice_level' => 'none',
-				'select_values' => array( __( 'bottom', $this->domain ), __( 'top', $this->domain ) ),
+				'select_values' => array( 'bottom' => __( 'bottom', $this->domain ), 'top' => __( 'top', $this->domain ) ),
 			),
 			'enabletranslate3d' => array(
 				'name' => __( 'Translate3D', $this->domain ),
@@ -560,7 +561,7 @@ class nsr_options {
 				'backend_value' => '160',
 				'input_type' => 'select',
 				'notice_level' => 'none',
-				'select_values' => array( 'false', '60', '100', '160', '220', '280' ),
+				'select_values' => array( 'false' => __('false', $this->domain), '60' => '60', '100' => '100', '160' => '160', '220' => '220', '280' => '280' ),
 			),
 			'directionlockdeadzone' => array(
 				'name' => __( 'Direction Lock Dead Zone', $this->domain ),
@@ -626,7 +627,7 @@ class nsr_options {
 				'backend_value' => 'auto',
 				'input_type' => 'select',
 				'notice_level' => 'none',
-				'select_values' => array( 'auto', 'false' ),
+				'select_values' => array( 'auto' => 'auto', 'false' => 'false' ),
 			),
 			'cursordragontouch' => array(
 				'name' => __( 'Cursor Drag On Touch', $this->domain ),
@@ -648,7 +649,7 @@ class nsr_options {
 				'backend_value' => 'auto',
 				'input_type' => 'select',
 				'notice_level' => 'none',
-				'select_values' => array( 'auto', 'false' ),
+				'select_values' => array( 'auto' => 'auto', 'false' => 'false' ),
 			),
 			'preventmultitouchscrolling' => array(
 				'name' => __( 'Prevent Multitouch Scrolling', $this->domain ),
@@ -727,8 +728,8 @@ class nsr_options {
 				'callback' => 'render_settings_field_callback',
 				'settings_group' => 'backtop',
 				'title' => __( 'Set button width in pixels.', $this->domain ),
-				'frontend_value' => '36px',
-				'backend_value' => '36px',
+				'frontend_value' => '48px',
+				'backend_value' => '48px',
 				'input_type' => 'text',
 				'notice_level' => 'notice-correction',
 				'select_values' => 'none',
@@ -738,8 +739,8 @@ class nsr_options {
 				'callback' => 'render_settings_field_callback',
 				'settings_group' => 'backtop',
 				'title' => __( 'Set button height in pixels.', $this->domain ),
-				'frontend_value' => '36px',
-				'backend_value' => '36px',
+				'frontend_value' => '48px',
+				'backend_value' => '48px',
 				'input_type' => 'text',
 				'notice_level' => 'notice-correction',
 				'select_values' => 'none',
@@ -750,30 +751,41 @@ class nsr_options {
 				'callback' => 'render_settings_field_callback',
 				'settings_group' => 'backtop',
 				'title' => __( 'Set background color.', $this->domain ),
-				'frontend_value' => '#7dc5d9',
-				'backend_value' => '#7dc5d9',
+				'frontend_value' => 'rgba(0, 0, 0, 0.12)',
+				'backend_value' => 'rgba(0, 0, 0, 0.12)',
 				'input_type' => 'color',
 				'notice_level' => 'notice-correction',
 				'select_values' => 'none',
 			),
-			/*'bt_background_hover_color' => array(
-				'name' => __('Background Color On Hover', $this->domain),
+			'bt_hover_background_color' => array(
+				'name' => __( 'Hover Background Color', $this->domain ),
 				'callback' => 'render_settings_field_callback',
 				'settings_group' => 'backtop',
-				'title' => __('Set background color for mouseover event.', $this->domain),
-				'frontend_value' => '#7dc5d9',
-				'backend_value' => '#7dc5d9',
+				'title' => __( 'Set background color.', $this->domain ),
+				'frontend_value' => 'rgba(0, 0, 0, 0.60)',
+				'backend_value' => 'rgba(0, 0, 0, 0.60)',
 				'input_type' => 'color',
 				'notice_level' => 'notice-correction',
 				'select_values' => 'none',
-			),*/
+			),
 			'bt_border_color' => array(
 				'name' => __( 'Border Color', $this->domain ),
 				'callback' => 'render_settings_field_callback',
 				'settings_group' => 'backtop',
 				'title' => __( 'Set border color.', $this->domain ),
-				'frontend_value' => '#538fa3',
-				'backend_value' => '#538fa3',
+				'frontend_value' => 'rgba(0, 0, 0, 0)',
+				'backend_value' => 'rgba(0, 0, 0, 0)',
+				'input_type' => 'color',
+				'notice_level' => 'notice-correction',
+				'select_values' => 'none',
+			),
+			'bt_hover_border_color' => array(
+				'name' => __( 'Hover Border Color', $this->domain ),
+				'callback' => 'render_settings_field_callback',
+				'settings_group' => 'backtop',
+				'title' => __( 'Set border color.', $this->domain ),
+				'frontend_value' => 'rgba(0, 0, 0, 0)',
+				'backend_value' => 'rgba(0, 0, 0, 0)',
 				'input_type' => 'color',
 				'notice_level' => 'notice-correction',
 				'select_values' => 'none',
@@ -799,32 +811,20 @@ class nsr_options {
 				'input_type' => 'select',
 				'notice_level' => 'none',
 				'select_values' => array(
-					'solid',
-					'dotted',
-					'dashed',
-					'double',
-					'groove',
-					'ridge',
-					'inset',
-					'outset',
-					'initial',
-					'inherit',
-					'none',
-					'hidden'
+					'solid' => 'solid',
+					'dotted' => 'dotted',
+					'dashed' => 'dashed',
+					'double' => 'double',
+					'groove' => 'groove',
+					'ridge' => 'ridge',
+					'inset' => 'inset',
+					'outset' => 'outset',
+					'initial' => 'initial',
+					'inherit' => 'inherit',
+					'none' => 'none',
+					'hidden' => 'hidden'
 				),
 			),
-			/*'bt_border_hover_color' => array(
-				'name' => __('Border Color On Hover', $this->domain),
-				'callback' => 'render_settings_field_callback',
-				'settings_group' => 'backtop',
-				'title' => __('Set border color for mouseover event.', $this->domain),
-				'frontend_value' => '#538fa3',
-				'backend_value' => '#538fa3',
-				'input_type' => 'color',
-				'notice_level' => 'notice-correction',
-				'select_values' => 'none',
-			),*/
-
 			'bt_posx_from_right' => array(
 				'name' => __( 'Position From Right', $this->domain ),
 				'callback' => 'render_settings_field_callback',
@@ -841,8 +841,8 @@ class nsr_options {
 				'callback' => 'render_settings_field_callback',
 				'settings_group' => 'backtop',
 				'title' => __( 'Set button position from bottom in pixels.', $this->domain ),
-				'frontend_value' => '48px',
-				'backend_value' => '48px',
+				'frontend_value' => '32px',
+				'backend_value' => '32px',
 				'input_type' => 'text',
 				'notice_level' => 'notice-correction',
 				'select_values' => 'none',
@@ -853,8 +853,8 @@ class nsr_options {
 				'callback' => 'render_settings_field_callback',
 				'settings_group' => 'backtop',
 				'title' => __( 'Set border radius top left in pixels or percent.', $this->domain ),
-				'frontend_value' => '0px',
-				'backend_value' => '0px',
+				'frontend_value' => '50%',
+				'backend_value' => '50%',
 				'input_type' => 'text',
 				'notice_level' => 'notice-correction',
 				'select_values' => 'none',
@@ -864,8 +864,8 @@ class nsr_options {
 				'callback' => 'render_settings_field_callback',
 				'settings_group' => 'backtop',
 				'title' => __( 'Set border radius top right in pixels or percent.', $this->domain ),
-				'frontend_value' => '0px',
-				'backend_value' => '0px',
+				'frontend_value' => '50%',
+				'backend_value' => '50%',
 				'input_type' => 'text',
 				'notice_level' => 'notice-correction',
 				'select_values' => 'none',
@@ -875,8 +875,8 @@ class nsr_options {
 				'callback' => 'render_settings_field_callback',
 				'settings_group' => 'backtop',
 				'title' => __( 'Set border radius bottom left in pixels or percent.', $this->domain ),
-				'frontend_value' => '0px',
-				'backend_value' => '0px',
+				'frontend_value' => '50%',
+				'backend_value' => '50%',
 				'input_type' => 'text',
 				'notice_level' => 'notice-correction',
 				'select_values' => 'none',
@@ -886,8 +886,8 @@ class nsr_options {
 				'callback' => 'render_settings_field_callback',
 				'settings_group' => 'backtop',
 				'title' => __( 'Set border radius bottom right in pixels or percent.', $this->domain ),
-				'frontend_value' => '0px',
-				'backend_value' => '0px',
+				'frontend_value' => '50%',
+				'backend_value' => '50%',
 				'input_type' => 'text',
 				'notice_level' => 'notice-correction',
 				'select_values' => 'none',
@@ -1070,27 +1070,27 @@ class nsr_options {
 	 */
 	public function get_options( $view = false ) {
 
-		if( isset( $_REQUEST['action'] ) && $_REQUEST['action'] === 'heartbeat' ) {
-			return;
+		if( isset( $_REQUEST['action'] ) && $_REQUEST['action'] !== 'heartbeat' ) {
+			$options = get_option( 'nicescrollr_options' );
+
+			if( false === $options ) {
+				$this->seed_options();
+			}
+
+			if( false === $view ) {
+				return get_option( 'nicescrollr_options' );
+			}
+
+			$stored_options = get_option( 'nicescrollr_options' );
+			if( ! isset( $stored_options[$view] ) ) {
+
+				return $this->get_default_settings( $view );
+			}
+
+			return $stored_options[$view];
 		}
 
-		$options = get_option( 'nicescrollr_options' );
-
-		if( false === $options ) {
-			$this->seed_options();
-		}
-
-		if( false === $view ) {
-			return get_option( 'nicescrollr_options' );
-		}
-
-		$stored_options = get_option( 'nicescrollr_options' );
-		if( ! isset( $stored_options[$view] ) ) {
-
-			return $this->get_default_settings( $view );
-		}
-
-		return $stored_options[$view];
+		return null;
 	}
 
 	/**

@@ -5,34 +5,31 @@
  * @since             0.1.0
  * @package           nicescrollr
  * @subpackage        nicescrollr/admin/menu/js
- * Author:            Demis Patti <demis@demispatti.ch>
- * Author URI:        http://demispatti.ch
+ * Author:            Demis Patti <wp@demispatti.ch>
+ * Author URI:        https://demispatti.ch
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  */
-
+"use strict";
 jQuery(function ($) {
-	"use strict";
 
-	function Plugin () {
+	function NsrMenu () {
 
-		this.nsr_menu = nsr_menu;
+		this.nsr_menu = Nsr_Menu;
 		this.document = $(document);
 		this.body = $('body');
 		this.html = $('html');
 		this.window = $(window);
 		this.nice = $('#ascrail2000');
+		this.fancyselect = null;
 	}
 
-	Plugin.prototype = {
-
+	NsrMenu.prototype = {
 		setObjects: function () {
-
-			this.colorpicker = $('.cursorcolor, .cursorbordercolor, .background, .bt_background_color, .bt_background_hover_color, .bt_border_color, .bt_border_hover_color').wpColorPicker();
+			this.fancyselect = this.initFancySelect(this.fancyselect);
+			this.colorpicker = this.initColorPicker(this.colorpicker);
 
 			this.wrap = $('.form-table td');
-
-			this.fancyselect = $('.nsr-fancy-select').fancySelect();
 
 			this.toggles = $('form#nsr_form h2.nicescrollr_settings_toggle');
 			this.tables = $("table.form-table");
@@ -52,7 +49,16 @@ jQuery(function ($) {
 			this.resetSettingsToggle = this.toggles.eq(3);
 			this.resetSettingsToggle.addClass('nicescrollr_settings_toggle');
 			this.resetPanel = this.tables.eq(3);
+		},
+		initFancySelect: function(element){
+			element = $('.nsr-fancy-select').fancySelect();
 
+			return element;
+		},
+		initColorPicker: function (element) {
+			element = $('.nsr-color-picker').wpColorPicker();
+
+			return element;
 		},
 		wrapTable: function () {
 			this.wrap.wrapInner('<div class="form-table-td-wrap"></div>');
@@ -133,7 +139,6 @@ jQuery(function ($) {
 			$this.upperPanel.slideToggle(320);
 		},
 		extendedSettingsToggleOnClick: function (event) {
-
 			var $this = event.data.context;
 
 			$this.lowerPanel.slideToggle(320);
@@ -150,7 +155,6 @@ jQuery(function ($) {
 		},
 
 		scrollToOnClick: function (event) {
-
 			var $this = event.data.context;
 
 			event = event || window.event;
@@ -205,13 +209,11 @@ jQuery(function ($) {
 				$(this).removeClass('.validation-error-focus');
 			});*/
 		}
-
 	};
 
 	$(document).ready(function () {
-
-		var plugin = new Plugin();
-		plugin.init();
+		var nsrMenu = new NsrMenu();
+		nsrMenu.init();
 	});
 
 });

@@ -5,30 +5,28 @@
  * @since             0.1.0
  * @package           nicescrollr
  * @subpackage        nicescrollr/admin/menu/js
- * Author:            Demis Patti <demis@demispatti.ch>
- * Author URI:        http://demispatti.ch
+ * Author:            Demis Patti <wp@demispatti.ch>
+ * Author URI:        https://demispatti.ch
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  */
-
+"use strict";
 jQuery(function ($) {
-	"use strict";
 
-	function Plugin () {
-
-		this.nsr_options = nsr_options;
+	function NsrBacktop () {
+		this.nsr_options = Nsr_Options;
 		this.offset = 640;
 		this.scrollDuration = 700;
-		this.easing = 'easeInOutSine';
+		this.easing = 'swing';
 		this.document = $(document);
 		this.body = $('body');
 		this.html = $('html');
 		this.window = $(window);
-		this.backTop = null;
+		this.nsrBackTop = null;
+		this.bt_class = 'nsr-backtop';
 	}
 
-	Plugin.prototype = {
-
+	NsrBacktop.prototype = {
 		init: function () {
 
 			this.createBackTop();
@@ -36,15 +34,15 @@ jQuery(function ($) {
 			this.bind();
 		},
 		createBackTop: function () {
-
-			var bt_class = 'nsr-backtop';
-
-			$(this.body).append("<a class='" + bt_class + "' href='#'></a>");
-			this.backTop = $('.' + bt_class);
+			$(this.body).append("<span class='" + this.bt_class + "'></span>");
+			this.nsrBackTop = $('.' + this.bt_class);
 		},
 		applyBacktopConfiguration: function () {
+			this.nsrBackTop.css(this.getBacktopConfiguration());
+		},
+		getBacktopConfiguration: function () {
 
-			this.backTop.css({
+			return {
 				'width': this.nsr_options.bt_width,
 				'height': this.nsr_options.bt_height,
 
@@ -60,19 +58,32 @@ jQuery(function ($) {
 				'border-top-right-radius': this.nsr_options.bt_border_radius_top_right,
 				'border-bottom-left-radius': this.nsr_options.bt_border_radius_bottom_left,
 				'border-bottom-right-radius': this.nsr_options.bt_border_radius_bottom_right
-			});
+			};
 		},
 		bind: function () {
-
-			this.backTop.bind('click', { context: this }, this.backTopOnClick);
+			this.nsrBackTop.bind('mouseenter', { context: this }, this.backTopOnMouseenter);
+			this.nsrBackTop.bind('mouseleave', { context: this }, this.backTopOnMouseleave);
+			this.nsrBackTop.bind('click', { context: this }, this.backTopOnClick);
 			this.window.bind('scroll', { context: this }, this.backTopOnScroll);
+			$(this.window).trigger('scroll');
 		},
 
-		backTopOnScroll: function (event) {
+		backTopOnMouseenter: function (event) {
 			var $this = event.data.context;
 
-			var button = $('.nsr-backtop');
-			$this.document.scrollTop() > $this.offset ? button.addClass('top-is-visible') : button.removeClass('top-is-visible');
+			$(this).css({
+				'background-color': $this.nsr_options.bt_hover_background_color,
+				'border-color': $this.nsr_options.bt_hover_border_color,
+				'cursor': 'pointer'
+			});
+		},
+		backTopOnMouseleave: function (event) {
+			var $this = event.data.context;
+
+			$(this).css({
+				'background-color': $this.nsr_options.bt_background_color,
+				'border-color': $this.nsr_options.bt_border_color
+			});
 		},
 		backTopOnClick: function (event) {
 			var $this = event.data.context;
@@ -81,14 +92,20 @@ jQuery(function ($) {
 					scrollTop: 0
 				}, $this.scrollDuration, $this.easing
 			);
-		}
+		},
+		backTopOnScroll: function (event) {
+			var $this = event.data.context;
 
+			//var button = $('.Nsr-backtop');
+			$this.document.scrollTop() > $this.offset ? $this.nsrBackTop.addClass('nsr-backtop-is-visible') : $this.nsrBackTop.removeClass('nsr-backtop-is-visible');
+		}
 	};
 
 	$(document).ready(function () {
-
-		var plugin = new Plugin();
-		plugin.init();
+		if (false !== Nsr_Options.bt_enabled) {
+			var nsrBacktop = new NsrBacktop();
+			nsrBacktop.init();
+		}
 	});
 
 });

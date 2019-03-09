@@ -2,11 +2,11 @@
 
 Tags: nicescroll, scroll, scrollbar, scrolling, nice, frontend, backend, scrollen  
 
-Requires at least: 4.6
-Tested up to: 4.9.6
+Requires at least: 4.7
+Tested up to: 5.0.2
 Requires PHP: 5.4
-Version: 0.6.0
-Stable tag: 0.6.0
+Version: 0.7.0
+Stable tag: 0.7.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Author: demispatti
@@ -42,7 +42,7 @@ I really like InuYaksa's Nicescroll JS plugin. I'm a fan. And I thought there ma
 == Frequently Asked Questions ==
 
 = Why doesn't it work with my theme? =
-Most likely, this is because your theme (or another plugin?) already has the Nicescroll library on board. If that's the case, I advise you to uninstall this plugin again to prevent compatibility issues. Of course, you can always ask your theme developer to implement a function to disable the built-in solution if you like to use this plugin and its options.
+Most likely, this is because your theme (or another plugin?) already has the Nicescroll library on board. If that's the case, I advise you to uninstall this plugin again to prevent compatibility issues. Of course, you can always ask your theme developer to implement a function to disable the built-in solution if you like to use this plugin and its Options.
 
 The capability required for being able to customize settings is the following:
 
@@ -61,6 +61,42 @@ Well, I provide some basic support on this plugin's support page. I check that p
 
 == Changelog ==
 
+= Version 0.7.0 =
+1. Introduced namespaces
+2. Introduced automated testing
+3. Fixed a variety of bugs
+4. Updated dependencies
+5. Enhanced performance
+6. Added minified versions of js and css files
+
+= Version 0.6.7 =
+1. Should have resolved that compatibility warning on this plugin's homepage
+
+= Version 0.6.6 =
+1. Should have resolved that compatibility warning on this plugin's homepage
+
+= Version 0.6.5 =
+1. Minor css improvement
+
+= Version 0.6.4 =
+1. Fixed scrollbar display issues
+2. Renamed the main plugin file from nsr.php to nicescrollr.php for testing reasons, so you may need to activate the plugin again
+
+= Version 0.6.3 =
+1. Added Options to set border color and background color of the backtop button for hover state
+2. Minor code clean up
+
+= Version 0.6.2 =
+1. Renamed css class "top-is-visible"  to "nsr-backtop-is-visible" due to compatibility reasons with buttons that are shipped with themes
+2. Renamed the plugin's js instances to avoid any possible conflicts with other js libraries
+3. Changed the element type for the backtop button, since no anchor is needed
+4. Changed the css for the backtop button to appear more neutral
+5. Changed some default option values
+6. The color picker accepts keyboard inputs now
+7. The color picker offers an alpha channel now
+8. Minor style changes
+9. Minor code changes
+
 = Version 0.6.0 =
 1. Added an option to enable Nicescroll on mobile devices. default value is off
 2. Moved the option "Scrollbar Default Look" down the list and renamed it to "Show Default Scrollbar"
@@ -77,11 +113,11 @@ Well, I provide some basic support on this plugin's support page. I check that p
 3. Optimized the listener that watches changes on the document
 
 = Version 0.5.6 =
-1. Added some styling options for the backtop buttons. I advise you to navigate to the settings pages for the frontend and the backend and simply hit the "save settings" button to add the new features
+1. Added some styling Options for the backtop buttons. I advise you to navigate to the settings pages for the frontend and the backend and simply hit the "save settings" button to add the new features
 
 2. Removed the deprecated plugin settings tab
 3. Renamed the class name for the backtop button
-4. Fixed a bug regarding the scroll-to functionality, which is used to scroll to settings that did not pass validation
+4. Fixed a bug regarding the scroll-to functionality, which is used to scroll to settings that did not pass Validation
 5. Added credit to the author of Nicescroll in the description text
 6. Several code improvements
 7. Updated the note regarding my support forum visits
@@ -104,11 +140,11 @@ Well, I provide some basic support on this plugin's support page. I check that p
 8. Minor UI changes
 
 = Version 0.5.2 =
-1. Fixed a bug regarding the case of an empty options array
+1. Fixed a bug regarding the case of an empty Options array
 2. Minor code optimisations
 3. Removed a plugin setting - ScrollTo is enabled by default now
 4. Minor UI changes
-5. Disabled Nicescroll options that are not related to this plugins's functionality (boxzoom, iframeautozesize, ...)
+5. Disabled Nicescroll Options that are not related to this plugins's functionality (boxzoom, iframeautozesize, ...)
 6. Removed local fallback for Font Awesome
 
 = Version 0.5.0 =
@@ -126,7 +162,7 @@ Well, I provide some basic support on this plugin's support page. I check that p
 2. Minor code optimisations
 
 = Version 0.3.0 =
-1. Updated the user interface, all options are available again
+1. Updated the user interface, all Options are available again
 2. Refactored the javascripts
 3. Support for PHP Version 5.3 ( was 5.4+ )
 4. Removed "Fugaz One" font family
@@ -158,7 +194,7 @@ Well, I provide some basic support on this plugin's support page. I check that p
 4. Slightly modified the content of the help settings_tab.
 5. Updated the German translation.
 6. Fixed an issue with a missing url for "scrollTo".
-7. Made the validation error notices dismissable.
+7. Made the Validation error notices dismissable.
 8. The scrollTo-extension now also works for the color pickers.
 8. Some minor bug fixes.
 

@@ -5,21 +5,21 @@
  * @since             0.1.0
  * @package           nicescrollr
  * @subpackage        nicescrollr/admin/menu/js
- * Author:            Demis Patti <demis@demispatti.ch>
- * Author URI:        http://demispatti.ch
+ * Author:            Demis Patti <wp@demispatti.ch>
+ * Author URI:        https://demispatti.ch
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  */
+"use strict";
+(function ($, alertify) {
 
-jQuery(function ($) {
-	"use strict";
+	function NsrAjax () {
 
-	function Plugin () {
-
+		this.nsrAjax = Nsr_Ajax;
 		this.resetbutton = $(".nsr-reset-button");
 	}
 
-	Plugin.prototype = {
+	NsrAjax.prototype = {
 
 		init: function () {
 
@@ -62,9 +62,9 @@ jQuery(function ($) {
 					// dialogs default title
 					title: 'Nicescrollr',
 					// ok button text
-					ok: nsrAjax.okiDoki,
+					ok: this.nsrAjax.okiDoki,
 					// cancel button text
-					cancel: nsrAjax.noWayJose
+					cancel: this.nsrAjax.noWayJose
 				},
 
 				// theme settings
@@ -82,9 +82,9 @@ jQuery(function ($) {
 			this.resetbutton.bind('click', { context: this }, this.resetButtonOnClick);
 		},
 		resetButtonOnClick: function (event) {
-
 			event.preventDefault();
 
+			var $this = event.data.context;
 			var id = event.target.id;
 			var section = id.replace('reset_', '');
 
@@ -97,10 +97,10 @@ jQuery(function ($) {
 
 			if (section === 'backend') {
 
-				alertify.confirm().set({ 'title': nsrAjax.resetBackendConfirmationHeading });
-				alertify.confirm(nsrAjax.resetBackendConfirmation, function (e) {
+				alertify.confirm().set({ 'title': $this.nsrAjax.resetBackendConfirmationHeading });
+				alertify.confirm($this.nsrAjax.resetBackendConfirmation, function (e) {
 					if (e) {
-						$.post(ajaxurl, data, function (response) {
+						$.post($this.nsrAjax.ajax_url, data, function (response) {
 
 							if (response.success === true) {
 
@@ -121,10 +121,10 @@ jQuery(function ($) {
 			}
 			else if (section === 'frontend') {
 
-				alertify.confirm().set({ title: nsrAjax.resetFrontendConfirmationHeading, focus: 'no ' });
-				alertify.confirm(nsrAjax.resetFrontendConfirmation, function (e) {
+				alertify.confirm().set({ title: $this.nsrAjax.resetFrontendConfirmationHeading, focus: 'no ' });
+				alertify.confirm($this.nsrAjax.resetFrontendConfirmation, function (e) {
 					if (e) {
-						$.post(ajaxurl, data, function (response) {
+						$.post($this.nsrAjax.ajax_url, data, function (response) {
 
 							if (response.success === true) {
 
@@ -152,8 +152,8 @@ jQuery(function ($) {
 
 	$(document).ready(function () {
 
-		var plugin = new Plugin();
-		plugin.init();
+		var Nsr_Ajax = new NsrAjax();
+		Nsr_Ajax.init();
 	});
 
-});
+})(jQuery, alertify);
