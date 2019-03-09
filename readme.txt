@@ -34,7 +34,8 @@ Nothing that's not already built-in into WordPress.
 1. Upload the `nicescrollr` folder to your `/wp-content/plugins/` directory.
 2. Activate the "Nicescrollr" plugin through the "Plugins" menu in WordPress.
 3. You will find its settings page listed in the "settings" section.
-3. Go to the plugin settings page and fit it to your needs :-) Have fun!
+3. Go to the plugin settings page which is located under "settings" and fit it to your needs :-)
+4. Have fun!
 
 == Frequently Asked Questions ==
 

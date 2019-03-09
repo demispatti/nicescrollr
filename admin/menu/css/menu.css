@@ -1,0 +1,970 @@
+/**
+ * Settings Menu.
+ *
+ * @link              https://github.com/demispatti/nicescrollr
+ * @since             0.1.0
+ * @package           nicescrollr
+ * @subpackage        nicescrollr/admin/menu/css
+ * Author:            Demis Patti <demis@demispatti.ch>
+ * Author URI:        http://demispatti.ch
+ * License:           GPL-2.0+
+ * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
+ */
+.wrap h2.nsr-page-title:not(.nav-tab-wrapper) {
+    font-family: 'fugaz_one_regular', 'Open Sans', sans-serif;
+    font-size: 36px;
+    font-weight: 500;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 480px;
+    padding: 50px 40px 30px 12px;
+    margin: 0;
+    color: #555;
+    text-shadow:
+        1px 0 1px rgb(204, 204, 204),
+        0 1px 1px rgb(238, 238, 238),
+        2px 1px 1px rgb(204, 204, 204),
+        1px 2px 1px rgb(238, 238, 238),
+        3px 2px 1px rgb(204, 204, 204);
+}
+
+.nsr-page-subtitle {
+    font-family: 'fugaz_one_regular', 'Open Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 480px;
+    padding: 0 20px 40px 12px;
+    margin: 0;
+    color: #666;
+    text-shadow:
+        1px 0 1px rgb(204, 204, 204),
+        0 1px 1px rgb(238, 238, 238);
+}
+
+h2.nav-tab-wrapper {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 480px;
+    padding: 30px 0 0 12px;
+    margin: 0;
+}
+
+h2.nav-tab-wrapper, h3.nav-tab-wrapper {
+    border-bottom: none;
+}
+
+.wrap  h2 a.nav-tab {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 500;
+    color: #0a1318;
+    padding-bottom: 8px;
+}
+
+.nav-tab-active {
+    color: #0a1318;
+    background-color: #f8f8f8;
+    transition: 0.2s all;
+    z-index: 1;
+}
+
+.nav-tab-active:hover {
+    background-color: #fff;
+    transition: 0.2s all;
+}
+
+.wrap h2 a.nav-tab:before {
+    color: #24465a;
+    font-family: 'icomoon', sans-serif;
+    font-size: 16px;
+    margin-right: 5px;
+    right: 8px;
+    text-shadow: -0.6px -0.6px 0 rgba(241, 241, 241, 0.8), 1px 1px 1px #5c5c5c;
+}
+
+/**************************************************************
+ * Settings Headings
+ *************************************************************/
+.nicescrollr_settings_toggle {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 480px;
+    padding: 26px 0 30px 12px;
+    margin-top: 0;
+    margin-bottom: 0;
+    border: 1px solid rgb(229, 229, 229);
+    background: none repeat scroll 0% 0% rgb(255, 255, 255);
+    -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1), 0 0 40px rgba(0, 0, 0, 0.06) inset;
+    -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1), 0 0 40px rgba(0, 0, 0, 0.06) inset;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1), 0 0 40px rgba(0, 0, 0, 0.06) inset;
+    transition: all 0.2s ease-in-out;
+}
+
+.nicescrollr_settings_toggle:before {
+    color: #24465a;
+    font-family: 'icomoon', sans-serif;
+    font-size: 24px;
+    margin-right: 4px;
+    position: relative;
+    top: 3px;
+    right: 4px;
+    text-shadow: -1px -1px 0 rgba(241, 241, 241, 0.8), 1px 1px 1px #5c5c5c;
+}
+
+.nicescrollr_settings_toggle:before,
+.nicescrollr_settings_toggle:after {
+    -webkit-box-shadow: 0 0 12px rgba(0, 0, 0, 0.09);
+    -moz-box-shadow: 0 0 12px rgba(0, 0, 0, 0.09);
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.09);
+    -moz-border-radius: 100px / 10px;
+    border-radius: 100px / 10px;
+}
+
+.nicescrollr_settings_toggle:after {
+    -webkit-transform: skew(8deg) rotate(3deg);
+    -moz-transform: skew(8deg) rotate(3deg);
+    -ms-transform: skew(8deg) rotate(3deg);
+    -o-transform: skew(8deg) rotate(3deg);
+    transform: skew(8deg) rotate(3deg);
+}
+
+.nicescrollr_settings_toggle:hover {
+    border: 1px solid rgb(229, 229, 229);
+    background: none repeat scroll 0% 0% rgb(255, 255, 255);
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    cursor: pointer;
+}
+
+/**************************************************************
+ * Options Table
+ *************************************************************/
+.form-table {
+    margin-top: 3px;
+}
+
+form#nsr_form,
+form#nsr_form table,
+.form-table-wrap,
+.form-table-wrap tbody,
+.form-table-wrap tbody tr {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 480px;
+}
+
+#nsr_form table {
+    width: inherit;
+    table-layout: fixed;
+    box-sizing: content-box;
+}
+
+#nsr_form tbody {
+    width: 100%;
+    min-width: 100%;
+    display: table;
+}
+
+#nsr_form tr {
+    box-sizing: border-box;
+    display: table;
+    width: 100%;
+    border: 1px solid rgb(229, 229, 229);
+    height: 48px;
+    background: none repeat scroll 0% 0% rgb(255, 255, 255);
+    clear: both;
+    border-radius: 2px;
+    -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.03), 0 0 40px rgba(0, 0, 0, 0.01) inset;
+    -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.03), 0 0 40px rgba(0, 0, 0, 0.01) inset;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.03), 0 0 40px rgba(0, 0, 0, 0.01) inset;
+}
+
+#nsr_form tr:before,
+#nsr_form tr:after {
+    -webkit-box-shadow: 0 0 12px rgba(0, 0, 0, 0.03);
+    -moz-box-shadow: 0 0 12px rgba(0, 0, 0, 0.03);
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.03);
+    -moz-border-radius: 100px / 10px;
+    border-radius: 100px / 10px;
+}
+
+#nsr_form tr:after {
+    -webkit-transform: skew(8deg) rotate(3deg);
+    -moz-transform: skew(8deg) rotate(3deg);
+    -ms-transform: skew(8deg) rotate(3deg);
+    -o-transform: skew(8deg) rotate(3deg);
+    transform: skew(8deg) rotate(3deg);
+}
+
+input[type="text"].nsr-switch {
+    width: 100px !important;
+}
+
+/* Input field heading */
+.form-table th {
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    width: 200px;
+    height: 40px;
+    padding: 0;
+    padding-top: 17px;
+    padding-left: 16px;
+    float: left;
+}
+
+/* Input field and description */
+.form-table td {
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+    height: 40px;
+    padding: 0;
+    padding-top: 7px;
+    min-width: 200px;
+    max-width: 100%;
+    float: left;
+}
+
+.form-table td p {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-left: 16px;
+}
+
+/* Input field container */
+.form-table td p:first-of-type {
+    display: inline-block;
+    width: 160px;
+    float: left;
+}
+
+/* Description Container ("Label") */
+.form-table td p:last-of-type {
+    display: inline-block;
+    min-width: 240px;
+    position: relative;
+    top: 4px;
+    float: left;
+}
+
+.form-table-td-wrap {
+    clear: both;
+}
+
+@media screen and (max-width: 780px) {
+
+    .nsr-page-title {
+        padding: 30px 0 30px 12px;
+    }
+
+    .form-table th {
+        display: block;
+        width: 100%;
+        height: auto;
+        padding: 12px 0 0 24px;
+        margin: 0;
+        float: none;
+    }
+
+    .form-table td {
+        display: block;
+        width: 100%;
+        height: auto;
+        padding: 12px 0 0 24px;
+        margin: 0;
+        float: none;
+    }
+
+    .form-table td p {
+        display: block;
+        width: 100%;
+        height: auto;
+        padding: 0;
+        margin: 0;
+        float: none;
+    }
+
+    .form-table label {
+        padding: 18px 0 0 24px;
+    }
+
+    .form-table td p:first-of-type {
+        width: 160px;
+        display: inline-block;
+        margin-bottom: 12px;
+        float: left;
+    }
+
+    .form-table td p:last-of-type {
+        width: auto;
+        display: inline-block;
+        float: left;
+    }
+
+    .form-table-td-wrap {
+        height: auto;
+        clear: both;
+    }
+
+}
+
+@media screen and (max-width: 480px) {
+
+    .nsr-page-title {
+        padding: 20px 0 20px 12px;
+    }
+
+    #nsr_form tr {
+        height: auto;
+    }
+
+    .form-table th {
+        box-sizing: border-box;
+        display: block;
+        width: 100%;
+        height: auto;
+        padding: 12px 0 0 24px;
+        margin: 0;
+        float: none;
+    }
+
+    .form-table td {
+        box-sizing: border-box;
+        display: block;
+        width: 100%;
+        height: auto;
+        padding: 12px 0 0 24px;
+        margin: 0;
+        float: none;
+    }
+
+    .form-table td input[type="text"],
+    .form-table td select {
+        width: 70%;
+    }
+
+    .form-table td p {
+        box-sizing: border-box;
+        display: block;
+        width: 100%;
+        height: auto;
+        padding: 0;
+        margin: 0;
+        float: none;
+    }
+
+    .form-table label {
+        box-sizing: border-box;
+        margin: 12px 0 12px 0;
+        padding: 12px 0 12px 0;
+    }
+
+    /* .nicescroll-input-container */
+    .form-table td p:first-of-type {
+        box-sizing: border-box;
+        width: 100%;
+        display: block;
+        margin-bottom: 0;
+        float: none;
+    }
+
+    /* .nicescroll-label-container */
+    .form-table td p:last-of-type {
+        box-sizing: border-box;
+        width: 100%;
+        display: block;
+        padding: 12px 0 12px 0;
+        float: none;
+    }
+
+    .form-table-td-wrap {
+        box-sizing: border-box;
+        height: auto;
+        clear: none;
+    }
+
+}
+
+/**************************************************************
+ * Buttons
+ *************************************************************/
+.settings_page_nicescrollr_settings .submit {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 480px;
+    height: 20px;
+}
+
+.dp-submit-button-wrap {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 480px;
+    margin-bottom: 30px;
+    right: 6px;
+}
+
+.dp-submit-button-wrap-2 {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 480px;
+    position: relative;
+    right: 6px;
+}
+
+
+
+.settings_page_nicescrollr_settings .submit input {
+    display: block;
+    float: right;
+    position: relative;
+    right: 0;
+    height: auto;
+}
+
+/**************************************************************
+ * scrollTo
+ *************************************************************/
+
+.nsr-validation-error {
+    color: rgb(91, 157, 217);
+    text-decoration: underline;
+}
+
+.nsr-validation-error:hover {
+    color: rgb(105, 185, 255);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/**************************************************************
+ * Admin Notices
+ *************************************************************/
+.notice-error {
+
+    border-color: #e74c3c !important;
+}
+
+.notice-warning {
+
+    border-color: #e67e22 !important;
+}
+
+.notice-correction {
+
+    border-color: rgba(91, 157, 217, 0.98) !important;
+}
+
+
+/**************************************************************
+ * Reset Buttons Area
+ *************************************************************/
+.label-for-nsr-reset-button {
+    text-align: center;
+    width: 126px;
+    margin-top: 40px;
+}
+
+.wp-core-ui .button {
+    text-align: center;
+}
+
+/**************************************************************
+ * Color Picker
+ *************************************************************/
+.wp-picker-input-wrap {
+    z-index: 1000;
+}
+
+.wp-picker-input-wrap input {
+    z-index: 1000;
+}
+
+.wp-picker-container .iris-picker {
+    background-color: #fff;
+    -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5), 0 0 40px rgba(0, 0, 0, 0.06) inset;
+    -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5), 0 0 40px rgba(0, 0, 0, 0.06) inset;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5), 0 0 40px rgba(0, 0, 0, 0.06) inset;
+    z-index: 1000;
+}
+
+.wp-color-result {
+    margin-top: 4px;
+}
+
+/**************************************************************
+ * BackTop
+ *************************************************************/
+#backTop {
+    width: 36px !important;
+    height: 36px !important;
+    padding: 0;
+    text-align: center;
+    font-weight: bold;
+    color: rgba(68, 68, 68, 0.2);
+    text-decoration: none;
+    position: absolute;
+    bottom: 40px;
+    right: 120px;
+    background: url('../../../vendor/backtop/images/uparr-36-w.png') no-repeat center center rgb(91, 157, 217) !important;
+    border: 1px solid #fff;
+    opacity: 0.4;
+    display: none;
+}
+
+#backTop.black {
+    width: 36px !important;
+    height: 36px !important;
+    padding: 0;
+    text-align: center;
+    font-weight: bold;
+    color: rgba(68, 68, 68, 0.2);
+    text-decoration: none;
+    position: absolute;
+    background: url('../../../vendor/backtop/images/uparr-36-w.png') no-repeat center center rgb(91, 157, 217)) !important;
+    border: 1px solid #fff;
+    opacity: 0.4;
+    transition: all 0.2s;
+}
+
+#backTop:hover {
+    cursor: pointer;
+    background: rgb(125, 197, 217);
+    transition: all 0.2s;
+}
+
+/**************************************************************
+ * Placeholders
+ *************************************************************/
+::-webkit-input-placeholder {
+    color: #a0a9b9;
+}
+
+:-moz-placeholder {
+    /* Firefox 18- */
+    color: #A0A9B9;
+}
+
+::-moz-placeholder {
+    /* Firefox 19+ */
+    color: #A0A9B9;
+}
+
+:-ms-input-placeholder {
+    color: #A0A9B9;
+    background-color: rgb(238, 238, 238);
+}
+
+/************************************************
+ * Switch
+ ***********************************************/
+:root input[type="checkbox"].nsr-switch {
+    /* :root here acting as a filter for older browsers */
+    position: absolute;
+    opacity: 0;
+}
+
+:root input[type="text"].nsr-switch {
+    /* :root here acting as a filter for older browsers */
+    position: absolute;
+    opacity: 0;
+    width: 100px;
+    max-width: 100px;
+}
+
+:root input[type="checkbox"].nsr-switch + div {
+    display: inline-block;
+    vertical-align: middle;
+    width: 3em;
+    height: 1em;
+    border: 1px solid rgba(0, 0, 0, .3);
+    border-radius: 999px;
+    margin: 0;
+    background-color: white;
+    background-image: linear-gradient(rgba(0, 0, 0, .1), transparent),
+    linear-gradient(90deg, #3D99F5 50%, transparent 50%);
+    background-size: 200% 100%;
+    background-position: 100% 0;
+    background-origin: border-box;
+    background-clip: border-box;
+    overflow: hidden;
+    transition-duration: .4s;
+    transition-property: padding, width, background-position, text-indent;
+    box-shadow: 0 .1em .1em rgba(0, 0, 0, .2) inset,
+    0 .45em 0 .1em rgba(0, 0, 0, .05) inset;
+    font-size: 140%; /* change this and see how they adjust! */
+}
+
+:root input[type="checkbox"].nsr-switch:checked + div {
+    padding-left: 2em;
+    width: 1em;
+    background-position: 0 0;
+}
+
+:root input[type="checkbox"].nsr-switch + div:before {
+    content: 'On';
+    float: left;
+    width: 1.65em;
+    height: 1.65em;
+    margin: -.1em;
+    border: 1px solid rgba(0, 0, 0, .35);
+    border-radius: inherit;
+    background-color: white;
+    background-image: linear-gradient(rgba(0, 0, 0, .2), transparent);
+    box-shadow: 0 .1em .1em .1em hsla(0, 0%, 100%, .8) inset,
+    0 0 .5em rgba(0, 0, 0, .3);
+    color: white;
+    text-shadow: 0 -1px 1px rgba(0, 0, 0, .3);
+    text-indent: -2.5em;
+}
+
+:root input[type="checkbox"].nsr-switch:active + div:before {
+    background-color: #eee;
+}
+
+:root input[type="checkbox"].nsr-switch:focus + div {
+    box-shadow: 0 .1em .1em rgba(0, 0, 0, .2) inset,
+    0 .45em 0 .1em rgba(0, 0, 0, .05) inset,
+    0 0 .4em 1px #e74c3c;
+}
+
+:root input[type="checkbox"].nsr-switch + div:before,
+:root input[type="checkbox"].nsr-switch + div:after {
+    font: bold 60%/1.9 sans-serif;
+    text-transform: uppercase;
+}
+
+:root input[type="checkbox"].nsr-switch + div:after {
+    content: 'Off';
+    float: left;
+    text-indent: .5em;
+    color: rgba(0, 0, 0, .45);
+    text-shadow: none;
+}
+
+label .label-for-nsr-switch {
+    position: relative;
+    display: block;
+    padding: .8em;
+    border: 1px solid silver;
+    border-top-width: 0;
+    background: white;
+    font: bold 110% sans-serif;
+}
+
+label .label-for-nsr-switch:first-of-type {
+    border-top-width: 1px;
+    border-radius: .6em .6em 0 0;
+}
+
+label .label-for-nsr-switch:last-of-type {
+    border-radius: 0 0 .6em .6em;
+    box-shadow: 0 1px hsla(0, 0%, 100%, .8);
+}
+
+.nsr-switch-container {
+    position: relative;
+    top: 4px;
+}
+
+.nsr-switch-container:hover {
+    cursor: pointer;
+}
+
+.label-for-nsr-switch {
+    pointer-events: none;
+}
+
+/************************************************
+ * Alertify
+ ***********************************************/
+.alertify,
+.alertify-log {
+    font-family: sans-serif;
+}
+
+p.alertify-message {
+    font-size: 14px;
+    font-family: inherit;
+    line-height: 1.5;
+}
+
+.alertify-confirm {
+    border: 1px solid rgb(229, 229, 229);
+    background: none repeat scroll 0% 0% rgb(255, 255, 255);
+    -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1), 0 0 40px rgba(0, 0, 0, 0.06) inset;
+    -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1), 0 0 40px rgba(0, 0, 0, 0.06) inset;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1), 0 0 40px rgba(0, 0, 0, 0.06) inset;
+    transition: all 0.2s ease-in-out;
+}
+
+.alertify {
+    background: #FFF;
+    border: 10px solid #E5E5E5; /* browsers that don't support rgba */
+    border: 10px solid rgba(229, 229, 229, 0.8);
+    border-radius: 8px;
+    box-shadow: 0 3px 3px rgba(0, 0, 0, .3);
+    -webkit-background-clip: padding; /* Safari 4? Chrome 6? */
+    -moz-background-clip: padding; /* Firefox 3.6 */
+    background-clip: padding-box; /* Firefox 4, Safari 5, Opera 10, IE 9 */
+}
+
+.alertify-text {
+    border: 1px solid #CCC;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+.alertify-button {
+    border-radius: 4px;
+    color: #FFF;
+    font-weight: bold;
+    padding: 6px 15px;
+    text-decoration: none;
+    text-shadow: 1px 1px 0 rgba(0, 0, 0, .5);
+    box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, .5);
+    background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, .3), rgba(255, 255, 255, 0));
+    background-image: -moz-linear-gradient(top, rgba(255, 255, 255, .3), rgba(255, 255, 255, 0));
+    background-image: -ms-linear-gradient(top, rgba(255, 255, 255, .3), rgba(255, 255, 255, 0));
+    background-image: -o-linear-gradient(top, rgba(255, 255, 255, .3), rgba(255, 255, 255, 0));
+    background-image: linear-gradient(top, rgba(255, 255, 255, .3), rgba(255, 255, 255, 0));
+}
+
+.alertify-button:hover,
+.alertify-button:focus {
+    outline: none;
+    background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, .1), rgba(0, 0, 0, 0));
+    background-image: -moz-linear-gradient(top, rgba(0, 0, 0, .1), rgba(0, 0, 0, 0));
+    background-image: -ms-linear-gradient(top, rgba(0, 0, 0, .1), rgba(0, 0, 0, 0));
+    background-image: -o-linear-gradient(top, rgba(0, 0, 0, .1), rgba(0, 0, 0, 0));
+    background-image: linear-gradient(top, rgba(0, 0, 0, .1), rgba(0, 0, 0, 0));
+}
+
+.alertify-button:focus {
+    border-color: rgb(91, 157, 217);
+    box-shadow: 0 0 2px rgba(30, 140, 190, 0.8);
+}
+
+.alertify-button:active {
+    position: relative;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, .15), 0 1px 2px rgba(0, 0, 0, .05);
+}
+
+.alertify-button-cancel,
+.alertify-button-cancel:hover,
+.alertify-button-cancel:focus {
+    background-color: #e74c3c;
+    border: 1px solid #ca4535;
+}
+
+.alertify-button-ok,
+.alertify-button-ok:hover,
+.alertify-button-ok:focus {
+    background-color: #2ecc71;
+    border: 1px solid #2aa755;
+}
+
+.alertify-log {
+    background: #1F1F1F;
+    background: rgba(0, 0, 0, .9);
+    padding: 15px;
+    border-radius: 4px;
+    color: #FFF;
+    text-shadow: -0.6px -0.6px 0 rgba(0, 0, 0, .4);
+}
+
+.alertify-log-error {
+    background: #e74c3c;
+    background: rgba(231, 76, 60, .9);
+}
+
+.alertify-log-success {
+    background: rgb(91, 157, 217);;
+}
+
+/************************************************
+ * Fancy Select
+ ***********************************************/
+div.fancy-select {
+    position: relative;
+}
+
+div.fancy-select.disabled {
+    opacity: 0.5;
+}
+
+div.fancy-select select:focus + div.trigger {
+    border-color: rgb(91, 157, 217);
+    box-shadow: 0 0 2px rgba(30, 140, 190, 0.8);
+}
+
+div.fancy-select select:focus + div.trigger.open {
+    box-shadow: none;
+}
+
+div.fancy-select div.trigger {
+    border-radius: 2px;
+    cursor: pointer;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    position: relative;
+    width: 158px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    padding-left: 6px;
+    margin: 0;
+    transition: all 240ms ease-out;
+    -webkit-transition: all 240ms ease-out;
+    -moz-transition: all 240ms ease-out;
+    -o-transition: all 240ms ease-out;
+    border: 1px solid rgb(221, 221, 221);
+    background: none repeat scroll 0% 0% rgb(255, 255, 255);
+    -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.07) inset;
+    -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.07) inset;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.07) inset;
+}
+
+div.fancy-select div.trigger:after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 0;
+    height: 0;
+    border: 5px solid transparent;
+    border-top-color: #4B5468;
+    top: 12px;
+    right: 10px;
+}
+
+div.fancy-select div.trigger.open {
+    background: rgb(246, 246, 246);
+    border: 1px solid rgb(226, 226, 226);
+    box-shadow: none;
+}
+
+div.fancy-select div.trigger.open:after {
+    border-top: 1px solid rgb(226, 226, 226);
+}
+
+div.fancy-select ul.options {
+    list-style: none;
+    margin: 0;
+    position: absolute;
+    top: 2px;
+    left: 0;
+    visibility: hidden;
+    opacity: 0;
+    z-index: 2000;
+    max-height: 200px;
+    overflow: auto;
+    border-radius: 0;
+    min-width: 112px;
+    max-width: 112px;
+    transition: opacity 200ms ease-out, top 200ms ease-out, visibility 200ms ease-out;
+    -webkit-transition: opacity 200ms ease-out, top 200ms ease-out, visibility 200ms ease-out;
+    -moz-transition: opacity 200ms ease-out, top 200ms ease-out, visibility 200ms ease-out;
+    -ms-transition: opacity 200ms ease-out, top 200ms ease-out, visibility 200ms ease-out;
+    -o-transition: opacity 200ms ease-out, top 200ms ease-out, visibility 200ms ease-out;
+    border: 1px solid rgb(226, 226, 226);
+    -webkit-box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+    -moz-box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+}
+
+div.fancy-select ul.options.open {
+    visibility: visible;
+    top: 30px;
+    opacity: 1;
+    /* have to use a non-visibility transition to prevent this iOS issue (bug?): */
+    /*http://stackoverflow.com/questions/10736478/css-animation-visibility-visible-works-on-chrome-and-safari-but-not-on-ios*/
+    transition: opacity 300ms ease-out, top 300ms ease-out;
+    -webkit-transition: opacity 300ms ease-out, top 300ms ease-out;
+    -moz-transition: opacity 300ms ease-out, top 300ms ease-out;
+    -ms-transition: opacity 300ms ease-out, top 300ms ease-out;
+    -o-transition: opacity 300ms ease-out, top 300ms ease-out;
+    border: 1px solid rgb(226, 226, 226);
+    -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5), 0 0 40px rgba(0, 0, 0, 0.06) inset;
+    -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5), 0 0 40px rgba(0, 0, 0, 0.06) inset;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5), 0 0 40px rgba(0, 0, 0, 0.06) inset;
+}
+
+div.fancy-select ul.options.overflowing {
+    top: auto;
+    bottom: 40px;
+    transition: opacity 200ms ease-out, bottom 200ms ease-out, visibility 200ms ease-out;
+    -webkit-transition: opacity 200ms ease-out, bottom 200ms ease-out, visibility 200ms ease-out;
+    -moz-transition: opacity 200ms ease-out, bottom 200ms ease-out, visibility 200ms ease-out;
+    -ms-transition: opacity 200ms ease-out, bottom 200ms ease-out, visibility 200ms ease-out;
+    -o-transition: opacity 200ms ease-out, bottom 200ms ease-out, visibility 200ms ease-out;
+}
+
+div.fancy-select ul.options.overflowing.open {
+    top: auto;
+    bottom: 50px;
+    transition: opacity 200ms ease-out, bottom 200ms ease-out;
+    -webkit-transition: opacity 200ms ease-out, bottom 200ms ease-out;
+    -moz-transition: opacity 200ms ease-out, bottom 200ms ease-out;
+    -ms-transition: opacity 200ms ease-out, bottom 200ms ease-out;
+    -o-transition: opacity 200ms ease-out, bottom 200ms ease-out;
+}
+
+div.fancy-select ul.options li {
+    padding: 3px 0 3px 6px;
+    margin: 0;
+    background: #fff;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 150ms ease-out;
+    -webkit-transition: all 150ms ease-out;
+    -moz-transition: all 150ms ease-out;
+    -ms-transition: all 150ms ease-out;
+    -o-transition: all 150ms ease-out;
+}
+
+div.fancy-select ul.options li.selected {
+    background: rgb(246, 246, 246);
+}
+
+div.fancy-select ul.options li.hover {
+    background: rgb(242, 242, 242);
+}
+
+/**************************************************************
+ * Inputs
+ *************************************************************/
+.nsr-switch-container {
+    margin-top: 4px;
+}
+
+.nsr-input-text {
+    border-radius: 2px;
+    width: 112px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.07) inset;
+    z-index: 0;
+}
+
+.nsr-input-color-picker {
+    bottom: 1px;
+    border-radius: 2px;
+    width: 112px;
+}
+
+.nsr-input-select, div.fancy-select div.trigger {
+    border-radius: 2px;
+    width: 104px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.07) inset;
+}
+
+/**************************************************************
+ * Admin Notice
+ *************************************************************/
+.error .notice {
+    width: 100%;
+    max-width: 480px;
+}

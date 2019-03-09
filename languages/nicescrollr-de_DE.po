@@ -1,0 +1,1247 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Nicescrollr\n"
+"POT-Creation-Date: 2015-08-09 14:29+0100\n"
+"PO-Revision-Date: 2015-08-09 14:29+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: de_DE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.7.3\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#: admin/class-nsr-admin.php:223
+msgid "Plugin support"
+msgstr "Plugin-Unterstützung"
+
+#: admin/class-nsr-admin.php:224
+msgid "Rate plugin"
+msgstr "Plugin bewerten"
+
+#: admin/class-nsr-admin.php:225
+msgid "Donate"
+msgstr "Spenden"
+
+#: admin/includes/class-nsr-help-tab.php:44
+msgid "HELP"
+msgstr "HILFE"
+
+#: admin/includes/class-nsr-help-tab.php:44
+msgid "Nicescrollr help"
+msgstr "Nicescrollr Hilfe"
+
+#: admin/includes/class-nsr-help-tab.php:98
+msgid "This plugin integrates the Nicescroll jQuery plugin into your website."
+msgstr ""
+"Dieses Plugin erweitert Ihre WordPress-Installation um das jQuery Nicescroll "
+"Plugin."
+
+#: admin/includes/class-nsr-help-tab.php:100
+msgid ""
+"For help regarding Nicescroll itself, please refer to it's <a href='http://"
+"areaaperta.com/nicescroll/' target='_blank'>official homepage</a>."
+msgstr ""
+"Für Hilfe und Support bezüglich Nicescroll und seiner Optionen, besuchen Sie "
+"bitte die <a href='http://areaaperta.com/nicescroll/' "
+"target='_blank'>offizielle Homepage</a>."
+
+#: admin/includes/class-nsr-help-tab.php:104
+msgid ""
+"For your convenience, the backTop library is included with this plugin. If "
+"your theme already comes with this functionality, you can disable the "
+"plugin's integrated feature on the 'Plugin' settings page."
+msgstr ""
+"Um Ihnen die Arbeit auf den umfangreichen Einstellungsseiten zu erleichtern, "
+"verfügt dieses Plugin über einen \"Nach-Oben-Button\". Sollte Ihr Theme "
+"diese Funktionalität bereits mitbringen, so können Sie die \"Plugin-Version"
+"\" dieser Funktionalität auf der \"Plugin-Einstellungsseite\" ausschalten."
+
+#: admin/includes/class-nsr-help-tab.php:106
+msgid ""
+"Also, there is the scrollTo library included with this plugin. This makes it "
+"easy for you to navigate to those input fields that didn't pass validation. "
+"You can disable it on the 'Plugin' settings page."
+msgstr ""
+"Damit Sie komfortabel zu denjenigen Eingaben navigieren können, welche "
+"fehlerhaft waren, bringt dieses Plugin die \"scrollTo\"-Funktionalität mit. "
+"Sollten Sie Inkompatibilitäten mit einer vergleichbaren Funktion Ihres "
+"Themes feststellen, deaktivieren Sie die plugin-interne Funktion bitte auf "
+"der Plugin-Einstellungsseite."
+
+#: admin/includes/class-nsr-help-tab.php:108
+msgid ""
+"If you have any questions, comments or issues regarding this plugin, please "
+"visit the <a href='#'>plugin homepage</a>."
+msgstr ""
+"Für Fragen, Kommentare oder wenn Sie ein Problem bei der Benützung dieses "
+"Plugins melden möchten, besuchen Sie bitte die <a href='#'>Plugin Homepage</"
+"a> im WordPress Plugin Repositorium.<br /><br />Die Fachbegriffe in den "
+"Überschriften an sich wurden in englischer Sprache belassen: In den "
+"Beschreibungstexten finden Sie jedoch möglichst eingedeutschte Begriffe "
+"dafür."
+
+#: admin/menu/class-nsr-menu.php:445
+msgid "Nicescrollr"
+msgstr "Nicescrollr"
+
+#: admin/menu/class-nsr-menu.php:477
+msgid "Frontend"
+msgstr "Frontend"
+
+#: admin/menu/class-nsr-menu.php:479
+msgid "Backend"
+msgstr "Backend"
+
+#: admin/menu/class-nsr-menu.php:481
+msgid "Plugin"
+msgstr "Plugin"
+
+#: admin/menu/class-nsr-menu.php:591
+msgid "One more try and your browser will burst into flames ;-)"
+msgstr "Du kommst hier net rein..."
+
+#: admin/menu/class-nsr-menu.php:602 admin/menu/class-nsr-menu.php:619
+msgid "All done! Please refresh the page for the settings to take effect."
+msgstr ""
+"Alles erledigt! Aktualisieren Sie bitte die Seite, damit die Einstellungen "
+"wirksam werden."
+
+#: admin/menu/class-nsr-menu.php:608 admin/menu/class-nsr-menu.php:625
+msgid "Couldn't reset the settings. Please try again."
+msgstr ""
+"Die Einstellungen konnten nicht zurückgesetzt werden. Bitte versuchen Sie es "
+"erneut."
+
+#: admin/menu/includes/class-nsr-ajax-localisation.php:71
+msgid "This resets the frontend view to it's defaults. Continue?"
+msgstr ""
+"Die Frontend-Ansicht wird auf die Standardwerte zurückgesetzt.</br> Möchten "
+"Sie fortfahren?"
+
+#: admin/menu/includes/class-nsr-ajax-localisation.php:85
+msgid "This resets the backend view to it's defaults. Continue?"
+msgstr ""
+"Die Backend-Ansicht wird auf die Standardwerte zurückgesetzt. Möchten Sie "
+"fortfahren?"
+
+#: admin/menu/includes/class-nsr-ajax-localisation.php:99
+msgid "This resets the plugin to it's defaults. Continue?"
+msgstr ""
+"Die Einstellungen des Plugins werden auf die Standardwerte zurückgesetzt. "
+"Möchten Sie fortfahren?"
+
+#: admin/menu/includes/class-nsr-ajax-localisation.php:113
+msgid "This resets all Nicescrollr settings to their defaults. Continue?"
+msgstr ""
+"Alle Nicescrollr-Einstellungen werden auf die Standardwerte zurückgesetzt. "
+"Möchten Sie fortfahren?"
+
+#: admin/menu/includes/class-nsr-ajax-localisation.php:145
+msgid "ok"
+msgstr "ok"
+
+#: admin/menu/includes/class-nsr-ajax-localisation.php:146
+msgid "cancel"
+msgstr "abbrechen"
+
+#: admin/menu/includes/class-nsr-options.php:60
+msgid "Nicescroll"
+msgstr "Nicescroll"
+
+#: admin/menu/includes/class-nsr-options.php:63
+msgid "Enable or disable Nicescroll."
+msgstr "Nicescroll aktivieren oder deaktivieren."
+
+#: admin/menu/includes/class-nsr-options.php:72
+msgid "Cursor Color"
+msgstr "Cursor Color"
+
+#: admin/menu/includes/class-nsr-options.php:75
+msgid "Choose cursor color."
+msgstr "Cursorfarbe wählen."
+
+#: admin/menu/includes/class-nsr-options.php:84
+msgid "Cursor Opacity Minimum"
+msgstr "Cursor Opacity Minimum"
+
+#: admin/menu/includes/class-nsr-options.php:87
+msgid "Set opacity for when the cursor is inactive."
+msgstr "Transparenz bei inaktivem Cursor wählen."
+
+#: admin/menu/includes/class-nsr-options.php:96
+msgid "Cursor Opacity Maximum"
+msgstr "Cursor Opacity Maximum"
+
+#: admin/menu/includes/class-nsr-options.php:99
+msgid "Set opacity for when the cursor is active."
+msgstr "Transparenz bei aktivem Cursor wählen."
+
+#: admin/menu/includes/class-nsr-options.php:108
+msgid "Cursor Width"
+msgstr "Cursor Width"
+
+#: admin/menu/includes/class-nsr-options.php:111
+msgid "Set cursor width (in pixel)."
+msgstr "Cursorbreite wählen (in Pixel)."
+
+#: admin/menu/includes/class-nsr-options.php:120
+msgid "Cursor Border Width"
+msgstr "Cursor Border Width"
+
+#: admin/menu/includes/class-nsr-options.php:123
+msgid "Set cursor border width (in pixel)."
+msgstr "Cursorrahmenbreite wählen (in Pixel)."
+
+#: admin/menu/includes/class-nsr-options.php:132
+msgid "Cursor Border State"
+msgstr "Cursor Border State"
+
+#: admin/menu/includes/class-nsr-options.php:135
+msgid "Select cursor border state."
+msgstr "Anzeigeart des Cursorrahmens wählen."
+
+#: admin/menu/includes/class-nsr-options.php:140
+#: admin/menu/includes/class-nsr-settings.php:466
+#: admin/menu/includes/class-nsr-validation.php:495
+msgid "none"
+msgstr "keine"
+
+#: admin/menu/includes/class-nsr-options.php:144
+msgid "Cursor Border Color"
+msgstr "Cursor Border Color"
+
+#: admin/menu/includes/class-nsr-options.php:147
+msgid "Set cursor border color."
+msgstr "Cursorrahmenfarbe wählen."
+
+#: admin/menu/includes/class-nsr-options.php:156
+msgid "Cursor Border Radius"
+msgstr "Cursor Border Radius"
+
+#: admin/menu/includes/class-nsr-options.php:159
+msgid "Set cursor border radius (in pixel)."
+msgstr "Radius des Cursorrahmens wählen (in Pixel)."
+
+#: admin/menu/includes/class-nsr-options.php:168
+msgid "Autohide Mode"
+msgstr "Autohide Mode"
+
+#: admin/menu/includes/class-nsr-options.php:171
+msgid "Select auto-hide mode."
+msgstr "Automatisches Verbergen einstellen."
+
+#: admin/menu/includes/class-nsr-options.php:177
+#: admin/menu/includes/class-nsr-options.php:361
+#: admin/menu/includes/class-nsr-options.php:562
+#: admin/menu/includes/class-nsr-settings.php:476
+#: admin/menu/includes/class-nsr-settings.php:492
+#: admin/menu/includes/class-nsr-settings.php:534
+#: admin/menu/includes/class-nsr-validation.php:505
+#: admin/menu/includes/class-nsr-validation.php:521
+#: admin/menu/includes/class-nsr-validation.php:563
+msgid "off"
+msgstr "aus"
+
+#: admin/menu/includes/class-nsr-options.php:178
+#: admin/menu/includes/class-nsr-settings.php:479
+#: admin/menu/includes/class-nsr-validation.php:508
+msgid "on"
+msgstr "ein"
+
+#: admin/menu/includes/class-nsr-options.php:179
+#: admin/menu/includes/class-nsr-settings.php:482
+#: admin/menu/includes/class-nsr-validation.php:511
+msgid "cursor"
+msgstr "Cursor"
+
+#: admin/menu/includes/class-nsr-options.php:199
+msgid "Z-Index"
+msgstr "Z-Index"
+
+#: admin/menu/includes/class-nsr-options.php:201
+msgid "Set z-index."
+msgstr "Z-Index wählen."
+
+#: admin/menu/includes/class-nsr-options.php:210
+msgid "Scroll Speed"
+msgstr "Scroll Speed"
+
+#: admin/menu/includes/class-nsr-options.php:212
+msgid "Set scrolling speed."
+msgstr "Scrollgeschwindigkeit einstellen."
+
+#: admin/menu/includes/class-nsr-options.php:221
+msgid "Mouse Scroll Step"
+msgstr "Mouse Scroll Step"
+
+#: admin/menu/includes/class-nsr-options.php:223
+msgid "Set scrolling speed for the mousewheel."
+msgstr "Scrollgeschwindigkeit des Mausrades einstellen."
+
+#: admin/menu/includes/class-nsr-options.php:232
+msgid "Touch Behaviour"
+msgstr "Touch Behaviour"
+
+#: admin/menu/includes/class-nsr-options.php:234
+msgid "Enable cursor-drag scrolling for touch-enabled computers."
+msgstr "Scrollen durch Ziehen (für Computer mit Touchscreen)."
+
+#: admin/menu/includes/class-nsr-options.php:243
+msgid "Hardware Acceleration"
+msgstr "Hardware Acceleration"
+
+#: admin/menu/includes/class-nsr-options.php:245
+msgid "Switch hardware acceleration on or off."
+msgstr "Hardware-Beschleunigung ein- oder ausschalten."
+
+#: admin/menu/includes/class-nsr-options.php:254
+msgid "Transitions"
+msgstr "Transitions"
+
+#: admin/menu/includes/class-nsr-options.php:256
+msgid "Switch transitions on or off."
+msgstr "Übergänge ein- oder ausschalten."
+
+#: admin/menu/includes/class-nsr-options.php:265
+msgid "Box Zoom"
+msgstr "Box Zoom"
+
+#: admin/menu/includes/class-nsr-options.php:267
+msgid "Enable zoom for box content."
+msgstr "Box-Inhalte zoomen."
+
+#: admin/menu/includes/class-nsr-options.php:276
+msgid "Double Click Zoom"
+msgstr "Double Click Zoom"
+
+#: admin/menu/includes/class-nsr-options.php:278
+msgid "Zoom activated when double click on box (\"Box Zoom\" must be \"on\")."
+msgstr "Zoom bei Doppelklick auf Box (erfordert \"Box Zoom\")."
+
+#: admin/menu/includes/class-nsr-options.php:287
+msgid "Gesture Zoom"
+msgstr "Gesture Zoom"
+
+#: admin/menu/includes/class-nsr-options.php:289
+msgid "Zoom on pitch in/out on box (For touch devices, set \"Box Zoom\" on)."
+msgstr "Zoom durch Geste für Touch-Devices (erfordert \"Box Zoom\")."
+
+#: admin/menu/includes/class-nsr-options.php:298
+msgid "Grab-Cursor"
+msgstr "Grab-Cursor"
+
+#: admin/menu/includes/class-nsr-options.php:300
+msgid "Display \"grab\" icon (\"Touch Behavior\" must be possible and \"on\")."
+msgstr "Packen des Cursors auf Touch-Devices erleichtern."
+
+#: admin/menu/includes/class-nsr-options.php:320
+msgid "iFrame Autoresize"
+msgstr "iFrame Autoresize"
+
+#: admin/menu/includes/class-nsr-options.php:322
+msgid "Switch auto-resize for iFrames on or off."
+msgstr "Automatische Grössenänderung für iFrames ein- oder ausschalten."
+
+#: admin/menu/includes/class-nsr-options.php:331
+msgid "Cursor Minimum Height"
+msgstr "Cursor Minimum Height"
+
+#: admin/menu/includes/class-nsr-options.php:333
+msgid "Set the minimum cursor height."
+msgstr "Mindesthöhe des Cursors einstellen."
+
+#: admin/menu/includes/class-nsr-options.php:342
+msgid "Preserve Native Scrolling"
+msgstr "Preserve Native Scrolling"
+
+#: admin/menu/includes/class-nsr-options.php:344
+msgid "Scroll native scrollable areas with mouse."
+msgstr "Scrollbare Bereiche mit Nicescroll scrollen."
+
+#: admin/menu/includes/class-nsr-options.php:353
+msgid "Rail Offset"
+msgstr "Rail Offset"
+
+#: admin/menu/includes/class-nsr-options.php:355
+msgid "Add offset for rail position or disable it."
+msgstr "Aussenabstand der Cursorleiste wählen oder deaktivieren."
+
+#: admin/menu/includes/class-nsr-options.php:362
+#: admin/menu/includes/class-nsr-options.php:474
+#: admin/menu/includes/class-nsr-settings.php:495
+#: admin/menu/includes/class-nsr-settings.php:524
+#: admin/menu/includes/class-nsr-validation.php:524
+#: admin/menu/includes/class-nsr-validation.php:553
+msgid "top"
+msgstr "oben"
+
+#: admin/menu/includes/class-nsr-options.php:363
+#: admin/menu/includes/class-nsr-options.php:463
+#: admin/menu/includes/class-nsr-settings.php:498
+#: admin/menu/includes/class-nsr-settings.php:511
+#: admin/menu/includes/class-nsr-validation.php:527
+#: admin/menu/includes/class-nsr-validation.php:540
+msgid "left"
+msgstr "links"
+
+#: admin/menu/includes/class-nsr-options.php:368
+msgid "Bounce Scroll"
+msgstr "Bounce Scroll"
+
+#: admin/menu/includes/class-nsr-options.php:370
+msgid "Mobile-like scroll bouncing at the end of content."
+msgstr "Federndes Scrollverhalten bei Inhaltsende."
+
+#: admin/menu/includes/class-nsr-options.php:379
+msgid "Spacebar"
+msgstr "Spacebar"
+
+#: admin/menu/includes/class-nsr-options.php:381
+msgid "Page down-scrolling with the spacebar."
+msgstr "Runterscrollen via Leertaste."
+
+#: admin/menu/includes/class-nsr-options.php:390
+msgid "Rail Padding Top"
+msgstr "Rail Padding Top"
+
+#: admin/menu/includes/class-nsr-options.php:392
+msgid "Set rail padding top."
+msgstr "Innenabstand oben zum Cursor hin wählen."
+
+#: admin/menu/includes/class-nsr-options.php:401
+msgid "Rail Padding Right"
+msgstr "Rail Padding Right"
+
+#: admin/menu/includes/class-nsr-options.php:403
+msgid "Set rail padding right."
+msgstr "Innenabstand rechts zum Cursor hin wählen."
+
+#: admin/menu/includes/class-nsr-options.php:412
+msgid "Rail Padding Bottom"
+msgstr "Rail Padding Bottom"
+
+#: admin/menu/includes/class-nsr-options.php:414
+msgid "Set rail padding bottom."
+msgstr "Innenabstand unten zum Cursor hin wählen."
+
+#: admin/menu/includes/class-nsr-options.php:423
+msgid "Rail Padding Left"
+msgstr "Rail Padding Left"
+
+#: admin/menu/includes/class-nsr-options.php:425
+msgid "Set rail padding left."
+msgstr "Innenabstand links zum Cursor hin wählen."
+
+#: admin/menu/includes/class-nsr-options.php:434
+msgid "Outline"
+msgstr "Outline"
+
+#: admin/menu/includes/class-nsr-options.php:436
+msgid "For chrome browser, disable outline."
+msgstr "\"Kontur verbergen\" (für Chrome Browser)."
+
+#: admin/menu/includes/class-nsr-options.php:445
+msgid "Horizontal Rail"
+msgstr "Horizontal Rail"
+
+#: admin/menu/includes/class-nsr-options.php:447
+msgid "Let Nicescroll manage horizontal scrolling."
+msgstr "Horizontales Scrollen mittels Nicescroll."
+
+#: admin/menu/includes/class-nsr-options.php:456
+msgid "Rail Alignment Horizontal"
+msgstr "Rail Alignment Horizontal"
+
+#: admin/menu/includes/class-nsr-options.php:458
+msgid "Select alignment of horizontal rail."
+msgstr "Ausrichtung horizontale Cursorleiste."
+
+#: admin/menu/includes/class-nsr-options.php:463
+#: admin/menu/includes/class-nsr-settings.php:508
+#: admin/menu/includes/class-nsr-validation.php:537
+msgid "right"
+msgstr "rechts"
+
+#: admin/menu/includes/class-nsr-options.php:467
+msgid "Rail Alignment Vertical"
+msgstr "Rail Alignment Vertical"
+
+#: admin/menu/includes/class-nsr-options.php:469
+msgid "Select alignment of vertical rail."
+msgstr "Ausrichtung vertikale Cursorleiste."
+
+#: admin/menu/includes/class-nsr-options.php:474
+#: admin/menu/includes/class-nsr-settings.php:521
+#: admin/menu/includes/class-nsr-validation.php:550
+msgid "bottom"
+msgstr "unten"
+
+#: admin/menu/includes/class-nsr-options.php:478
+msgid "Translate3D"
+msgstr "Translate3D"
+
+#: admin/menu/includes/class-nsr-options.php:480
+msgid "Switch translate3d on or off."
+msgstr "Translate3D ein- oder ausschalten."
+
+#: admin/menu/includes/class-nsr-options.php:489
+msgid "Mouse Wheel"
+msgstr "Mouse Wheel"
+
+#: admin/menu/includes/class-nsr-options.php:491
+msgid "Let Nicescroll manage mousewheel events."
+msgstr "Mausrad-Events durch Nicescroll steuern lassen."
+
+#: admin/menu/includes/class-nsr-options.php:500
+msgid "Keyboard"
+msgstr "Keyboard"
+
+#: admin/menu/includes/class-nsr-options.php:502
+msgid "Let Nicescroll manage keyboard events."
+msgstr "Keyboard-Events durch Nicescroll steuern lassen."
+
+#: admin/menu/includes/class-nsr-options.php:511
+msgid "Smooth Scroll"
+msgstr "Smooth Scroll"
+
+#: admin/menu/includes/class-nsr-options.php:513
+msgid "Scroll with ease movement."
+msgstr "\"Sanftes\" Scrollverhalten ein- oder ausschalten."
+
+#: admin/menu/includes/class-nsr-options.php:522
+msgid "Sensitive Rail"
+msgstr "Sensitive Rail"
+
+#: admin/menu/includes/class-nsr-options.php:524
+msgid "Scrolling trough click on rail."
+msgstr "Scrollen durch Klick auf die Cursorleiste."
+
+#: admin/menu/includes/class-nsr-options.php:533
+msgid "Mouse Lock API"
+msgstr "Mouse Lock API"
+
+#: admin/menu/includes/class-nsr-options.php:534
+msgid "extended"
+msgstr "erweitert"
+
+#: admin/menu/includes/class-nsr-options.php:555
+msgid "Cursor Fixed Height"
+msgstr "Cursor Fixed Height"
+
+#: admin/menu/includes/class-nsr-options.php:557
+msgid "Select cursor fixed height or disable it."
+msgstr "Feste Cursorhöhe einstellen oder deaktivieren."
+
+#: admin/menu/includes/class-nsr-options.php:566
+msgid "Direction Lock Dead Zone"
+msgstr "Direction Lock Dead Zone"
+
+#: admin/menu/includes/class-nsr-options.php:568
+msgid "Choose dead zone (in pixel) for direction lock activation."
+msgstr "\"Totzone\" für Scroll-Richtungswechsel (in Pixel)."
+
+#: admin/menu/includes/class-nsr-options.php:577
+msgid "Autohide Delay"
+msgstr "Autohide Delay"
+
+#: admin/menu/includes/class-nsr-options.php:579
+msgid "Delay in miliseconds for fading out the scrollbar."
+msgstr "Verzögerungszeit für das automatische Verbergen (im Millisekunden)."
+
+#: admin/menu/includes/class-nsr-options.php:588
+msgid "Native Parent Scrolling"
+msgstr "Native Parent Scrolling"
+
+#: admin/menu/includes/class-nsr-options.php:590
+msgid "Detect bottom of content and let parent scroll, as native scroll does."
+msgstr "Scrollen bei Inhaltsende gemäss Browservoreinstellung."
+
+#: admin/menu/includes/class-nsr-options.php:599
+msgid "Scroll On Selection"
+msgstr "Scroll On Selection"
+
+#: admin/menu/includes/class-nsr-options.php:601
+msgid "Auto-scrolling of content while selecting text."
+msgstr "Automatisches Scrollen beim markieren von langen Textabschnitten."
+
+#: admin/menu/includes/class-nsr-options.php:610
+msgid "Overflow-X"
+msgstr "Overflow-X"
+
+#: admin/menu/includes/class-nsr-options.php:612
+msgid "Enable or disable overflow-x."
+msgstr "Overflow-X ein- oder ausschalten."
+
+#: admin/menu/includes/class-nsr-options.php:621
+msgid "Overflow-Y"
+msgstr "Overflow-Y"
+
+#: admin/menu/includes/class-nsr-options.php:623
+msgid "Enable or disable overflow-y."
+msgstr "Overflow-Y ein- oder ausschalten."
+
+#: admin/menu/includes/class-nsr-options.php:632
+msgid "Cursor Drag Speed"
+msgstr "Cursor Drag Speed"
+
+#: admin/menu/includes/class-nsr-options.php:634
+msgid "Choose the momentum on cursor drag."
+msgstr "Das \"Drehmoment\" für das Ziehen des Cursors einstellen."
+
+#: admin/menu/includes/class-nsr-options.php:643
+msgid "RTL-Mode"
+msgstr "RTL-Mode"
+
+#: admin/menu/includes/class-nsr-options.php:645
+msgid "Enable or disable rtl-mode."
+msgstr "RTL-Modus ein- oder ausschalten."
+
+#: admin/menu/includes/class-nsr-options.php:654
+msgid "Cursor Drag On Touch"
+msgstr "Cursor Drag On Touch"
+
+#: admin/menu/includes/class-nsr-options.php:656
+msgid "Enable or disable cursor drag on touch."
+msgstr "Cursor durch Berührung ziehen."
+
+#: admin/menu/includes/class-nsr-options.php:680
+msgid "backTop"
+msgstr "BackTop"
+
+#: admin/menu/includes/class-nsr-options.php:682
+msgid "Activate or deactivate backTop."
+msgstr "BackTop-Feature aktivieren oder deaktivieren."
+
+#: admin/menu/includes/class-nsr-options.php:690
+msgid "scrollTo"
+msgstr "ScrollTo"
+
+#: admin/menu/includes/class-nsr-options.php:692
+msgid "Activate or deactivate scrollTo."
+msgstr "ScrollTo-Feature aktivieren oder deaktivieren."
+
+#: admin/menu/includes/class-nsr-options.php:924
+msgid "Basic Settings"
+msgstr "Grundlegende Einstellungen"
+
+#: admin/menu/includes/class-nsr-options.php:931
+msgid "Extended Settings"
+msgstr "Erweiterte Einstellungen"
+
+#: admin/menu/includes/class-nsr-options.php:938
+msgid "Plugin Settings"
+msgstr "Plugin-Einstellungen"
+
+#: admin/menu/includes/class-nsr-reset-section.php:51
+msgid "Reset Frontend"
+msgstr "Frontend zurücksetzen"
+
+#: admin/menu/includes/class-nsr-reset-section.php:52
+msgid "Resets the settings for the frontend."
+msgstr "Setzt die Frontend-Ansicht zurück."
+
+#: admin/menu/includes/class-nsr-reset-section.php:57
+msgid "Reset Backend"
+msgstr "Backend zurücksetzen"
+
+#: admin/menu/includes/class-nsr-reset-section.php:58
+msgid "Resets the settings for the backend."
+msgstr "Setzt die Backend-Ansicht zurück."
+
+#: admin/menu/includes/class-nsr-reset-section.php:63
+msgid "Reset Plugin"
+msgstr "Plugin zurücksetzen"
+
+#: admin/menu/includes/class-nsr-reset-section.php:64
+msgid "Resets the settings for the plugin."
+msgstr "Setzt die Plugin-Einstellungen zurück."
+
+#: admin/menu/includes/class-nsr-reset-section.php:69
+msgid "Reset All"
+msgstr "Alles zurücksetzen"
+
+#: admin/menu/includes/class-nsr-reset-section.php:70
+msgid "Resets all Nicescrollr settings."
+msgstr "Setzt alle Nicescrollr-Einstellungen zurück."
+
+#: admin/menu/includes/class-nsr-reset-section.php:86
+msgid "Reset Settings"
+msgstr "Einstellungen zurücksetzen"
+
+#: admin/menu/includes/class-nsr-reset-section.php:111
+msgid "Reset"
+msgstr "Zurücksetzen"
+
+#: admin/menu/includes/class-nsr-validation.php:590
+msgid ""
+"Your input didn't pass validation. This value must be a hexadecimal color "
+"value. It was reset to its default. To customize it, please input a color "
+"value like '#fff' or '#0073AA'."
+msgstr ""
+"Die Eingabe konnte nicht erfolgreich validiert werden. Dieser Wert muss ein "
+"hexadezimaler Farbwert sein. Er wurde mit dem Standardwert belegt. Um die "
+"Farbe an zu passen, geben Sie bitte einen Wert à la \"#FFF\" oder \"#0073AA"
+"\" ein."
+
+#: admin/menu/includes/class-nsr-validation.php:601
+msgid ""
+"Your input didn't pass validation. This value must be a positive number "
+"between 0 and 1, with max two decimal places (or left blank)."
+msgstr ""
+"Die Eingabe konnte nicht erfolgreich validiert werden. Dieser Wert muss "
+"positiv sein und zwischen 0 (Null) und 1 liegen, und er darf bis zu zwei "
+"Nachkommastellen beinhalten (oder Feld leer lassen)."
+
+#: admin/menu/includes/class-nsr-validation.php:612
+msgid ""
+"Your input didn't pass validation. This value must be a positive number "
+"between 0 and 1, with max two decimal places. It was reset to it's default."
+msgstr ""
+"Die Eingabe konnte nicht erfolgreich validiert werden. Dieser Wert muss "
+"positiv sein und zwischen 0 (Null) und 1 liegen, und er darf bis zu zwei "
+"Nachkommastellen beinhalten. Der Wert wurde auf seinen Standardwert "
+"zurückgesetzt."
+
+#: admin/menu/includes/class-nsr-validation.php:623
+#: admin/menu/includes/class-nsr-validation.php:634
+msgid ""
+"Your input didn't pass validation. This value must be a positive, integer "
+"pixel value including 0 (zero). It was reset to it's default."
+msgstr ""
+"Die Eingabe konnte nicht erfolgreich validiert werden. Dieser Wert muss ein "
+"positiver, ganzzahliger Wert inklusive 0 (Null) sein. Er wurde mit dem "
+"Standardwert belegt."
+
+#: admin/menu/includes/class-nsr-validation.php:645
+msgid ""
+"Your input didn't pass validation. This value must be a hexadecimal color "
+"value. (It was reset to its default.) To customize it, please input a color "
+"value like '#fff' or '#0073AA'."
+msgstr ""
+"Die Eingabe konnte nicht erfolgreich validiert werden. Dieser Wert muss ein "
+"hexadezimaler Farbwert sein. Er wurde mit dem Standardwert belegt. Um die "
+"Farbe an zu passen, geben Sie bitte einen Wert à la \"#FFF\" oder \"#0073AA"
+"\" ein."
+
+#: admin/menu/includes/class-nsr-validation.php:656
+msgid ""
+"Your input didn't pass validation. This value must be a positive, integer "
+"pixel value or left blank. It was reset to it's default."
+msgstr ""
+"Die Eingabe konnte nicht erfolgreich validiert werden. Dieser Wert muss ein "
+"positiver, ganzzahliger Wert inklusive 0 (Null) sein. Er wurde mit dem "
+"Standardwert belegt."
+
+#: admin/menu/includes/class-nsr-validation.php:667
+msgid ""
+"Your input didn't pass validation. This value must be an integer value. It "
+"was reset to it's default."
+msgstr ""
+"Die Eingabe konnte nicht erfolgreich validiert werden. Dieser Wert muss ein "
+"ganzzahliger Wert inklusive 0 (Null) sein. Er wurde mit dem Standardwert "
+"belegt."
+
+#: admin/menu/includes/class-nsr-validation.php:678
+msgid ""
+"Your input didn't pass validation. This value must be a positive integer but "
+"must not be 0 (zero). To aviod unwanted scrolling behaviour, the scrollspeed "
+"was reset to its default. (Note: If you intended to disable the mousewheel, "
+"please visit the extended settings panel.)"
+msgstr ""
+"Die Eingabe konnte nicht erfolgreich validiert werden. Dieser Wert muss ein "
+"positiver, ganzzahliger Wert sein, und er darf nicht 0 (Null) betragen. Der "
+"Wert wurde auf den Standardwert zurückgesetzt."
+
+#: admin/menu/includes/class-nsr-validation.php:689
+msgid ""
+"Your input didn't pass validation. This value must be a positive integer but "
+"it must not be 0 (zero). To aviod unwanted scrolling behaviour, it was reset "
+"to its default."
+msgstr ""
+"Die Eingabe konnte nicht erfolgreich validiert werden. Dieser Wert muss ein "
+"positiver, ganzzahliger Wert sein, und er darf nicht 0 (Null) betragen. Der "
+"Wert wurde auf den Standardwert zurückgesetzt."
+
+#: admin/menu/includes/class-nsr-validation.php:700
+msgid ""
+"Your input didn't pass validation. This value must be a positive integer "
+"including 0 (zero). It was reset to it's default."
+msgstr ""
+"Die Eingabe konnte nicht erfolgreich validiert werden. Dieser Wert muss ein "
+"positiver, ganzzahliger Wert inklusive 0 (Null) sein. Er wurde mit dem "
+"Standardwert belegt."
+
+#: admin/menu/includes/class-nsr-validation.php:711
+msgid ""
+"Your input didn't pass validation. This value must be a positive integer "
+"including 0 (zero) or left blank."
+msgstr ""
+"Die Eingabe konnte nicht erfolgreich validiert werden. Dieser Wert muss ein "
+"positiver, ganzzahliger Wert inklusive 0 (Null) sein (oder Feld leer lassen)."
+
+#: admin/menu/includes/class-nsr-validation.php:722
+msgid ""
+"Your input didn't pass validation. This value must be a positive integer "
+"including 0 (zero) or left blank. To customize it, please have a look at its "
+"placeholder."
+msgstr ""
+"Die Eingabe konnte nicht erfolgreich validiert werden. Dieser Wert muss ein "
+"positiver, ganzzahliger Wert inklusive 0 (Null) sein (oder Feld leer lassen)."
+
+#: admin/menu/includes/class-nsr-validation.php:733
+msgid ""
+"Your input didn't pass validation. This value must be a positive integer "
+"including 0 (zero) or left blank. It represents the delay in miliseconds. "
+msgstr ""
+"Die Eingabe konnte nicht erfolgreich validiert werden. Dieser Wert muss ein "
+"positiver, ganzzahliger Wert inklusive 0 (Null) sein (oder Feld leer lassen)."
+
+#: admin/menu/includes/class-nsr-validation.php:744
+msgid ""
+"Your input didn't pass validation. This value must be a positive number with "
+"max two decimal places or left blank. Please review its placeholder."
+msgstr ""
+"Die Eingabe konnte nicht erfolgreich validiert werden. Dieser Wert muss null "
+"(0) oder positiv mit maximal zwei Nachkommastellen sein ( oder Feld leer "
+"lassen)."
+
+#~ msgid "...for a convenient user experience :)"
+#~ msgstr "...für eine angenehme Nutzer-Erfahrung :)"
+
+#~ msgid "Save Changes"
+#~ msgstr "Änderungen übernehmen"
+
+#~ msgid "Save"
+#~ msgstr "Speichern"
+
+#~ msgid ""
+#~ "To toggle the switches, simply click on the description on it's right "
+#~ "( might be on bottom on mobile)."
+#~ msgstr ""
+#~ "Um die Schalter um zu legen, klicken Sie einfach auf den dazugehörigen "
+#~ "Beschreibungstext."
+
+#~ msgid "Reset frontend."
+#~ msgstr "Die Frontend-Einstellungen zurücksetzen."
+
+#~ msgid "Reset backend."
+#~ msgstr "Die Backend-Einstellungen zurücksetzen."
+
+#~ msgid "Reset plugin."
+#~ msgstr "Die Plugin-Einstellungen zurücksetzen."
+
+#~ msgid "Reset all."
+#~ msgstr "Alle Einstellungen zurücksetzen."
+
+#~ msgid ""
+#~ "Your input didn't pass validation. This value must be a positive, integer "
+#~ "pixel value or left blank. Please review its placeholder."
+#~ msgstr ""
+#~ "Die Eingabe konnte nicht erfolgreich validiert werden. Dieser Wert muss "
+#~ "ein positiver, ganzzahliger (Pixel-)Wert sein (oder Feld leer lassen)."
+
+#~ msgid "active"
+#~ msgstr "aktiviert"
+
+#~ msgid "inactive"
+#~ msgstr "deaktiviert"
+
+#~ msgid ""
+#~ "Your input didn't pass validation. This value must be a hexadecimal color "
+#~ "value. Since this value is vital, it was reset to its default. To "
+#~ "customize it, please input a color value like '#fff' or '#0073AA'."
+#~ msgstr ""
+#~ "Die Eingabe konnte nicht erfolgreich validiert werden. Dieser Wert "
+#~ "repräsentiert einen hexadezimalen Farbwert. Da dieser Wert für ein "
+#~ "einwandfreies Funktionieren des Plugins erforderlich ist, wurde er auf "
+#~ "den Standardwert zurückgesetzt. Um die Cursorfarbe an zu passen, geben "
+#~ "Sie bitte einen Wert à la \"#fff\" oder \"#0073AA\" ein."
+
+#~ msgid ""
+#~ "Your input didn't pass validation. This value must be a positive number "
+#~ "between 0 and 1, with max two decimal places."
+#~ msgstr ""
+#~ "Die Eingabe konnte nicht erfolgreich validiert werden. Dies muss ein "
+#~ "positiver Wert zwischen 0 (Null) und 1 sein, und er darf bis zu zwei "
+#~ "Nachkommastellen beinhalten ( oder Feld leer lassen)."
+
+#~ msgid ""
+#~ "Your input didn't pass validation. This value must be a positive number "
+#~ "between 0 and 1, with max two decimal places. It was reset to it's "
+#~ "default value."
+#~ msgstr ""
+#~ "Die Eingabe konnte nicht erfolgreich validiert werden. Dies muss ein "
+#~ "positiver Wert zwischen 0 (Null) und 1 sein, und er darf bis zu zwei "
+#~ "Nachkommastellen beinhalten. Der Wert wurde auf den Standardwert "
+#~ "zurückgesetzt."
+
+#~ msgid ""
+#~ "Your input didn't pass validation. This value must be a positive, integer "
+#~ "pixel value or left blank. It was reset to it's default value."
+#~ msgstr ""
+#~ "Die Eingabe konnte nicht erfolgreich validiert werden. Dieser Wert muss "
+#~ "ein positiver, ganzzahliger (Pixel-)Wert sein. Der Wert wurde auf den "
+#~ "Standardwert zurückgesetzt."
+
+#~ msgid ""
+#~ "Your input didn't pass validation. This value must be a hexadecimal color "
+#~ "value. To customize it, please input a color value like '#fff' or "
+#~ "'#0073AA'."
+#~ msgstr ""
+#~ "Die Eingabe konnte nicht erfolgreich validiert werden. Dieser Wert "
+#~ "repräsentiert einen hexadezimalen Farbwert. Um die Cursorfarbe an zu "
+#~ "passen, geben Sie bitte einen Wert à la \"#fff\" oder \"#0073AA\" ein."
+
+#~ msgid ""
+#~ "Your input didn't pass validation. This value must be an integer value. "
+#~ "It was reset to it's default value."
+#~ msgstr ""
+#~ "Die Eingabe konnte nicht erfolgreich validiert werden. Dieser Wert muss "
+#~ "ein positiver, ganzzahliger Wert sein. Der Wert wurde auf den "
+#~ "Standardwert zurückgesetzt."
+
+#~ msgid ""
+#~ "Your input didn't pass validation. This value must be a positive integer "
+#~ "including 0 (zero). It was reset to it's default value."
+#~ msgstr ""
+#~ "Die Eingabe konnte nicht erfolgreich validiert werden. Dieser Wert muss "
+#~ "ein positiver, ganzzahliger Wert inklusive 0 (Null) sein. Der Wert wurde "
+#~ "auf den Standardwert zurückgesetzt."
+
+#~ msgid "Try this again and I'll slow down your CPU to 50 Hertz ;-)"
+#~ msgstr "Du kommst hier net rein..."
+
+#~ msgid ""
+#~ "The frontend view was reset to its defaults. Please refresh the page for "
+#~ "the settings to take effect."
+#~ msgstr ""
+#~ "Die Frontend-Ansicht wurde auf die Standardwerte zurückgesetzt. "
+#~ "Aktualisieren Sie bitte die Seite, damit die geänderten Einstellungen "
+#~ "greifen können."
+
+#~ msgid "Couldn't reset the frontend settings. Please try again."
+#~ msgstr ""
+#~ "Die Frontend-Ansicht konnte nicht zurückgesetzt werden. Bitte versuchen "
+#~ "Sie es erneut."
+
+#~ msgid ""
+#~ "The backend view was reset to its defaults. Please refresh the page for "
+#~ "the settings to take effect."
+#~ msgstr ""
+#~ "Die Backend-Ansicht wurde auf die Standardwerte zurückgesetzt. "
+#~ "Aktualisieren Sie bitte die Seite, damit die geänderten Einstellungen "
+#~ "greifen können."
+
+#~ msgid "Couldn't reset the backend settings. Please try again."
+#~ msgstr ""
+#~ "Die Backend-Ansicht konnte nicht zurückgesetzt werden. Bitte versuchen "
+#~ "Sie es erneut."
+
+#~ msgid "Where's you from?"
+#~ msgstr "Du kommst hier net rein..."
+
+#~ msgid ""
+#~ "The plugin settings were reset to their defaults. Please refresh the page "
+#~ "for the settings to take effect."
+#~ msgstr ""
+#~ "Die Plugin-Einstellungen wurde auf die Standardwerte zurückgesetzt. "
+#~ "Aktualisieren Sie bitte die Seite, damit die geänderten Einstellungen "
+#~ "greifen können."
+
+#~ msgid "Couldn't reset the Nicescroll plugin settings. Please try again."
+#~ msgstr ""
+#~ "Die Frontend-Ansicht konnte nicht zurückgesetzt werden. Bitte versuchen "
+#~ "Sie es erneut."
+
+#~ msgid "We do not like such things."
+#~ msgstr "Du kommst hier net rein..."
+
+#~ msgid ""
+#~ "All settings were reset to their defaults. Please refresh the page for "
+#~ "the settings to take effect."
+#~ msgstr ""
+#~ "Alle Einstellungen wurden auf die Standardwerte zurückgesetzt. "
+#~ "Aktualisieren Sie bitte die Seite, damit die geänderten Einstellungen "
+#~ "greifen können."
+
+#~ msgid "Couldn't reset all Nicescroll plugin settings. Please try again."
+#~ msgstr ""
+#~ "Die Plugin-Einstellungen konnten nicht zurückgesetzt werden. Bitte "
+#~ "versuchen Sie es erneut."
+
+#~ msgid "Set cursor color."
+#~ msgstr "Cursorfarbe wählen."
+
+#~ msgid "Switch auto hide mode on or off."
+#~ msgstr "Automatisches Verbergen der Cursorleiste ein- oder ausschalten."
+
+#~ msgid "Set scroll speed."
+#~ msgstr "Scrollgeschwindigkeit wählen."
+
+#~ msgid "Set mouse scroll step."
+#~ msgstr "Schrittlänge für das Scrollen mittels Mausrad einstellen."
+
+#~ msgid "Switch touch behaviour on or off."
+#~ msgstr "Touch-Verhalten ein- oder ausschalten."
+
+#~ msgid "Switch box zoom on or off."
+#~ msgstr "Box-Zoom ein- oder ausschalten."
+
+#~ msgid "Switch zoom on double click on or off."
+#~ msgstr "Zoom bei Doppelklick ein- oder ausschalten."
+
+#~ msgid "Switch zoom on gesture on or off."
+#~ msgstr "Zoomen durch Gesten ein- oder ausschalten."
+
+#~ msgid "Switch grab cursor on or off."
+#~ msgstr "Greifbarkeit des Cursors ein- oder ausschalten."
+
+#~ msgid "Set cursor minimum height."
+#~ msgstr "Mindesthöhe des Cursors wählen."
+
+#~ msgid "Switch preserve native scrolling on or off."
+#~ msgstr ""
+#~ "Beibehalten des ursprüngliches Scrollverhaltens ein- oder ausschalten."
+
+#~ msgid "Switch rail offset on or off."
+#~ msgstr "Aussenabstand für die Cursorleiste ein- oder ausschalten."
+
+#~ msgid "Switch bounce scroll on or off."
+#~ msgstr "\"Federndes\" Scrollen ein- oder ausschalten."
+
+#~ msgid "Switch spacebar on or off."
+#~ msgstr "Leertaste ein- oder ausschalten."
+
+#~ msgid "Switch outline on or off."
+#~ msgstr "Silhouette um den Cursor ein- oder ausschalten."
+
+#~ msgid "Switch horizontal rail on or off."
+#~ msgstr "Horizontale Cursorleiste ein- oder ausschalten."
+
+#~ msgid "Select horizontal rail alignment."
+#~ msgstr "Horizontale Ausrichtung der Cursorleiste wählen."
+
+#~ msgid "Select vertical rail alignment."
+#~ msgstr "Vertikale Ausrichtung der Cursorleiste wählen."
+
+#~ msgid "Switch mousewheel on or off."
+#~ msgstr "Mausrad ein- oder ausschalten."
+
+#~ msgid "Switch keyboard on or off."
+#~ msgstr "Bedienung mittels Tastatur ein- oder ausschalten."
+
+#~ msgid "Switch smoothscroll on or off."
+#~ msgstr "\"Geschmeidiges\" Scrollen ein- oder ausschalten."
+
+#~ msgid "Switch sensitive rail on or off."
+#~ msgstr "Empfindlichkeit der Cursorleiste ein- oder ausschalten."
+
+#~ msgid "Switch cursor fixed height on or off."
+#~ msgstr "Vorgegebene Höhe des Cursors ein- oder ausschalten."
+
+#~ msgid "Set direction lock dead zone."
+#~ msgstr "Wert für \"direction lock dead zone\" setzen."
+
+#~ msgid "Set delay (in miliseconds)."
+#~ msgstr "Verzögerung setzen (im Millisekunden)."
+
+#~ msgid "Switch native parent scrolling on or off."
+#~ msgstr "Ursprüngliches Scrollverhalten ein- oder ausschalten."
+
+#~ msgid "Switch scroll on selection on or off."
+#~ msgstr "\"Über Auswahl\" scrollen ein- oder ausschalten."
+
+#~ msgid "Select overflow-x."
+#~ msgstr "Overflow-X ein- oder ausschalten."
+
+#~ msgid "Select overflow-y."
+#~ msgstr "Overflow-Y ein- oder ausschalten."
+
+#~ msgid "Set the momentum on cursor drag."
+#~ msgstr "Das \"Drehmoment\" des Cursors setzen."
+
+#~ msgid "Select rtl-mode."
+#~ msgstr "\"Rechts-Nach-Links\"-Modus wählen."
+
+#~ msgid "Select cursor drag on touch."
+#~ msgstr "\"Cursor bei Berührung ziehen\" ein- oder ausschalten."
+
+#~ msgid ""
+#~ "Your input didn't pass validation. This value must be a positive number "
+#~ "between 0 and 1, with max two decimal places. (The lower the value, the "
+#~ "higher is the transparency of the cursor and the rail.)"
+#~ msgstr ""
+#~ "Die Eingabe konnte nicht validiert werden. Dieser Wert muss positiv und "
+#~ "zwischen null (0) und 1 liegen, wobei bis zu zwei Nachkommastellen "
+#~ "möglich sind. ( Je tiefer der Wert, desto \"transparenter\" sind der "
+#~ "Cursor und die Cursorleiste."
+
+#~ msgid ""
+#~ "Your input didn't pass validation. This value must be a positive number "
+#~ "between 0 and 1, with max two decimal places. It was reset to it's "
+#~ "default value. (The lower the value, the higher is the transparency of "
+#~ "the cursor and the rail.)"
+#~ msgstr ""
+#~ "Die Eingabe konnte nicht erfolgreich validiert werden. Dieser Wert muss "
+#~ "ein positiver Wert zwischen null (0) und 1 sein, und er darf bis zu zwei "
+#~ "Nachkommastellen beinhalten. Der Wert wurde mit dem Vorgabewert belegt. "
+#~ "Um diesen Wert an zu passen, schauen Sie sich bitte seinen Platzhalter im "
+#~ "Eingabefeld an. "
+
+#~ msgid ""
+#~ "Your input didn't pass validation. This value must be a positive, integer "
+#~ "pixel value or left blank. It was reset to it's default value. To "
+#~ "customize it, please review it's placeholder."
+#~ msgstr ""
+#~ "Die Eingabe konnte nicht erfolgreich validiert werden. Dieser Wert muss "
+#~ "ein positiver, ganzzahliger (Pixel-)Wert sein (oder Feld leer lassen). Um "
+#~ "diesen Wert an zu passen, schauen Sie sich bitte seinen Platzhalter im "
+#~ "Eingabefeld an. "
+
+#~ msgid ""
+#~ "Your input didn't pass validation. This value must be an integer value. "
+#~ "It was reset to it's default value. To customize it, please review it's "
+#~ "placeholder."
+#~ msgstr ""
+#~ "Die Eingabe konnte nicht erfolgreich validiert werden. Dieser Wert muss "
+#~ "ganzzahlig sein (oder Feld leer lassen). Um diesen Wert an zu passen, "
+#~ "schauen Sie sich bitte seinen Platzhalter im Eingabefeld an. "
+
+#~ msgid ""
+#~ "Your input didn't pass validation. This value must be a positive integer "
+#~ "but must not be zero (0). To aviod unwanted scrolling behaviour, the "
+#~ "scrollspeed was reset to its default. (Note: If you intended to disable "
+#~ "the mousewheel, please visit the extended settings panel.)"
+#~ msgstr ""
+#~ "Die Eingabe konnte nicht erfolgreich validiert werden. Dieser Wert muss "
+#~ "positiv und ganzzahlig sein, und er darf nicht null (0) betragen. Um ein "
+#~ "unerwünschtes Scrollverhalten zu vermeiden, wurde der Wert mit dem "
+#~ "Vorgabewert belegt. ( Falls Sie das Scrollen per Mausrad deaktivieren "
+#~ "möchten, benützen Sie die entsprechende Funktion im Abschnitt "
+#~ "\"Erweiterte Einstellungen\".)"
+
+#~ msgid ""
+#~ "Your input didn't pass validation. This value must be a positive integer "
+#~ "but it must not be zero (0). To aviod unwanted scrolling behaviour, it "
+#~ "was reset to its default."
+#~ msgstr ""
+#~ "Die Eingabe konnte nicht erfolgreich validiert werden. Dieser Wert muss "
+#~ "positiv und ganzzahlig sein, und er darf nicht null (0) betragen. Um ein "
+#~ "unerwünschtes Scrollverhalten zu vermeiden, wurde der Wert mit dem "
+#~ "Vorgabewert belegt."
+
+#~ msgid ""
+#~ "Your input didn't pass validation. This value must be a positive integer "
+#~ "including zero (0). It was reset to it's default value. To customize it, "
+#~ "please review it's placeholder."
+#~ msgstr ""
+#~ "Die Eingabe konnte nicht erfolgreich validiert werden. Dieser Wert muss "
+#~ "ein positiver, ganzzahliger Wert inklusive null (0) sein (oder Feld leer "
+#~ "lassen). Um diesen Wert an zu passen, schauen Sie sich bitte seinen "
+#~ "Platzhalter im Eingabefeld an. "
+
+#~ msgid ""
+#~ "Your input didn't pass validation. This value must be a positive integer "
+#~ "including zero (0)."
+#~ msgstr ""
+#~ "Die Eingabe konnte nicht erfolgreich validiert werden. Dieser Wert muss "
+#~ "positiv und ganzzahlig sein, und er darf auch null (0) betragen ( oder "
+#~ "Feld leer lassen)."
+
+#~ msgid ""
+#~ "Your input didn't pass validation. This value must be a positive integer "
+#~ "including zero (0) or left blank. To customize it, please have a look at "
+#~ "its placeholder."
+#~ msgstr ""
+#~ "Die Eingabe konnte nicht erfolgreich validiert werden. Dieser Wert muss "
+#~ "positiv und ganzzahlig sein, und er darf auch null (0) betragen ( oder "
+#~ "Feld leer lassen)."
+
+#~ msgid ""
+#~ "Your input didn't pass validation. This value must be a positive integer "
+#~ "including zero (0) or left blank. It represents the delay in miliseconds. "
+#~ msgstr ""
+#~ "Die Eingabe konnte nicht erfolgreich validiert werden. Dieser Wert muss "
+#~ "positiv und ganzzahlig sein, und er darf auch null (0) betragen ( oder "
+#~ "Feld leer lassen)."
+
+#~ msgid "true"
+#~ msgstr "ein"
+
+#~ msgid "false"
+#~ msgstr "aus"
+
+#~ msgid "Enable or disable backTop on the plugin's settings page."
+#~ msgstr "BackTop auf der Plugin-Einstellungsseite ein- oder ausschalten."
+
+#~ msgid "Enable or disable scrollTo on the plugin's settings page."
+#~ msgstr "ScrollTo auf der Plugin-Einstellungsseite ein- oder ausschalten."
+
+#~ msgid ""
+#~ "Your input didn't pass validation. This value must be a positive, integer "
+#~ "pixel value or left blank. Please review it's placeholder. Note: If left "
+#~ "blank or set to zero (0), the cursor will appear as a thin indicator line."
+#~ msgstr ""
+#~ "Die Eingabe konnte nicht erfolgreich validiert werden. Dieser Wert muss "
+#~ "ein positiver, ganzzahliger Wert sein (oder Feld leer lassen). Um diesen "
+#~ "Wert an zu passen, schauen Sie sich bitte seinen Platzhalter im "
+#~ "Eingabefeld an. "
+
+#~ msgid ""
+#~ "Your input didn't pass validation. This value must be an integer value. "
+#~ "It was reset to its default. Please review it's placeholder to customize "
+#~ "it if needed."
+#~ msgstr ""
+#~ "Die Eingabe konnte nicht erfolgreich validiert werden. Dieser Wert muss "
+#~ "ganzzahlig sein, und er darf positiv oder negativ sein."
+
+#~ msgid ""
+#~ "Your input didn't pass validation. This value must be a positive integer "
+#~ "including zero (0). To aviod unwanted appearance or 'unintended loss' of "
+#~ "the cursor, it was reset to its default."
+#~ msgstr ""
+#~ "Die Eingabe konnte nicht erfolgreich validiert werden. Dieser Wert muss "
+#~ "positiv und ganzzahlig sein, und er darf nicht null (0) betragen. Um ein "
+#~ "unerwünschtes \"Verschwinden\" des Cursors zu vermeiden, wurde der Wert "
+#~ "mit dem Vorgabewert belegt."
+
+#~ msgid ""
+#~ "Your input didn't pass validation. This value must be a positive number "
+#~ "between 0 and 1, with max two decimal places. To prevent unwanted "
+#~ "appearance, it was reset to it's default value. (The lower the value, the "
+#~ "higher is the transparency of the cursor and the rail.)"
+#~ msgstr ""
+#~ "Die Eingabe konnte nicht erfolgreich validiert werden. Dieser Wert "
+#~ "repräsentiert einen hexadezimalen Farbwert. Da dieser Wert für ein "
+#~ "einwandfreies Funktionieren des Plugins erforderlich ist, wurde er auf "
+#~ "den Standardwert zurückgesetzt. Um die Cursorfarbe an zu passen, geben "
+#~ "Sie bitte einen Wert à la \"#fff\" oder \"#0073AA\" ein."
+
+#~ msgid ""
+#~ "Your input didn't pass validation. This value must be a positive number "
+#~ "between 0 and 1, with max two decimal places. The lower the value, the "
+#~ "higher is the transparency of the cursor and the rail."
+#~ msgstr ""
+#~ "Die Eingabe konnte nicht erfolgreich validiert werden. Dieser Wert stellt "
+#~ "eine positive Zahl zwischen null (0) und 1 dar, und darf bis zu zwei "
+#~ "Nachkommastellen beinhalten. (Je geringer der Wert, desto transparenter)"
+
+#~ msgid "This resets all Nicescroll settings to their defaults. Continue?"
+#~ msgstr ""
+#~ "Alle Ansichten und die Einstellungen des Plugins werden auf die "
+#~ "Standardwerte zurückgesetzt. Möchten Sie fortfahren?"
+
+#~ msgid "BackTop"
+#~ msgstr "BackTop"
+
+#~ msgid "ScrollTo"
+#~ msgstr "ScrollTo"

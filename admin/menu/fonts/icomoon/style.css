@@ -1,0 +1,67 @@
+@font-face {
+	font-family: 'icomoon';
+	src:url('icomoon.eot?x6erih');
+	src:url('icomoon.eot?#iefixx6erih') format('embedded-opentype'),
+		url('icomoon.ttf?x6erih') format('truetype'),
+		url('icomoon.woff?x6erih') format('woff'),
+		url('icomoon.svg?x6erih#icomoon') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+.icomoon {
+	font-family: 'icomoon', sans-serif;
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.icon-home:before {
+	content: "\e600";
+}
+.icon-keyboard:before {
+	content: "\e601";
+}
+.icon-display:before {
+	content: "\e602";
+}
+.icon-wrench:before {
+	content: "\e603";
+}
+.icon-equalizer:before {
+	content: "\e604";
+}
+.icon-equalizer2:before {
+	content: "\e605";
+}
+.icon-cog:before {
+	content: "\e606";
+}
+.icon-cogs:before {
+	content: "\e607";
+}
+.icon-hammer:before {
+	content: "\e608";
+}
+.icon-paragraph-justify:before {
+	content: "\e609";
+}
+.icon-github4:before {
+	content: "\e60a";
+}
+.icon-github5:before {
+	content: "\e60b";
+}
+.icon-wordpress:before {
+	content: "\e60c";
+}
+.icon-wordpress2:before {
+	content: "\e60d";
+}
