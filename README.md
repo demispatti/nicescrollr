@@ -1,12 +1,12 @@
 === Nicescrollr ===
 
-Tags: nicescroll, scroll, scrollbar, scrolling, nice, frontend, backend, scrollen  
+Tags: nicescroll, scroll, scrollbar, back to top, scroll to top, frontend, backend
 
-Requires at least: 4.7
-Tested up to: 5.0.2
-Requires PHP: 5.4
-Version: 0.7.0
-Stable tag: 0.7.0
+Requires at least: 4.6
+Tested up to: 5.1
+Requires PHP: 5.6
+Version: 0.7.1
+Stable tag: 0.7.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Author: demispatti
@@ -16,15 +16,16 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 
 == Description ==
 
-I really like InuYaksa's Nicescroll JS plugin. I'm a fan. And I thought there may be others like me who would enjoy using his famous library with a simple interface. So I came up with this plugin. It is a wrapper for the popular "Nicescroll" javascript library, which is developed and maintained by <a href="https://wordpress.org/support/users/inuyaksa/" target="_blank">InuYaksa</a>. You can visit his official Nicescroll homepage <a href="https://www.areaaperta.com/nicescroll/" target="_blank">here</a>. An overview of the default parameters can be found on <a href="https://github.com/inuyaksa/jquery.nicescroll" target="_blank">Github</a> at the bottom of the page. This plugin enables you to use the Nicescroll scrollbar on both the frontend and the backend. It is fully customizable, you can tweak and tune every single parameter Nicescroll has to offer! You can style it totally different for both views. You can even keep the default scrollbar with Nicescroll's smooth scroll behaviour if you like. It's all up to you. Install and enjoy :-)
+Get Nicescroll and a ScrollTop button! I really like InuYaksa's Nicescroll JS plugin. I'm a fan. And I thought there may be others like me who would enjoy using his famous
+library with a simple interface. So I came up with this plugin. It is a wrapper for that popular library, which is developed and maintained by <a
+href="https://wordpress.org/support/users/inuyaksa/" target="_blank">InuYaksa</a>. You can visit his official Nicescroll homepage <a href="https://www.areaaperta.com/nicescroll/" target="_blank">here</a>. An overview of the default parameters can be found on <a href="https://github.com/inuyaksa/jquery.nicescroll" target="_blank">Github</a> at the bottom of the page. This plugin enables you to use the Nicescroll scrollbar on both the frontend and the backend. It is fully customizable, you can tweak and tune every single parameter Nicescroll has to offer! You can style it totally different for both views. You can even keep the default scrollbar with Nicescroll's smooth scroll behaviour if you like. It's all up to you. Install and enjoy :-)
 
 
 == Features ==
 
-+ Nicescroll jQuery library
-+ Fully customizable
-+ Frontend and backend
-+ Back to top buttons
++ Nicescroll
++ ScrollTop Button
++ Frontend and Backend
 
 
 == Requirements ==
@@ -54,20 +55,31 @@ Well, I provide some basic support on this plugin's support page. I check that p
 
 == Screenshots ==
 
-1. Basic settings panel.
-2. Extended settings panel, upper part.
-3. Extended settings panel, lower part.
+1. Basic settings
+2. Extended settings
+3. ScrollTop settings
 
 
 == Changelog ==
 
+= Version 0.7.1 =
+1. Added an option to enable / disable the scrollTop button on mobile devices
+2. Added four predefined sizes for the scrollTop button
+NOTE: You will have to visit the plugin settings page and manually save the options for both the frontend and the backend in order to activate the new options.
+
 = Version 0.7.0 =
 1. Introduced namespaces
 2. Introduced automated testing
-3. Fixed a variety of bugs
-4. Updated dependencies
-5. Enhanced performance
-6. Added minified versions of js and css files
+3. Fixed a variety of bugs including not resetting options, not saving options and translation errors
+4. Enhanced performance
+5. Added minified versions of js and css files
+6. Removed Font Awesome Fonts
+7. Removed Fancy Select Library
+8. Removed Alertify Library
+9. Removed ScrollTo Library
+10. Added Dashicons
+11. Added custom scroll-to
+12. Added option to change the arrow color of the backtop arrow (NOTE: width and height must be 48px for it to be centered,  for now)
 
 = Version 0.6.7 =
 1. Should have resolved that compatibility warning on this plugin's homepage
