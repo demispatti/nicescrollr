@@ -54,7 +54,24 @@ class Nsr_Menu_Localisation {
 
 		$this->domain = $domain;
 		$this->Options = $Options;
+
+		//$this->load_dependencies();
 	}
+
+	/**
+	 * Loads it's dependencies.
+	 *
+	 * @since  0.1.0
+	 * @access private
+	 * @return void
+	 */
+	/*private function load_dependencies() {
+
+		// The class that maintains all data like default values and their meta data.
+		require_once NICESCROLLR_ROOT_DIR . 'admin/menu/includes/class-options.php';
+
+		$this->options = new MenuIncludes\Nsr_Options( $this->get_domain() );
+	}*/
 
 	/**
 	 * Kicks off localisation of the menu.

@@ -1,10 +1,10 @@
 /**
  * The file that pre-processes and then runs the passed parameters with Nicescroll.
  *
- * @link              https://wordpress.org/plugins/nicescrollr/
+ * @link              https://github.com/demispatti/nicescrollr
  * @since             0.1.0
  * @package           nicescrollr
- * @subpackage        nicescrollr/assets
+ * @subpackage        nicescrollr/js
  * Author:            Demis Patti <wp@demispatti.ch>
  * Author URI:        https://demispatti.ch
  * License:           GPL-2.0+
@@ -13,7 +13,7 @@
 "use strict";
 jQuery(function ($) {
 
-	var nicescrollrIsMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+	var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
 	function Nicescrollr () {
 		this.nsr_options = Nsr_Options;
@@ -53,7 +53,7 @@ jQuery(function ($) {
 					'overflow-style': 'scrollbar'
 				});
 			}
-			if ('0' === this.nsr_options.default_scrollbar) {
+			if ('0' === this.nsr_options.default_scrollbar){
 
 				if (this.nsr_options.view === 'frontend') {
 					this.html.css({
@@ -208,7 +208,7 @@ jQuery(function ($) {
 	};
 
 	$(document).ready(function () {
-		if (false === nicescrollrIsMobile && Nsr_Options.enabled === '1' || true === nicescrollrIsMobile && Nsr_Options.enabled === '1' && Nsr_Options.mobile_devices_enabled === '1') {
+		if (! isMobile && Nsr_Options.enabled === '1' || isMobile && Nsr_Options.enabled === '1' && Nsr_Options.mobile_devices_enabled === '1') {
 			var nicescrollr = new Nicescrollr();
 			nicescrollr.init();
 		}

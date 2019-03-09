@@ -68,7 +68,7 @@ class Nsr_Public {
 	private $Options;
 
 	/**
-	 * The reference to the class that localizes the js for nicescroll.
+	 * The reference to the localisation class.
 	 *
 	 * @since  0.1.0
 	 * @access private
@@ -77,7 +77,7 @@ class Nsr_Public {
 	private $Nicescroll_Localisation;
 
 	/**
-	 * The reference to the class that localizes the js for the 'scroll top'.
+	 * The reference to the localisation class.
 	 *
 	 * @since  0.1.0
 	 * @access private
@@ -129,13 +129,13 @@ class Nsr_Public {
 	public function __construct( $domain, $Options, $Nicescroll_Localisation, $Backtop_Localisation ) {
 
 		$this->domain = $domain;
-		$this->Options = $Options;
+		$this->Options =$Options;
 		$this->Nicescroll_Localisation = $Nicescroll_Localisation;
 		$this->Backtop_Localisation = $Backtop_Localisation;
 
 		$this->set_prefixes();
 
-		$this->settings = $Options->get_options();
+		$this->settings = $this->Options->get_options();
 	}
 
 	/**
@@ -149,7 +149,7 @@ class Nsr_Public {
 
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_styles' ), 20 );
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ), 20 );
-		add_action( 'wp_enqueue_scripts', array( $this, 'initialize_localisation' ), 40 );
+		add_action( 'wp_enqueue_scripts', array( $this, 'initialize_localisation' ), 21 );
 	}
 
 	/**
@@ -161,9 +161,6 @@ class Nsr_Public {
 	 * @return void
 	 */
 	public function enqueue_styles() {
-
-		// Dashicons
-		wp_enqueue_style( 'dashicons' );
 
 		$handle_prefix = $this->handle_prefix;
 		$file_prefix = $this->file_prefix;
@@ -191,7 +188,18 @@ class Nsr_Public {
 		if( isset( $this->settings[$this->view]['enabled'] ) && $this->settings[$this->view]['enabled'] ) {
 
 			// jQuery Easing
-			wp_enqueue_script( 'nicescrollr-easing-min-js', NICESCROLLR_ROOT_URL . 'vendor/jquery-easing/jquery.easing.min.js', array( 'jquery' ), 'all' );
+			$easing_url = 'https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js';
+			$easing_cdn = wp_remote_get( $easing_url );
+			if( (int) wp_remote_retrieve_response_code( $easing_cdn ) !== 200 ) {
+				$easing_url = NICESCROLLR_ROOT_URL . 'vendor/jquery-easing/jquery.easing.min.js';
+			}
+			wp_enqueue_script( 'nicescrollr-easing-min-js',
+				$easing_url,
+				array(
+					'jquery'
+				),
+				'all'
+			);
 
 			// Nicescroll Library
 			$nice_url = 'https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js';
@@ -199,19 +207,37 @@ class Nsr_Public {
 			if( (int) wp_remote_retrieve_response_code( $nice_cdn ) !== 200 ) {
 				$nice_url = NICESCROLLR_ROOT_URL . 'vendor/nicescroll/jquery.nicescroll.min.js';
 			}
-			wp_enqueue_script( 'nicescrollr-inc-nicescroll-min-js', $nice_url, array( 'jquery', 'nicescrollr-easing-min-js' ), 'all' );
+			wp_enqueue_script( 'nicescrollr-inc-nicescroll-min-js',
+				$nice_url,
+				array(
+					'jquery',
+					'nicescrollr-easing-min-js'
+				),
+				'all'
+			);
 
 			// Nicescroll Configuration File
-			wp_enqueue_script( 'nicescrollr-nicescroll' . $handle_prefix . '-js', NICESCROLLR_ROOT_URL . 'assets/nicescroll' . $file_prefix . '.js', array(
+			wp_enqueue_script( 'nicescrollr-nicescroll' . $handle_prefix . '-js',
+				NICESCROLLR_ROOT_URL . 'assets/nicescroll' . $file_prefix . '.js',
+				array(
 					'jquery',
-					'nicescrollr-inc-nicescroll-min-js'
-				), 'all' );
+					'nicescrollr-inc-nicescroll-min-js',
+				),
+				'all'
+			);
 		}
 
 		if( isset( $this->settings['frontend']['bt_enabled'] ) && $this->settings['frontend']['bt_enabled'] ) {
 
 			// Backtop
-			wp_enqueue_script( 'nicescrollr-backtop' . $handle_prefix . '-js', NICESCROLLR_ROOT_URL . 'assets/backtop' . $file_prefix . '.js', array( 'jquery' ), 'all' );
+			wp_enqueue_script( 'nicescrollr-backtop' . $handle_prefix . '-js',
+				NICESCROLLR_ROOT_URL . 'assets/backtop' . $file_prefix . '.js',
+				array(
+					'jquery',
+					'nicescrollr-nicescroll-min-js'
+				),
+				'all'
+			);
 		}
 	}
 
@@ -225,10 +251,10 @@ class Nsr_Public {
 	 */
 	public function initialize_localisation() {
 
-		if( isset( $this->settings['frontend']['enabled'] ) && $this->settings['frontend']['enabled'] ) {
+		if( isset( $this->settings[$this->view]['enabled'] ) && $this->settings[$this->view]['enabled'] ) {
 			$this->localize_nicescroll();
 		}
-		if( isset( $this->settings['frontend']['bt_enabled'] ) && $this->settings['frontend']['bt_enabled'] ) {
+		if( isset( $this->settings[$this->view]['bt_enabled'] ) && $this->settings[$this->view]['bt_enabled'] ) {
 			$this->localize_backtop();
 		}
 	}

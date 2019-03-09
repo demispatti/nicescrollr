@@ -206,12 +206,12 @@ class Nsr_Options {
 				'input_type' => 'select',
 				'notice_level' => 'none',
 				'select_values' => array(
-					'enabled' => __( 'enabled', $this->domain ),// true
-					'cursor' => 'cursor',
-					'disabled' => __( 'disabled', $this->domain ),// false
-					'leave' => 'leave',
-					'hidden' => 'hidden',
-					'scroll' => 'scroll'
+					'enabled',// true
+					'cursor',
+					'disabled',// false
+					'leave' => __( 'leave', $this->domain ),
+					'hidden' => __( 'hidden', $this->domain ),
+					'scroll' => __( 'scroll', $this->domain ),
 				),
 			),
 			'default_scrollbar' => array(
@@ -371,9 +371,9 @@ class Nsr_Options {
 				'input_type' => 'select',
 				'notice_level' => 'none',
 				'select_values' => array(
-					'false' => __( 'off', $this->domain ),
-					'top' => 'top',
-					'left' => 'left',
+					'false' => __( 'false', $this->domain ),
+					'top' => __( 'top', $this->domain ),
+					'left' => __( 'left', $this->domain ),
 				),
 			),
 			'bouncescroll' => array(
@@ -561,7 +561,7 @@ class Nsr_Options {
 				'backend_value' => '160',
 				'input_type' => 'select',
 				'notice_level' => 'none',
-				'select_values' => array( 'false' => __( 'off', $this->domain ), '60' => '60', '100' => '100', '160' => '160', '220' => '220', '280' => '280' ),
+				'select_values' => array( 'false' => __('false', $this->domain), '60' => '60', '100' => '100', '160' => '160', '220' => '220', '280' => '280' ),
 			),
 			'directionlockdeadzone' => array(
 				'name' => __( 'Direction Lock Dead Zone', $this->domain ),
@@ -627,7 +627,7 @@ class Nsr_Options {
 				'backend_value' => 'auto',
 				'input_type' => 'select',
 				'notice_level' => 'none',
-				'select_values' => array( 'auto' => 'auto', 'false' => __( 'off', $this->domain ) ),
+				'select_values' => array( 'auto' => 'auto', 'false' => 'false' ),
 			),
 			'cursordragontouch' => array(
 				'name' => __( 'Cursor Drag On Touch', $this->domain ),
@@ -649,7 +649,7 @@ class Nsr_Options {
 				'backend_value' => 'auto',
 				'input_type' => 'select',
 				'notice_level' => 'none',
-				'select_values' => array( 'auto' => 'auto', 'false' => __( 'off', $this->domain ) ),
+				'select_values' => array( 'auto' => 'auto', 'false' => 'false' ),
 			),
 			'preventmultitouchscrolling' => array(
 				'name' => __( 'Prevent Multitouch Scrolling', $this->domain ),
@@ -722,53 +722,26 @@ class Nsr_Options {
 				'notice_level' => 'notice-correction',
 				'select_values' => 'none',
 			),
-			'bt_mobile_enabled' => array(
-				'name' => __( 'BackTop On Mobile Devices', $this->domain ),
-				'callback' => 'render_settings_field_callback',
-				'settings_group' => 'backtop',
-				'title' => __( 'Enable backtop button on mobile devices.', $this->domain ),
-				'frontend_value' => false,
-				'backend_value' => true,
-				'input_type' => 'checkbox',
-				'notice_level' => 'notice-correction',
-				'select_values' => 'none',
-			),
-			'bt_size' => array(
-				'name' => __( 'Button Size', $this->domain ),
-				'callback' => 'render_settings_field_callback',
-				'settings_group' => 'backtop',
-				'title' => __( 'Set button size.', $this->domain ),
-				'frontend_value' => 'default',
-				'backend_value' => 'default',
-				'input_type' => 'select',
-				'notice_level' => 'none',
-				'select_values' => array(
-					'small' => __( 'small', $this->domain ),
-					'medium' => __( 'medium', $this->domain ),
-					'default' => __( 'default', $this->domain ),
-					'large' => __( 'large', $this->domain )
-				),
-			),
 
-			'bt_arrow_color' => array(
-				'name' => __( 'Arrow Color', $this->domain ),
+			'bt_width' => array(
+				'name' => __( 'Button Width', $this->domain ),
 				'callback' => 'render_settings_field_callback',
 				'settings_group' => 'backtop',
-				'title' => __( 'Set arrow color.', $this->domain ),
-				'frontend_value' => 'rgba(0, 0, 0, 1.0)',
-				'backend_value' => 'rgba(0, 0, 0, 1.0)',
-				'input_type' => 'color',
+				'title' => __( 'Set button width in pixels.', $this->domain ),
+				'frontend_value' => '48px',
+				'backend_value' => '48px',
+				'input_type' => 'text',
 				'notice_level' => 'notice-correction',
 				'select_values' => 'none',
 			),
-			'bt_arrow_hover_color' => array(
-				'name' => __( 'Arrow Hover Color', $this->domain ),
+			'bt_height' => array(
+				'name' => __( 'Button Height', $this->domain ),
 				'callback' => 'render_settings_field_callback',
 				'settings_group' => 'backtop',
-				'title' => __( 'Set arrow hover color.', $this->domain ),
-				'frontend_value' => 'rgba(255, 255, 255, 1.0)',
-				'backend_value' => 'rgba(255, 255, 255, 1.0)',
-				'input_type' => 'color',
+				'title' => __( 'Set button height in pixels.', $this->domain ),
+				'frontend_value' => '48px',
+				'backend_value' => '48px',
+				'input_type' => 'text',
 				'notice_level' => 'notice-correction',
 				'select_values' => 'none',
 			),
@@ -795,7 +768,6 @@ class Nsr_Options {
 				'notice_level' => 'notice-correction',
 				'select_values' => 'none',
 			),
-
 			'bt_border_color' => array(
 				'name' => __( 'Border Color', $this->domain ),
 				'callback' => 'render_settings_field_callback',
@@ -849,11 +821,10 @@ class Nsr_Options {
 					'outset' => 'outset',
 					'initial' => 'initial',
 					'inherit' => 'inherit',
-					'none' => __( 'none', $this->domain ),
+					'none' => 'none',
 					'hidden' => 'hidden'
 				),
 			),
-
 			'bt_posx_from_right' => array(
 				'name' => __( 'Position From Right', $this->domain ),
 				'callback' => 'render_settings_field_callback',
@@ -979,7 +950,7 @@ class Nsr_Options {
 	 *
 	 * @param  string $settings_tab | null
 	 *
-	 * @return bool|\WP_Error
+	 * @return bool
 	 */
 	public function reset_settings( $settings_tab ) {
 
@@ -991,16 +962,12 @@ class Nsr_Options {
 
 			$options[$settings_tab] = $this->get_default_settings( $settings_tab );
 
-			delete_option( 'nicescrollr_options' );
-			$result = add_option( 'nicescrollr_options', $options, true );
+			$result = update_option( 'nicescrollr_options', $options, true );
 
-			if( true === $result ) {
-
-				return true;
-			}
+			return false !== $result;
 		}
 
-		return new \WP_Error( - 1, __( 'Failed resetting the settings. Please refresh the page and try again.', $this->domain ) );
+		return false;
 	}
 
 	/**
@@ -1077,13 +1044,6 @@ class Nsr_Options {
 		return $extended_options;
 	}
 
-	/**
-	 * Returns an array containing the options for the backTop button.
-	 *
-	 * @param $view
-	 *
-	 * @return array
-	 */
 	public function get_backtop_settings( $view ) {
 
 		$backtop_options = array();
@@ -1104,33 +1064,33 @@ class Nsr_Options {
 	 * @since  0.1.0
 	 * @access private
 	 *
-	 * @param  bool false|string $view
+	 * @param  string $view
 	 *
 	 * @return mixed
 	 */
 	public function get_options( $view = false ) {
 
-		if( isset( $_REQUEST['action'] ) && $_REQUEST['action'] === 'heartbeat' ) {
-			die();
+		if( isset( $_REQUEST['action'] ) && $_REQUEST['action'] !== 'heartbeat' ) {
+			$options = get_option( 'nicescrollr_options' );
+
+			if( false === $options ) {
+				$this->seed_options();
+			}
+
+			if( false === $view ) {
+				return get_option( 'nicescrollr_options' );
+			}
+
+			$stored_options = get_option( 'nicescrollr_options' );
+			if( ! isset( $stored_options[$view] ) ) {
+
+				return $this->get_default_settings( $view );
+			}
+
+			return $stored_options[$view];
 		}
 
-		$options = get_option( 'nicescrollr_options' );
-
-		if( false === $options ) {
-			$this->seed_options();
-		}
-
-		if( false === $view ) {
-			return get_option( 'nicescrollr_options' );
-		}
-
-		$stored_options = get_option( 'nicescrollr_options' );
-		if( ! isset( $stored_options[$view] ) ) {
-
-			return $this->get_default_settings( $view );
-		}
-
-		return $stored_options[$view];
+		return null;
 	}
 
 	/**
@@ -1190,21 +1150,21 @@ class Nsr_Options {
 
 		$basic_settings = array(
 			'settings_group' => 'basic',
-			'title' => '<h2 class="settings-toggle basic upper nicescrollr_settings_toggle"><span class="dashicons dashicons-menu"></span>' . __( 'Basic Settings', $this->domain ) . '</h2>',
+			'title' => '<h2 class="upper nicescrollr_settings_toggle"><i class="fa fa-sliders"></i>' . __( 'Basic Settings', $this->domain ) . '</h2>',
 			'callback' => 'basic_settings_section_callback',
 			'class' => 'fa fa-sliders',
 		);
 
 		$extended_settings = array(
 			'settings_group' => 'extended',
-			'title' => '<h2 class="settings-toggle advanced lower nicescrollr_settings_toggle"><span class="dashicons dashicons-menu"></span>' . __( 'Extended Settings', $this->domain ) . '</h2>',
+			'title' => '<h2 class="lower nicescrollr_settings_toggle"><i class="fa fa-sliders"></i>' . __( 'Extended Settings', $this->domain ) . '</h2>',
 			'callback' => 'extended_settings_section_callback',
 			'class' => 'fa fa-sliders',
 		);
 
 		$backtop_settings = array(
 			'settings_group' => 'backtop',
-			'title' => '<h2 class="settings-toggle backtop nicescrollr_settings_toggle"><span class="dashicons dashicons-menu"></span>' . __( 'BackTop Settings', $this->domain ) . '</h2>',
+			'title' => '<h2 class="backtop nicescrollr_settings_toggle"><i class="fa fa-sliders"></i>' . __( 'BackTop Settings', $this->domain ) . '</h2>',
 			'callback' => 'backtop_settings_section_callback',
 			'class' => 'fa fa-sliders',
 		);
@@ -1296,16 +1256,6 @@ class Nsr_Options {
 		$count = count( $this->extended_settings() );
 
 		return array( 'extended_options_count' => $count );
-	}
-
-	/**
-	 * Returns the meta data related to the options.
-	 *
-	 * @return array
-	 */
-	public function get_options_meta() {
-
-		return array_merge( $this->basic_settings(), $this->extended_settings(), $this->backtop_settings() );
 	}
 
 }
