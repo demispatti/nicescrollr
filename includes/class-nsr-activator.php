@@ -3,11 +3,11 @@
 /**
  * If this file is called directly, abort.
  */
-if ( ! defined( 'WPINC' ) ) {
+if( ! defined( 'WPINC' ) ) {
 	die;
 }
 
-require_once plugin_dir_path( dirname( __FILE__ ) ) . "admin/menu/includes/class-nsr-options.php";
+require_once plugin_dir_path( __DIR__ ) . 'admin/menu/includes/class-nsr-options.php';
 
 /**
  * The class responsible for the plugin activation.
@@ -48,12 +48,12 @@ class nsr_activator extends nsr {
 		$role = get_role( 'administrator' );
 
 		// If the acting user has admin rights, the capability gets added.
-		if( !empty($role) ) {
+		if( ! empty( $role ) ) {
 			$role->add_cap( self::$capability );
 		}
 
 		// Checks for already stored options.
-		$Activator = new nsr_activator();
+		$Activator = new self();
 		$Activator->check_for_options();
 	}
 
@@ -69,15 +69,25 @@ class nsr_activator extends nsr {
 	 */
 	private function check_for_options() {
 
-		// A reference to the class maintaining all plugin-related data.
-		$Options = new nsr_options( 'nicescrollr' );
+		$nsr_options = new nsr_options( 'nicescrollr' );
+		$options = get_option( 'nicescrollr_options' );
 
-		// Loops trough the option groups and seeds the default options if there is no data in the database yet.
-		foreach( $Options->get_settings_sections() as $section ) {
-
-			if( false === get_option( 'nicescrollr_options' ) ) {
-				$Options->seed_options( $section );
+		// Seed initial options
+		if( false === $options ) {
+			foreach( $nsr_options::$settings_tabs as $i => $section ) {
+				$nsr_options->seed_options( $section );
 			}
+
+			return;
+		}
+
+		// Else add initial options per section if necessary
+		$options = get_option( 'nicescrollr_options' );
+		if( null === $options['frontend'] ) {
+			$nsr_options->seed_options( 'frontend' );
+		}
+		if( null === $options['backend'] ) {
+			$nsr_options->seed_options( 'backend' );
 		}
 	}
 }

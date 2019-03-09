@@ -1,0 +1,62 @@
+/************************************************************\
+ *   To Top
+\************************************************************/
+.nsr-backtop {
+	z-index: 1000;
+	display: inline-block;
+	height: 36px;
+	width: 36px;
+	position: fixed;
+	bottom: 48px;
+	right: 32px;
+	overflow: hidden;
+	text-indent: 100%;
+	white-space: nowrap;
+	color: white;
+	border: 1px solid #538fa3;
+	background: #7dc5d9 url("/wp-content/plugins/nicescrollr/admin/menu/images/to-top.svg") no-repeat center 50%;
+	visibility: hidden;
+	opacity: 0.4;
+	-webkit-transition: all .3s;
+	-moz-transition: all .3s;
+	transition: all .3s;
+}
+
+.nsr-backtop.top-is-visible {
+	color: #595e6f;
+	border-color: #7dc5d9;
+	visibility: visible;
+	opacity: 0.8;
+	background-color: #7dc5d9;
+}
+
+.nsr-backtop.top-is-visible:hover {
+	color: #ccced6;
+	background-color: #7dc5d9;
+	visibility: visible;
+	opacity: 1;
+}
+
+.nsr-backtop.top-fade-out {
+	opacity: .5;
+}
+
+.no-touch .nsr-backtop:hover {
+	opacity: 1;
+}
+
+@media screen and (max-width: 1440px) {
+	.nsr-settings-page .nsr-backtop.top-is-visible {
+		opacity: 0.5;
+	}
+}
+
+@media screen and (max-width: 960px) {
+	.nsr-settings-page .nsr-backtop.top-is-visible {
+		height: 32px;
+		width: 32px;
+		bottom: 48px;
+		right: 4px;
+		opacity: 1;
+	}
+}

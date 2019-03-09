@@ -3,7 +3,7 @@
 /**
  * If this file is called directly, abort.
  */
-if ( ! defined( 'WPINC' ) ) {
+if( ! defined( 'WPINC' ) ) {
 	die;
 }
 
@@ -46,7 +46,7 @@ class nsr_menu {
 	 *
 	 * @since  0.1.0
 	 * @access private
-	 * @var    object $options
+	 * @var    nsr_options $options
 	 */
 	private $options;
 
@@ -56,7 +56,7 @@ class nsr_menu {
 	 *
 	 * @since  0.1.0
 	 * @access private
-	 * @var    object $reset_section
+	 * @var    nsr_reset_section $reset_section
 	 */
 	private $reset_section;
 
@@ -66,7 +66,7 @@ class nsr_menu {
 	 *
 	 * @since  0.1.0
 	 * @access private
-	 * @var    object $menu_localisation
+	 * @var    nsr_menu_localisation $menu_localisation
 	 */
 	private $menu_localisation;
 
@@ -76,7 +76,7 @@ class nsr_menu {
 	 *
 	 * @since  0.1.0
 	 * @access private
-	 * @var    object $ajax_localisation
+	 * @var    nsr_ajax_localisation $ajax_localisation
 	 */
 	private $ajax_localisation;
 
@@ -90,39 +90,24 @@ class nsr_menu {
 	 */
 	public function set_section() {
 
-		$active_tab = NULL;
-		$section = NULL;
+		$active_tab = null;
+		$section = null;
 
-		if( isset($_REQUEST['tab']) ) {
+		if( isset( $_REQUEST['tab'] ) ) {
 
 			$tab = $_REQUEST['tab'];
 
-			if( 'plugin_options' == $tab ) {
+			$this->section = 'frontend';
 
-				$this->section = 'plugin';
-			} else if( 'backend_options' == $tab ) {
+			if( 'backend' === $tab ) {
 
 				$this->section = 'backend';
-			} else {
 
-				$this->section = 'frontend';
 			}
-		} else {
+		}
+		else {
 
 			$this->section = 'frontend';
-		}
-
-		if( isset($_REQUEST['option_page']) ) {
-
-			$option_page = $_REQUEST['option_page'];
-
-			if( 'nicescrollr_plugin_options' == $option_page ) {
-
-				$this->section = 'plugin';
-			} else if( 'nicescrollr_backend_options' == $option_page ) {
-
-				$this->section = 'backend';
-			}
 		}
 	}
 
@@ -130,16 +115,40 @@ class nsr_menu {
 	 * Assigns the required parameters, loads its dependencies and hooks the required actions.
 	 *
 	 * @since  0.1.0
-	 * @param  array  $app
-	 * @param  object $Loader
-	 * @return mixed | void
+	 *
+	 * @param  string $domain
+	 *
+	 * @return void
 	 */
 	public function __construct( $domain ) {
 
 		$this->domain = $domain;
 
 		$this->load_dependencies();
-		$this->init();
+	}
+
+	/**
+	 * Register the hooks with WordPress.
+	 *
+	 * @since  0.5.2
+	 *
+	 * @return void
+	 */
+	public function add_hooks() {
+
+		add_action( 'admin_menu', array( $this, 'add_options_page' ), 20 );
+
+		if( ( isset( $_REQUEST['page'] ) && $_REQUEST['page'] === 'nicescrollr_settings' ) || ( isset( $_REQUEST['option_page'] ) && $_REQUEST['option_page'] === 'nicescrollr_options' ) ) {
+
+			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_styles' ) );
+			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
+			add_action( 'admin_enqueue_scripts', array( $this, 'initialize_localisation' ), 100 );
+			add_action( 'admin_notices', array( $this, 'admin_notice_display' ) );
+			add_action( 'admin_menu', array( $this, 'set_section' ), 10 );
+			add_action( 'admin_menu', array( $this, 'initialize_settings_section' ), 40 );
+
+			add_filter( 'admin_body_class', array( $this, 'add_body_class' ) );
+		}
 	}
 
 	/**
@@ -151,24 +160,18 @@ class nsr_menu {
 	 */
 	private function load_dependencies() {
 
-		// The class responsible for all tasks concerning the settings api.
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . "menu/includes/class-nsr-settings.php";
+		require_once plugin_dir_path( __DIR__ ) . 'menu/includes/class-nsr-settings.php';
 
-		// The class that maintains all data like default values and their meta data.
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . "menu/includes/class-nsr-options.php";
+		require_once plugin_dir_path( __DIR__ ) . 'menu/includes/class-nsr-options.php';
+		$this->options = new nsr_options( $this->get_domain() );
 
-		// The class that defines the section with the reset buttons.
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . "menu/includes/class-nsr-reset-section.php";
+		require_once plugin_dir_path( __DIR__ ) . 'menu/includes/class-nsr-reset-section.php';
+		$this->reset_section = new nsr_reset_section( $this->get_domain() );
 
-		// The class responsible for localizing the admin script.
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . "menu/includes/class-nsr-menu-localisation.php";
-
-		// The class responsible for localizing the ajax script.
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . "menu/includes/class-nsr-ajax-localisation.php";
-
-		$this->reset_section     = new nsr_reset_section( $this->get_domain() );
-		$this->options           = new nsr_options( $this->get_domain() );
+		require_once plugin_dir_path( __DIR__ ) . 'menu/includes/class-nsr-menu-localisation.php';
 		$this->menu_localisation = new nsr_menu_localisation( $this->get_domain() );
+
+		require_once plugin_dir_path( __DIR__ ) . 'menu/includes/class-nsr-ajax-localisation.php';
 		$this->ajax_localisation = new nsr_ajax_localisation( $this->get_domain() );
 	}
 
@@ -182,47 +185,29 @@ class nsr_menu {
 	 */
 	public function enqueue_styles( $hook_suffix ) {
 
-		if( isset($hook_suffix) && $hook_suffix === 'settings_page_nicescrollr_settings' ) {
-
-			// Font Awesome.
-			$fa_url = 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css';
-			$fa_cdn = wp_remote_get( $fa_url );
-			if ( (int) wp_remote_retrieve_response_code( $fa_cdn ) !== 200 ) {
-				$fa_url = plugin_dir_url( __FILE__ ) . '../../vendor/font-awesome/font-awesome.min.css';
-			}
-			wp_enqueue_style( 'inc-font-awesome', $fa_url, false );
+		if( $hook_suffix === 'settings_page_nicescrollr_settings' ) {
 
 			// Color Picker
-			if( !wp_style_is( 'color-picker.min.css' ) && !wp_style_is( 'color-picker.css' ) ) {
+			if( ! wp_style_is( 'color-picker.min.css' ) && ! wp_style_is( 'color-picker.css' ) ) {
 
 				wp_enqueue_style( 'wp-color-picker' );
 			}
 
 			// Alertify.
-			wp_enqueue_style(
-				'inc-alertify-min-css',
-				plugin_dir_url( __FILE__ ) . '../../vendor/alertify/css/alertify.min.css',
-				array(),
-				'all',
-				'all'
-			);
+			wp_enqueue_style( 'inc-alertify-min-css', plugin_dir_url( __FILE__ ) . '../../vendor/alertify/css/alertify.min.css', array(), 'all' );
 			// Alertify semantic theme.
-			wp_enqueue_style(
-				'inc-alertify-theme-semantic-min-css',
-				plugin_dir_url( __FILE__ ) . '../../vendor/alertify/css/themes/semantic.min.css',
-				array(),
-				'all',
-				'all'
-			);
+			wp_enqueue_style( 'inc-alertify-theme-semantic-min-css', plugin_dir_url( __FILE__ ) . '../../vendor/alertify/css/themes/semantic.min.css', array(), 'all' );
 
 			// Menu
-			wp_enqueue_style(
-				'nicescrollr-menu-css',
-				plugin_dir_url( __FILE__ ) . 'css/menu.css',
-				array(),
-				'all',
-				'all'
-			);
+			wp_enqueue_style( 'nicescrollr-menu-css', plugin_dir_url( __FILE__ ) . 'css/menu.css', array(), 'all' );
+
+			// Font Awesome.
+			$fa_url = 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css';
+			$fa_cdn = wp_remote_get( $fa_url );
+			if( (int) wp_remote_retrieve_response_code( $fa_cdn ) !== 200 ) {
+				return;
+			}
+			wp_enqueue_style( 'inc-font-awesome', $fa_url, false );
 		}
 	}
 
@@ -236,74 +221,33 @@ class nsr_menu {
 	 */
 	public function enqueue_scripts( $hook_suffix ) {
 
-		if( isset($hook_suffix) && $hook_suffix === 'settings_page_nicescrollr_settings' ) {
+		if( $hook_suffix === 'settings_page_nicescrollr_settings' ) {
 
-			// Loads the file only if the user has the "backTop" option activated.
-			$option = get_option( 'nicescrollr_options' );
+			// Alertify
+			wp_enqueue_script( 'nicescrollr-inc-alertify-js', plugin_dir_url( __FILE__ ) . '../../vendor/alertify/alertify.min.js', array( 'jquery' ), 'all' );
 
-			// Loads the file only if the user has the "scrollTo" option activated.
-			if( isset($option['plugin']['scrollto_enabled']) && $option['plugin']['scrollto_enabled'] ) {
+			// Ajax Reset Functionality
+			wp_enqueue_script( 'nicescrollr-ajax-js', plugin_dir_url( __FILE__ ) . 'js/ajax.js', array(
+					'jquery',
+					'nicescrollr-inc-alertify-js',
+				), 'all' );
 
-				// ScrollTo
-				wp_enqueue_script(
-					'nicescrollr-inc-scrollto-min-js',
-					plugin_dir_url( __FILE__ ) . '../../vendor/scrollto/jquery.scrollTo.min.js',
-					array( 'jquery' ),
-					'all',
-					false
-				);
-			}
+			// ScrollTo
+			wp_enqueue_script( 'nicescrollr-inc-scrollto-min-js', plugin_dir_url( __FILE__ ) . '../../vendor/scrollto/jquery.scrollTo.min.js', array( 'jquery' ), 'all' );
 
 			// Color Picker
 			wp_enqueue_script( 'wp-color-picker' );
 
 			// Fancy Select
-			wp_enqueue_script(
-				'nicescrollr-inc-fancy-select-js',
-				plugin_dir_url( __FILE__ ) . '../../vendor/fancy-select/fancySelect.js',
-				array( 'jquery' ),
-				'all',
-				false
-			);
-
-			// Loads only on the "plugin settings" tab.
-			if( isset( $_REQUEST['page'] ) && $_REQUEST['page'] == 'nicescrollr_settings' && isset( $_REQUEST['tab'] ) && $_REQUEST['tab'] == 'plugin_options' ) {
-
-				// Alertify
-				wp_enqueue_script(
-					'nicescrollr-inc-alertify-js',
-					plugin_dir_url( __FILE__ ) . '../../vendor/alertify/alertify.min.js',
-					array( 'jquery' ),
-					'all',
-					false
-				);
-
-				// Ajax Reset Functionality
-				wp_enqueue_script(
-					'nicescrollr-ajax-js',
-					plugin_dir_url( __FILE__ ) . 'js/ajax.js',
-					array(
-						'jquery',
-						'nicescrollr-inc-alertify-js',
-					),
-					'all',
-					false
-				);
-			}
+			wp_enqueue_script( 'nicescrollr-inc-fancy-select-js', plugin_dir_url( __FILE__ ) . '../../vendor/fancy-select/fancySelect.js', array( 'jquery' ), 'all' );
 
 			// Settings Menu
-			wp_enqueue_script(
-				'nicescrollr-menu-js',
-				plugin_dir_url( __FILE__ ) . 'js/menu.js',
-				array(
+			wp_enqueue_script( 'nicescrollr-menu-js', plugin_dir_url( __FILE__ ) . 'js/menu.js', array(
 					'jquery',
 					'wp-color-picker',
 					'nicescrollr-inc-fancy-select-js',
-					false !== $option['plugin']['scrollto_enabled'] ? 'nicescrollr' . '-inc-scrollto-min-js' : NULL,
-				),
-				'all',
-				false
-			);
+					'nicescrollr-inc-scrollto-min-js'
+				), 'all' );
 		}
 	}
 
@@ -316,9 +260,9 @@ class nsr_menu {
 	 */
 	public function add_body_class( $classes ) {
 
-		if ( isset($_REQUEST['page'] ) && $_REQUEST['page'] == 'nicescrollr_settings' ) {
+		if( isset( $_REQUEST['page'] ) && $_REQUEST['page'] === 'nicescrollr_settings' ) {
 
-			$ci     = 'nsr';
+			$ci = 'nsr';
 			$prefix = $ci . '-';
 
 			$section = isset( $_REQUEST['tab'] ) ? $_REQUEST['tab'] : '';
@@ -327,15 +271,12 @@ class nsr_menu {
 
 			if( isset( $_REQUEST['tab'] ) ) {
 
-				switch ( $section ) {
-					case 'frontend_options':
+				switch( $section ) {
+					case 'frontend':
 						$class = 'frontend';
 						break;
-					case 'backend_options':
+					case 'backend':
 						$class = 'backend';
-						break;
-					case 'plugin_options':
-						$class = 'plugin';
 						break;
 					default:
 						$class = '';
@@ -358,60 +299,11 @@ class nsr_menu {
 	 */
 	public function initialize_localisation() {
 
-		$this->localize_menu();
-
 		if( isset( $_REQUEST['page'] ) && $_REQUEST['page'] === 'nicescrollr_settings' ) {
 
-			$this->localize_ajax();
+			$this->menu_localisation->run();
+			$this->ajax_localisation->run();
 		}
-	}
-
-	/**
-	 * Initiates the localisation of the admin part.
-	 *
-	 * @since  0.1.0
-	 * @uses   run()
-	 * @see    admin/menu/includes/class-nsr-menu-localisation.php
-	 * @access private
-	 * @return void
-	 */
-	private function localize_menu() {
-
-		$this->menu_localisation->run();
-	}
-
-	/**
-	 * Initiates the localisation of the ajax part.
-	 *
-	 * @since  0.1.0
-	 * @uses   run()
-	 * @see    admin/menu/includes/class-nsr-ajax-localisation.php
-	 * @access private
-	 * @return void
-	 */
-	private function localize_ajax() {
-
-		$this->ajax_localisation->run();
-	}
-
-	/**
-	 * Loads the admin error notice and the components for the settings menu - if we're in the right spot.
-	 *
-	 * @since  0.1.0
-	 * @access private
-	 * @return void
-	 */
-	private function init() {
-
-		add_action( 'admin_notices', array( $this, 'admin_notice_display' ) );
-
-		add_action( 'admin_menu', array( $this, 'set_section' ), 10 );
-		add_action( 'admin_menu', array( $this, 'add_options_page' ), 20 );
-		add_action( 'admin_menu', array( $this, 'initialize_settings_section' ), 40 );
-
-		add_action( 'wp_ajax_reset_options', array( $this, 'reset_options' ) );
-
-		add_filter( "admin_body_class", array( $this, "add_body_class" ) );
 	}
 
 	/**
@@ -424,13 +316,7 @@ class nsr_menu {
 	 */
 	public function add_options_page() {
 
-		add_options_page(
-			'Nicescrollr',
-			'Nicescrollr',
-			'manage_options',
-			'nicescrollr_settings',
-			array( $this, 'menu_display' )
-		);
+		add_options_page( 'Nicescrollr', 'Nicescrollr', 'manage_options', 'nicescrollr_settings', array( $this, 'menu_display' ) );
 	}
 
 	/**
@@ -443,12 +329,8 @@ class nsr_menu {
 	 */
 	public function initialize_settings_section() {
 
-		$Settings = new nsr_settings( $this->get_domain(), $this->get_section() );
-
-		add_action( 'admin_init', array( $Settings, 'register_settings' ), 1 );
-		add_action( 'admin_init', array( $Settings, 'check_for_options' ), 2 );
-		add_action( 'admin_init', array( $Settings, 'load_default_options' ), 3 );
-		add_action( 'admin_init', array( $Settings, 'initialize_options' ), 10 );
+		$settings = new nsr_settings( $this->get_domain(), $this->get_section() );
+		$settings->add_hooks();
 	}
 
 	/**
@@ -457,13 +339,16 @@ class nsr_menu {
 	 * @since  0.1.0
 	 * @uses   echo_section()
 	 * @see    admin/menu/includes/class-nsr-reset-section.php
+	 *
 	 * @param  $active_tab
+	 *
 	 * @return void
 	 */
-	public function menu_display( $active_tab = '' ) {
+	public function menu_display() {
 
+		$active_tab = $this->section;
 		?>
-
+		
 		<div class="wrap">
 
 			<h2 class="nsr-page-title"><?php echo __( 'Nicescrollr', $this->domain ); ?></h2>
@@ -472,53 +357,40 @@ class nsr_menu {
 
 				<?php
 				// Sets the active tab.
-				if( isset($_GET['tab']) ) {
+				if( $active_tab === 'backend' ) {
 
-					$active_tab = $_GET['tab'];
-				} else if( $active_tab == 'plugin_options' ) {
+					$active_tab = 'backend';
+				}
+				else {
 
-					$active_tab = 'plugin_options';
-				} else if( $active_tab == 'backend_options' ) {
-
-					$active_tab = 'backend_options';
-				} else {
-
-					$active_tab = 'frontend_options';
+					$active_tab = 'frontend';
 				} ?>
-
+				
 				<!-- Nav tab -->
 				<div class="nav-tab-wrapper">
-					<a href="?page=nicescrollr_settings&tab=frontend_options"
-					   class="nav-tab <?php echo $active_tab == 'frontend_options' ? 'nav-tab-active' : ''; ?> "><i class="fa fa-television" aria-hidden="true"></i><?php _e( 'Frontend', $this->domain ); ?></a>
-					<a href="?page=nicescrollr_settings&tab=backend_options"
-					   class="nav-tab <?php echo $active_tab == 'backend_options' ? 'nav-tab-active' : ''; ?> "><i class="fa fa-wordpress" aria-hidden="true"></i><?php _e( 'Backend', $this->domain ); ?></a>
-					<a href="?page=nicescrollr_settings&tab=plugin_options"
-					   class="nav-tab <?php echo $active_tab == 'plugin_options' ? 'nav-tab-active' : ''; ?> "><i class="fa fa-bars" aria-hidden="true"></i><?php _e( 'Plugin', $this->domain ); ?></a>
+					<a href="?page=nicescrollr_settings&tab=frontend" class="nav-tab <?php echo $active_tab === 'frontend' ? 'nav-tab-active' : ''; ?> "><i class="fa fa-television"></i><?php _e( 'Frontend', $this->domain ); ?>
+					</a>
+					<a href="?page=nicescrollr_settings&tab=backend" class="nav-tab <?php echo $active_tab === 'backend' ? 'nav-tab-active' : ''; ?> "><i class="fa fa-wordpress"></i><?php _e( 'Backend', $this->domain ); ?>
+					</a>
 				</div>
 
 				<?php
-				// Sets a hidden field containing the name of the settings section.
-				if( $active_tab == 'plugin_options' ) {
-
-					echo '<input type="hidden" name="section" value="plugin" />';
-				} else if( $active_tab == 'backend_options' ) {
+				// Set a hidden field containing the name of the settings section.
+				if( $active_tab === 'backend' ) {
 
 					echo '<input type="hidden" name="section" value="backend" />';
-				} else {
+				}
+				else {
 
 					echo '<input type="hidden" name="section" value="frontend" />';
-				} /**/ ?><!--
+				}
 
-				--><?php
 				// Settings fields.
 				settings_fields( 'nicescrollr_options' );
 				do_settings_sections( 'nicescrollr_settings' );
 
-				// Reset buttons
-				if( $active_tab == 'plugin_options' ) {
-
-					$this->reset_section->echo_section();
-				}
+				// Reset button
+				$this->reset_section->echo_section( $active_tab );
 
 				submit_button();
 
@@ -537,7 +409,7 @@ class nsr_menu {
 	 * @since  0.1.0
 	 * @uses   get_errors_meta_data()
 	 * @see    admin/menu/includes/class-nsr-options.php
-	 * @return echo $html
+	 * @return void | echo $html
 	 */
 	public function admin_notice_display() {
 
@@ -545,35 +417,26 @@ class nsr_menu {
 		if( false !== get_transient( 'nicescrollr_validation_transient' ) ) {
 
 			// Retrieves the error-array and the corresponding meta data
-			$errors = get_transient( 'nicescrollr_validation_transient' );
+			$errors = (array) get_transient( 'nicescrollr_validation_transient' );
 
 			// Outputs all eventual errors.
 			foreach( $errors as $option_key => $error_meta ) {
 
+				$error_meta = (object) $error_meta;
+
 				// Assigns the transient containing the error message to the array of notices.
-				$notices[ $option_key ] = get_transient( $option_key );
+				$notices[$option_key] = get_transient( $option_key );
 
 				// Extracts the error message and echoes it inside the admin notice area.
-				if( is_wp_error( $error_meta['message'] ) ) {
+				if( is_wp_error( $error_meta->message ) ) {
 
-					$error_message = $error_meta['message']->get_error_message();
-
-					$option = get_option( 'nicescrollr_options' );
-
-					// scrollTo conditional
-					if( isset($option['plugin']['scrollto_enabled']) && $option['plugin']['scrollto_enabled'] ) {
-
-						$class = 'nsr-validation-error';
-					} else {
-
-						$class = 'nsr-validation-error-no-scrollto';
-					}
+					$error_message = $error_meta->message->get_error_message();
 
 					// Admin notice.
-					$html = '<div class="error notice is-dismissible ' . $error_meta["notice_level"] . '">';
+					$html = '<div class="error notice is-dismissible ' . $error_meta->notice_level . '">';
 					$html .= '<p>';
-					$html .= '<a class="' . $class . '" href="#' . $option_key . '" data-index="' . $error_meta["index"] . '">';
-					$html .= $error_meta['name'];
+					$html .= '<a class="nsr-validation-error" href="#' . $option_key . '" data-index="' . $error_meta->index . '">';
+					$html .= $error_meta->name;
 					$html .= '</a>';
 					$html .= '</p>';
 
@@ -604,56 +467,31 @@ class nsr_menu {
 	 */
 	public function reset_options() {
 
-		if( !wp_verify_nonce( $_REQUEST['nonce'], "reset_" . $_REQUEST['section'] . "_nonce" ) ) {
-			exit(__( "One more try and your browser will burst into flames ;-)", $this->domain ));
+		if( ! wp_verify_nonce( $_REQUEST['nonce'], 'reset_' . $_REQUEST['section'] . '_nonce' ) ) {
+			exit( __( 'One more try and your browser will burst into flames ;-)', $this->domain ) );
 		}
 
-		if( isset($_REQUEST['section']) && $_REQUEST['section'] !== 'all' ) {
+		// Resets the requested section.
+		if( isset( $_REQUEST['section'] ) ) {
 
 			$settings_section = $_REQUEST['section'];
 
-			// Resets the requested section.
 			if( true === $this->options->reset_settings( $settings_section ) ) {
 
 				$response = array(
-					'success' => __( "All done! Please refresh the page for the settings to take effect.", $this->domain ),
+					'success' => __( 'All done! Please refresh the page for the settings to take effect.', $this->domain ),
 				);
 				wp_send_json_success( $response );
-			} else {
-
-				$response = array(
-					'success' => __( "Couldn't reset the settings. Please try again.", $this->domain ),
-				);
-				wp_send_json_error( $response );
 			}
-		} else {
-
-			// Resets all sections.
-			if( true === $this->options->reset_settings() ) {
+			else {
 
 				$response = array(
-					'success' => __( "All done! Please refresh the page for the settings to take effect.", $this->domain ),
-				);
-				wp_send_json_success( $response );
-			} else {
-
-				$response = array(
-					'success' => __( "Couldn't reset the settings. Please try again.", $this->domain ),
+					'success' => __( 'Couldn\'t reset the settings. Please try again.', $this->domain ),
 				);
 				wp_send_json_error( $response );
 			}
 		}
-	}
 
-	/**
-	 * Retrieves the reference to the "plugin data" class.
-	 *
-	 * @since  0.1.0
-	 * @return object $Options
-	 */
-	public function get_plugin_options() {
-
-		return $this->options;
 	}
 
 	/**

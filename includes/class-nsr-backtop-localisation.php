@@ -8,7 +8,7 @@ if( ! defined( 'WPINC' ) ) {
 }
 
 /**
- * The class responsible for localizing the Nicescroll configuration file.
+ * The class responsible for localizing the backtop script.
  *
  * @link              https://github.com/demispatti/nicescrollr
  * @since             0.1.0
@@ -19,7 +19,7 @@ if( ! defined( 'WPINC' ) ) {
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  */
-class nsr_nicescroll_localisation {
+class nsr_backtop_localisation {
 
 	/**
 	 * The domain of the plugin.
@@ -86,14 +86,24 @@ class nsr_nicescroll_localisation {
 	 */
 	public function run( $view ) {
 
-		$this->localize_nicescroll( $view );
+		$this->localize_backtop( $view );
 	}
 
 	/**
-	 * Retrieves the options per requested view from the database
-	 * and removes the determined prefix so that
-	 * the option keys correspond to the naming conventions of the Nicescroll library.
-	 * it contains a fallback to prevent "undefined"-errors in the script that's to be localized.
+	 * Localzes the backtop script.
+	 * @since  0.1.0
+	 *
+	 * @param  string $view
+	 *
+	 * @return void
+	 */
+	private function localize_backtop( $view ) {
+
+		wp_localize_script( 'nicescrollr-backtop-js', 'nsr_options', $this->get_backtop_configuration( $view ) );
+	}
+
+	/**
+	 * Retrieves the options for the backtop functionality.
 	 *
 	 * @since  0.1.0
 	 *
@@ -101,27 +111,13 @@ class nsr_nicescroll_localisation {
 	 *
 	 * @return array
 	 */
-	public function get_nicescroll_configuration( $view ) {
+	public function get_backtop_configuration( $view ) {
 
 		$configuration = (array) $this->options->get_options( $view );
-
 		// Add the value which defines the view ( front- or backend) to the config-array.
 		$configuration['view'] = $view;
 
 		return $configuration;
-	}
-
-	/**
-	 * Localzes the Nicescroll instance.
-	 * @since  0.1.0
-	 *
-	 * @param  string $view
-	 *
-	 * @return void
-	 */
-	private function localize_nicescroll( $view ) {
-
-		wp_localize_script( 'nicescrollr-nicescroll-js', 'nsr_options', $this->get_nicescroll_configuration( $view ) );
 	}
 
 	/**

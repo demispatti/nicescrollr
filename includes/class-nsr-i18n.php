@@ -3,7 +3,7 @@
 /**
  * If this file is called directly, abort.
  */
-if ( ! defined( 'WPINC' ) ) {
+if( ! defined( 'WPINC' ) ) {
 	die;
 }
 
@@ -34,6 +34,7 @@ class nsr_i18n {
 	 * Sets the domain equal to that of the specified domain.
 	 *
 	 * @since 0.1.0
+	 *
 	 * @param string $domain
 	 */
 	public function set_domain( $domain ) {

@@ -14,11 +14,14 @@
  * @wordpress-plugin
  * Plugin Name:       Nicescrollr
  * Plugin URI:        https://wordpress.org/plugins/nicescrollr/
- * Description:       This plugin brings the "Nicescroll" library to your website. You can use it on both the frontend and the backend. It is fully customizable, so you can tweak and tune every single parameter Nicescroll has to offer! You can style it totally different for both parts of your website. You can even keep the default scrollbar if you like. It's all up to you.
- * Version:           0.5.0
- * Stable tag:        0.5.0
- * Author:            Demis Patti <demispatti@gmail.com>
- * Author URI:        https://demispatti.ch
+ * Description:       This plugin is a wrapper for the popular "Nicescroll" javascript library, which is made by <a href="https://wordpress.org/support/users/inuyaksa/" target="_blank">InuYaksa</a>. You can use it on both the frontend and the backend. It is fully customizable, so you can tweak and tune every single parameter Nicescroll has to offer! You can style it totally different for both parts of your website. You can even keep the default scrollbar if you like. It's all up to you.
+ * Version:           0.6.0
+ * Stable tag:        0.6.0
+ * Requires at least: 4.6
+ * Tested up to:      4.9.6
+ * Requires PHP:      5.4
+ * Author:            demispatti
+ * Author URI:
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       nicescrollr
@@ -28,7 +31,7 @@
 /**
  * If this file is called directly, abort.
  */
-if( !defined( 'WPINC' ) ) {
+if( ! defined( 'WPINC' ) ) {
 	die;
 }
 
@@ -76,8 +79,8 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-nsr.php';
  */
 function run_nsr() {
 
-	$Plugin = new nsr();
-	$Plugin->run();
+	$plugin = new nsr();
+	$plugin->run();
 }
 
-run_nsr();
+add_action( 'plugins_loaded', 'run_nsr' );

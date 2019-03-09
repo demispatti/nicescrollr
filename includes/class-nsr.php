@@ -3,7 +3,7 @@
 /**
  * If this file is called directly, abort.
  */
-if ( ! defined( 'WPINC' ) ) {
+if( ! defined( 'WPINC' ) ) {
 	die;
 }
 
@@ -14,7 +14,7 @@ if ( ! defined( 'WPINC' ) ) {
  * @since             0.1.0
  * @package           nicescrollr
  * @subpackage        nicescrollr/includes
- * Author:            Demis Patti <demis@demispatti.ch>
+ * Author:            demispatti <demis@demispatti.ch>
  * Author URI:        http://demispatti.ch
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
@@ -33,6 +33,35 @@ class nsr {
 	private $domain;
 
 	/**
+	 * Defines the core functionality of the plugin.
+	 *
+	 * @since  0.1.0
+	 * @return void
+	 */
+	public function __construct() {
+
+		$this->domain = 'nicescrollr';
+
+		$this->load_dependencies();
+		$this->set_locale();
+	}
+
+	/**
+	 * Loads it's dependencies.
+	 *
+	 * @since  0.1.0
+	 * @access private
+	 */
+	private function load_dependencies() {
+
+		require_once plugin_dir_path( __DIR__ ) . 'includes/class-nsr-i18n.php';
+
+		require_once plugin_dir_path( __DIR__ ) . 'admin/class-nsr-admin.php';
+
+		require_once plugin_dir_path( __DIR__ ) . 'public/class-nsr-public.php';
+	}
+
+	/**
 	 * Defines the locale for this plugin.
 	 *
 	 * @since  0.1.0
@@ -49,36 +78,6 @@ class nsr {
 	}
 
 	/**
-	 * Defines the core functionality of the plugin.
-	 *
-	 * @since  0.1.0
-	 * @return void
-	 */
-	public function __construct() {
-
-		$this->domain = 'nicescrollr';
-		$this->load_dependencies();
-		$this->set_locale();
-	}
-
-	/**
-	 * Loads it's dependencies.
-	 *
-	 * @since  0.1.0
-	 * @access private
-	 */
-	private function load_dependencies() {
-		// The class responsible for defining internationalization functionality of the plugin.
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-nsr-i18n.php';
-
-		// The class responsible for defining all actions that occur in the admin area.
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-nsr-admin.php';
-
-		// The class responsible for defining all actions that occur in the public-facing side of the site.
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-nsr-public.php';
-	}
-
-	/**
 	 * Creates an instance and registers all hooks related to the admin part.
 	 *
 	 * @since  0.1.0
@@ -87,12 +86,8 @@ class nsr {
 	 */
 	private function define_admin_hooks() {
 
-		$Admin = new nsr_admin( $this->get_domain() );
-
-		add_action( 'admin_enqueue_scripts', array( $Admin, 'add_hooks' ) );
-		add_action( 'admin_enqueue_scripts', array( $Admin, 'enqueue_scripts' ), 20 );
-		add_action( 'admin_enqueue_scripts', array( $Admin, 'initialize_localisation' ), 100 );
-		add_filter( 'plugin_row_meta', array( $Admin, 'plugin_row_meta' ), 10, 2 );
+		$admin = new nsr_admin( $this->get_domain() );
+		$admin->add_hooks();
 	}
 
 	/**
@@ -104,10 +99,8 @@ class nsr {
 	 */
 	private function define_public_hooks() {
 
-		$Public = new nsr_public( $this->get_domain() );
-
-		add_action( 'wp_enqueue_scripts', array( $Public, 'enqueue_scripts' ), 20 );
-		add_action( 'wp_enqueue_scripts', array( $Public, 'initialize_localisation' ), 21 );
+		$public = new nsr_public( $this->get_domain() );
+		$public->add_hooks();
 	}
 
 	/**

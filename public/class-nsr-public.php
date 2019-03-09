@@ -3,7 +3,7 @@
 /**
  * If this file is called directly, abort.
  */
-if ( ! defined( 'WPINC' ) ) {
+if( ! defined( 'WPINC' ) ) {
 	die;
 }
 
@@ -55,14 +55,33 @@ class nsr_public {
 	 *
 	 * @since  0.1.0
 	 * @access private
-	 * @var    object $nicescroll_localisation
+	 * @var    nsr_nicescroll_localisation $nicescroll_localisation
 	 */
 	private $nicescroll_localisation;
+
+	/**
+	 * The reference to the localisation class.
+	 *
+	 * @since  0.1.0
+	 * @access private
+	 * @var    nsr_backtop_localisation $backtop_localisation
+	 */
+	private $backtop_localisation;
+
+	/**
+	 * The array that holds the stored option.
+	 *
+	 * @since  0.5.2
+	 * @access private
+	 * @var    array $settings
+	 */
+	private $settings;
 
 	/**
 	 * Initializes the public part of the plugin.
 	 *
 	 * @since 0.1.0
+	 *
 	 * @param array $app
 	 */
 	public function __construct( $domain ) {
@@ -70,7 +89,22 @@ class nsr_public {
 		$this->domain = $domain;
 
 		$this->load_dependencies();
-		$this->check_for_options();
+
+		$this->settings = $this->options->get_options();
+	}
+
+	/**
+	 * Register the hooks with WordPress.
+	 *
+	 * @since  0.5.2
+	 *
+	 * @return void
+	 */
+	public function add_hooks() {
+
+		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_styles' ), 20 );
+		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ), 20 );
+		add_action( 'wp_enqueue_scripts', array( $this, 'initialize_localisation' ), 21 );
 	}
 
 	/**
@@ -82,32 +116,29 @@ class nsr_public {
 	 */
 	private function load_dependencies() {
 
-		// The class that holds all plugin-related data.
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . "admin/menu/includes/class-nsr-options.php";
+		require_once plugin_dir_path( __DIR__ ) . 'admin/menu/includes/class-nsr-options.php';
 		$this->options = new nsr_options( $this->get_domain() );
 
-		// The class responsible for passing the configuration to this plugin's instance of Nicescroll.
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-nsr-nicescroll-localisation.php';
+		require_once plugin_dir_path( __DIR__ ) . 'includes/class-nsr-nicescroll-localisation.php';
 		$this->nicescroll_localisation = new nsr_nicescroll_localisation( $this->get_domain() );
+
+		require_once plugin_dir_path( __DIR__ ) . 'includes/class-nsr-backtop-localisation.php';
+		$this->backtop_localisation = new nsr_backtop_localisation( $this->get_domain() );
 	}
 
 	/**
-	 * Checks for options in the database and seeds the default values for the frontend if the options group should be empty.
+	 * Registers the styles for the admin menu.
 	 *
 	 * @hooked_action
 	 *
 	 * @since  0.1.0
-	 * @uses   seed_default_options()
-	 * @see    admin/menu/includes/class-nsr-options.php
 	 * @return void
 	 */
-	public function check_for_options() {
+	public function enqueue_styles() {
 
-		$options = get_option( 'nicescrollr_options' );
+		if( isset( $this->settings['frontend']['bt_enabled'] ) && $this->settings['frontend']['bt_enabled'] ) {
 
-		if( !is_array( $options['frontend'] ) ) {
-
-			$this->options->seed_options( 'frontend' );
+			wp_enqueue_style( 'nicescrollr-backtop-css', plugin_dir_url( __FILE__ ) . '../assets/backtop.css', array(), 'all' );
 		}
 	}
 
@@ -121,43 +152,43 @@ class nsr_public {
 	 */
 	public function enqueue_scripts() {
 
-
-		$option = get_option( 'nicescrollr_options' );
-
 		// We only enqueue these scripts if Nicescroll is enabled in the frontend.
-		if( isset($option[ $this->view ]['enabled']) && $option[ $this->view ]['enabled'] ) {
+		if( isset( $this->settings[$this->view]['enabled'] ) && $this->settings[$this->view]['enabled'] ) {
 
-			// jQuery easing
-			wp_enqueue_script(
-				'nicescrollr-cb-parallax-easing-min-js',
-				plugin_dir_url( __FILE__ ) . '../vendor/jquery-easing/jquery.easing.min.js',
-				array( 'jquery' ),
-				'all',
-				false
-			);
+			// jQuery Easing
+			$easing_url = 'https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js';
+			$easing_cdn = wp_remote_get( $easing_url );
+			if( (int) wp_remote_retrieve_response_code( $easing_cdn ) !== 200 ) {
 
-			// Nicescroll library
-			wp_enqueue_script(
-				'nicescrollr-inc-nicescroll-min-js',
-				plugin_dir_url( __FILE__ ) . '../vendor/nicescroll/jquery.nicescroll.min.js',
-				array(
-					'jquery',
-					'nicescrollr-cb-parallax-easing-min-js'
-				),
-				'all',
-				false
-			);
-			// Nicescroll configuration file
-			wp_enqueue_script(
-				'nicescrollr-nicescroll-js',
-				plugin_dir_url( __FILE__ ) . '../js/nicescroll.js',
-				array(
+				$easing_url = plugin_dir_url( __FILE__ ) . '../vendor/jquery-easing/jquery.easing.min.js';
+			}
+			wp_enqueue_script( 'nicescrollr-easing-min-js', $easing_url, array( 'jquery' ), 'all' );
+
+			// Nicescroll Library
+			$nice_url = 'https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js';
+			$nice_cdn = wp_remote_get( $nice_url );
+			if( (int) wp_remote_retrieve_response_code( $nice_cdn ) !== 200 ) {
+
+				$nice_url = plugin_dir_url( __FILE__ ) . '../vendor/nicescroll/jquery.nicescroll.min.js';
+			}
+			wp_enqueue_script( 'nicescrollr-inc-nicescroll-min-js', $nice_url, array(
+				'jquery',
+				'nicescrollr-easing-min-js'
+			), 'all' );
+
+			// Nicescroll Configuration File
+			wp_enqueue_script( 'nicescrollr-nicescroll-js', plugin_dir_url( __FILE__ ) . '../assets/nicescroll.js', array(
 					'jquery',
 					'nicescrollr-inc-nicescroll-min-js',
-				),
-				'all',
-				false
-			);
+				), 'all' );
+		}
+
+		if( isset( $this->settings['frontend']['bt_enabled'] ) && $this->settings['frontend']['bt_enabled'] ) {
+
+			// Backtop
+			wp_enqueue_script( 'nicescrollr-backtop-js', plugin_dir_url( __FILE__ ) . '../assets/backtop.js', array(
+					'jquery',
+				), 'all' );
 		}
 	}
 
@@ -171,12 +202,11 @@ class nsr_public {
 	 */
 	public function initialize_localisation() {
 
-		// Gets executed if Nicescroll is enabled in the frontend.
-		$option = get_option( 'nicescrollr_options' );
-
-		if( isset($option[ $this->view ]['enabled']) && $option[ $this->view ]['enabled'] ) {
-
-			$this->localize_view();
+		if( isset( $this->settings[$this->view]['enabled'] ) && $this->settings[$this->view]['enabled'] ) {
+			$this->localize_nicescroll();
+		}
+		if( isset( $this->settings[$this->view]['bt_enabled'] ) && $this->settings[$this->view]['bt_enabled'] ) {
+			$this->localize_backtop();
 		}
 	}
 
@@ -189,9 +219,14 @@ class nsr_public {
 	 * @access private
 	 * @return void
 	 */
-	private function localize_view() {
+	private function localize_nicescroll() {
 
 		$this->nicescroll_localisation->run( $this->view );
+	}
+
+	private function localize_backtop() {
+
+		$this->backtop_localisation->run( $this->view );
 	}
 
 	/**

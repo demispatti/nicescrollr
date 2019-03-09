@@ -3,7 +3,7 @@
 /**
  * If this file is called directly, abort.
  */
-if ( ! defined( 'WPINC' ) ) {
+if( ! defined( 'WPINC' ) ) {
 	die;
 }
 
@@ -44,7 +44,7 @@ class nsr_deactivator {
 		$role = get_role( 'administrator' );
 
 		// The capability gets removed.
-		if( !empty($role) ) {
+		if( ! empty( $role ) ) {
 			$role->remove_cap( self::$capability );
 		}
 	}

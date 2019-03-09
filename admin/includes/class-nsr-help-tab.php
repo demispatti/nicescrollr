@@ -3,7 +3,7 @@
 /**
  * If this file is called directly, abort.
  */
-if ( ! defined( 'WPINC' ) ) {
+if( ! defined( 'WPINC' ) ) {
 	die;
 }
 
@@ -20,7 +20,7 @@ if ( ! defined( 'WPINC' ) ) {
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  */
 class nsr_help_tab {
-	
+
 	/**
 	 * The domain of the plugin.
 	 *
@@ -59,6 +59,7 @@ class nsr_help_tab {
 	 * and if so, it hooks the action to load the help tab.
 	 *
 	 * @param  $plugin_domain
+	 *
 	 * @return mixed | void
 	 */
 	public function __construct( $domain ) {
@@ -68,10 +69,22 @@ class nsr_help_tab {
 		$this->set_tab();
 
 		// We do only add the help tab on the plugin options page.
-		if( isset($_REQUEST['page']) && $_REQUEST['page'] == 'nicescrollr_settings' ) {
+		if( isset( $_REQUEST['page'] ) && $_REQUEST['page'] === 'nicescrollr_settings' ) {
 
 			add_action( "load-{$GLOBALS['pagenow']}", array( $this, 'add_nsr_help_tab' ), 15 );
 		}
+	}
+
+	/**
+	 * Register the hooks with WordPress.
+	 *
+	 * @since  0.5.2
+	 *
+	 * @return void
+	 */
+	public function add_hooks() {
+
+		add_action( 'in_admin_header', array( $this, 'add_nsr_help_tab' ), 15 );
 	}
 
 	/**
@@ -88,8 +101,8 @@ class nsr_help_tab {
 			$title = __( $data['title'], $this->domain );
 
 			get_current_screen()->add_help_tab( array(
-				'id'      => $id,
-				'title'   => __( $title, $this->domain ),
+				'id' => $id,
+				'title' => __( $title, $this->domain ),
 				'content' => $this->display_content_callback(),
 			) );
 		}
@@ -104,17 +117,15 @@ class nsr_help_tab {
 	 */
 	private function display_content_callback() {
 
-		$html = '<p>' . __( "This plugin integrates the Nicescroll jQuery plugin into your website.", $this->domain ) . '</p>';
+		$html = '<p>' . __( 'Nicescrollr integrates the Nicescroll jQuery library into your WordPress powered website.', $this->domain ) . '</p>';
 
-		$html .= '<p>' . __( "For help regarding Nicescroll itself, please refer to the <a href='http://areaaperta.com/nicescroll/' target='_blank'>official Nicescroll homepage</a>.", $this->domain ) . '</p>';
+		$html .= '<p>' . __( 'This plugin is a wrapper for the popular "Nicescroll" javascript library, which is made by <a href="https://wordpress.org/support/users/inuyaksa/" target="_blank">InuYaksa</a>. You can visit his official Nicescroll homepage <a href="https://www.areaaperta.com/nicescroll/" target="_blank">here</a>. An overview of the default parameters can be found on <a href="https://github.com/inuyaksa/jquery.nicescroll" target="_blank">Github</a> at the bottom of the page.', $this->domain );
 
-		$html .= '<br />';
+		$html .= '<p>' . __( "For help regarding 'Nicescroll', please refer to the official <a href='https://areaaperta.com/nicescroll/' target='_blank'>Nicescroll</a> website.", $this->domain ) . '</p>';
 
-		$html .= '<p>' . __( "For your convenience, the backTop library is included with this plugin. If your theme already comes with this functionality, you can disable the plugin's integrated feature on the 'Plugin' settings page.", $this->domain ) . '</p>';
+		$html .= '<p>' . __( "There are also optional 'back to top' buttons for both frontend and backend, which may come in handy. If your theme gets shipped with this functionality already, you can disable the plugin's integrated feature on the 'Plugin' settings page.", $this->domain ) . '</p>';
 
-		$html .= '<p>' . __( "Also, there is the scrollTo library included with this plugin. This makes it easy for you to navigate to those input fields that didn't pass validation. You can disable it on the 'Plugin' settings page.", $this->domain ) . '</p>';
-
-		$html .= '<p>' . __( "If you have any questions, comments or issues regarding this plugin, please visit the <a href='https://wordpress.org/plugins/nicescrollr/' target='_blank'>plugin homepage</a>.", $this->domain ) . '</p>';
+		$html .= '<p>' . __( "If you have any questions, comments or issues regarding 'Nicescrollr', please visit the <a href='https://wordpress.org/plugins/nicescrollr/' target='_blank'>Nicescrollr</a> plugin homepage.", $this->domain ) . '</p>';
 
 		return $html;
 	}

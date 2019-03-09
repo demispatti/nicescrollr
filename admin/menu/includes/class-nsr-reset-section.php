@@ -3,7 +3,7 @@
 /**
  * If this file is called directly, abort.
  */
-if ( ! defined( 'WPINC' ) ) {
+if( ! defined( 'WPINC' ) ) {
 	die;
 }
 
@@ -36,7 +36,9 @@ class nsr_reset_section {
 	 * Assigns the required parameter to its instance.
 	 *
 	 * @since 0.1.0
+	 *
 	 * @param $plugin_domain
+	 *
 	 * @return void
 	 */
 	public function __construct( $domain ) {
@@ -45,42 +47,19 @@ class nsr_reset_section {
 	}
 
 	/**
-	 * Returns the meta data for the reset buttons.
+	 * Echoes the html that defines the reset area and its content.
 	 *
 	 * @since  0.1.0
-	 * @access private
-	 * @return array $reset_buttons
+	 * @uses   get_section_heading()
+	 * @uses   get_table()
+	 * @return void / echo string $html
 	 */
-	private function reset_buttons() {
+	public function echo_section( $view ) {
 
-		$reset_buttons = array(
-			array(
-				'id'    => 'reset_frontend',
-				'class' => 'nsr-reset-button',
-				'name'  => __( 'Reset Frontend', $this->domain ),
-				'title' => __( 'Resets the settings for the frontend.', $this->domain ),
-			),
-			array(
-				'id'    => 'reset_backend',
-				'class' => 'nsr-reset-button',
-				'name'  => __( 'Reset Backend', $this->domain ),
-				'title' => __( 'Resets the settings for the backend.', $this->domain ),
-			),
-			array(
-				'id'    => 'reset_plugin',
-				'class' => 'nsr-reset-button',
-				'name'  => __( 'Reset Plugin', $this->domain ),
-				'title' => __( 'Resets the settings for the plugin.', $this->domain ),
-			),
-			array(
-				'id'    => 'reset_all',
-				'class' => 'nsr-reset-button',
-				'name'  => __( 'Reset All', $this->domain ),
-				'title' => __( 'Resets all Nicescrollr settings.', $this->domain ),
-			),
-		);
+		$html = $this->get_section_heading();
+		$html .= $this->get_table( $view );
 
-		return $reset_buttons;
+		echo $html;
 	}
 
 	/**
@@ -92,7 +71,7 @@ class nsr_reset_section {
 	 */
 	private function get_section_heading() {
 
-		return '<h2 class="lower nicescrollr_settings_toggle"><i class="fa fa-sliders" aria-hidden="true"></i>' . __( 'Reset Settings', $this->domain ) . '</h2>';
+		return '<h2 class="reset nicescrollr_settings_toggle"><i class="fa fa-sliders" aria-hidden="true"></i>' . __( 'Reset Settings', $this->domain ) . '</h2>';
 	}
 
 	/**
@@ -103,47 +82,62 @@ class nsr_reset_section {
 	 * @access private
 	 * @return string $html
 	 */
-	private function get_table() {
+	private function get_table( $view ) {
 
-		$html = '<table class="form-table upper-panel" style="display: inline-block;">';
+		$args = $this->get_reset_button_args( $view );
+
+		return $this->create_table( $args );
+	}
+
+	/**
+	 * Returns the meta data for the reset buttons.
+	 *
+	 * @since  0.1.0
+	 * @access private
+	 * @return array $reset_buttons
+	 */
+	private function get_reset_button_args( $view ) {
+
+		if( 'frontend' === $view ) {
+
+			return array(
+				'id' => 'reset_frontend',
+				'class' => 'nsr-reset-button',
+				'name' => __( 'Reset Frontend', $this->domain ),
+				'title' => __( 'Resets the settings for the frontend.', $this->domain ),
+			);
+		}
+
+		return array(
+			'id' => 'reset_backend',
+			'class' => 'nsr-reset-button',
+			'name' => __( 'Reset Backend', $this->domain ),
+			'title' => __( 'Resets the settings for the backend.', $this->domain ),
+		);
+	}
+
+	private function create_table( $args ) {
+
+		$html = '<table class="form-table reset-panel" style="display: inline-block;">';
 		$html .= '<tbody>';
 
-		foreach( $this->reset_buttons() as $id => $button ) {
+		$nonce = wp_create_nonce( $args['id'] . '_nonce' );
 
-			$nonce = wp_create_nonce( $button['id'] . "_nonce" );
-
-			$html .= '<tr>';
-			$html .= '<th scope="row">' . $button['name'] . '</th>';
-			$html .= '<td>';
-			$html .= '<div class="form-table-td-wrap">';
-			$html .= '<p class="nsr-input-container">';
-			$html .= '<a name="' . $button['id'] . '" id="' . $button['id'] . '" class="button button-secondary dp-button float-left ' . $button['class'] . '" title="' . $button['title'] . '" data-nonce="' . $nonce . '">' . __( 'Reset', $this->domain ) . '</a>';
-			$html .= '</p>';
-			$html .= '</div>';
-			$html .= '</td>';
-			$html .= '</tr>';
-		}
+		$html .= '<tr>';
+		$html .= '<th>' . $args['name'] . '</th>';
+		$html .= '<td>';
+		$html .= '<div class="form-table-td-wrap">';
+		$html .= '<p class="nsr-input-container">';
+		$html .= '<a name="' . $args['id'] . '" id="' . $args['id'] . '" class="button button-secondary dp-button float-left ' . $args['class'] . '" title="' . $args['title'] . '" data-nonce="' . $nonce . '">' . __( 'Reset', $this->domain ) . '</a>';
+		$html .= '</p>';
+		$html .= '</div>';
+		$html .= '</td>';
+		$html .= '</tr>';
 
 		$html .= '</tbody>';
 		$html .= '</table>';
 
 		return $html;
-	}
-
-	/**
-	 * Echoes the html that defines the reset area and its content.
-	 *
-	 * @since  0.1.0
-	 * @uses   get_section_heading()
-	 * @uses   get_table()
-	 * @return void / echo string $html
-	 */
-	public function echo_section() {
-
-		$html = $this->get_section_heading();
-		$html .= $this->get_table();
-
-		echo $html;
 	}
 
 }

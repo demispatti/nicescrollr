@@ -3,7 +3,7 @@
 /**
  * If this file is called directly, abort.
  */
-if ( ! defined( 'WPINC' ) ) {
+if( ! defined( 'WPINC' ) ) {
 	die;
 }
 
@@ -36,6 +36,7 @@ class nsr_ajax_localisation {
 	 * Assigns the required parameters to its instance.
 	 *
 	 * @since 0.1.0
+	 *
 	 * @param $plugin_name
 	 * @param $plugin_domain
 	 */
@@ -77,7 +78,7 @@ class nsr_ajax_localisation {
 	 */
 	private function get_reset_frontend_confirmation_heading() {
 
-		$string = __( "Reset", $this->domain );
+		$string = __( 'Reset', $this->domain );
 
 		return $string;
 	}
@@ -91,7 +92,7 @@ class nsr_ajax_localisation {
 	 */
 	private function get_reset_backend_confirmation_heading() {
 
-		$string = __( "Reset", $this->domain );
+		$string = __( 'Reset', $this->domain );
 
 		return $string;
 	}
@@ -105,7 +106,7 @@ class nsr_ajax_localisation {
 	 */
 	private function get_reset_plugin_confirmation_heading() {
 
-		$string = __( "Reset", $this->domain );
+		$string = __( 'Reset', $this->domain );
 
 		return $string;
 	}
@@ -119,7 +120,7 @@ class nsr_ajax_localisation {
 	 */
 	private function get_reset_all_confirmation_heading() {
 
-		$string = __( "Reset", $this->domain );
+		$string = __( 'Reset', $this->domain );
 
 		return $string;
 	}
@@ -175,7 +176,7 @@ class nsr_ajax_localisation {
 	 */
 	private function get_reset_all_confirmation_text() {
 
-		$confirm_reset = __( "This resets all Nicescrollr settings to their defaults. Continue?", $this->domain );
+		$confirm_reset = __( 'This resets all Nicescrollr settings to their defaults. Continue?', $this->domain );
 
 		return $confirm_reset;
 	}
@@ -190,14 +191,14 @@ class nsr_ajax_localisation {
 
 		$texts = array(
 			'resetFrontendConfirmationHeading' => $this->get_reset_frontend_confirmation_heading(),
-			'resetBackendConfirmationHeading'  => $this->get_reset_backend_confirmation_heading(),
-			'resetPluginConfirmationHeading'   => $this->get_reset_plugin_confirmation_heading(),
-			'resetAllConfirmationHeading'      => $this->get_reset_all_confirmation_heading(),
+			'resetBackendConfirmationHeading' => $this->get_reset_backend_confirmation_heading(),
+			'resetPluginConfirmationHeading' => $this->get_reset_plugin_confirmation_heading(),
+			'resetAllConfirmationHeading' => $this->get_reset_all_confirmation_heading(),
 
 			'resetFrontendConfirmation' => $this->get_reset_frontend_confirmation_text(),
-			'resetBackendConfirmation'  => $this->get_reset_backend_confirmation_text(),
-			'resetPluginConfirmation'   => $this->get_reset_plugin_confirmation_text(),
-			'resetAllConfirmation'      => $this->get_reset_all_confirmation_text(),
+			'resetBackendConfirmation' => $this->get_reset_backend_confirmation_text(),
+			'resetPluginConfirmation' => $this->get_reset_plugin_confirmation_text(),
+			'resetAllConfirmation' => $this->get_reset_all_confirmation_text(),
 		);
 
 		return $texts;
@@ -212,7 +213,7 @@ class nsr_ajax_localisation {
 	public function get_confirmation_dialog_labels() {
 
 		$labels = array(
-			'okiDoki'   => __( 'ok', $this->domain ),
+			'okiDoki' => __( 'ok', $this->domain ),
 			'noWayJose' => __( 'cancel', $this->domain ),
 		);
 

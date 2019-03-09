@@ -3,7 +3,7 @@
 /**
  * If this file is called directly, abort.
  */
-if ( ! defined( 'WPINC' ) ) {
+if( ! defined( 'WPINC' ) ) {
 	die;
 }
 
@@ -37,66 +37,56 @@ class nsr_validation {
 	 *
 	 * @since  0.1.0
 	 * @access private
-	 * @var    object $options
+	 * @var    nsr_options $options
 	 */
 	private $options;
-
-	/**
-	 * The name of the section to be validated.
-	 *
-	 * @since  0.1.0
-	 * @access private
-	 * @var    string $section
-	 */
-	private $section;
 
 	/**
 	 * Assigns the required parameters to its instance.
 	 *
 	 * @since 0.1.0
 	 *
-     * @param array  $domain
-	 * @param object $options
+	 * @param string $domain
+	 * @param nsr_options $options
 	 * @param string $section
 	 */
-	public function __construct( $domain, $options, $section = false ) {
+	public function __construct( $domain, $options, $section ) {
 
-		$this->domain  = $domain;
+		$this->domain = $domain;
 		$this->options = $options;
-		$this->section = $section;
 	}
 
 	/**
 	 * Kicks off sanitisation and validation - if there's any input given.
 	 *
 	 * @since  0.1.0
+	 *
 	 * @param  array $input
+	 *
 	 * @return mixed
 	 */
 	public function run( $input, $section ) {
 
-		if( isset( $input ) && false === $section || isset( $_SESSION['cb_parallax_upgrade'] ) || isset( $input['internal'] ) ) {
+		if( isset( $_SESSION['cb_parallax_upgrade'] ) || isset( $input['internal'] ) ) {
 
-			$output = $input;
-
-			return $output;
-		} else if( isset($input) && isset($section) ) {
-
-			$input = $this->sanitize( $input );
-			$valid = $this->validate( $input, $section );
-
-			return $this->merge_options( $valid, $section );
-		} else {
-
-			return true;
+			return $input;
 		}
+
+		$input = $this->sanitize( $input );
+		$valid = $this->validate( $input, $section );
+
+		$valid = $this->fill( $valid, $section );
+
+		return $this->merge_options( $valid, $section );
 	}
 
 	/**
 	 * Sanitizes the input.
 	 *
 	 * @since  0.1.0
+	 *
 	 * @param  array $input
+	 *
 	 * @return array $output
 	 */
 	private function sanitize( $input ) {
@@ -105,8 +95,8 @@ class nsr_validation {
 
 		foreach( $input as $key => $value ) {
 
-			if( isset ($input[ $key ]) ) {
-				$output[ $key ] = strip_tags( stripslashes( $value ) );
+			if( isset ( $input[$key] ) ) {
+				$output[$key] = strip_tags( stripslashes( $value ) );
 			}
 		}
 
@@ -117,76 +107,79 @@ class nsr_validation {
 	 * Validates the input.
 	 *
 	 * since  0.1.0
-	 * @uses   get_default_options()
+	 * @uses   get_default_settings()
 	 * @see    admin/menu/includes/class-nsr-options.php
 	 * @uses   translate_to_default_locale()
+	 *
 	 * @param  array $input
+	 *
 	 * @return array $output
 	 */
 	private function validate( $input, $section ) {
 
-		$defaults = $this->options->get_default_options( $section );
+		$defaults = (array) $this->options->get_default_settings( $section );
 		$notice_levels = $this->options->get_notice_levels();
 		$output = array();
 		$errors = array();
+		$validation_value = null;
 
 		$i = 0;
 		foreach( $input as $option_key => $value ) {
 
 			switch( $option_key ) {
 
-				case ($option_key === 'cursorcolor');
+				case ( $option_key === 'cursorcolor' );
 
-					if( !preg_match( '/^#[a-f0-9]{3,6}$/i', $value ) ) {
+					if( ! preg_match( '/^#[a-f0-9]{3,6}$/i', $value ) ) {
 
-						$value = $defaults[ $option_key ];
-						$errors[ $option_key ] = array(
-							'option_key'   => $option_key,
-							'name'         => ucfirst( $option_key ),
-							'index'        => $i,
-							'notice_level' => $notice_levels[ $option_key ],
-							'message'      => $this->cursorcolor_error_message(),
+						$value = $defaults[$option_key];
+						$errors[$option_key] = array(
+							'option_key' => $option_key,
+							'name' => $this->make_readable( $option_key ),
+							'index' => $i,
+							'notice_level' => $notice_levels[$option_key],
+							'message' => $this->cursorcolor_error_message(),
 						);
 					}
 
 					break;
 
-				case ($option_key === 'cursoropacitymin');
+				case ( $option_key === 'cursoropacitymin' );
 
 					if( $value !== '' ) {
 
-						if( !preg_match( '/^[0-9]+(\.[0-9]{1,2})?$/', $value ) || (!((int) $value >= 0) && !((int) $value <= 1.00)) ) {
+						if( ( ! ( (int) $value >= 0 ) && ! ( (int) $value <= 1.00 ) ) || ! preg_match( '/^[0-9]+(\.[0-9]{1,2})?$/', $value ) ) {
 
 							$value = '0';
-							$errors[ $option_key ] = array(
-								'option_key'   => $option_key,
-								'name'         => ucfirst( $option_key ),
-								'index'        => $i,
-								'notice_level' => $notice_levels[ $option_key ],
-								'message'      => $this->cursoropacitymin_error_message(),
+							$errors[$option_key] = array(
+								'option_key' => $option_key,
+								'name' => $this->make_readable( $option_key ),
+								'index' => $i,
+								'notice_level' => $notice_levels[$option_key],
+								'message' => $this->cursoropacitymin_error_message(),
 							);
 						}
 					}
 
 					break;
 
-				case ($option_key === 'cursoropacitymax');
+				case ( $option_key === 'cursoropacitymax' );
 
-					if( !preg_match( '/^[0-9]+(\.[0-9]{1,2})?$/', $value ) || (!((int) $value >= 0) && !((int) $value <= 1.00)) ) {
+					if( ( ! ( (int) $value >= 0 ) && ! ( (int) $value <= 1.00 ) ) || ! preg_match( '/^[0-9]+(\.[0-9]{1,2})?$/', $value ) ) {
 
-						$value = $defaults[ $option_key ];
-						$errors[ $option_key ] = array(
-							'option_key'   => $option_key,
-							'name'         => ucfirst( $option_key ),
-							'index'        => $i,
-							'notice_level' => $notice_levels[ $option_key ],
-							'message'      => $this->cursoropacitymax_error_message(),
+						$value = $defaults[$option_key];
+						$errors[$option_key] = array(
+							'option_key' => $option_key,
+							'name' => $this->make_readable( $option_key ),
+							'index' => $i,
+							'notice_level' => $notice_levels[$option_key],
+							'message' => $this->cursoropacitymax_error_message(),
 						);
 					}
 
 					break;
 
-				case ($option_key === 'cursorwidth');
+				case ( $option_key === 'cursorwidth' );
 
 					// Pattern to remove any reasonable unit for pixels.
 					$pattern = '/pixels+|pixel+|px+/i';
@@ -197,24 +190,25 @@ class nsr_validation {
 						$value = trim( $value );
 					}
 					// If the value is not an integer after removing any reasonable unit for pixels...
-					if( !ctype_digit( $value ) ) {
+					if( ! ctype_digit( $value ) ) {
 
-						$value = $defaults[ $option_key ];
-						$errors[ $option_key ] = array(
-							'option_key'   => $option_key,
-							'name'         => ucfirst( $option_key ),
-							'index'        => $i,
-							'notice_level' => $notice_levels[ $option_key ],
-							'message'      => $this->cursorwidth_error_message(),
+						$value = $defaults[$option_key];
+						$errors[$option_key] = array(
+							'option_key' => $option_key,
+							'name' => $this->make_readable( $option_key ),
+							'index' => $i,
+							'notice_level' => $notice_levels[$option_key],
+							'message' => $this->cursorwidth_error_message(),
 						);
-					} else if( ctype_digit( $value ) && $value != 0 ) {
+					}
+					else if( $value !== 0 && ctype_digit( $value ) ) {
 						// The value is an integer, and it gets the unit added again.
-						$value = $value . 'px';
+						$value = $this->set_unit( $option_key, $value, 'px' );
 					}
 
 					break;
 
-				case ($option_key === 'cursorborderwidth');
+				case ( $option_key === 'cursorborderwidth' );
 
 					// Pattern to remove any reasonable unit for pixels.
 					$pattern = '/pixels+|pixel+|px+/i';
@@ -225,40 +219,41 @@ class nsr_validation {
 						$value = trim( $value );
 					}
 					// If the value is not an integer after removing any reasonable unit for pixels...
-					if( !ctype_digit( $value ) ) {
+					if( ! ctype_digit( $value ) ) {
 
-						$value = $defaults[ $option_key ];
-						$errors[ $option_key ] = array(
-							'option_key'   => $option_key,
-							'name'         => ucfirst( $option_key ),
-							'index'        => $i,
-							'notice_level' => $notice_levels[ $option_key ],
-							'message'      => $this->cursorborderwidth_error_message(),
+						$value = $defaults[$option_key];
+						$errors[$option_key] = array(
+							'option_key' => $option_key,
+							'name' => $this->make_readable( $option_key ),
+							'index' => $i,
+							'notice_level' => $notice_levels[$option_key],
+							'message' => $this->cursorborderwidth_error_message(),
 						);
-					} else if( ctype_digit( $value ) && $value != 0 ) {
+					}
+					else if( $value !== 0 && ctype_digit( $value ) ) {
 						// The value is an integer, and it gets the unit added again.
-						$value = $value . 'px';
+						$value = $this->set_unit( $option_key, $value, 'px' );
 					}
 
 					break;
 
-				case ($option_key === 'cursorbordercolor');
+				case ( $option_key === 'cursorbordercolor' );
 
-					if( isset($value) && !preg_match( '/^#[a-f0-9]{3,6}$/i', $value ) ) {
+					if( isset( $value ) && ! preg_match( '/^#[a-f0-9]{3,6}$/i', $value ) ) {
 
-						$value = $defaults[ $option_key ];
-						$errors[ $option_key ] = array(
-							'option_key'   => $option_key,
-							'name'         => ucfirst( $option_key ),
-							'index'        => $i,
-							'notice_level' => $notice_levels[ $option_key ],
-							'message'      => $this->cursorbordercolor_error_message(),
+						$value = $defaults[$option_key];
+						$errors[$option_key] = array(
+							'option_key' => $option_key,
+							'name' => $this->make_readable( $option_key ),
+							'index' => $i,
+							'notice_level' => $notice_levels[$option_key],
+							'message' => $this->cursorbordercolor_error_message(),
 						);
 					}
 
 					break;
 
-				case ($option_key === 'cursorborderradius');
+				case ( $option_key === 'cursorborderradius' );
 
 					// Pattern to remove any reasonable unit for pixels.
 					$pattern = '/pixels+|pixel+|px+/i';
@@ -269,91 +264,92 @@ class nsr_validation {
 						$value = trim( $value );
 					}
 					// If the value is not an integer after removing any reasonable unit for pixels...
-					if( !ctype_digit( $value ) ) {
+					if( ! ctype_digit( $value ) ) {
 
-						$value = $defaults[ $option_key ];
-						$errors[ $option_key ] = array(
-							'option_key'   => $option_key,
-							'name'         => ucfirst( $option_key ),
-							'index'        => $i,
-							'notice_level' => $notice_levels[ $option_key ],
-							'message'      => $this->cursorborderradius_error_message(),
+						$value = $defaults[$option_key];
+						$errors[$option_key] = array(
+							'option_key' => $option_key,
+							'name' => $this->make_readable( $option_key ),
+							'index' => $i,
+							'notice_level' => $notice_levels[$option_key],
+							'message' => $this->cursorborderradius_error_message(),
 						);
-					} else if( ctype_digit( $value ) && $value != 0 ) {
+					}
+					else if( $value !== 0 ) {
 						// The value is an integer, and it gets the unit added again.
-						$value = $value . 'px';
+						$value = $this->set_unit( $option_key, $value, 'px' );
 					}
 
 					break;
 
-				case($option_key === 'zindex');
+				case( $option_key === 'zindex' );
 
-					if( !ctype_digit( $value ) ) {
+					if( ! ctype_digit( $value ) ) {
 
-						if( !ctype_digit( ltrim( $value, '-' ) ) ) {
+						if( 'auto' !== $value ) {
 
-							$value = $defaults[ $option_key ];
-							$errors[ $option_key ] = array(
-								'option_key'   => $option_key,
-								'name'         => ucfirst( $option_key ),
-								'index'        => $i,
-								'notice_level' => $notice_levels[ $option_key ],
-								'message'      => $this->zindex_error_message(),
+							$value = $defaults[$option_key];
+							$errors[$option_key] = array(
+								'option_key' => $option_key,
+								'name' => $this->make_readable( $option_key ),
+								'index' => $i,
+								'notice_level' => $notice_levels[$option_key],
+								'message' => $this->zindex_error_message(),
 							);
 						}
 					}
 
 					break;
 
-				case ($option_key === 'scrollspeed');
+				case ( $option_key === 'scrollspeed' );
 
-					if( !ctype_digit( $value ) || $value === '0' ) {
+					if( $value === '0' || ! ctype_digit( $value ) ) {
 
-						$value = $defaults[ $option_key ];
-						$errors[ $option_key ] = array(
-							'option_key'   => $option_key,
-							'name'         => ucfirst( $option_key ),
-							'index'        => $i,
-							'notice_level' => $notice_levels[ $option_key ],
-							'message'      => $this->scrollspeed_error_message(),
+						$value = $defaults[$option_key];
+						$errors[$option_key] = array(
+							'option_key' => $option_key,
+							'name' => $this->make_readable( $option_key ),
+							'index' => $i,
+							'notice_level' => $notice_levels[$option_key],
+							'message' => $this->scrollspeed_error_message(),
 						);
 					}
 
 					break;
 
-				case($option_key === 'mousescrollstep');
+				case( $option_key === 'mousescrollstep' );
 
-					if( !ctype_digit( $value ) || $value === '0' ) {
+					if( $value === '0' || ! ctype_digit( $value ) ) {
 
-						$value = $defaults[ $option_key ];
-						$errors[ $option_key ] = array(
-							'option_key'   => $option_key,
-							'name'         => ucfirst( $option_key ),
-							'index'        => $i,
-							'notice_level' => $notice_levels[ $option_key ],
-							'message'      => $this->mousescrollstep_error_message(),
+						$value = $defaults[$option_key];
+						$errors[$option_key] = array(
+							'option_key' => $option_key,
+							'name' => $this->make_readable( $option_key ),
+							'index' => $i,
+							'notice_level' => $notice_levels[$option_key],
+							'message' => $this->mousescrollstep_error_message(),
 						);
 					}
 
 					break;
 
-				case ($option_key === 'background');
+				case ( $option_key === 'background' );
 
-					if( isset($value) && !preg_match( '/^#[a-f0-9]{3,6}$/i', $value ) ) {
+					if( '' !== $value && ! preg_match( '/^#[a-f0-9]{3,6}$/i', $value ) ) {
 
-						$value = $defaults[ $option_key ];
-						$errors[ $option_key ] = array(
-							'option_key'   => $option_key,
-							'name'         => ucfirst( $option_key ),
-							'index'        => $i,
-							'notice_level' => $notice_levels[ $option_key ],
-							'message'      => $this->background_error_message(),
+						$value = $defaults[$option_key];
+						$errors[$option_key] = array(
+							'option_key' => $option_key,
+							'name' => $this->make_readable( $option_key ),
+							'index' => $i,
+							'notice_level' => $notice_levels[$option_key],
+							'message' => $this->background_error_message(),
 						);
 					}
 
 					break;
 
-				case($option_key === 'cursorminheight');
+				case( $option_key === 'cursorminheight' );
 
 					if( $value !== '' ) {
 
@@ -366,61 +362,68 @@ class nsr_validation {
 							$value = trim( $value );
 						}
 						// If the value is not an integer after removing any reasonable unit for pixels...
-						if( !ctype_digit( $value ) ) {
+						if( ! ctype_digit( $value ) ) {
 
-							$value = $defaults[ $option_key ];
-							$errors[ $option_key ] = array(
-								'option_key'   => $option_key,
-								'name'         => ucfirst( $option_key ),
-								'index'        => $i,
-								'notice_level' => $notice_levels[ $option_key ],
-								'message'      => $this->cursorminheight_error_message(),
+							$value = $defaults[$option_key];
+							$errors[$option_key] = array(
+								'option_key' => $option_key,
+								'name' => $this->make_readable( $option_key ),
+								'index' => $i,
+								'notice_level' => $notice_levels[$option_key],
+								'message' => $this->cursorminheight_error_message(),
 							);
+						}
+						else {
+
+							$value = $this->set_unit( $option_key, $value, 'px' );
 						}
 					}
 
 					break;
 
-				case(($option_key === 'railpaddingtop') || ($option_key === 'railpaddingright') ||
-					($option_key === 'railpaddingbottom') || ($option_key === 'railpaddingleft'));
+				case( ( $option_key === 'railpaddingtop' ) || ( $option_key === 'railpaddingright' ) || ( $option_key === 'railpaddingbottom' ) || ( $option_key === 'railpaddingleft' ) );
 
 					if( $value !== '' ) {
 
-						if( !ctype_digit( $value ) ) {
+						if( ! ctype_digit( $value ) ) {
 
 							$value = '';
-							$errors[ $option_key ] = array(
-								'option_key'   => $option_key,
-								'name'         => ucfirst( $option_key ),
-								'index'        => $i,
-								'notice_level' => $notice_levels[ $option_key ],
-								'message'      => $this->railpadding_error_message(),
+							$errors[$option_key] = array(
+								'option_key' => $option_key,
+								'name' => $this->make_readable( $option_key ),
+								'index' => $i,
+								'notice_level' => $notice_levels[$option_key],
+								'message' => $this->railpadding_error_message(),
 							);
+						}
+						else {
+
+							$value = $this->set_unit( $option_key, $value, 'px' );
 						}
 					}
 
 					break;
 
-				case($option_key === 'hidecursordelay');
+				case( $option_key === 'hidecursordelay' );
 
 					if( $value !== '' ) {
 
-						if( !ctype_digit( $value ) ) {
+						if( ! ctype_digit( $value ) ) {
 
 							$value = '';
-							$errors[ $option_key ] = array(
-								'option_key'   => $option_key,
-								'name'         => ucfirst( $option_key ),
-								'index'        => $i,
-								'notice_level' => $notice_levels[ $option_key ],
-								'message'      => $this->hidecursordelay_error_message(),
+							$errors[$option_key] = array(
+								'option_key' => $option_key,
+								'name' => $this->make_readable( $option_key ),
+								'index' => $i,
+								'notice_level' => $notice_levels[$option_key],
+								'message' => $this->hidecursordelay_error_message(),
 							);
 						}
 					}
 
 					break;
 
-				case($option_key === 'directionlockdeadzone');
+				case( $option_key === 'directionlockdeadzone' );
 
 					if( $value !== '' ) {
 
@@ -429,56 +432,301 @@ class nsr_validation {
 						if( preg_match( $pattern, $value ) ) {
 
 							$value = preg_replace( $pattern, '', $value );
-
 							$value = trim( $value );
 						}
 						// If the value is not an integer after removing any reasonable unit for pixels...
-						if( !ctype_digit( $value ) ) {
+						if( ! ctype_digit( $value ) ) {
 
 							$value = '';
-							$errors[ $option_key ] = array(
-								'option_key'   => $option_key,
-								'name'         => ucfirst( $option_key ),
-								'index'        => $i,
-								'notice_level' => $notice_levels[ $option_key ],
-								'message'      => $this->directionlockdeadzone_error_message(),
+							$errors[$option_key] = array(
+								'option_key' => $option_key,
+								'name' => $this->make_readable( $option_key ),
+								'index' => $i,
+								'notice_level' => $notice_levels[$option_key],
+								'message' => $this->directionlockdeadzone_error_message(),
 							);
-						} else if( ctype_digit( $value ) && $value != 0 ) {
+						}
+						else if( $value !== 0 ) {
 							// The value is an integer, and it gets the unit added again.
-							$value = $value . 'px';
+							$value = $this->set_unit( $option_key, $value, 'px' );
 						}
 					}
 
 					break;
 
-				case($option_key === 'cursordragspeed');
+				case( $option_key === 'cursordragspeed' );
 
 					if( $value !== '' ) {
 
-						if( !preg_match( '/^[0-9]+(\.[0-9]{1,2})?$/', $value ) ) {
+						if( ! preg_match( '/^[0-9]+(\.[0-9]{1,2})?$/', $value ) ) {
 
 							$value = '';
-							$errors[ $option_key ] = array(
-								'option_key'   => $option_key,
-								'name'         => ucfirst( $option_key ),
-								'index'        => $i,
-								'notice_level' => $notice_levels[ $option_key ],
-								'message'      => $this->cursordragspeed_error_message(),
+							$errors[$option_key] = array(
+								'option_key' => $option_key,
+								'name' => $this->make_readable( $option_key ),
+								'index' => $i,
+								'notice_level' => $notice_levels[$option_key],
+								'message' => $this->cursordragspeed_error_message(),
 							);
+						}
+					}
+
+					break;
+
+				case( $option_key === 'scrollbarid' );
+
+					if( '' || false !== $value ) {
+
+						$value = $this->check_text_fields( $value );
+
+						if( is_wp_error( $value ) ) {
+
+							$value = '';
+							$errors[$option_key] = array(
+								'option_key' => $option_key,
+								'name' => $this->make_readable( $option_key ),
+								'index' => $i,
+								'notice_level' => $notice_levels[$option_key],
+								'message' => $this->scrollbarid_error_message(),
+							);
+						}
+					}
+
+					break;
+
+				case ( $option_key === 'bt_background_color' );
+
+					if( ! preg_match( '/^#[a-f0-9]{3,6}$/i', $value ) ) {
+
+						$value = $defaults[$option_key];
+						$errors[$option_key] = array(
+							'option_key' => $option_key,
+							'name' => $this->make_readable( $option_key ),
+							'index' => $i,
+							'notice_level' => $notice_levels[$option_key],
+							'message' => $this->bt_background_color_error_message(),
+						);
+					}
+
+					break;
+
+				case ( $option_key === 'bt_border_color' );
+
+					if( ! preg_match( '/^#[a-f0-9]{3,6}$/i', $value ) ) {
+
+						$value = $defaults[$option_key];
+						$errors[$option_key] = array(
+							'option_key' => $option_key,
+							'name' => $this->make_readable( $option_key ),
+							'index' => $i,
+							'notice_level' => $notice_levels[$option_key],
+							'message' => $this->bt_border_color_error_message(),
+						);
+					}
+
+					break;
+
+				case( $option_key === 'bt_border_width' );
+
+					if( $value !== '' ) {
+
+						// Pattern to remove any reasonable unit for pixels.
+						$pattern = '/pixels+|pixel+|px+/i';
+						if( preg_match( $pattern, $value ) ) {
+
+							$value = preg_replace( $pattern, '', $value );
+
+							$value = trim( $value );
+						}
+						// If the value is not an integer after removing any reasonable unit for pixels...
+						if( ! ctype_digit( $value ) ) {
+
+							$value = $defaults[$option_key];
+							$errors[$option_key] = array(
+								'option_key' => $option_key,
+								'name' => $this->make_readable( $option_key ),
+								'index' => $i,
+								'notice_level' => $notice_levels[$option_key],
+								'message' => $this->bt_border_width_error_message(),
+							);
+						}
+						else {
+
+							$value = $this->set_unit( $option_key, $value, 'px' );
+						}
+					}
+
+					break;
+
+				case( $option_key === 'bt_width' );
+
+					if( $value !== '' ) {
+
+						// Pattern to remove any reasonable unit for pixels.
+						$pattern = '/pixels+|pixel+|px+/i';
+						if( preg_match( $pattern, $value ) ) {
+
+							$value = preg_replace( $pattern, '', $value );
+							$value = trim( $value );
+						}
+						// If the value is not an integer after removing any reasonable unit for pixels...
+						if( ! ctype_digit( $value ) ) {
+
+							$value = $defaults[$option_key];
+							$errors[$option_key] = array(
+								'option_key' => $option_key,
+								'name' => $this->make_readable( $option_key ),
+								'index' => $i,
+								'notice_level' => $notice_levels[$option_key],
+								'message' => $this->bt_width_error_message(),
+							);
+						}
+						else {
+
+							$value = $this->set_unit( $option_key, $value, 'px' );
+						}
+					}
+
+					break;
+
+				case( $option_key === 'bt_height' );
+
+					if( $value !== '' ) {
+
+						// Pattern to remove any reasonable unit for pixels.
+						$pattern = '/pixels+|pixel+|px+/i';
+						if( preg_match( $pattern, $value ) ) {
+
+							$value = preg_replace( $pattern, '', $value );
+							$value = trim( $value );
+						}
+						// If the value is not an integer after removing any reasonable unit for pixels...
+						if( ! ctype_digit( $value ) ) {
+
+							$value = $defaults[$option_key];
+							$errors[$option_key] = array(
+								'option_key' => $option_key,
+								'name' => $this->make_readable( $option_key ),
+								'index' => $i,
+								'notice_level' => $notice_levels[$option_key],
+								'message' => $this->bt_height_error_message(),
+							);
+						}
+						else {
+
+							$value = $this->set_unit( $option_key, $value, 'px' );
+						}
+					}
+
+					break;
+
+				case( $option_key === 'bt_posx_from_right' );
+
+					if( $value !== '' ) {
+
+						// Pattern to remove any reasonable unit for pixels.
+						$pattern = '/pixels+|pixel+|px+/i';
+						if( preg_match( $pattern, $value ) ) {
+
+							$value = preg_replace( $pattern, '', $value );
+							$value = trim( $value );
+						}
+						// If the value is not an integer after removing any reasonable unit for pixels...
+						if( ! ctype_digit( $value ) ) {
+
+							$value = $defaults[$option_key];
+							$errors[$option_key] = array(
+								'option_key' => $option_key,
+								'name' => $this->make_readable( $option_key ),
+								'index' => $i,
+								'notice_level' => $notice_levels[$option_key],
+								'message' => $this->bt_width_error_message(),
+							);
+						}
+						else {
+
+							$value = $this->set_unit( $option_key, $value, 'px' );
+						}
+					}
+
+					break;
+
+				case( $option_key === 'bt_posy_from_bottom' );
+
+					if( $value !== '' ) {
+
+						// Pattern to remove any reasonable unit for pixels.
+						$pattern = '/pixels+|pixel+|px+/i';
+						if( preg_match( $pattern, $value ) ) {
+
+							$value = preg_replace( $pattern, '', $value );
+							$value = trim( $value );
+						}
+						// If the value is not an integer after removing any reasonable unit for pixels...
+						if( ! ctype_digit( $value ) ) {
+
+							$value = $defaults[$option_key];
+							$errors[$option_key] = array(
+								'option_key' => $option_key,
+								'name' => $this->make_readable( $option_key ),
+								'index' => $i,
+								'notice_level' => $notice_levels[$option_key],
+								'message' => $this->bt_width_error_message(),
+							);
+						}
+						else {
+
+							$value = $this->set_unit( $option_key, $value, 'px' );
+						}
+					}
+
+					break;
+
+				case( $option_key === 'bt_border_radius_top_left' || $option_key === 'bt_border_radius_top_right' || $option_key === 'bt_border_radius_bottom_left' || $option_key === 'bt_border_radius_bottom_right' );
+
+					if( $value !== '' ) {
+
+						$unit = 'px';
+						// Pattern to remove any reasonable unit for pixels.
+						$pattern = '/pixels+|pixel+|px+|%+/i';
+						if( preg_match( $pattern, $value ) ) {
+
+							if( preg_match( '/%/', $value ) ) {
+								$unit = '%';
+							}
+
+							$value = preg_replace( $pattern, '', $value );
+							$value = trim( $value );
+						}
+						// If the value is not an integer after removing any reasonable unit for pixels...
+						if( ! ctype_digit( $value ) ) {
+
+							$value = $defaults[$option_key];
+							$errors[$option_key] = array(
+								'option_key' => $option_key,
+								'name' => $this->make_readable( $option_key ),
+								'index' => $i,
+								'notice_level' => $notice_levels[$option_key],
+								'message' => $this->bt_border_radius_error_message(),
+							);
+						}
+						else {
+
+							$value = $this->set_unit( $option_key, $value, $unit );
 						}
 					}
 
 					break;
 			}
 			// The array holding the processed values.
-			$output[ $option_key ] = $value;
+			$output[$option_key] = $value;
 			$i ++;
 		}
 
 		// Fill unset options with "false".
 		foreach( $defaults as $key => $value ) {
 
-			$output[ $key ] = isset($output[ $key ]) ? $output[ $key ] : false;
+			$output[$key] = isset( $output[$key] ) ? $output[$key] : false;
 		}
 
 		if( get_locale() !== 'en_US' ) {
@@ -487,7 +735,7 @@ class nsr_validation {
 		}
 
 		// If there were errors and transients were created, we create one more containing the ids of the previously created ones.
-		if( isset($errors) && (!empty($errors)) ) {
+		if( null !== $errors && ( ! empty( $errors ) ) ) {
 
 			set_transient( 'nicescrollr_validation_transient', $errors, 60 );
 		}
@@ -495,17 +743,85 @@ class nsr_validation {
 		return apply_filters( 'validate', $output, $input );
 	}
 
+	private function check_text_fields( $value ) {
+
+		if( '' === $value ) {
+			return $value;
+		}
+
+		if( '' !== $value && ! preg_match( '/^([A-Za-z0-9\_ ().-]-)*[A-Za-z0-9\_ ().-]+$/', $value ) ) {
+
+			return $this->character_not_allowed_error_message();
+		}
+
+		return (string) $value;
+	}
+
+	/**
+	 * Fill options that are not set and give them a specified default value.
+	 *
+	 * @since  0.2.1
+	 *
+	 * @param array $valid
+	 * @param string $section
+	 *
+	 * @access private
+	 *
+	 * @return array $valid
+	 */
+	private function fill( $valid, $section ) {
+
+		if( 'frontend' === $section || 'backend' === $section ) {
+
+			$option_args = array_merge( $this->options->get_settings_per_section( 'basic' ), $this->options->get_settings_per_section( 'extended' ), $this->options->get_settings_per_section( 'backtop' ) );
+
+			// Make sure there is at least the option key with an empty value getting stored.
+			foreach( $option_args as $option_key => $args ) {
+
+				if( ! isset( $valid[$option_key] ) ) {
+
+					if( $option_args['input_type'] === 'checkbox' ) {
+						$valid[$option_key] = 0;
+					}
+					if( $option_args['input_type'] === 'text' ) {
+						$valid[$option_key] = '';
+					}
+				}
+			}
+		}
+
+		return $valid;
+	}
+
 	private function merge_options( $valid, $section ) {
 
 		$options = get_option( 'nicescrollr_options' );
 
-		unset($options[ $section ]);
+		unset( $options[$section] );
 
-		$options[ $section ] = $valid;
+		$options[$section] = $valid;
 
 		ksort( $options );
 
 		return $options;
+	}
+
+	private function make_readable( $string ) {
+
+		// Remove the file extension
+		$name = preg_replace( array( '/-/', '/_/' ), array( ' ', ' ' ), $string );
+
+		if( preg_match( '/\s/', $name ) ) {
+			// Remove whitespace and capitalize.
+			$name = implode( ' ', array_map( 'ucfirst', explode( ' ', $name ) ) );
+			$output = $name;
+		}
+		else {
+
+			$output = ucfirst( $name );
+		}
+
+		return $output;
 	}
 
 	/**
@@ -516,100 +832,183 @@ class nsr_validation {
 	 * @since  0.1.0
 	 * @access private
 	 * @see    admin/menu/includes/class-nsr-settings.php | translate_to_custom_locale()
+	 *
 	 * @param  $input
+	 *
 	 * @return mixed
 	 */
 	private function translate_to_default_locale( $input ) {
 
 		$output = array();
 
-		foreach( $input as $option_key => $value ) {
+		foreach( (array) $input as $option_key => $value ) {
 
 			switch( $option_key ) {
 
-				case($option_key === 'cursorborderstate');
-					if( isset($value) && $value == __( 'none', $this->domain ) ) {
+				case( $option_key === 'cursorborderstate' );
+					if( null !== $value && $value === __( 'none', $this->domain ) ) {
 
-						$output[ $option_key ] = 'none';
-					} else {
-						$output[ $option_key ] = $value;
+						$output[$option_key] = 'none';
+					}
+					else {
+						$output[$option_key] = $value;
 					}
 					break;
 
-				case($option_key === 'autohidemode');
+				case( $option_key === 'autohidemode' );
 
-					if( isset($value) && $value == __( 'off', $this->domain ) ) {
+					if( true === $value || 'enabled' === $value ) {
 
-						$output[ $option_key ] = 'off';
-					} else if( isset($value) && $value == __( 'on', $this->domain ) ) {
+						$output[$option_key] = 'true';
+					}
+					else if( 'cursor' === $value ) {
 
-						$output[ $option_key ] = 'on';
-					} else if( isset($value) && $value == __( 'cursor', $this->domain ) ) {
+						$output[$option_key] = 'cursor';
+					}
+					else if( false === $value || 'disabled' === $value ) {
 
-						$output[ $option_key ] = 'cursor';
-					} else {
-						$output[ $option_key ] = $value;
+						$output[$option_key] = 'false';
+					}
+					else if( 'leave' === $value ) {
+
+						$output[$option_key] = 'leave';
+					}
+					else if( 'hidden' === $value ) {
+
+						$output[$option_key] = 'hidden';
+					}
+					else if( 'scroll' === $value ) {
+
+						$output[$option_key] = 'scroll';
+					}
+					else {
+						$output[$option_key] = $value;
 					}
 					break;
 
-				case($option_key === 'railoffset');
+				case( $option_key === 'railoffset' );
 
-					if( isset($value) && $value == __( 'off', $this->domain ) ) {
+					if( null !== $value && $value === __( 'false', $this->domain ) ) {
 
-						$output[ $option_key ] = 'off';
-					} else if( isset($value) && $value == __( 'top', $this->domain ) ) {
+						$output[$option_key] = 'false';
+					}
+					else if( null !== $value && $value === __( 'top', $this->domain ) ) {
 
-						$output[ $option_key ] = 'top';
-					} else if( isset($value) && $value == __( 'left', $this->domain ) ) {
+						$output[$option_key] = 'top';
+					}
+					else if( null !== $value && $value === __( 'left', $this->domain ) ) {
 
-						$output[ $option_key ] = 'left';
-					} else {
-						$output[ $option_key ] = $value;
+						$output[$option_key] = 'left';
+					}
+					else {
+						$output[$option_key] = $value;
 					}
 					break;
 
-				case($option_key === 'railalign');
+				case( $option_key === 'railalign' );
 
-					if( isset($value) && $value == __( 'right', $this->domain ) ) {
+					if( null !== $value && $value === __( 'right', $this->domain ) ) {
 
-						$output[ $option_key ] = 'right';
-					} else if( isset($value) && $value == __( 'left', $this->domain ) ) {
+						$output[$option_key] = 'right';
+					}
+					else if( null !== $value && $value === __( 'left', $this->domain ) ) {
 
-						$output[ $option_key ] = 'left';
-					} else {
-						$output[ $option_key ] = $value;
+						$output[$option_key] = 'left';
+					}
+					else {
+						$output[$option_key] = $value;
 					}
 					break;
 
-				case($option_key === 'railvalign');
+				case( $option_key === 'railvalign' );
 
-					if( isset($value) && $value == __( 'bottom', $this->domain ) ) {
+					if( null !== $value && $value === __( 'bottom', $this->domain ) ) {
 
-						$output[ $option_key ] = 'bottom';
-					} else if( isset($value) && $value == __( 'top', $this->domain ) ) {
+						$output[$option_key] = 'bottom';
+					}
+					else if( null !== $value && $value === __( 'top', $this->domain ) ) {
 
-						$output[ $option_key ] = 'top';
-					} else {
-						$output[ $option_key ] = $value;
+						$output[$option_key] = 'top';
+					}
+					else {
+						$output[$option_key] = $value;
 					}
 					break;
 
-				case($option_key === 'cursorfixedheight');
+				case( $option_key === 'cursorfixedheight' );
 
-					if( isset($value) && $value == __( 'off', $this->domain ) ) {
+					if( false === $value ) {
 
-						$output[ $option_key ] = 'off';
-					} else {
-						$output[ $option_key ] = $value;
+						$output[$option_key] = 'false';
+					}
+					else {
+						$output[$option_key] = $value;
 					}
 					break;
 
 				default:
-					$output[ $option_key ] = $value;
+					$output[$option_key] = $value;
 			}
 		}
 
 		return apply_filters( 'translate_to_default_locale', $output, $input );
+	}
+
+	private function set_unit( $option_key, $value, $unit ) {
+
+		$px_related_option_keys = array(
+			'cursorwidth',
+			'cursorborderwidth',
+			'cursorborderradius',
+			'cursorminheight',
+			'directionlockdeadzone',
+			'bt_border_width',
+			'bt_width',
+			'bt_height',
+			'bt_posx_from_right',
+			'bt_posy_from_bottom'
+		);
+		if( in_array( $option_key, $px_related_option_keys, true ) ) {
+
+			if( 'px' === $unit ) {
+
+				if( '0' !== $value ) {
+
+					return $value . 'px';
+				}
+
+				return $value;
+			}
+		}
+
+		$maybe_percent_related_option_keys = array(
+			'bt_border_radius_top_left',
+			'bt_border_radius_top_right',
+			'bt_border_radius_bottom_left',
+			'bt_border_radius_bottom_right'
+		);
+		if( in_array( $option_key, $maybe_percent_related_option_keys, true ) ) {
+
+			if( '%' === $unit ) {
+
+				if( '0' !== $value ) {
+
+					return $value . '%';
+				}
+
+				return $value;
+			}
+
+			if( 'px' === $unit ) {
+
+				if( '0' !== $value ) {
+
+					return $value . 'px';
+				}
+
+				return $value;
+			}
+		}
 	}
 
 	/**
@@ -736,6 +1135,17 @@ class nsr_validation {
 	/**
 	 * Returns the specified error message.
 	 *
+	 * @since   0.1.0
+	 * @return \WP_Error
+	 */
+	public function scrollbarid_error_message() {
+
+		return new WP_Error( 'broke', __( "Your input didn't pass validation. Do not enter '#'. The name must look somthing like 'nice_scrollbar', 'my-cool-div', 'scrollbar123' etc. It was reset to it\'s default value.", $this->domain ) );
+	}
+
+	/**
+	 * Returns the specified error message.
+	 *
 	 * @since  0.1.0
 	 * @return \WP_Error
 	 */
@@ -786,6 +1196,83 @@ class nsr_validation {
 	public function cursordragspeed_error_message() {
 
 		return new WP_Error( 'broke', __( "Your input didn't pass validation. This value must be a positive number with max two decimal places or left blank. Please review its placeholder.", $this->domain ) );
+	}
+
+	/**
+	 * Returns the specified error message.
+	 *
+	 * @since  0.1.0
+	 * @return \WP_Error
+	 */
+	public function character_not_allowed_error_message() {
+
+		return new WP_Error( 'broke', __( "Your input didn't pass validation. Please use numbers and/or alphabetical characters.", $this->domain ) );
+	}
+
+	/**
+	 * Returns the specified error message.
+	 *
+	 * @since   0.1.0
+	 * @return \WP_Error
+	 */
+	public function bt_background_color_error_message() {
+
+		return new WP_Error( 'broke', __( "Your input didn't pass validation. This value must be a hexadecimal color value. It was reset to its default. To customize it, please input a color value like '#fff' or '#0073AA'.", $this->domain ) );
+	}
+
+	/**
+	 * Returns the specified error message.
+	 *
+	 * @since   0.1.0
+	 * @return \WP_Error
+	 */
+	public function bt_border_color_error_message() {
+
+		return new WP_Error( 'broke', __( "Your input didn't pass validation. This value must be a hexadecimal color value. It was reset to its default. To customize it, please input a color value like '#fff' or '#0073AA'.", $this->domain ) );
+	}
+
+	/**
+	 * Returns the specified error message.
+	 *
+	 * @since  0.1.0
+	 * @return \WP_Error
+	 */
+	public function bt_border_width_error_message() {
+
+		return new WP_Error( 'broke', __( "Your input didn't pass validation. This value must be a positive, integer pixel value including 0 (zero). It was reset to it's default.", $this->domain ) );
+	}
+
+	/**
+	 * Returns the specified error message.
+	 *
+	 * @since  0.1.0
+	 * @return \WP_Error
+	 */
+	public function bt_width_error_message() {
+
+		return new WP_Error( 'broke', __( "Your input didn't pass validation. This value must be a positive, integer pixel value including 0 (zero). It was reset to it's default.", $this->domain ) );
+	}
+
+	/**
+	 * Returns the specified error message.
+	 *
+	 * @since  0.1.0
+	 * @return \WP_Error
+	 */
+	public function bt_height_error_message() {
+
+		return new WP_Error( 'broke', __( "Your input didn't pass validation. This value must be a positive, integer pixel value including 0 (zero). It was reset to it's default.", $this->domain ) );
+	}
+
+	/**
+	 * Returns the specified error message.
+	 *
+	 * @since  0.1.0
+	 * @return \WP_Error
+	 */
+	public function bt_border_radius_error_message() {
+
+		return new WP_Error( 'broke', __( "Your input didn't pass validation. This value must be a positive, integer pixel- or percent- value including 0 (zero). It was reset to it's default.", $this->domain ) );
 	}
 
 }
