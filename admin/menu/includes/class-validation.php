@@ -51,6 +51,7 @@ class Nsr_Validation {
 	 *
 	 * @param string $domain
 	 * @param MenuIncludes\Nsr_Options $Options
+	 * @param string $section
 	 */
 	public function __construct( $domain, $Options ) {
 
@@ -64,9 +65,8 @@ class Nsr_Validation {
 	 * @since  0.1.0
 	 *
 	 * @param  array $input
-	 * @param  string $section
 	 *
-	 * @return array
+	 * @return mixed
 	 */
 	public function run( $input, $section ) {
 
@@ -115,7 +115,6 @@ class Nsr_Validation {
 	 * @uses   translate_to_default_locale()
 	 *
 	 * @param  array $input
-	 * @param  string $section
 	 *
 	 * @return array $output
 	 */
@@ -499,7 +498,7 @@ class Nsr_Validation {
 
 					break;
 
-				case ( $option_key === 'bt_arrow_color' || $option_key === 'bt_arrow_hover_color' || $option_key === 'bt_background_color' || $option_key === 'bt_hover_background_color' );
+				case ( $option_key === 'bt_background_color' || $option_key === 'bt_hober_background_color' );
 
 					if( ! preg_match( $rgba_pattern, $value ) ) {
 
@@ -748,13 +747,6 @@ class Nsr_Validation {
 		return apply_filters( 'validate', $output, $input );
 	}
 
-	/**
-	 * Validates text fields.
-	 *
-	 * @param $value
-	 *
-	 * @return string|\WP_Error
-	 */
 	private function check_text_fields( $value ) {
 
 		if( '' === $value ) {
@@ -805,14 +797,6 @@ class Nsr_Validation {
 		return $valid;
 	}
 
-	/**
-	 * Merges the validated options back into the array of options.
-	 *
-	 * @param $valid
-	 * @param $section
-	 *
-	 * @return array $options
-	 */
 	private function merge_options( $valid, $section ) {
 
 		$options = get_option( 'nicescrollr_options' );
@@ -826,15 +810,6 @@ class Nsr_Validation {
 		return $options;
 	}
 
-	/**
-	 * Creates a human readable version of the 'option key'.
-	 *
-	 * @param $string
-	 *
-	 * @return string
-	 *
-	 * @deprecated
-	 */
 	private function make_readable( $string ) {
 
 		// Remove the file extension
@@ -853,15 +828,7 @@ class Nsr_Validation {
 		return $output;
 	}
 
-	/**
-	 * Sets the respective units.
-	 *
-	 * @param $option_key
-	 * @param $value
-	 * @param $unit
-	 *
-	 * @return bool|string
-	 */
+
 	private function set_unit( $option_key, $value, $unit ) {
 
 		$px_related_option_keys = array(

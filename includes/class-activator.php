@@ -18,6 +18,8 @@ if( ! class_exists( 'Admin\Menu\Includes\Nsr_Options' ) ) {
 	require_once NICESCROLLR_ROOT_DIR . 'admin/menu/includes/class-options.php';
 }
 
+//require_once NICESCROLLR_ROOT_DIR . 'admin/menu/includes/class-options.php';
+
 /**
  * The class responsible for the plugin activation.
  *
@@ -50,7 +52,7 @@ class Nsr_Activator extends Nsr {
 	 * @access   static
 	 * @return   void
 	 */
-	public static function activate() {
+	public static function activate( $domain ) {
 
 		// Gets the administrator role.
 		$role = get_role( 'administrator' );
@@ -62,7 +64,7 @@ class Nsr_Activator extends Nsr {
 
 		// Checks for already stored options.
 		$Activator = new self();
-		$Activator->check_for_options();
+		$Activator->check_for_options( $domain );
 	}
 
 	/**
@@ -75,9 +77,9 @@ class Nsr_Activator extends Nsr {
 	 * @access private
 	 * @return void
 	 */
-	private function check_for_options() {
+	private function check_for_options( $domain ) {
 
-		$Options = new MenuIncludes\Nsr_Options( 'nicescrollr' );
+		$Options = new MenuIncludes\Nsr_Options( $domain );
 		$options = get_option( 'nicescrollr_options' );
 
 		// Seed initial options
