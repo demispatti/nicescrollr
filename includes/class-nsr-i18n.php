@@ -14,35 +14,35 @@
  */
 class nsr_i18n {
 
-	/**
-	 * The name of the domain.
-	 *
-	 * @since  0.1.0
-	 * @access private
-	 * @var    string  $plugin_domain
-	 */
-	private $plugin_domain;
+    /**
+     * The name of the domain.
+     *
+     * @since  0.1.0
+     * @access private
+     * @var    string $plugin_domain
+     */
+    private $plugin_domain;
 
-	/**
-	 * Sets the domain equal to that of the specified domain.
-	 *
-	 * @since 0.1.0
-	 * @param string $domain
-	 */
-	public function set_plugin_domain( $plugin_domain ) {
+    /**
+     * Sets the domain equal to that of the specified domain.
+     *
+     * @since 0.1.0
+     * @param string $domain
+     */
+    public function set_plugin_domain( $plugin_domain ) {
 
-		$this->plugin_domain = $plugin_domain;
-	}
+        $this->plugin_domain = $plugin_domain;
+    }
 
-	/**
-	 * Loads the plugin text domain for translation.
-	 *
-	 * @since  0.1.0
-	 * @return void
-	 */
-	public function load_plugin_textdomain() {
+    /**
+     * Loads the plugin text domain for translation.
+     *
+     * @since  0.1.0
+     * @return void
+     */
+    public function load_plugin_textdomain() {
 
-		load_plugin_textdomain( $this->plugin_domain, false, dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages/' );
-	}
+        load_plugin_textdomain($this->plugin_domain, false, dirname(dirname(plugin_basename(__FILE__))) . '/languages/');
+    }
 
 }

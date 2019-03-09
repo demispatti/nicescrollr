@@ -10,10 +10,10 @@
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  */
-(function ( $ ){
+(function ($) {
     'use strict';
 
-    $(document).ready(function (){
+    $(document).ready(function () {
 
         alertify.set({
             labels: {
@@ -25,7 +25,7 @@
         });
 
         // This function process the ajax requests for the "reset settings" tasks.
-        $(".nsr-reset-button").click(function ( event ){
+        $(".nsr-reset-button").click(function (event) {
 
             event.preventDefault();
             var id = event.target.id;
@@ -38,84 +38,84 @@
                 nonce: $(this).attr("data-nonce")
             };
 
-            if( section == 'all'){
+            if (section == 'all') {
 
-                alertify.confirm(nsrAjax.resetAllConfirmation, function ( e ){
-                    if (e){
-                        $.post(ajaxurl, data, function ( response ){
+                alertify.confirm(nsrAjax.resetAllConfirmation, function (e) {
+                    if (e) {
+                        $.post(ajaxurl, data, function (response) {
 
-                            if (response.success == true){
+                            if (response.success == true) {
 
                                 alertify.success(response.data.success);
-                            } else{
+                            } else {
 
                                 alertify.error(response.data.success);
                             }
                         });
-                    } else{
+                    } else {
 
                         return false;
                     }
                 });
 
-            } else if(section == 'plugin'){
+            } else if (section == 'plugin') {
 
-                alertify.confirm(nsrAjax.resetPluginConfirmation, function ( e ){
-                    if (e){
-                        $.post(ajaxurl, data, function ( response ){
+                alertify.confirm(nsrAjax.resetPluginConfirmation, function (e) {
+                    if (e) {
+                        $.post(ajaxurl, data, function (response) {
 
-                            if (response.success == true){
+                            if (response.success == true) {
                                 alertify.success(response.data.success);
-                            } else{
+                            } else {
                                 alertify.error(response.data.success);
                             }
                         });
-                    } else{
+                    } else {
                         return false;
                     }
                 });
 
-            } else if(section == 'backend'){
+            } else if (section == 'backend') {
 
-                alertify.confirm(nsrAjax.resetBackendConfirmation, function ( e ){
-                    if (e){
-                        $.post(ajaxurl, data, function ( response ){
+                alertify.confirm(nsrAjax.resetBackendConfirmation, function (e) {
+                    if (e) {
+                        $.post(ajaxurl, data, function (response) {
 
-                            if (response.success == true){
+                            if (response.success == true) {
 
                                 alertify.success(response.data.success);
-                            } else{
+                            } else {
 
                                 alertify.error(response.data.success);
                             }
                         });
-                    } else{
-
-                        return false;
-                    }
-                });
-
-            } else if(section == 'frontend'){
-
-                alertify.confirm(nsrAjax.resetFrontendConfirmation, function ( e ){
-                    if (e){
-                        $.post(ajaxurl, data, function ( response ){
-
-                            if (response.success == true){
-
-                                alertify.success(response.data.success);
-                            } else{
-
-                                alertify.error(response.data.success);
-                            }
-                        });
-                    } else{
+                    } else {
 
                         return false;
                     }
                 });
 
-            } else{
+            } else if (section == 'frontend') {
+
+                alertify.confirm(nsrAjax.resetFrontendConfirmation, function (e) {
+                    if (e) {
+                        $.post(ajaxurl, data, function (response) {
+
+                            if (response.success == true) {
+
+                                alertify.success(response.data.success);
+                            } else {
+
+                                alertify.error(response.data.success);
+                            }
+                        });
+                    } else {
+
+                        return false;
+                    }
+                });
+
+            } else {
 
                 return false;
             }

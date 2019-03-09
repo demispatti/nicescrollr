@@ -2,10 +2,10 @@
     font-family: 'fugaz_one_regular';
     src: url('fugazone-regular-webfont.eot');
     src: url('fugazone-regular-webfont.eot?#iefix') format('embedded-opentype'),
-         url('fugazone-regular-webfont.woff2') format('woff2'),
-         url('fugazone-regular-webfont.woff') format('woff'),
-         url('fugazone-regular-webfont.ttf') format('truetype'),
-         url('fugazone-regular-webfont.svg#fugaz_oneregular') format('svg');
+    url('fugazone-regular-webfont.woff2') format('woff2'),
+    url('fugazone-regular-webfont.woff') format('woff'),
+    url('fugazone-regular-webfont.ttf') format('truetype'),
+    url('fugazone-regular-webfont.svg#fugaz_oneregular') format('svg');
     font-weight: normal;
     font-style: normal;
 

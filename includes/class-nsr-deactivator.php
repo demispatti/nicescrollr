@@ -14,31 +14,31 @@
  */
 class nsr_deactivator {
 
-	/**
-	 * The name of the capability.
-	 *
-	 * @since  0.1.0
-	 * @access static
-	 * @var    string $capability
-	 */
-	public static $capability = 'nicescrollr_edit';
+    /**
+     * The name of the capability.
+     *
+     * @since  0.1.0
+     * @access static
+     * @var    string $capability
+     */
+    public static $capability = 'nicescrollr_edit';
 
-	/**
-	 * Fired during deactivation of the plugin.
-	 * Removes the capability to edit custom backgrounds from the administrator role.
-	 *
-	 * @since  0.1.0
-	 * @access static
-	 * @return void
-	 */
-	public static function deactivate() {
+    /**
+     * Fired during deactivation of the plugin.
+     * Removes the capability to edit custom backgrounds from the administrator role.
+     *
+     * @since  0.1.0
+     * @access static
+     * @return void
+     */
+    public static function deactivate() {
 
-		// Gets the administrator role.
-		$role = get_role( 'administrator' );
+        // Gets the administrator role.
+        $role = get_role('administrator');
 
-		// The capability gets removed.
-		if ( ! empty( $role ) ) {
-			$role->remove_cap( self::$capability );
-		}
-	}
+        // The capability gets removed.
+        if( ! empty( $role ) ) {
+            $role->remove_cap(self::$capability);
+        }
+    }
 }

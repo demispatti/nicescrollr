@@ -4,9 +4,9 @@
  * MIT Licensed
  */
 
-(function ( $ ){
+(function ($) {
 
-    $.fn.backTop = function ( options ){
+    $.fn.backTop = function (options) {
 
         var backBtn = this;
 
@@ -22,13 +22,13 @@
         var speed = settings['speed'];
         var color = settings['color'];
 
-        if (color == 'white'){
+        if (color == 'white') {
             backBtn.addClass('white');
-        } else if (color == 'red'){
+        } else if (color == 'red') {
             backBtn.addClass('red');
-        } else if (color == 'green'){
+        } else if (color == 'green') {
             backBtn.addClass('green');
-        } else{
+        } else {
             backBtn.addClass('black');
         }
 
@@ -38,18 +38,18 @@
             'position': 'fixed'
         });
 
-        $(document).scroll(function (){
+        $(document).scroll(function () {
             var pos = $(window).scrollTop();
             console.log(pos);
 
-            if (pos >= position){
+            if (pos >= position) {
                 backBtn.fadeIn(speed);
-            } else{
+            } else {
                 backBtn.fadeOut(speed);
             }
         });
 
-        backBtn.click(function (){
+        backBtn.click(function () {
             $("html, body").animate({
                     scrollTop: 0
                 },
