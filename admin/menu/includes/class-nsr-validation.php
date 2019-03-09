@@ -1,6 +1,13 @@
 <?php
 
 /**
+ * If this file is called directly, abort.
+ */
+if ( ! defined( 'WPINC' ) ) {
+	die;
+}
+
+/**
  * The class responsible for sanitizing and validating the user inputs.
  *
  * @link              https://github.com/demispatti/nicescrollr
@@ -68,7 +75,7 @@ class nsr_validation {
 	 */
 	public function run( $input, $section ) {
 
-		if( isset($input) && false === $section ) {
+		if( isset( $input ) && false === $section || isset( $_SESSION['cb_parallax_upgrade'] ) || isset( $input['internal'] ) ) {
 
 			$output = $input;
 

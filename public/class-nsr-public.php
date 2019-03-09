@@ -1,6 +1,13 @@
 <?php
 
 /**
+ * If this file is called directly, abort.
+ */
+if ( ! defined( 'WPINC' ) ) {
+	die;
+}
+
+/**
  * The public-specific functionality of the plugin.
  *
  * @link              https://github.com/demispatti/nicescrollr
@@ -114,47 +121,32 @@ class nsr_public {
 	 */
 	public function enqueue_scripts() {
 
-		// Here we check if a plugin called "cbParallax" is enabled and is set to preserve scrolling.
-		// If so, we bail and let that plugin handle the scrolling behaviour on the frontend for consistent results. Developer's choice.
-		// So, then here we (may) get a transient from "cbParallax". If  true, no nicescroll js-library will be loaded by Nicescrollr.
-		$is_superseeded_by_cb_parallax_preserve_scrolling = get_transient( 'cb_parallax_superseeds_nicescrollr_plugin_on_frontend' );
-		delete_transient( 'cb_parallax_superseeds_nicescrollr_plugin_on_frontend' );
-		if( isset( $is_superseeded_by_cb_parallax_preserve_scrolling ) && true === $is_superseeded_by_cb_parallax_preserve_scrolling ) {
-
-			return;
-		}
 
 		$option = get_option( 'nicescrollr_options' );
 
 		// We only enqueue these scripts if Nicescroll is enabled in the frontend.
 		if( isset($option[ $this->view ]['enabled']) && $option[ $this->view ]['enabled'] ) {
 
-			// Checks which "version" of nicescroll to load.
-			if( isset($option[ $this->view ]['defaultScrollbar']) && $option[ $this->view ]['defaultScrollbar'] ) {
+			// jQuery easing
+			wp_enqueue_script(
+				'nicescrollr-cb-parallax-easing-min-js',
+				plugin_dir_url( __FILE__ ) . '../vendor/jquery-easing/jquery.easing.min.js',
+				array( 'jquery' ),
+				'all',
+				false
+			);
 
-				// NSR Nicescroll library
-				wp_enqueue_script(
-					'nicescrollr-inc-nicescroll-min-js',
-					plugin_dir_url( __FILE__ ) . '../vendor/nicescroll/jquery.nsr.nicescroll.min.js',
-					array(
-						'jquery',
-					),
-					'all',
-					true
-				);
-			} else {
-				// Nicescroll library
-				wp_enqueue_script(
-					'nicescrollr-inc-nicescroll-min-js',
-					plugin_dir_url( __FILE__ ) . '../vendor/nicescroll/jquery.nicescroll.min.js',
-					array(
-						'jquery',
-					),
-					'all',
-					true
-				);
-			}
-
+			// Nicescroll library
+			wp_enqueue_script(
+				'nicescrollr-inc-nicescroll-min-js',
+				plugin_dir_url( __FILE__ ) . '../vendor/nicescroll/jquery.nicescroll.min.js',
+				array(
+					'jquery',
+					'nicescrollr-cb-parallax-easing-min-js'
+				),
+				'all',
+				false
+			);
 			// Nicescroll configuration file
 			wp_enqueue_script(
 				'nicescrollr-nicescroll-js',
@@ -164,7 +156,7 @@ class nsr_public {
 					'nicescrollr-inc-nicescroll-min-js',
 				),
 				'all',
-				true
+				false
 			);
 		}
 	}

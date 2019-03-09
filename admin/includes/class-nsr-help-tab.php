@@ -1,6 +1,13 @@
 <?php
 
 /**
+ * If this file is called directly, abort.
+ */
+if ( ! defined( 'WPINC' ) ) {
+	die;
+}
+
+/**
  * The class responsible for creating and displaying the help tab on this plugin's option page.
  *
  * @link              https://github.com/demispatti/nicescrollr

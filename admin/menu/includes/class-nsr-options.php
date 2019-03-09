@@ -1,6 +1,13 @@
 <?php
 
 /**
+ * If this file is called directly, abort.
+ */
+if ( ! defined( 'WPINC' ) ) {
+	die;
+}
+
+/**
  * The class that maintains the default options and the related meta data.
  *
  * @note              The terms 'basic' and 'extended' were created to divide
@@ -62,7 +69,7 @@ class nsr_options {
 				'settings_group' => 'basic',
 				'title'          => __( 'Enable or disable Nicescroll.', $this->domain ),
 				'frontend_value' => true,
-				'backend_value'  => true,
+				'backend_value'  => false,
 				'input_type'     => 'checkbox',
 				'notice_level'   => 'none',
 				'select_values'  => 'none',
@@ -73,7 +80,7 @@ class nsr_options {
 				'settings_group' => 'basic',
 				'title'          => __( 'Use the browsers default scrollbar instead of the customizable one.', $this->domain ),
 				'frontend_value' => false,
-				'backend_value'  => false,
+				'backend_value'  => true,
 				'input_type'     => 'checkbox',
 				'notice_level'   => 'none',
 				'select_values'  => 'none',
@@ -105,7 +112,7 @@ class nsr_options {
 				'callback'       => 'render_settings_field_callback',
 				'settings_group' => 'basic',
 				'title'          => __( 'Set opacity for when the cursor is active.', $this->domain ),
-				'frontend_value' => '0.8',
+				'frontend_value' => '1.0',
 				'backend_value'  => '1.0',
 				'input_type'     => 'text',
 				'notice_level'   => 'notice-correction',
@@ -116,7 +123,7 @@ class nsr_options {
 				'callback'       => 'render_settings_field_callback',
 				'settings_group' => 'basic',
 				'title'          => __( 'Set cursor width (in pixel).', $this->domain ),
-				'frontend_value' => '4px',
+				'frontend_value' => '8px',
 				'backend_value'  => '16px',
 				'input_type'     => 'text',
 				'notice_level'   => 'notice-correction',
@@ -127,7 +134,7 @@ class nsr_options {
 				'callback'       => 'render_settings_field_callback',
 				'settings_group' => 'basic',
 				'title'          => __( 'Set cursor border width (in pixel).', $this->domain ),
-				'frontend_value' => '1px',
+				'frontend_value' => '0px',
 				'backend_value'  => '2px',
 				'input_type'     => 'text',
 				'notice_level'   => 'notice-correction',
@@ -177,13 +184,35 @@ class nsr_options {
 				'notice_level'   => 'notice-correction',
 				'select_values'  => 'none',
 			),
+			'scrollspeed'     => array(
+				'name'           => __( 'Scroll Speed', $this->domain ),
+				'callback' => 'render_settings_field_callback',
+				'settings_group' => 'basic',
+				'title'          => __( 'Set scrolling speed.', $this->domain ),
+				'frontend_value' => '64',
+				'backend_value'  => '64',
+				'input_type'     => 'text',
+				'notice_level'   => 'notice-correction',
+				'select_values'  => 'none',
+			),
+			'mousescrollstep' => array(
+				'name'           => __( 'Mouse Scroll Step', $this->domain ),
+				'callback' => 'render_settings_field_callback',
+				'settings_group' => 'basic',
+				'title'          => __( 'Set scrolling speed for the mousewheel.', $this->domain ),
+				'frontend_value' => '96',
+				'backend_value'  => '96',
+				'input_type'     => 'text',
+				'notice_level'   => 'notice-correction',
+				'select_values'  => 'none',
+			),
 			'autohidemode'       => array(
 				'name'           => __( 'Autohide Mode', $this->domain ),
 				'callback'       => 'render_settings_field_callback',
 				'settings_group' => 'basic',
 				'title'          => __( 'Select auto-hide mode.', $this->domain ),
 				'frontend_value' => 'on',
-				'backend_value'  => 'off',
+				'backend_value'  => 'on',
 				'input_type'     => 'select',
 				'notice_level'   => 'none',
 				'select_values'  => array(
@@ -209,6 +238,7 @@ class nsr_options {
 		$extended_options = array(
 			'zindex'                  => array(
 				'name'           => __( 'Z-Index', $this->domain ),
+				'callback' => 'render_settings_field_callback',
 				'settings_group' => 'extended',
 				'title'          => __( 'Set z-index.', $this->domain ),
 				'frontend_value' => '9999',
@@ -217,7 +247,7 @@ class nsr_options {
 				'notice_level'   => 'notice-correction',
 				'select_values'  => 'none',
 			),
-			'scrollspeed'             => array(
+/*			'scrollspeed'             => array(
 				'name'           => __( 'Scroll Speed', $this->domain ),
 				'settings_group' => 'extended',
 				'title'          => __( 'Set scrolling speed.', $this->domain ),
@@ -236,9 +266,10 @@ class nsr_options {
 				'input_type'     => 'text',
 				'notice_level'   => 'notice-correction',
 				'select_values'  => 'none',
-			),
+			),*/
 			'touchbehavior'           => array(
 				'name'           => __( 'Touch Behaviour', $this->domain ),
+				'callback' => 'render_settings_field_callback',
 				'settings_group' => 'extended',
 				'title'          => __( 'Enable cursor-drag scrolling for touch-enabled computers.', $this->domain ),
 				'frontend_value' => false,
@@ -249,6 +280,7 @@ class nsr_options {
 			),
 			'hwacceleration'          => array(
 				'name'           => __( 'Hardware Acceleration', $this->domain ),
+				'callback' => 'render_settings_field_callback',
 				'settings_group' => 'extended',
 				'title'          => __( 'Switch hardware acceleration on or off.', $this->domain ),
 				'frontend_value' => true,
@@ -259,6 +291,7 @@ class nsr_options {
 			),
 			'usetransition'           => array(
 				'name'           => __( 'Transitions', $this->domain ),
+				'callback' => 'render_settings_field_callback',
 				'settings_group' => 'extended',
 				'title'          => __( 'Switch transitions on or off.', $this->domain ),
 				'frontend_value' => true,
@@ -269,6 +302,7 @@ class nsr_options {
 			),
 			'boxzoom'                 => array(
 				'name'           => __( 'Box Zoom', $this->domain ),
+				'callback' => 'render_settings_field_callback',
 				'settings_group' => 'extended',
 				'title'          => __( 'Enable zoom for box content.', $this->domain ),
 				'frontend_value' => false,
@@ -279,6 +313,7 @@ class nsr_options {
 			),
 			'dblclickzoom'            => array(
 				'name'           => __( 'Double Click Zoom', $this->domain ),
+				'callback' => 'render_settings_field_callback',
 				'settings_group' => 'extended',
 				'title'          => __( 'Zoom activated when double click on box ("Box Zoom" must be "on").', $this->domain ),
 				'frontend_value' => false,
@@ -289,6 +324,7 @@ class nsr_options {
 			),
 			'gesturezoom'             => array(
 				'name'           => __( 'Gesture Zoom', $this->domain ),
+				'callback' => 'render_settings_field_callback',
 				'settings_group' => 'extended',
 				'title'          => __( 'Zoom on pitch in/out on box (For touch devices, set "Box Zoom" on).', $this->domain ),
 				'frontend_value' => false,
@@ -299,6 +335,7 @@ class nsr_options {
 			),
 			'grabcursorenabled'       => array(
 				'name'           => __( 'Grab-Cursor', $this->domain ),
+				'callback' => 'render_settings_field_callback',
 				'settings_group' => 'extended',
 				'title'          => __( 'Display "grab" icon ("Touch Behavior" must be possible and "on").', $this->domain ),
 				'frontend_value' => false,
@@ -319,6 +356,7 @@ class nsr_options {
 			),*/
 			'iframeautoresize'        => array(
 				'name'           => __( 'iFrame Autoresize', $this->domain ),
+				'callback' => 'render_settings_field_callback',
 				'settings_group' => 'extended',
 				'title'          => __( 'Switch auto-resize for iFrames on or off.', $this->domain ),
 				'frontend_value' => true,
@@ -329,6 +367,7 @@ class nsr_options {
 			),
 			'cursorminheight'         => array(
 				'name'           => __( 'Cursor Minimum Height', $this->domain ),
+				'callback' => 'render_settings_field_callback',
 				'settings_group' => 'extended',
 				'title'          => __( 'Set the minimum cursor height.', $this->domain ),
 				'frontend_value' => '32',
@@ -339,6 +378,7 @@ class nsr_options {
 			),
 			'preservenativescrolling' => array(
 				'name'           => __( 'Preserve Native Scrolling', $this->domain ),
+				'callback' => 'render_settings_field_callback',
 				'settings_group' => 'extended',
 				'title'          => __( 'Scroll native scrollable areas with mouse.', $this->domain ),
 				'frontend_value' => true,
@@ -349,6 +389,7 @@ class nsr_options {
 			),
 			'railoffset'              => array(
 				'name'           => __( 'Rail Offset', $this->domain ),
+				'callback' => 'render_settings_field_callback',
 				'settings_group' => 'extended',
 				'title'          => __( 'Add offset for rail position or disable it.', $this->domain ),
 				'frontend_value' => 'off',
@@ -363,6 +404,7 @@ class nsr_options {
 			),
 			'bouncescroll'            => array(
 				'name'           => __( 'Bounce Scroll', $this->domain ),
+				'callback' => 'render_settings_field_callback',
 				'settings_group' => 'extended',
 				'title'          => __( 'Mobile-like scroll bouncing at the end of content.', $this->domain ),
 				'frontend_value' => true,
@@ -373,6 +415,7 @@ class nsr_options {
 			),
 			'spacebar'                => array(
 				'name'           => __( 'Spacebar', $this->domain ),
+				'callback' => 'render_settings_field_callback',
 				'settings_group' => 'extended',
 				'title'          => __( 'Page down-scrolling with the spacebar.', $this->domain ),
 				'frontend_value' => true,
@@ -383,6 +426,7 @@ class nsr_options {
 			),
 			'railpaddingtop'          => array(
 				'name'           => __( 'Rail Padding Top', $this->domain ),
+				'callback' => 'render_settings_field_callback',
 				'settings_group' => 'extended',
 				'title'          => __( 'Set rail padding top.', $this->domain ),
 				'frontend_value' => '0',
@@ -393,6 +437,7 @@ class nsr_options {
 			),
 			'railpaddingright'        => array(
 				'name'           => __( 'Rail Padding Right', $this->domain ),
+				'callback' => 'render_settings_field_callback',
 				'settings_group' => 'extended',
 				'title'          => __( 'Set rail padding right.', $this->domain ),
 				'frontend_value' => '0',
@@ -403,6 +448,7 @@ class nsr_options {
 			),
 			'railpaddingbottom'       => array(
 				'name'           => __( 'Rail Padding Bottom', $this->domain ),
+				'callback' => 'render_settings_field_callback',
 				'settings_group' => 'extended',
 				'title'          => __( 'Set rail padding bottom.', $this->domain ),
 				'frontend_value' => '0',
@@ -413,6 +459,7 @@ class nsr_options {
 			),
 			'railpaddingleft'         => array(
 				'name'           => __( 'Rail Padding Left', $this->domain ),
+				'callback' => 'render_settings_field_callback',
 				'settings_group' => 'extended',
 				'title'          => __( 'Set rail padding left.', $this->domain ),
 				'frontend_value' => '0',
@@ -423,6 +470,7 @@ class nsr_options {
 			),
 			'disableoutline'          => array(
 				'name'           => __( 'Outline', $this->domain ),
+				'callback' => 'render_settings_field_callback',
 				'settings_group' => 'extended',
 				'title'          => __( 'For chrome browser, disable outline.', $this->domain ),
 				'frontend_value' => true,
@@ -433,6 +481,7 @@ class nsr_options {
 			),
 			'horizrailenabled'        => array(
 				'name'           => __( 'Horizontal Rail', $this->domain ),
+				'callback' => 'render_settings_field_callback',
 				'settings_group' => 'extended',
 				'title'          => __( 'Let Nicescroll manage horizontal scrolling.', $this->domain ),
 				'frontend_value' => true,
@@ -443,6 +492,7 @@ class nsr_options {
 			),
 			'railalign'               => array(
 				'name'           => __( 'Rail Alignment Horizontal', $this->domain ),
+				'callback' => 'render_settings_field_callback',
 				'settings_group' => 'extended',
 				'title'          => __( 'Select alignment of horizontal rail.', $this->domain ),
 				'frontend_value' => 'right',
@@ -453,6 +503,7 @@ class nsr_options {
 			),
 			'railvalign'              => array(
 				'name'           => __( 'Rail Alignment Vertical', $this->domain ),
+				'callback' => 'render_settings_field_callback',
 				'settings_group' => 'extended',
 				'title'          => __( 'Select alignment of vertical rail.', $this->domain ),
 				'frontend_value' => 'bottom',
@@ -463,6 +514,7 @@ class nsr_options {
 			),
 			'enabletranslate3d'       => array(
 				'name'           => __( 'Translate3D', $this->domain ),
+				'callback' => 'render_settings_field_callback',
 				'settings_group' => 'extended',
 				'title'          => __( 'Switch translate3d on or off.', $this->domain ),
 				'frontend_value' => true,
@@ -473,6 +525,7 @@ class nsr_options {
 			),
 			'enablemousewheel'        => array(
 				'name'           => __( 'Mouse Wheel', $this->domain ),
+				'callback' => 'render_settings_field_callback',
 				'settings_group' => 'extended',
 				'title'          => __( 'Let Nicescroll manage mousewheel events.', $this->domain ),
 				'frontend_value' => true,
@@ -483,6 +536,7 @@ class nsr_options {
 			),
 			'enablekeyboard'          => array(
 				'name'           => __( 'Keyboard', $this->domain ),
+				'callback' => 'render_settings_field_callback',
 				'settings_group' => 'extended',
 				'title'          => __( 'Let Nicescroll manage keyboard events.', $this->domain ),
 				'frontend_value' => true,
@@ -493,6 +547,7 @@ class nsr_options {
 			),
 			'smoothscroll'            => array(
 				'name'           => __( 'Smooth Scroll', $this->domain ),
+				'callback' => 'render_settings_field_callback',
 				'settings_group' => 'extended',
 				'title'          => __( 'Scroll with ease movement.', $this->domain ),
 				'frontend_value' => true,
@@ -503,6 +558,7 @@ class nsr_options {
 			),
 			'sensitiverail'           => array(
 				'name'           => __( 'Sensitive Rail', $this->domain ),
+				'callback' => 'render_settings_field_callback',
 				'settings_group' => 'extended',
 				'title'          => __( 'Scrolling trough click on rail.', $this->domain ),
 				'frontend_value' => true,
@@ -513,6 +569,7 @@ class nsr_options {
 			),
 			'enablemouselockapi'      => array(
 				'name'           => __( 'Mouse Lock API', $this->domain ),
+				'callback' => 'render_settings_field_callback',
 				'settings_group' => __( 'extended', $this->domain ),
 				'title'          => 'Use mouse caption lock API.',
 				'frontend_value' => true,
@@ -523,6 +580,7 @@ class nsr_options {
 			),
 			/*'cursormaxheight' => array(
 				'name'             => __( 'Cursor Maximum Height', $this->domain ),
+			'callback'       => 'render_settings_field_callback',
 				'settings_group' => 'extended',
 				'title'      => __( 'Switch cursor maximum height on or off.', $this->domain ),
 				'frontend_value'   => false,
@@ -533,6 +591,7 @@ class nsr_options {
 			),*/
 			'cursorfixedheight'       => array(
 				'name'           => __( 'Cursor Fixed Height', $this->domain ),
+				'callback' => 'render_settings_field_callback',
 				'settings_group' => 'extended',
 				'title'          => __( 'Select cursor fixed height or disable it.', $this->domain ),
 				'frontend_value' => '160',
@@ -543,6 +602,7 @@ class nsr_options {
 			),
 			'directionlockdeadzone'   => array(
 				'name'           => __( 'Direction Lock Dead Zone', $this->domain ),
+				'callback' => 'render_settings_field_callback',
 				'settings_group' => 'extended',
 				'title'          => __( 'Choose dead zone (in pixel) for direction lock activation.', $this->domain ),
 				'frontend_value' => '6px',
@@ -553,6 +613,7 @@ class nsr_options {
 			),
 			'hidecursordelay'         => array(
 				'name'           => __( 'Autohide Delay', $this->domain ),
+				'callback' => 'render_settings_field_callback',
 				'settings_group' => 'extended',
 				'title'          => __( 'Delay in miliseconds for fading out the scrollbar.', $this->domain ),
 				'frontend_value' => '400',
@@ -563,6 +624,7 @@ class nsr_options {
 			),
 			'nativeparentscrolling'   => array(
 				'name'           => __( 'Native Parent Scrolling', $this->domain ),
+				'callback' => 'render_settings_field_callback',
 				'settings_group' => 'extended',
 				'title'          => __( 'Detect bottom of content and let parent scroll, as native scroll does.', $this->domain ),
 				'frontend_value' => true,
@@ -573,6 +635,7 @@ class nsr_options {
 			),
 			'enablescrollonselection' => array(
 				'name'           => __( 'Scroll On Selection', $this->domain ),
+				'callback' => 'render_settings_field_callback',
 				'settings_group' => 'extended',
 				'title'          => __( 'Auto-scrolling of content while selecting text.', $this->domain ),
 				'frontend_value' => true,
@@ -583,6 +646,7 @@ class nsr_options {
 			),
 			'overflowx'               => array(
 				'name'           => __( 'Overflow-X', $this->domain ),
+				'callback' => 'render_settings_field_callback',
 				'settings_group' => 'extended',
 				'title'          => __( 'Enable or disable overflow-x.', $this->domain ),
 				'frontend_value' => true,
@@ -593,6 +657,7 @@ class nsr_options {
 			),
 			'overflowy'               => array(
 				'name'           => __( 'Overflow-Y', $this->domain ),
+				'callback' => 'render_settings_field_callback',
 				'settings_group' => 'extended',
 				'title'          => __( 'Enable or disable overflow-y.', $this->domain ),
 				'frontend_value' => true,
@@ -603,6 +668,7 @@ class nsr_options {
 			),
 			'cursordragspeed'         => array(
 				'name'           => __( 'Cursor Drag Speed', $this->domain ),
+				'callback' => 'render_settings_field_callback',
 				'settings_group' => 'extended',
 				'title'          => __( 'Choose the momentum on cursor drag.', $this->domain ),
 				'frontend_value' => '0.5',
@@ -613,6 +679,7 @@ class nsr_options {
 			),
 			'rtlmode'                 => array(
 				'name'           => __( 'RTL-Mode', $this->domain ),
+				'callback' => 'render_settings_field_callback',
 				'settings_group' => 'extended',
 				'title'          => __( 'Enable or disable rtl-mode.', $this->domain ),
 				'frontend_value' => false,
@@ -623,6 +690,7 @@ class nsr_options {
 			),
 			'cursordragontouch'       => array(
 				'name'           => __( 'Cursor Drag On Touch', $this->domain ),
+				'callback' => 'render_settings_field_callback',
 				'settings_group' => 'extended',
 				'title'          => __( 'Enable or disable cursor drag on touch.', $this->domain ),
 				'frontend_value' => false,
@@ -648,6 +716,7 @@ class nsr_options {
 		$plugin_options = array(
 			'backtop_enabled'  => array(
 				'name'           => __( 'backTop', $this->domain ),
+				'callback' => 'render_settings_field_callback',
 				'settings_group' => 'plugin',
 				'title'          => __( 'Activate or deactivate backTop.', $this->domain ),
 				'default_value'  => true,
@@ -657,6 +726,7 @@ class nsr_options {
 			),
 			'scrollto_enabled' => array(
 				'name'           => __( 'scrollTo', $this->domain ),
+				'callback' => 'render_settings_field_callback',
 				'settings_group' => 'plugin',
 				'title'          => __( 'Activate or deactivate scrollTo.', $this->domain ),
 				'default_value'  => true,
@@ -879,6 +949,7 @@ class nsr_options {
 				'title'          => $arguments['title'],
 				'input_type'     => $arguments['input_type'],
 				'select_values'  => $arguments['select_values'],
+				'callback'       => $arguments['callback']
 			);
 		}
 
@@ -898,40 +969,44 @@ class nsr_options {
 
 		$basic_settings = array(
 			'settings_group' => 'basic',
-			'title'          => __( 'Basic Settings', $this->domain ),
+			'title'          => '<h2 class="upper nicescrollr_settings_toggle"><i class="fa fa-sliders" aria-hidden="true"></i>' . __( 'Basic Settings', $this->domain ) . '</h2>',
 			'callback'       => 'basic_settings_section_callback',
-			'class'          => 'icon icon-equalizer',
+			'class'          => 'fa fa-sliders',
 		);
 
 		$extended_settings = array(
 			'settings_group' => 'extended',
-			'title'          => __( 'Extended Settings', $this->domain ),
+			'title'          => '<h2 class="lower nicescrollr_settings_toggle"><i class="fa fa-sliders" aria-hidden="true"></i>' . __( 'Extended Settings', $this->domain ) . '</h2>',
 			'callback'       => 'extended_settings_section_callback',
-			'class'          => 'icon icon-equalizer',
+			'class'          => 'fa fa-sliders',
 		);
 
 		$plugin_settings = array(
 			'settings_group' => 'plugin',
-			'title'          => __( 'Plugin Settings', $this->domain ),
+			'title'          => '<h2 class="upper nicescrollr_settings_toggle"><i class="fa fa-sliders" aria-hidden="true"></i>' . __( 'Plugin Settings', $this->domain ) . '</h2>',
 			'callback'       => 'plugin_settings_section_callback',
-			'class'          => 'icon icon-equalizer',
+			'class'          => 'fa fa-sliders',
 		);
 
 		switch( $section ) {
 
 			case('basic' == $section);
+
 				$heading = $basic_settings;
 				break;
 
 			case('extended' == $section);
+
 				$heading = $extended_settings;
 				break;
 
 			case('plugin' == $section);
+
 				$heading = $plugin_settings;
 				break;
 
 			default:
+
 				return false;
 		}
 

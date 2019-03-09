@@ -1,6 +1,13 @@
 <?php
 
 /**
+ * If this file is called directly, abort.
+ */
+if ( ! defined( 'WPINC' ) ) {
+	die;
+}
+
+/**
  * The admin-specific functionality of the plugin.
  *
  * @link              https://github.com/demispatti/nicescrollr
@@ -59,6 +66,11 @@ class nsr_admin {
 		$this->initialize_help_tab();
 	}
 
+	public function add_hooks() {
+
+		add_action( 'upgrader_process_complete', array( $this, 'upgrade' ), 20 );
+	}
+
 	/**
 	 * Loads it's dependencies.
 	 *
@@ -89,41 +101,31 @@ class nsr_admin {
 	 */
 	public function enqueue_scripts() {
 
-		$is_superseeded_by_cb_parallax_preserve_scrolling = false;
-
 		// Gets executed if Nicescroll is enabled in the frontend.
 		$option = get_option( 'nicescrollr_options' );
 
 		if( isset($option[ $this->view ]['enabled']) && $option[ $this->view ]['enabled'] ) {
 
-			// Checks which "version" of nicescroll to load.
-			if( isset($is_superseeded_by_cb_parallax_preserve_scrolling) && true === $is_superseeded_by_cb_parallax_preserve_scrolling ) {
+			// jQuery easing
+			wp_enqueue_script(
+				'nicescrollr-cb-parallax-easing-min-js',
+				plugin_dir_url( __FILE__ ) . '../vendor/jquery-easing/jquery.easing.min.js',
+				array( 'jquery' ),
+				'all',
+				false
+			);
 
-				return;
-			} else if( isset($option[ $this->view ]['defaultScrollbar']) && $option[ $this->view ]['defaultScrollbar'] ) {
-
-				// NSR Nicescroll library
-				wp_enqueue_script(
-					'nicescrollr-inc-nicescroll-min-js',
-					plugin_dir_url( __FILE__ ) . '../vendor/nicescroll/jquery.nsr.nicescroll.min.js',
-					array(
-						'jquery',
-					),
-					'all',
-					true
-				);
-			} else {
-				// Nicescroll library
-				wp_enqueue_script(
-					'nicescrollr-inc-nicescroll-min-js',
-					plugin_dir_url( __FILE__ ) . '../vendor/nicescroll/jquery.nicescroll.min.js',
-					array(
-						'jquery',
-					),
-					'all',
-					true
-				);
-			}
+			// Nicescroll library
+			wp_enqueue_script(
+				'nicescrollr-inc-nicescroll-min-js',
+				plugin_dir_url( __FILE__ ) . '../vendor/nicescroll/jquery.nicescroll.min.js',
+				array(
+					'jquery',
+					'nicescrollr-cb-parallax-easing-min-js'
+				),
+				'all',
+				true
+			);
 
 			// Nicescroll configuration file
 			wp_enqueue_script(
@@ -131,7 +133,7 @@ class nsr_admin {
 				plugin_dir_url( __FILE__ ) . '../js/nicescroll.js',
 				array(
 					'jquery',
-					'nicescrollr' . '-inc-nicescroll-min-js',
+					'nicescrollr-inc-nicescroll-min-js',
 				),
 				'all',
 				true
@@ -240,6 +242,23 @@ class nsr_admin {
 		}
 
 		return $meta;
+	}
+
+	/**
+	 * Calls the class responsible for any eventual upgrade-related functions.
+	 *
+	 * @hooked_action
+	 *
+	 * @since    0.6.0
+	 * @access   public
+	 */
+	public function upgrade() {
+
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-nsr-upgrade.php';
+
+		$upgrader = new nsr_upgrade();
+
+		$upgrader->run();
 	}
 
 	/**

@@ -1,6 +1,13 @@
 <?php
 
 /**
+ * If this file is called directly, abort.
+ */
+if ( ! defined( 'WPINC' ) ) {
+	die;
+}
+
+/**
  * The class responsible for localizing the Nicescroll configuration file.
  *
  * @link              https://github.com/demispatti/nicescrollr
@@ -90,7 +97,7 @@ class nsr_nicescroll_localisation {
 	 */
 	private function localize_nicescroll( $view ) {
 
-		wp_localize_script( 'nicescrollr' . '-nicescroll-js', 'GlobalOptions', $this->get_nicescroll_configuration( $view ) );
+		wp_localize_script( 'nicescrollr' . '-nicescroll-js', 'nsrOptions', $this->get_nicescroll_configuration( $view ) );
 	}
 
 	/**
@@ -114,8 +121,8 @@ class nsr_nicescroll_localisation {
 		}
 
 		$configuration = $options[ $view ];
-		// Removes the first entry, since it is not a Nicescroll configuration parameter.
-		array_shift( $configuration );
+		// Add the value which defines the view ( front- or backend).
+		$configuration['view'] = $view;
 
 		return $configuration;
 	}

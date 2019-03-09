@@ -1,6 +1,13 @@
 <?php
 
 /**
+ * If this file is called directly, abort.
+ */
+if ( ! defined( 'WPINC' ) ) {
+	die;
+}
+
+/**
  * The class responsible for localizing the admin part of this plugin.
  *
  * @link              https://github.com/demispatti/nicescrollr

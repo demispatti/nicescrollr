@@ -1,6 +1,13 @@
 <?php
 
 /**
+ * If this file is called directly, abort.
+ */
+if ( ! defined( 'WPINC' ) ) {
+	die;
+}
+
+/**
  * The class that deals with the settings api.
  *
  * @link              https://github.com/demispatti/nicescrollr
@@ -147,7 +154,7 @@ class nsr_settings {
 	 */
 	public function register_settings() {
 
-		register_setting( 'nicescrollr_options', 'nicescrollr_options', array( &$this, 'run_validation' ) );
+		register_setting( 'nicescrollr_options', 'nicescrollr_options', array( $this, 'run_validation' ) );
 	}
 
 	/**
@@ -161,6 +168,9 @@ class nsr_settings {
 		if( isset($_REQUEST['section']) ) {
 
 			$section = $_REQUEST['section'];
+		} else if ( isset( $_REQUEST['cb_parallax_upgrade'] ) ) {
+
+			return $input;
 		} else {
 
 			$section = false;
@@ -188,7 +198,7 @@ class nsr_settings {
 		if( false === $options ) {
 
 			$this->options->seed_options();
-		} else if( count( $options ) !== 3 ) {
+		} else if( ! isset($options['frontend']['cursorcolor'] ) ) {
 
 			$option_groups = array( 'frontend', 'backend', 'plugin' );
 
@@ -293,7 +303,7 @@ class nsr_settings {
 			add_settings_field(
 				$option_key,
 				$args['name'],
-				array( &$this, 'render_settings_field_callback' ),
+				array( $this, $args['callback'] ),
 				'nicescrollr_settings',
 				$args['settings_group'] . '_settings_section',
 				array(
@@ -314,7 +324,8 @@ class nsr_settings {
 	 * @return void / echo
 	 */
 	public function basic_settings_section_callback() {
-		/*echo '<p>' . __( 'Customize the basic Nicescroll settings.', $this->domain ) . '</p>';*/
+
+		//echo '<h2 class="nicescrollr_settings_toggle"><i class="fa fa-sliders" aria-hidden="true"></i>' . __( 'Basic Settings', $this->domain ) . '</h2>';
 	}
 
 	/**
@@ -324,7 +335,8 @@ class nsr_settings {
 	 * @return void / echo
 	 */
 	public function extended_settings_section_callback() {
-		/*echo '<p>' . __( 'Customize the extended Nicescroll settings.', $this->domain ) . '</p>';*/
+
+		//echo '<h2 class="nicescrollr_settings_toggle"><i class="fa fa-sliders" aria-hidden="true"></i>' . __( 'Extended Settings', $this->domain ) . '</h2>';
 	}
 
 	/**
@@ -334,7 +346,8 @@ class nsr_settings {
 	 * @return void / echo
 	 */
 	public function plugin_settings_section_callback() {
-		/*echo '<p>' . __( 'Set the options of the plugin.', $this->domain ) . '</p>';*/
+
+		//echo '<h2 class="nicescrollr_settings_toggle"><i class="fa fa-sliders" aria-hidden="true"></i>' . __( 'Plugin Settings', $this->domain ) . '</h2>';
 	}
 
 	/**

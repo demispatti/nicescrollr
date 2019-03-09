@@ -1,6 +1,13 @@
 <?php
 
 /**
+ * If this file is called directly, abort.
+ */
+if ( ! defined( 'WPINC' ) ) {
+	die;
+}
+
+/**
  * The class responsible for localizing the ajax part of this plugin.
  *
  * @link              https://github.com/demispatti/nicescrollr
@@ -59,6 +66,62 @@ class nsr_ajax_localisation {
 	private function localize_script() {
 
 		wp_localize_script( 'nicescrollr-ajax-js', 'nsrAjax', array_merge( $this->get_confirmation_texts(), $this->get_confirmation_dialog_labels() ) );
+	}
+
+	/**
+	 * Returns the string that shows up when the user wants to reset all options.
+	 *
+	 * @since  0.1.0
+	 * @access private
+	 * @return string $string
+	 */
+	private function get_reset_frontend_confirmation_heading() {
+
+		$string = __( "Reset", $this->domain );
+
+		return $string;
+	}
+
+	/**
+	 * Returns the string that shows up when the user wants to reset all options.
+	 *
+	 * @since  0.1.0
+	 * @access private
+	 * @return string $string
+	 */
+	private function get_reset_backend_confirmation_heading() {
+
+		$string = __( "Reset", $this->domain );
+
+		return $string;
+	}
+
+	/**
+	 * Returns the string that shows up when the user wants to reset all options.
+	 *
+	 * @since  0.1.0
+	 * @access private
+	 * @return string $string
+	 */
+	private function get_reset_plugin_confirmation_heading() {
+
+		$string = __( "Reset", $this->domain );
+
+		return $string;
+	}
+
+	/**
+	 * Returns the string that shows up when the user wants to reset all options.
+	 *
+	 * @since  0.1.0
+	 * @access private
+	 * @return string $string
+	 */
+	private function get_reset_all_confirmation_heading() {
+
+		$string = __( "Reset", $this->domain );
+
+		return $string;
 	}
 
 	/**
@@ -121,18 +184,23 @@ class nsr_ajax_localisation {
 	 * Returns the array containing the preceeding confirmation texts.
 	 *
 	 * @since    0.1.0
-	 * @return   array $localisation_data
+	 * @return   array $texts
 	 */
 	public function get_confirmation_texts() {
 
-		$localisation_data = array(
+		$texts = array(
+			'resetFrontendConfirmationHeading' => $this->get_reset_frontend_confirmation_heading(),
+			'resetBackendConfirmationHeading'  => $this->get_reset_backend_confirmation_heading(),
+			'resetPluginConfirmationHeading'   => $this->get_reset_plugin_confirmation_heading(),
+			'resetAllConfirmationHeading'      => $this->get_reset_all_confirmation_heading(),
+
 			'resetFrontendConfirmation' => $this->get_reset_frontend_confirmation_text(),
 			'resetBackendConfirmation'  => $this->get_reset_backend_confirmation_text(),
 			'resetPluginConfirmation'   => $this->get_reset_plugin_confirmation_text(),
 			'resetAllConfirmation'      => $this->get_reset_all_confirmation_text(),
 		);
 
-		return $localisation_data;
+		return $texts;
 	}
 
 	/**

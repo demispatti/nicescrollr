@@ -3,10 +3,10 @@
 Tags: nicescroll, scroll, scrollbar, scrolling, nice, frontend, backend, scrollen  
 
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=XLMMS7C62S76Q  
-Requires at least: 4.4
-Tested up to: 4.7
-Version: 0.4.0
-Stable tag: 0.4.0
+Requires at least: 4.5
+Tested up to: 4.7.2
+Version: 0.5.0
+Stable tag: 0.5.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Contributors: demispatti
@@ -58,6 +58,16 @@ The backtop-button on the backend does not yet work with firefox.
 This will be fixed in the next release
 
 == Changelog ==
+
+= Version 0.5.0 =
+1. Upgraded Nicescroll to version 3.6.8. Scroll behaviour may has changed since the library changed. Tweak the settings mentioned under 4. in this list if necessary
+2. Added easing
+2. Upgraded Alertify
+3. Replaced IcoMoon icons in favour of Font Awesome 4.7.0 ( loads via CDN with local fallback )
+4. Moved "Scroll Speed" and "Mouse Scroll Step" to the basic settings section for easier access
+5. Refactored and optimized scripts and code
+6. Updated the default settings
+7. Resolved an issue with "scroll top"
 
 = Version 0.4.0 =
 1. Minor bug fixes

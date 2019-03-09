@@ -1,6 +1,13 @@
 <?php
 
 /**
+ * If this file is called directly, abort.
+ */
+if ( ! defined( 'WPINC' ) ) {
+	die;
+}
+
+/**
  * The class that represents the "reset section" within the plugin options tab.
  *
  * @link              https://github.com/demispatti/nicescrollr
@@ -85,7 +92,7 @@ class nsr_reset_section {
 	 */
 	private function get_section_heading() {
 
-		return '<h2 class="nicescrollr_settings_toggle">' . __( 'Reset Settings', $this->domain ) . '</h2>';
+		return '<h2 class="lower nicescrollr_settings_toggle"><i class="fa fa-sliders" aria-hidden="true"></i>' . __( 'Reset Settings', $this->domain ) . '</h2>';
 	}
 
 	/**
@@ -110,7 +117,7 @@ class nsr_reset_section {
 			$html .= '<td>';
 			$html .= '<div class="form-table-td-wrap">';
 			$html .= '<p class="nsr-input-container">';
-			$html .= '<a name="' . $button['id'] . '" id="' . $button['id'] . '" class="button button-primary dp-button float-left ' . $button['class'] . '" title="' . $button['title'] . '" data-nonce="' . $nonce . '">' . __( 'Reset', $this->domain ) . '</a>';
+			$html .= '<a name="' . $button['id'] . '" id="' . $button['id'] . '" class="button button-secondary dp-button float-left ' . $button['class'] . '" title="' . $button['title'] . '" data-nonce="' . $nonce . '">' . __( 'Reset', $this->domain ) . '</a>';
 			$html .= '</p>';
 			$html .= '</div>';
 			$html .= '</td>';

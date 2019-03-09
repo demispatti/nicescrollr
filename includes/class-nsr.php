@@ -1,6 +1,13 @@
 <?php
 
 /**
+ * If this file is called directly, abort.
+ */
+if ( ! defined( 'WPINC' ) ) {
+	die;
+}
+
+/**
  * The file that defines the core plugin class.
  *
  * @link              https://github.com/demispatti/nicescrollr
@@ -82,6 +89,7 @@ class nsr {
 
 		$Admin = new nsr_admin( $this->get_domain() );
 
+		add_action( 'admin_enqueue_scripts', array( $Admin, 'add_hooks' ) );
 		add_action( 'admin_enqueue_scripts', array( $Admin, 'enqueue_scripts' ), 20 );
 		add_action( 'admin_enqueue_scripts', array( $Admin, 'initialize_localisation' ), 100 );
 		add_filter( 'plugin_row_meta', array( $Admin, 'plugin_row_meta' ), 10, 2 );

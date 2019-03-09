@@ -1,6 +1,13 @@
 <?php
 
 /**
+ * If this file is called directly, abort.
+ */
+if ( ! defined( 'WPINC' ) ) {
+	die;
+}
+
+/**
  * The class that manages the settings menu.
  *
  * @link              https://github.com/demispatti/nicescrollr
@@ -177,28 +184,32 @@ class nsr_menu {
 
 		if( isset($hook_suffix) && $hook_suffix === 'settings_page_nicescrollr_settings' ) {
 
+			// Font Awesome.
+			$fa_url = 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css';
+			$fa_cdn = wp_remote_get( $fa_url );
+			if ( (int) wp_remote_retrieve_response_code( $fa_cdn ) !== 200 ) {
+				$fa_url = plugin_dir_url( __FILE__ ) . '../../vendor/font-awesome/font-awesome.min.css';
+			}
+			wp_enqueue_style( 'inc-font-awesome', $fa_url, false );
+
+			// Color Picker
 			if( !wp_style_is( 'color-picker.min.css' ) && !wp_style_is( 'color-picker.css' ) ) {
 
-				// Color Picker
 				wp_enqueue_style( 'wp-color-picker' );
 			}
 
-			if( !wp_style_is( 'alertify.core.min.css' ) && !wp_style_is( 'alertify.core.css' ) ) {
-
-				// Alertify
-				wp_enqueue_style(
-					'nicescrollr-inc-alertify-core-css',
-					plugin_dir_url( __FILE__ ) . '../../vendor/alertify/alertify.core.css',
-					array(),
-					'all',
-					'all'
-				);
-			}
-
-			// Icomoon
+			// Alertify.
 			wp_enqueue_style(
-				'nicescrollr-icomoon-css',
-				plugin_dir_url( __FILE__ ) . 'fonts/icomoon/style.css',
+				'inc-alertify-min-css',
+				plugin_dir_url( __FILE__ ) . '../../vendor/alertify/css/alertify.min.css',
+				array(),
+				'all',
+				'all'
+			);
+			// Alertify semantic theme.
+			wp_enqueue_style(
+				'inc-alertify-theme-semantic-min-css',
+				plugin_dir_url( __FILE__ ) . '../../vendor/alertify/css/themes/semantic.min.css',
 				array(),
 				'all',
 				'all'
@@ -256,12 +267,12 @@ class nsr_menu {
 			);
 
 			// Loads only on the "plugin settings" tab.
-			if( isset( $_REQUEST['page'] ) && $_REQUEST['page'] === 'nicescrollr_settings' ) {
+			if( isset( $_REQUEST['page'] ) && $_REQUEST['page'] == 'nicescrollr_settings' && isset( $_REQUEST['tab'] ) && $_REQUEST['tab'] == 'plugin_options' ) {
 
 				// Alertify
 				wp_enqueue_script(
 					'nicescrollr-inc-alertify-js',
-					plugin_dir_url( __FILE__ ) . '../../vendor/alertify/alertify.js',
+					plugin_dir_url( __FILE__ ) . '../../vendor/alertify/alertify.min.js',
 					array( 'jquery' ),
 					'all',
 					false
@@ -273,7 +284,7 @@ class nsr_menu {
 					plugin_dir_url( __FILE__ ) . 'js/ajax.js',
 					array(
 						'jquery',
-						'nicescrollr' . '-inc-alertify-js',
+						'nicescrollr-inc-alertify-js',
 					),
 					'all',
 					false
@@ -287,7 +298,7 @@ class nsr_menu {
 				array(
 					'jquery',
 					'wp-color-picker',
-					'nicescrollr' . '-inc-fancy-select-js',
+					'nicescrollr-inc-fancy-select-js',
 					false !== $option['plugin']['scrollto_enabled'] ? 'nicescrollr' . '-inc-scrollto-min-js' : NULL,
 				),
 				'all',
@@ -478,11 +489,11 @@ class nsr_menu {
 				<!-- Nav tab -->
 				<div class="nav-tab-wrapper">
 					<a href="?page=nicescrollr_settings&tab=frontend_options"
-					   class="nav-tab <?php echo $active_tab == 'frontend_options' ? 'nav-tab-active' : ''; ?> icomoon icomoon-display"><?php _e( 'Frontend', $this->domain ); ?></a>
+					   class="nav-tab <?php echo $active_tab == 'frontend_options' ? 'nav-tab-active' : ''; ?> "><i class="fa fa-television" aria-hidden="true"></i><?php _e( 'Frontend', $this->domain ); ?></a>
 					<a href="?page=nicescrollr_settings&tab=backend_options"
-					   class="nav-tab <?php echo $active_tab == 'backend_options' ? 'nav-tab-active' : ''; ?> icomoon icomoon-wordpress"><?php _e( 'Backend', $this->domain ); ?></a>
+					   class="nav-tab <?php echo $active_tab == 'backend_options' ? 'nav-tab-active' : ''; ?> "><i class="fa fa-wordpress" aria-hidden="true"></i><?php _e( 'Backend', $this->domain ); ?></a>
 					<a href="?page=nicescrollr_settings&tab=plugin_options"
-					   class="nav-tab <?php echo $active_tab == 'plugin_options' ? 'nav-tab-active' : ''; ?> icomoon icomoon-power-cord"><?php _e( 'Plugin', $this->domain ); ?></a>
+					   class="nav-tab <?php echo $active_tab == 'plugin_options' ? 'nav-tab-active' : ''; ?> "><i class="fa fa-bars" aria-hidden="true"></i><?php _e( 'Plugin', $this->domain ); ?></a>
 				</div>
 
 				<?php

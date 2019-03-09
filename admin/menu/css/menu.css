@@ -11,111 +11,24 @@
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  */
 
-.nsr-settings-page h2.icomoon, .nsr-settings-page h3.icomoon {
-    padding-left: 20px;
+.nsr-settings-page h2:first-of-type {
+    display: none;
+}
+
+.nsr-settings-page h2 i.fa, .nsr-settings-page h3 i.fa {
+    padding-left: 0px;
+    margin-right: 8px;
+}
+
+.nsr-settings-page a i.fa {
+    padding-left: 0px;
+    margin-right: 4px;
 }
 
 .dp-submit-button-wrap, .dp-submit-button-wrap-2, .settings_page_nicescrollr_settings .submit {
     box-sizing: border-box;
     width: 100%;
     max-width: 480px
-}
-
-.nsr-settings-page .alertify, .alertify-log {
-    font-family: sans-serif
-}
-
-.nsr-settings-page p.alertify-message {
-    font-size: 14px;
-    font-family: inherit;
-    line-height: 1.5
-}
-
-.nsr-settings-page .alertify-confirm {
-    border: 1px solid #e5e5e5;
-    background: #fff;
-    -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, .1), 0 0 40px rgba(0, 0, 0, .06) inset;
-    -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, .1), 0 0 40px rgba(0, 0, 0, .06) inset;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, .1), 0 0 40px rgba(0, 0, 0, .06) inset;
-    transition: all .2s ease-in-out;
-}
-
-.nsr-settings-page .alertify {
-    background: #FFF;
-    border: 10px solid rgba(229, 229, 229, .8);
-    border-radius: 8px;
-    box-shadow: 0 3px 3px rgba(0, 0, 0, .3);
-    -webkit-background-clip: padding;
-    -moz-background-clip: padding;
-    background-clip: padding-box
-}
-
-.nsr-settings-page .alertify-text {
-    border: 1px solid #CCC;
-    padding: 10px;
-    border-radius: 4px
-}
-
-.nsr-settings-page .alertify-button {
-    border-radius: 4px;
-    color: #FFF;
-    font-weight: 700;
-    padding: 6px 15px;
-    text-decoration: none;
-    text-shadow: 1px 1px 0 rgba(0, 0, 0, .5);
-    box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, .5);
-    background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, .3), rgba(255, 255, 255, 0));
-    background-image: -moz-linear-gradient(top, rgba(255, 255, 255, .3), rgba(255, 255, 255, 0));
-    background-image: -ms-linear-gradient(top, rgba(255, 255, 255, .3), rgba(255, 255, 255, 0));
-    background-image: -o-linear-gradient(top, rgba(255, 255, 255, .3), rgba(255, 255, 255, 0));
-    background-image: linear-gradient(top, rgba(255, 255, 255, .3), rgba(255, 255, 255, 0))
-}
-
-.nsr-settings-page .alertify-button:focus, .nsr-settings-page .alertify-button:hover {
-    outline: 0;
-    background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, .1), rgba(0, 0, 0, 0));
-    background-image: -moz-linear-gradient(top, rgba(0, 0, 0, .1), rgba(0, 0, 0, 0));
-    background-image: -ms-linear-gradient(top, rgba(0, 0, 0, .1), rgba(0, 0, 0, 0));
-    background-image: -o-linear-gradient(top, rgba(0, 0, 0, .1), rgba(0, 0, 0, 0));
-    background-image: linear-gradient(top, rgba(0, 0, 0, .1), rgba(0, 0, 0, 0))
-}
-
-.nsr-settings-page .alertify-button:focus {
-    border-color: #5b9dd9;
-    box-shadow: 0 0 2px rgba(30, 140, 190, .8)
-}
-
-.nsr-settings-page .alertify-button:active {
-    position: relative;
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, .15), 0 1px 2px rgba(0, 0, 0, .05)
-}
-
-.nsr-settings-page .alertify-button-cancel, .nsr-settings-page .alertify-button-cancel:focus, .nsr-settings-page .alertify-button-cancel:hover {
-    background-color: #e74c3c;
-    border: 1px solid #ca4535
-}
-
-.nsr-settings-page .alertify-button-ok, .nsr-settings-page .alertify-button-ok:focus, .nsr-settings-page .alertify-button-ok:hover {
-    background-color: #2ecc71;
-    border: 1px solid #2aa755
-}
-
-.nsr-settings-page .alertify-log {
-    background: #1F1F1F;
-    background: rgba(0, 0, 0, .9);
-    padding: 15px;
-    border-radius: 4px;
-    color: #FFF;
-    text-shadow: -.6px -.6px 0 rgba(0, 0, 0, .4)
-}
-
-.nsr-settings-page .alertify-log-error {
-    background: #e74c3c;
-    background: rgba(231, 76, 60, .9)
-}
-
-.nsr-settings-page .alertify-log-success {
-    background: #5b9dd9
 }
 
 .settings_page_nicescrollr_settings .submit {
@@ -170,19 +83,6 @@
     margin-top: 40px
 }
 
-.nsr-settings-page #backTop, .nsr-settings-page #backTop.black {
-    width: 36px !important;
-    height: 36px !important;
-    padding: 0;
-    text-align: center;
-    font-weight: 700;
-    color: rgba(68, 68, 68, .2);
-    text-decoration: none;
-    position: absolute;
-    border: 1px solid #fff;
-    opacity: .4
-}
-
 .nsr-settings-page .wp-core-ui .button {
     text-align: center
 }
@@ -201,31 +101,6 @@
 
 .nsr-settings-page .wp-color-result {
     margin-top: 4px
-}
-
-.nsr-settings-page #backTop {
-    color: white;
-    position: fixed;
-    bottom: 40px;
-    right: 40px;
-    background: url(../images/uparr-36-w.png) center center no-repeat #47a8d8 !important;
-    display: none;
-    opacity: 1;
-}
-
-.nsr-settings-page #backTop.is-visible {
-    display: inline;
-}
-
-.nsr-settings-page #backTop.black {
-    background: url(../images/uparr-36-w.png) center center no-repeat !important;
-    transition: all .2s
-}
-
-.nsr-settings-page #backTop:hover {
-    cursor: pointer;
-    background: #7dc5d9;
-    transition: all .2s
 }
 
 #nsr_form ::-webkit-input-placeholder {
@@ -729,4 +604,68 @@
     box-shadow: 0 1px 2px rgba(0, 0, 0, .09) inset, 0 1px 4px rgba(0, 0, 0, .09);
     border: 1px solid #cdcdcd;
     transition: all .12s ease-in-out
+}
+
+/************************************************************\
+ *   To Top
+\************************************************************/
+
+.nsr-settings-page .to-top {
+    z-index: 1000;
+    display: inline-block;
+    height: 36px;
+    width: 36px;
+    position: fixed;
+    bottom: 48px;
+    right: 32px;
+    overflow: hidden;
+    text-indent: 100%;
+    white-space: nowrap;
+    color: white;
+    border: 1px solid #538fa3;
+    background: #7dc5d9 url("/wp-content/plugins/nicescrollr/admin/menu/images/to-top.svg") no-repeat center 50%;
+    visibility: hidden;
+    opacity: 0.4;
+    -webkit-transition: all .3s;
+    -moz-transition: all .3s;
+    transition: all .3s;
+}
+
+.nsr-settings-page .to-top.top-is-visible {
+    color: #595e6f;
+    border-color: #7dc5d9;
+    visibility: visible;
+    opacity: 0.8;
+    background-color: #7dc5d9
+}
+
+.nsr-settings-page .to-top.top-is-visible:hover {
+    color: #ccced6;
+    background-color: #7dc5d9;
+    visibility: visible;
+    opacity: 1;
+}
+
+.nsr-settings-page .to-top.top-fade-out {
+    opacity: .5;
+}
+
+.no-touch .nsr-settings-page .to-top:hover {
+    opacity: 1;
+}
+
+@media screen and (max-width: 1440px) {
+    .nsr-settings-page .to-top.top-is-visible {
+        opacity: 0.5;
+    }
+}
+
+@media screen and (max-width:960px) {
+    .nsr-settings-page .to-top.top-is-visible {
+        height: 32px;
+        width: 32px;
+        bottom: 48px;
+        right: 4px;
+        opacity: 1;
+    }
 }
