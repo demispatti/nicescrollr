@@ -27,8 +27,8 @@ if( ! class_exists( 'AdminIncludes\Nsr_Validation' ) ) {
  * @since             0.1.0
  * @package           nicescrollr
  * @subpackage        nicescrollr/admin/menu/includes
- * Author:            Demis Patti <wp@demispatti.ch>
- * Author URI:        https://demispatti.ch
+ * Author:            Demis Patti <demispatti@gmail.com>
+ * Author URI:
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  */

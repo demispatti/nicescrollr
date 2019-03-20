@@ -24,8 +24,8 @@ if( ! class_exists( 'Includes\Admin\Menu\Nsr_Options' ) ) {
  * @since             0.6.0
  * @package           Nsr
  * @subpackage        Nsr/includes
- * Author:            Demis Patti <wp@demispatti.ch>
- * Author URI:        https://demispatti.ch
+ * Author:            Demis Patti <demispatti@gmail.com>
+ * Author URI:
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  */
