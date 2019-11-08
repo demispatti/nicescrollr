@@ -1,87 +1,39 @@
 /**
  * The file that pre-processes and then runs the passed parameters with Nicescroll.
  *
- * @link              https://github.com/demispatti/nicescrollr
+ * @link              https://wordpress.org/plugins/nicescrollr/
  * @since             0.1.0
  * @package           nicescrollr
- * @subpackage        nicescrollr/js
- * Author:            Demis Patti <demispatti@gmail.com>
- * Author URI:
+ * @subpackage        nicescrollr/assets
+ * Author:            Demis Patti <wp@demispatti.ch>
+ * Author URI:        https://demispatti.ch
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  */
 "use strict";
 jQuery(function ($) {
 
-	var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+	let nicescrollrIsMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
 	function Nicescrollr () {
 		this.nsr_options = Nsr_Options;
 		this.document = $(document);
 		this.window = $(window);
-		this.html = $("html");
-		this.body = $("body");
+		this.html = $('html');
+		this.body = $('body');
 		this.adminbar = $('#wpadminbar');
+		this.editorContainer = $('#wp-content-editor-container');
 	}
 
 	Nicescrollr.prototype = {
 		init: function () {
 			this.runNicescroll();
-			this.listenForDocumentChanges(this);
+			this.listenForDocumentChanges();
 		},
 		runNicescroll: function () {
-
+			let config = this.getNicescrollConfiguration();
 			this.body.niceScroll(this.getNicescrollConfiguration());
-
-			if ('1' === this.nsr_options.default_scrollbar) {
-
-				// Remove Nicescroll's scrollbar
-				$('#ascrail2000, #ascrail2000-hr').remove();
-
-				// Set these styles
-				this.html.css({
-					'box-sizing': 'border-box',
-					'overflow-y': 'auto',
-					'-ms-overflow-style': 'none',
-					'overflow-style': 'none'
-				});
-				this.body.css({
-					'display': 'block',
-					'box-sizing': 'border-box',
-					'overflow-y': 'auto',
-					'-ms-overflow-style': 'scrollbar',
-					'overflow-style': 'scrollbar'
-				});
-			}
-			if ('0' === this.nsr_options.default_scrollbar){
-
-				if (this.nsr_options.view === 'frontend') {
-					this.html.css({
-						'-ms-overflow-style': 'none',
-						'overflow-style': 'none',
-						'white-space': 'nowrap',
-						'width': '100%',
-						'overflow-y': 'auto'
-					});
-					this.body.css({
-						'-ms-overflow-style': 'none',
-						'overflow-style': 'none',
-						'overflow-y': 'auto'
-					});
-				}
-				if (this.nsr_options.view === 'backend') {
-					this.html.css({
-						'overflow-y': 'hidden',
-						'-ms-overflow-style': 'none',
-						'overflow-style': 'none'
-					});
-					this.body.css({
-						'overflow-y': 'hidden',
-						'-ms-overflow-style': 'none',
-						'overflow-style': 'none'
-					});
-				}
-			}
+			this.runIframeHelper();
 		},
 		getNicescrollConfiguration: function () {
 
@@ -136,6 +88,42 @@ jQuery(function ($) {
 				scrollbarid: this.nsr_options.scrollbarid
 			});
 		},
+		runIframeHelper: function() {
+
+			let isIE = false;
+			let ua = window.navigator.userAgent;
+			let old_ie = ua.indexOf('Trident/');
+			let new_ie = ua.indexOf('Edge');
+
+			if((old_ie > - 1) || (new_ie > - 1)){
+
+				if(old_ie > - 1){
+					this.addMsieIframeHelper();
+				} else {
+					this.addEdgeIframeHelper();
+				}
+
+				return;
+			}
+			else if (navigator.userAgent.search("Firefox") >= 0) {
+				this.addMozIframeHelper();
+
+				return;
+			}
+			else if (navigator.userAgent.search("Chrome") >= 0) {
+				this.addWebkitIframeHelper();
+
+				return;
+			}
+			else if (navigator.userAgent.search("Opera") >= 0) {
+				this.addWebkitIframeHelper();
+
+				return;
+			}
+			else if (navigator.userAgent.search("Safari") >= 0) {
+				this.addWebkitIframeHelper();
+			}
+		},
 
 		retrieveCursorBorder: function () {
 
@@ -154,7 +142,7 @@ jQuery(function ($) {
 		},
 		retrieveAutohideMode: function () {
 
-			var autohidemode = this.nsr_options.autohidemode;
+			let autohidemode = this.nsr_options.autohidemode;
 
 			if ('enabled' === autohidemode || 'true' === autohidemode) {
 				autohidemode = true;
@@ -167,7 +155,7 @@ jQuery(function ($) {
 		},
 		retrieveRailOffset: function () {
 
-			var Railoffset = this.nsr_options.railoffset;
+			let Railoffset = this.nsr_options.railoffset;
 			if ('false' === Railoffset) {
 				Railoffset = false;
 			}
@@ -175,20 +163,20 @@ jQuery(function ($) {
 		},
 		retrieveCursorFixedHeight: function () {
 
-			var Cursorfixedheight = this.nsr_options.cursorfixedheight;
+			let Cursorfixedheight = this.nsr_options.cursorfixedheight;
 			if ('false' === Cursorfixedheight) {
 				Cursorfixedheight = false;
 			}
 			return Cursorfixedheight;
 		},
 
-		listenForDocumentChanges: function (self) {
-			var $this = self;
+		listenForDocumentChanges: function () {
+			let $this = this;
 
 			MutationObserver = window.MutationObserver || window.WebKitMutationObserver;
-			var observer = new MutationObserver(function () {
+			let observer = new MutationObserver(function () {
 				// fired when a mutation occurs
-				$this.triggerResize($this);
+				$this.triggerResize();
 			});
 			// define what element should be observed by the observer
 			// and what types of mutations trigger the callback
@@ -198,18 +186,79 @@ jQuery(function ($) {
 				childList: true
 			});
 		},
-		triggerResize: function (self) {
-			var $this = self;
+
+		addWebkitIframeHelper: function() {
+			this.body.addClass('nsr-is-webkit');
+			let $this = this;
+			this.editorContainer.on({
+				mouseenter: function(){
+					$this.body.attr('style', 'overflow-y: initial');
+				},
+				mouseleave: function () {
+					$this.body.attr('style', 'overflow-y: hidden');
+				},
+			});
+			if(this.editorContainer.has(':hover')){
+				$this.editorContainer.trigger('mouseenter');
+			} else {
+				$this.editorContainer.trigger('mouseleave');
+			}
+		},
+		addMozIframeHelper: function () {
+			this.body.addClass('nsr-is-moz');
+			let $this = this;
+			let mozBody = this.html;
+			this.editorContainer.on({
+				mouseenter: function () {
+					mozBody.attr('style', 'scrollbar-width: none');
+					$this.body.attr('style', 'overflow-y: initial');
+				},
+				mouseleave: function () {
+					mozBody.attr('style', 'scrollbar-width: none');
+					$this.body.attr('style', 'overflow-y: hidden');
+				},
+			});
+		},
+		addMsieIframeHelper: function () {
+			this.html.addClass('nsr-is-msie');
+			let $this = this;
+			this.editorContainer.on({
+				mouseenter: function () {
+					$this.body.attr('style', '-ms-overflow-style: none');
+					$this.html.attr('style', '-ms-overflow-y: initial');
+				},
+				mouseleave: function () {
+					$this.body.attr('style', '-ms-overflow-style: none');
+					$this.html.attr('style', '-ms-overflow-y: initial');
+				},
+			});
+		},
+		addEdgeIframeHelper: function () {
+			this.body.addClass('nsr-is-edge');
+			let $this = this;
+			this.editorContainer.on({
+				mouseenter: function () {
+					$this.body.attr('style', '-ms-overflow-style: none');
+					$this.body.attr('style', '-ms-overflow-y: initial');
+				},
+				mouseleave: function () {
+					$this.body.attr('style', '-ms-overflow-style: none');
+					$this.body.attr('style', '-ms-overflow-y: initial');
+				},
+			});
+		},
+		triggerResize: function () {
+			let $this = this;
 
 			setTimeout(function () {
 				$this.body.getNiceScroll().resize();
-			}, 340);
+			}, 120);
 		}
 	};
 
 	$(document).ready(function () {
-		if (! isMobile && Nsr_Options.enabled === '1' || isMobile && Nsr_Options.enabled === '1' && Nsr_Options.mobile_devices_enabled === '1') {
-			var nicescrollr = new Nicescrollr();
+		if (false === nicescrollrIsMobile && Nsr_Options.enabled === '1' || true === nicescrollrIsMobile && Nsr_Options.enabled === '1' && Nsr_Options.mobile_devices_enabled === '1') {
+			let nicescrollr = new Nicescrollr();
 			nicescrollr.init();
 		}
 	});

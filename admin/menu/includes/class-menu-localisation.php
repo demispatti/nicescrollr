@@ -17,8 +17,8 @@ if( ! defined( 'WPINC' ) ) {
  * @since             0.1.0
  * @package           nicescrollr
  * @subpackage        nicescrollr/admin/menu/includes
- * Author:            Demis Patti <demispatti@gmail.com>
- * Author URI:
+ * Author:            Demis Patti <wp@demispatti.ch>
+ * Author URI:        https://demispatti.ch
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  */
@@ -54,24 +54,7 @@ class Nsr_Menu_Localisation {
 
 		$this->domain = $domain;
 		$this->Options = $Options;
-
-		//$this->load_dependencies();
 	}
-
-	/**
-	 * Loads it's dependencies.
-	 *
-	 * @since  0.1.0
-	 * @access private
-	 * @return void
-	 */
-	/*private function load_dependencies() {
-
-		// The class that maintains all data like default values and their meta data.
-		require_once NICESCROLLR_ROOT_DIR . 'admin/menu/includes/class-options.php';
-
-		$this->options = new MenuIncludes\Nsr_Options( $this->get_domain() );
-	}*/
 
 	/**
 	 * Kicks off localisation of the menu.

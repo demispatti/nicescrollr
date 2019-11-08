@@ -20,6 +20,9 @@ if( ! class_exists( 'MenuIncludes\Nsr_Settings' ) ) {
 if( ! class_exists( 'MenuIncludes\Nsr_Reset_Section' ) ) {
 	require_once NICESCROLLR_ROOT_DIR . 'admin/menu/includes/class-reset-section.php';
 }
+if( ! class_exists( 'MenuIncludes\Nsr_Ajax' ) ) {
+	require_once NICESCROLLR_ROOT_DIR . 'admin/menu/includes/class-ajax.php';
+}
 
 /**
  * The class that manages the settings menu.
@@ -27,8 +30,8 @@ if( ! class_exists( 'MenuIncludes\Nsr_Reset_Section' ) ) {
  * @since             0.1.0
  * @package           nicescrollr
  * @subpackage        nicescrollr/admin/menu
- * Author:            Demis Patti <demispatti@gmail.com>
- * Author URI:
+ * Author:            Demis Patti <wp@demispatti.ch>
+ * Author URI:        https://demispatti.ch
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  */
@@ -142,10 +145,10 @@ class Nsr_Menu {
 		}
 	}
 
-	private function set_prefixes(){
+	private function set_prefixes() {
 
-		$this->handle_prefix = defined( 'NICESCROLLR_DEBUG' ) ? '' : '-min';
-		$this->file_prefix = defined( 'NICESCROLLR_DEBUG' ) ? '' : '.min';
+		$this->handle_prefix = defined( 'NICESCROLLR_DEBUG' ) && NICESCROLLR_DEBUG === '1' ? '' : '-min';
+		$this->file_prefix = defined( 'NICESCROLLR_DEBUG' ) && NICESCROLLR_DEBUG === '1' ? '' : '.min';
 	}
 
 	/**
@@ -166,6 +169,7 @@ class Nsr_Menu {
 		$this->Reset_Section = $Reset_Section;
 
 		$this->set_prefixes();
+		$this->initialize_ajax();
 	}
 
 	/**
@@ -183,10 +187,10 @@ class Nsr_Menu {
 
 			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_styles' ) );
 			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
-			add_action( 'admin_enqueue_scripts', array( $this, 'initialize_localisation' ), 100 );
+			add_action( 'admin_enqueue_scripts', array( $this, 'initialize_localisation' ), 40 );
 			add_action( 'admin_notices', array( $this, 'admin_notice_display' ) );
 			add_action( 'admin_menu', array( $this, 'set_section' ), 10 );
-			add_action( 'admin_menu', array( $this, 'initialize_settings_section' ), 40 );
+			add_action( 'admin_menu', array( $this, 'initialize_settings_section' ), 20 );
 
 			add_filter( 'admin_body_class', array( $this, 'add_body_class' ) );
 		}
@@ -194,6 +198,8 @@ class Nsr_Menu {
 
 	/**
 	 * Registers the st<les for the admin menu.
+	 *
+	 * @param string $hook_suffix
 	 *
 	 * @hooked_action
 	 *
@@ -210,20 +216,6 @@ class Nsr_Menu {
 			// Color Picker
 			wp_enqueue_style( 'wp-color-picker' );
 
-			// Alertify.
-			wp_enqueue_style( 'inc-alertify-min-css', NICESCROLLR_ROOT_URL . 'vendor/alertify/css/alertify.min.css', array(), 'all' );
-			// Alertify semantic theme.
-			wp_enqueue_style( 'inc-alertify-theme-semantic-min-css', NICESCROLLR_ROOT_URL . 'vendor/alertify/css/themes/semantic.min.css', array(), 'all' );
-
-			// Font Awesome.
-			$fa_url = 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css';
-			$fa_cdn = wp_remote_get( $fa_url );
-			if( (int) wp_remote_retrieve_response_code( $fa_cdn ) !== 200 ) {
-
-				//$fa_url = NICESCROLLR_ROOT_URL . 'vendor/jquery-easing/jquery.easing.min.js';
-			}
-			wp_enqueue_style( 'inc-font-awesome', $fa_url, false );
-
 			// Menu
 			wp_enqueue_style( 'nicescrollr-menu' . $handle_prefix . '-css', NICESCROLLR_ROOT_URL . 'admin/menu/css/menu' . $file_prefix . '.css', array(), 'all' );
 		}
@@ -231,6 +223,8 @@ class Nsr_Menu {
 
 	/**
 	 * Registers the scripts for the admin menu.
+	 *
+	 * @param string $hook_suffix
 	 *
 	 * @hooked_action
 	 *
@@ -244,40 +238,30 @@ class Nsr_Menu {
 
 		if( $hook_suffix === 'settings_page_nicescrollr_settings' ) {
 
-			// Alertify
-			wp_enqueue_script( 'nicescrollr-inc-alertify-min-js', NICESCROLLR_ROOT_URL . 'vendor/alertify/alertify.min.js', array( 'jquery' ), 'all' );
-
 			// Ajax Reset Functionality
 			wp_enqueue_script( 'nicescrollr-ajax' . $handle_prefix . '-js', NICESCROLLR_ROOT_URL . 'admin/menu/js/ajax' . $file_prefix . '.js', array(
 					'jquery',
-					'nicescrollr-inc-alertify-min-js',
 				), 'all' );
-
-			// ScrollTo
-			wp_enqueue_script( 'nicescrollr-inc-scrollto-min-js', NICESCROLLR_ROOT_URL . 'vendor/scrollto/jquery.scrollTo.min.js', array( 'jquery' ), 'all' );
 
 			// Color Picker
 			wp_enqueue_script( 'wp-color-picker' );
 			wp_enqueue_script( 'wp-color-picker-alpha', NICESCROLLR_ROOT_URL . 'vendor/color-picker-alpha/wp-color-picker-alpha.min.js', array(
-				'jquery',
-				'wp-color-picker'
-			), 'all', true );
-
-			// Fancy Select
-			wp_enqueue_script( 'nicescrollr-inc-fancy-select-js', NICESCROLLR_ROOT_URL . 'vendor/fancy-select/fancySelect.js', array( 'jquery' ), 'all' );
+					'jquery',
+					'wp-color-picker'
+				), 'all', true );
 
 			// Settings Menu
 			wp_enqueue_script( 'nicescrollr-menu' . $handle_prefix . '-js', NICESCROLLR_ROOT_URL . 'admin/menu/js/menu' . $file_prefix . '.js', array(
 					'jquery',
 					'wp-color-picker',
-					'nicescrollr-inc-fancy-select-js',
-					'nicescrollr-inc-scrollto-min-js'
 				), 'all' );
 		}
 	}
 
 	/**
 	 * Localizes an ajax related script.
+	 *
+	 * @param string $classes
 	 *
 	 * @since  0.1.0
 	 * @access private
@@ -354,7 +338,7 @@ class Nsr_Menu {
 	 */
 	public function initialize_settings_section() {
 
-		$Validation = new MenuIncludes\Nsr_Validation($this->domain, $this->Options);
+		$Validation = new MenuIncludes\Nsr_Validation( $this->domain, $this->Options );
 
 		$settings = new MenuIncludes\Nsr_Settings( $this->domain, $this->section, $this->Options, $Validation );
 		$settings->add_hooks();
@@ -367,14 +351,12 @@ class Nsr_Menu {
 	 * @uses   echo_section()
 	 * @see    admin/menu/includes/class-nsr-reset-section.php
 	 *
-	 * @param  $active_tab
-	 *
 	 * @return void
 	 */
 	public function menu_display() {
 
 		$active_tab = $this->section;
-		$wp_admin_url = admin_url('options.php');
+		$wp_admin_url = admin_url( 'options.php' );
 		?>
 		
 		<div class="wrap">
@@ -396,9 +378,9 @@ class Nsr_Menu {
 				
 				<!-- Nav tab -->
 				<div class="nav-tab-wrapper">
-					<a href="?page=nicescrollr_settings&tab=frontend" class="nav-tab <?php echo $active_tab === 'frontend' ? 'nav-tab-active' : ''; ?> "><i class="fa fa-television"></i><?php _e( 'Frontend', $this->domain ); ?>
+					<a href="?page=nicescrollr_settings&tab=frontend" class="nav-tab <?php echo $active_tab === 'frontend' ? 'nav-tab-active' : ''; ?> "><span class="dashicons dashicons-menu"></span><?php _e( 'Frontend', $this->domain ); ?>
 					</a>
-					<a href="?page=nicescrollr_settings&tab=backend" class="nav-tab <?php echo $active_tab === 'backend' ? 'nav-tab-active' : ''; ?> "><i class="fa fa-wordpress"></i><?php _e( 'Backend', $this->domain ); ?>
+					<a href="?page=nicescrollr_settings&tab=backend" class="nav-tab <?php echo $active_tab === 'backend' ? 'nav-tab-active' : ''; ?> "><span class="dashicons dashicons-menu"></span><?php _e( 'Backend', $this->domain ); ?>
 					</a>
 				</div>
 
@@ -441,30 +423,27 @@ class Nsr_Menu {
 	 */
 	public function admin_notice_display() {
 
+		$errors = get_transient( 'nicescrollr_validation_transient' );
+
 		// If there are any error-related transients
-		if( false !== get_transient( 'nicescrollr_validation_transient' ) ) {
+		if( false !== $errors ) {
 
-			// Retrieves the error-array and the corresponding meta data
-			$errors = (array) get_transient( 'nicescrollr_validation_transient' );
-
+			$options_meta = $this->Options->get_options_meta();
 			// Outputs all eventual errors.
 			foreach( $errors as $option_key => $error_meta ) {
-
 				$error_meta = (object) $error_meta;
-
 				// Assigns the transient containing the error message to the array of notices.
 				$notices[$option_key] = get_transient( $option_key );
-
 				// Extracts the error message and echoes it inside the admin notice area.
 				if( is_wp_error( $error_meta->message ) ) {
-
+					$option_name = $options_meta[$option_key]['name'];
 					$error_message = $error_meta->message->get_error_message();
 
 					// Admin notice.
 					$html = '<div class="error notice is-dismissible ' . $error_meta->notice_level . '">';
 					$html .= '<p>';
 					$html .= '<a class="nsr-validation-error" href="#' . $option_key . '" data-index="' . $error_meta->index . '">';
-					$html .= $error_meta->name;
+					$html .= $option_name;
 					$html .= '</a>';
 					$html .= '</p>';
 
@@ -532,6 +511,12 @@ class Nsr_Menu {
 	public function get_section() {
 
 		return $this->section;
+	}
+
+	public function initialize_ajax() {
+
+		$Ajax = new MenuIncludes\Nsr_Ajax( $this->domain, $this->Options );
+		$Ajax->add_hooks();
 	}
 
 }

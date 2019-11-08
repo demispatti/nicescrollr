@@ -5,300 +5,198 @@
  * @since             0.1.0
  * @package           nicescrollr
  * @subpackage        nicescrollr/admin/menu/css
- * Author:            Demis Patti <demispatti@gmail.com>
+ * Author:            Demis Patti <wp@demispatti.ch>
  * Author URI:        https://demispatti.ch
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  */
 /************************************************************\
- *   Page
+ *   Admin Notice
 \************************************************************/
-body.nsr-settings-page {
-  background-color: #f2f2f2 !important;
-}
-
-#nsr_form {
-  overflow: visible;
-}
-
-.nicescrollr_settings_toggle:first-of-type {
-  display: block;
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
-.nicescrollr_settings_toggle:not(:first-of-type) {
-  display: block;
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
-.nsr-settings-page .form-table-wrap,
-.nsr-settings-page .form-table-wrap tbody,
-.nsr-settings-page .form-table-wrap tbody tr,
-.nicescrollr_settings_toggle,
-form#nsr_form,
-form#nsr_form table,
-.nsr-settings-page .nav-tab-wrapper {
+.nsr-settings-page .notice {
   box-sizing: border-box;
   width: 100%;
   max-width: 480px;
 }
 
-.nsr-settings-page h2:first-of-type,
-.form-table.upper-panel + h2 {
-  display: none;
+/************************************************************\
+ *   Table
+\************************************************************/
+.nsr-settings-page .form-table {
+  margin-top: 3px;
+  background: #fff;
+  border: 1px solid #dfdfdf;
 }
 
-.nsr-settings-page h2 i.fa,
-.nsr-settings-page h3 i.fa {
-  padding-left: 0;
-  margin-right: 8px;
+#nsr_form table {
+  width: inherit;
+  table-layout: fixed;
+  box-sizing: content-box;
 }
 
-.nsr-settings-page a i.fa {
-  padding-left: 0;
+#nsr_form tbody {
+  width: 100%;
+  min-width: 100%;
+  display: table;
+}
+
+#nsr_form tr {
+  box-sizing: border-box;
+  display: table;
+  width: 100%;
+  height: 48px;
+  clear: both;
+  border-radius: 2px;
+  border-bottom: 1px solid #f4f4f4;
+}
+
+.nsr-settings-page .form-table td > div,
+.nsr-settings-page .form-table th {
+  box-sizing: border-box;
+  display: inline-block;
+  position: relative;
+  width: 200px;
+}
+
+#nsr_form .form-table th {
+  float: left;
+  box-sizing: border-box;
+  height: auto;
+  font-size: 12px;
+  font-weight: 400;
+  padding: 16px 0 10px 16px;
+}
+
+#nsr_form .form-table td {
+  float: left;
+  top: 25px;
+  box-sizing: border-box;
+  height: auto;
+  font-size: 12px;
+  font-weight: 400;
+  padding: 4px 0 0 16px;
+  margin-bottom: 0;
+}
+
+#nsr_form .form-table td > div {
+  padding: 0;
+  margin: 0;
+  top: 0;
+}
+
+/************************************************************\
+ *   Navigation
+\************************************************************/
+.nsr-settings-page .nav-tab-wrapper {
+  padding: 30px 0 0 0;
+  margin: 0;
+}
+
+.nsr-settings-page .nav-tab-wrapper {
+  border-bottom: none;
+}
+
+.nsr-settings-page .wrap a.nav-tab {
+  font-weight: 500;
+  color: #0a1318;
+  padding-bottom: 8px;
+  border: 1px solid #e5e5e5;
+  border-bottom: 2px solid #e5e5e5;
+  background: #fff;
+  transition: all .2s ease-in-out;
+  z-index: 1;
+}
+
+.nsr-settings-page .wrap a.nav-tab:first-of-type {
+  margin-left: 0;
+}
+
+.nsr-settings-page .nav-tab-active,
+.nsr-settings-page .nav-tab-active:hover {
+  background-color: #fff;
+  transition: .2s all;
+}
+
+.nsr-settings-page .nav-tab-active {
+  color: #0a1318;
+  border-bottom: 2px solid #47a8d8 !important;
+  z-index: 1;
+}
+
+.nsr-settings-page .wrap a.nav-tab:before {
+  color: #24465a;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 16px;
+  margin-right: 5px;
+  right: 8px;
+  text-shadow: -0.6px -0.6px 0 rgba(241, 241, 241, 0.8), 1px 1px 1px #5c5c5c;
+}
+
+/************************************************************\
+ *   Settings Toggle
+\************************************************************/
+.nicescrollr_settings_toggle {
+  font-size: 13px;
+  font-weight: 400;
+  padding: 10px 0 10px 22px;
+  box-sizing: border-box;
+  max-width: 480px;
+  margin-top: 0;
+  margin-bottom: 0;
+  border: 1px solid #e5e5e5;
+  background: #fff;
+  transition: all .2s ease-in-out;
+  z-index: 2;
+}
+.nicescrollr_settings_toggle span {
+  box-sizing: border-box;
   margin-right: 4px;
 }
 
-.dp-submit-button-wrap,
-.dp-submit-button-wrap-2,
-.settings_page_nicescrollr_settings .submit {
+#nsr_form tr,
+#nsr_form tr:hover,
+.nsr-settings-page .validation-error-focus:focus,
+input {
+  transition: all .12s ease-in-out;
+}
+
+.validation-error-focus {
+  display: block;
   box-sizing: border-box;
-  width: 100%;
-  max-width: 480px;
+  border: 2px solid #0073AA !important;
 }
 
-.settings_page_nicescrollr_settings .submit {
-  height: 20px;
-  padding-right: 12px;
-}
-
-.dp-submit-button-wrap {
-  margin-bottom: 30px;
-  right: 6px;
-}
-
-.dp-submit-button-wrap-2 {
+.nicescrollr_settings_toggle span:before {
+  color: #24465a;
+  font-size: 24px;
   position: relative;
-  right: 6px;
+  top: -3px;
+  left: -6px;
 }
 
-.settings_page_nicescrollr_settings .submit input {
-  display: block;
-  float: right;
-  position: relative;
-  right: 0;
-  height: auto;
+.nicescrollr_settings_toggle span:after,
+.nicescrollr_settings_toggle span:before {
+  -moz-border-radius: 100px/10px;
+  border-radius: 100px/10px;
 }
 
-/************************************************************\
- *   Validation Errors
-\************************************************************/
-.nsr-validation-error {
-  color: #5b9dd9;
-  text-decoration: underline;
+.nicescrollr_settings_toggle span:after {
+  transform: skew(8deg) rotate(3deg);
 }
 
-.nsr-validation-error:hover {
-  color: #69b9ff;
-  text-decoration: none;
-  cursor: pointer;
+#nsr_form tr:after,
+.nicescrollr_settings_toggle span:after {
+  -webkit-transform: skew(8deg) rotate(3deg);
+  -moz-transform: skew(8deg) rotate(3deg);
+  -ms-transform: skew(8deg) rotate(3deg);
+  -o-transform: skew(8deg) rotate(3deg);
 }
 
-.nsr-settings-page .notice-error {
-  border-color: #e74c3c !important;
-}
-
-.nsr-settings-page .notice-warning {
-  border-color: #e67e22 !important;
-}
-
-.nsr-settings-page .notice-correction {
-  border-color: rgba(91, 157, 217, 0.98) !important;
-}
-
-/************************************************************\
- *   Reset Button
-\************************************************************/
-.label-for-nsr-reset-button {
-  text-align: center;
-  width: 126px;
-  margin-top: 40px;
-}
-
-.nsr-settings-page .wp-core-ui .button {
-  text-align: center;
-}
-
-/************************************************************\
- *   Inputs
-\************************************************************/
-.nsr-settings-page .wp-picker-input-wrap,
-.nsr-settings-page .wp-picker-input-wrap input {
-  padding-top: 6px;
-  /*z-index: 1000;*/
-}
-
-.nsr-settings-page .wp-picker-container .iris-picker {
-  background-color: #fff;
-  /*z-index: 1000;*/
-}
-
-.nsr-settings-page .wp-color-result.button {
-  margin-top: 6px;
-  /*margin-right: 0px;*/
-}
-
-#nsr_form input {
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03), 0 1px 2px rgba(0, 0, 0, 0.12) inset;
-}
-
-#nsr_form input[type=text] {
-  height: 29px;
-  width: 165px;
-}
-
-#nsr_form input[type=text]:active,
-#nsr_form input[type=text]:focus {
-  border: 1px solid #cdcdcd;
-  transition: all .12s ease-in-out;
-}
-
-.nsr-color-picker {
-  z-index: 10000;
-}
-
-/************************************************************\
- *   Fancy Select
-\************************************************************/
-#nsr_form div.fancy-select {
-  position: relative;
-}
-
-#nsr_form div.fancy-select.disabled {
-  opacity: .5;
-}
-
-#nsr_form div.fancy-select select:focus + div.trigger {
+.nicescrollr_settings_toggle span:hover {
   border: 1px solid #e5e5e5;
-  transition: all .12s ease-in-out;
-}
-
-#nsr_form div.fancy-select select:focus + div.trigger.open {
-  box-shadow: none;
-}
-
-#nsr_form div.fancy-select div.trigger {
-  border-radius: 2px;
-  cursor: pointer;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  position: relative;
-  width: 158px;
-  padding-top: 3px;
-  padding-bottom: 3px;
-  padding-left: 6px;
-  margin: 0;
-  transition: all 240ms ease-out;
-  -webkit-transition: all 240ms ease-out;
-  -moz-transition: all 240ms ease-out;
-  -o-transition: all 240ms ease-out;
-  border: 1px solid #ddd;
-  background: #fff;
-}
-
-#nsr_form div.fancy-select div.trigger:after {
-  content: "";
-  display: block;
-  position: absolute;
-  width: 0;
-  height: 0;
-  border: 5px solid transparent;
-  border-top-color: #4b5468;
-  top: 12px;
-  right: 10px;
-}
-
-#nsr_form div.fancy-select div.trigger.open {
-  background: #f6f6f6;
-  border: 1px solid #e2e2e2;
-  box-shadow: none;
-}
-
-#nsr_form div.fancy-select div.trigger.open:after {
-  border-top: 1px solid #e2e2e2;
-}
-
-#nsr_form div.fancy-select ul.options {
-  list-style: none;
-  margin: 0;
-  position: absolute;
-  top: 2px;
-  left: 0;
-  visibility: hidden;
-  opacity: 0;
-  z-index: 2000;
-  max-height: 200px;
-  overflow: auto;
-  border-radius: 0;
-  min-width: 112px;
-  max-width: 112px;
-  transition: opacity 200ms ease-out, top 200ms ease-out, visibility 200ms ease-out;
-  -webkit-transition: opacity 200ms ease-out, top 200ms ease-out, visibility 200ms ease-out;
-  -moz-transition: opacity 200ms ease-out, top 200ms ease-out, visibility 200ms ease-out;
-  -o-transition: opacity 200ms ease-out, top 200ms ease-out, visibility 200ms ease-out;
-  border: 1px solid #e2e2e2;
-}
-
-#nsr_form div.fancy-select ul.options.open {
-  visibility: visible;
-  top: 30px;
-  opacity: 1;
-  transition: opacity 300ms ease-out, top 300ms ease-out;
-  -webkit-transition: opacity 300ms ease-out, top 300ms ease-out;
-  -moz-transition: opacity 300ms ease-out, top 300ms ease-out;
-  -o-transition: opacity 300ms ease-out, top 300ms ease-out;
-  border: 1px solid #e2e2e2;
-}
-
-#nsr_form div.fancy-select ul.options.overflowing {
-  top: auto;
-  bottom: 40px;
-  transition: opacity 200ms ease-out, bottom 200ms ease-out, visibility 200ms ease-out;
-  -webkit-transition: opacity 200ms ease-out, bottom 200ms ease-out, visibility 200ms ease-out;
-  -moz-transition: opacity 200ms ease-out, bottom 200ms ease-out, visibility 200ms ease-out;
-  -o-transition: opacity 200ms ease-out, bottom 200ms ease-out, visibility 200ms ease-out;
-}
-
-#nsr_form div.fancy-select ul.options.overflowing.open {
-  top: auto;
-  bottom: 50px;
-  transition: opacity 200ms ease-out, bottom 200ms ease-out;
-  -webkit-transition: opacity 200ms ease-out, bottom 200ms ease-out;
-  -moz-transition: opacity 200ms ease-out, bottom 200ms ease-out;
-  -o-transition: opacity 200ms ease-out, bottom 200ms ease-out;
-}
-
-#nsr_form div.fancy-select ul.options li {
-  padding: 3px 0 3px 6px;
-  margin: 0;
   background: #fff;
   cursor: pointer;
-  white-space: nowrap;
-  transition: all 150ms ease-out;
-  -webkit-transition: all 150ms ease-out;
-  -moz-transition: all 150ms ease-out;
-  -o-transition: all 150ms ease-out;
-}
-
-#nsr_form div.fancy-select ul.options li.selected {
-  background: #f6f6f6;
-}
-
-#nsr_form div.fancy-select ul.options li.hover {
-  background: #f2f2f2;
 }
 
 /************************************************
@@ -454,178 +352,199 @@ form#nsr_form table,
 }
 
 /************************************************************\
- *   Navigation
+ *   Validation Errors
 \************************************************************/
-.nsr-settings-page .nav-tab-wrapper {
-  padding: 30px 0 0 0;
-  margin: 0;
+.nsr-validation-error {
+  color: #5b9dd9;
+  text-decoration: underline;
 }
 
-.nsr-settings-page .nav-tab-wrapper {
-  border-bottom: none;
-}
-
-.nsr-settings-page .wrap a.nav-tab {
-  font-weight: 500;
-  color: #0a1318;
-  padding-bottom: 8px;
-  border: 1px solid #e5e5e5;
-  border-bottom: 2px solid #e5e5e5;
-  background: #fff;
-  transition: all .2s ease-in-out;
-  z-index: 1;
-}
-
-.nsr-settings-page .wrap a.nav-tab:first-of-type {
-  margin-left: 0;
-}
-
-.nsr-settings-page .nav-tab-active,
-.nsr-settings-page .nav-tab-active:hover {
-  background-color: #fff;
-  transition: .2s all;
-}
-
-.nsr-settings-page .nav-tab-active {
-  color: #0a1318;
-  border-bottom: 2px solid #47a8d8 !important;
-  z-index: 1;
-}
-
-.nsr-settings-page .wrap a.nav-tab:before {
-  color: #24465a;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  font-size: 16px;
-  margin-right: 5px;
-  right: 8px;
-  text-shadow: -0.6px -0.6px 0 rgba(241, 241, 241, 0.8), 1px 1px 1px #5c5c5c;
-}
-
-/************************************************************\
- *   Settings Toggle
-\************************************************************/
-.nicescrollr_settings_toggle {
-  font-size: 13px;
-  font-weight: 400;
-  padding: 10px 0 10px 16px;
-  box-sizing: border-box;
-  max-width: 480px;
-  margin-top: 0;
-  margin-bottom: 0;
-  border: 1px solid #e5e5e5;
-  background: #fff;
-  transition: all .2s ease-in-out;
-  z-index: 2;
-}
-
-#nsr_form tr,
-#nsr_form tr:hover,
-.nsr-settings-page .validation-error-focus:focus,
-input {
-  transition: all .12s ease-in-out;
-}
-
-.nicescrollr_settings_toggle:before {
-  color: #24465a;
-  font-size: 24px;
-  margin-right: 4px;
-  position: relative;
-  top: 3px;
-  right: 4px;
-  text-shadow: -1px -1px 0 rgba(241, 241, 241, 0.8), 1px 1px 1px #5c5c5c;
-}
-
-.nicescrollr_settings_toggle:after,
-.nicescrollr_settings_toggle:before {
-  -webkit-box-shadow: 0 0 12px rgba(0, 0, 0, 0.09);
-  -moz-box-shadow: 0 0 12px rgba(0, 0, 0, 0.09);
-  box-shadow: 0 0 12px rgba(0, 0, 0, 0.09);
-  -moz-border-radius: 100px/10px;
-  border-radius: 100px/10px;
-}
-
-.nicescrollr_settings_toggle:after {
-  transform: skew(8deg) rotate(3deg);
-}
-
-#nsr_form tr:after,
-.nicescrollr_settings_toggle:after {
-  -webkit-transform: skew(8deg) rotate(3deg);
-  -moz-transform: skew(8deg) rotate(3deg);
-  -ms-transform: skew(8deg) rotate(3deg);
-  -o-transform: skew(8deg) rotate(3deg);
-}
-
-.nicescrollr_settings_toggle:hover {
-  border: 1px solid #e5e5e5;
-  background: #fff;
+.nsr-validation-error:hover {
+  color: #69b9ff;
+  text-decoration: none;
   cursor: pointer;
 }
 
+.nsr-settings-page .notice-error {
+  border-color: #e74c3c !important;
+}
+
+.nsr-settings-page .notice-warning {
+  border-color: #e67e22 !important;
+}
+
+.nsr-settings-page .notice-correction {
+  border-color: rgba(91, 157, 217, 0.98) !important;
+}
+
+.color-alpha {
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  border-bottom: 1px solid #ccc !important;
+}
+
+.wp-picker-container button {
+  border: 1px solid #ccc !important;
+}
+
+@media all and (max-width: 782px) {
+  .color-alpha {
+    width: 40px !important;
+    height: 29px !important;
+  }
+}
+.preview-window-container {
+  width: 100%;
+  max-width: 360px;
+  height: 100%;
+  max-height: 720px;
+}
+.preview-window-container #preview_window {
+  overflow: scroll !important;
+}
+
+/**!
+ * Settings Menu.
+ *
+ * @link              https://github.com/demispatti/nicescrollr
+ * @since             0.1.0
+ * @package           nicescrollr
+ * @subpackage        nicescrollr/admin/menu/css
+ * Author:            Demis Patti <wp@demispatti.ch>
+ * Author URI:        https://demispatti.ch
+ * License:           GPL-2.0+
+ * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
+ */
 /************************************************************\
- *   Table
+ *   Page
 \************************************************************/
-.nsr-settings-page .form-table {
-  margin-top: 3px;
-  background: #fff;
-  border: 1px solid #dfdfdf;
+body.nsr-settings-page {
+  background-color: #f2f2f2 !important;
 }
 
-#nsr_form table {
-  width: inherit;
-  table-layout: fixed;
-  box-sizing: content-box;
+#nsr_form {
+  overflow: visible;
 }
 
-#nsr_form tbody {
-  width: 100%;
-  min-width: 100%;
-  display: table;
-}
-
-#nsr_form tr {
-  box-sizing: border-box;
-  display: table;
-  width: 100%;
-  height: 48px;
-  clear: both;
-  border-radius: 2px;
-  border-bottom: 1px solid #f4f4f4;
-}
-
-.nsr-settings-page .form-table td > div,
-.nsr-settings-page .form-table th {
-  box-sizing: border-box;
-  display: inline-block;
-  position: relative;
-  width: 200px;
-}
-
-#nsr_form .form-table th {
-  float: left;
-  box-sizing: border-box;
-  height: auto;
-  font-size: 13px;
-  font-weight: 400;
-  padding: 16px 0 10px 16px;
-}
-
-#nsr_form .form-table td {
-  float: left;
-  top: 25px;
-  box-sizing: border-box;
-  height: auto;
-  font-size: 13px;
-  font-weight: 400;
-  padding: 4px 0 0 16px;
+.nicescrollr_settings_toggle:first-of-type {
+  display: block;
+  margin-top: 0;
   margin-bottom: 0;
 }
 
-#nsr_form .form-table td > div {
-  padding: 0;
-  margin: 0;
-  top: 0;
+.nicescrollr_settings_toggle:not(:first-of-type) {
+  display: block;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.nsr-settings-page .form-table-wrap,
+.nsr-settings-page .form-table-wrap tbody,
+.nsr-settings-page .form-table-wrap tbody tr,
+.nicescrollr_settings_toggle,
+form#nsr_form,
+form#nsr_form table,
+.nsr-settings-page .nav-tab-wrapper {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 480px;
+}
+
+.nsr-settings-page h2:first-of-type,
+.form-table.upper-panel + h2 {
+  display: none;
+}
+
+.nsr-settings-page h2 i.fa,
+.nsr-settings-page h3 i.fa {
+  padding-left: 0;
+  margin-right: 8px;
+}
+
+.nsr-settings-page a i.fa {
+  padding-left: 0;
+  margin-right: 4px;
+}
+
+.dp-submit-button-wrap,
+.dp-submit-button-wrap-2,
+.settings_page_nicescrollr_settings .submit {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 480px;
+}
+
+.settings_page_nicescrollr_settings .submit {
+  height: 20px;
+  padding-right: 12px;
+}
+
+.dp-submit-button-wrap {
+  margin-bottom: 30px;
+  right: 6px;
+}
+
+.dp-submit-button-wrap-2 {
+  position: relative;
+  right: 6px;
+}
+
+.settings_page_nicescrollr_settings .submit input {
+  display: block;
+  float: right;
+  position: relative;
+  right: 0;
+  height: auto;
+}
+
+/************************************************************\
+ *   Reset Button
+\************************************************************/
+.label-for-nsr-reset-button {
+  text-align: center;
+  width: 126px;
+  margin-top: 40px;
+}
+
+.nsr-settings-page .wp-core-ui .button {
+  text-align: center;
+}
+
+/************************************************************\
+ *   Inputs
+\************************************************************/
+.nsr-settings-page .wp-picker-input-wrap,
+.nsr-settings-page .wp-picker-input-wrap input {
+  padding-top: 6px;
+}
+
+.nsr-settings-page .wp-picker-container .iris-picker {
+  background-color: #fff;
+}
+
+.nsr-settings-page .wp-color-result.button {
+  margin-top: 6px;
+}
+
+#nsr_form input {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03), 0 1px 2px rgba(0, 0, 0, 0.12) inset;
+}
+
+#nsr_form input[type=text], select {
+  min-height: 29px;
+  width: 100%;
+  max-width: 200px;
+}
+
+#nsr_form input[type=text]:active,
+#nsr_form input[type=text]:focus {
+  border: 1px solid #cdcdcd;
+  transition: all .12s ease-in-out;
+}
+
+.nsr-color-picker {
+  z-index: 10000;
 }
 
 /************************************************************\
@@ -647,11 +566,12 @@ input {
   color: #a0a9b9;
 }
 
-/************************************************************\
- *   Admin Notice
-\************************************************************/
-.nsr-settings-page .notice {
-  box-sizing: border-box;
-  width: 100%;
-  max-width: 480px;
+@media all and (max-width: 782px) {
+  #nsr_form .form-table th {
+    font-size: 12px;
+  }
+
+  #nsr_form .form-table td {
+    font-size: 12px;
+  }
 }

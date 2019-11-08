@@ -1,17 +1,19 @@
 /**
  * The script for the settings menu.
  *
- * @link              https://github.com/demispatti/nicescrollr
+ * @link              https://wordpress.org/plugins/nicescrollr/
  * @since             0.1.0
  * @package           nicescrollr
- * @subpackage        nicescrollr/admin/menu/js
- * Author:            Demis Patti <demispatti@gmail.com>
- * Author URI:
+ * @subpackage        nicescrollr/assets
+ * Author:            Demis Patti <wp@demispatti.ch>
+ * Author URI:        https://demispatti.ch
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  */
 "use strict";
-jQuery(function ($) {
+(function ($) {
+
+	var backTopIsMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
 	function NsrBacktop () {
 		this.nsr_options = Nsr_Options;
@@ -28,26 +30,38 @@ jQuery(function ($) {
 
 	NsrBacktop.prototype = {
 		init: function () {
-
 			this.createBackTop();
 			this.applyBacktopConfiguration();
 			this.bind();
 		},
 		createBackTop: function () {
-			$(this.body).append("<span class='" + this.bt_class + "'></span>");
+			var size = undefined !== this.nsr_options.bt_size ? this.nsr_options.bt_size : '';
+
+			$(this.body).append("<span class='" + this.bt_class + " " + size + "'></span>");
 			this.nsrBackTop = $('.' + this.bt_class);
 		},
 		applyBacktopConfiguration: function () {
-			this.nsrBackTop.css(this.getBacktopConfiguration());
+
+			var config = this.getBacktopConfiguration();
+			this.nsrBackTop.css(config);
+
+			// Create a separate stylesheet so we don't mess up existing styles ;-)
+			var sheet = document.head.appendChild(document.createElement('style')).sheet;
+			// Get the length of the stylesheet so we can apply the rules at continous indices
+			var length = sheet.cssRules.length;
+			if ('' !== config["color"]) {
+				sheet.insertRule('.' + this.bt_class + '::before {color:' + config["color"] + ';}', length ++);
+			}
+			if ('' !== config["hover-color"]) {
+				sheet.insertRule('.' + this.bt_class + ':hover::before{color:' + config["hover-color"] + ';}', length ++);
+			}
+
 		},
 		getBacktopConfiguration: function () {
 
 			return {
-				'width': this.nsr_options.bt_width,
-				'height': this.nsr_options.bt_height,
-
-				'right': this.nsr_options.bt_posx_from_right,
-				'bottom': this.nsr_options.bt_posy_from_bottom,
+				'color': this.nsr_options.bt_arrow_color,
+				'hover-color': this.nsr_options.bt_arrow_hover_color,
 
 				'background-color': this.nsr_options.bt_background_color,
 				'border-color': this.nsr_options.bt_border_color,
@@ -67,10 +81,9 @@ jQuery(function ($) {
 			this.window.bind('scroll', { context: this }, this.backTopOnScroll);
 			$(this.window).trigger('scroll');
 		},
-
+		// Events
 		backTopOnMouseenter: function (event) {
 			var $this = event.data.context;
-
 			$(this).css({
 				'background-color': $this.nsr_options.bt_hover_background_color,
 				'border-color': $this.nsr_options.bt_hover_border_color,
@@ -79,7 +92,6 @@ jQuery(function ($) {
 		},
 		backTopOnMouseleave: function (event) {
 			var $this = event.data.context;
-
 			$(this).css({
 				'background-color': $this.nsr_options.bt_background_color,
 				'border-color': $this.nsr_options.bt_border_color
@@ -87,7 +99,6 @@ jQuery(function ($) {
 		},
 		backTopOnClick: function (event) {
 			var $this = event.data.context;
-
 			$('html, body').animate({
 					scrollTop: 0
 				}, $this.scrollDuration, $this.easing
@@ -95,17 +106,15 @@ jQuery(function ($) {
 		},
 		backTopOnScroll: function (event) {
 			var $this = event.data.context;
-
-			//var button = $('.Nsr-backtop');
 			$this.document.scrollTop() > $this.offset ? $this.nsrBackTop.addClass('nsr-backtop-is-visible') : $this.nsrBackTop.removeClass('nsr-backtop-is-visible');
 		}
 	};
 
 	$(document).ready(function () {
-		if (false !== Nsr_Options.bt_enabled) {
+		if ('1' === Nsr_Options.bt_enabled && false === backTopIsMobile || true === backTopIsMobile && '1' === Nsr_Options.bt_enabled && '1' === Nsr_Options.bt_mobile_enabled) {
 			var nsrBacktop = new NsrBacktop();
 			nsrBacktop.init();
 		}
 	});
 
-});
+})(jQuery);

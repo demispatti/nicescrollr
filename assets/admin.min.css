@@ -1,0 +1,20 @@
+/*!* Chrome *!
+body.nsr-is-webkit {
+	overflow-y: initial;
+}
+html body.nsr-is-webkit::-webkit-scrollbar {
+	display: none;
+}
+html.nsr-default-scrollbar body.nsr-is-webkit::-webkit-scrollbar {
+	display: block;
+}
+
+!* FF *!
+html:not(.nsr-default-scrollbar) {
+	scrollbar-width: none;
+}
+!* MSIE *!
+body.nsr-is-ie {
+	-ms-overflow-y: initial;
+	overflow-y: initial;
+}*/html:not(.nsr-default-scrollbar) body.nsr-is-webkit::-webkit-scrollbar{display:none}html:not(.nsr-default-scrollbar) body.nsr-is-moz{overflow-y:initial;scrollbar-width:none}html:not(.nsr-default-scrollbar) body.nsr-is-edge{-ms-overflow-style:none;-ms-overflow-y:initial}html:not(.nsr-default-scrollbar) body.nsr-is-edge iframe{-ms-overflow-style:none;-ms-overflow-y:initial}html:not(.nsr-default-scrollbar).nsr-is-msie{-ms-overflow-style:none;-ms-overflow-y:initial !important}

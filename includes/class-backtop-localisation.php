@@ -24,8 +24,8 @@ if( ! class_exists( 'MenuIncludes\Nsr_Options' ) ) {
  * @since             0.1.0
  * @package           nicescrollr
  * @subpackage        nicescrollr/includes
- * Author:            Demis Patti <demispatti@gmail.com>
- * Author URI:
+ * Author:            Demis Patti <wp@demispatti.ch>
+ * Author URI:        https://demispatti.ch
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  */
@@ -64,12 +64,12 @@ class Nsr_Backtop_Localisation {
 	 * Nsr_Backtop_Localisation constructor.
 	 *
 	 * @param $domain
-	 * @param MenuIncludes\Nsr_Options $options
+	 * @param MenuIncludes\Nsr_Options $Options
 	 */
-	public function __construct( $domain, $options ) {
+	public function __construct( $domain, $Options ) {
 
 		$this->domain = $domain;
-		$this->Options = $options;
+		$this->Options = $Options;
 	}
 
 	/**
@@ -113,6 +113,15 @@ class Nsr_Backtop_Localisation {
 		$configuration = (array) $this->Options->get_options( $view );
 		// Add the value which defines the view ( front- or backend) to the config-array.
 		$configuration['view'] = $view;
+
+		foreach( $configuration as $key => $value ) {
+			if( 'false' === $value ) {
+				$configuration[$key] = '0';
+			}
+			if( 'true' === $value ) {
+				$configuration[$key] = '1';
+			}
+		}
 
 		return $configuration;
 	}

@@ -39,8 +39,8 @@ if( ! class_exists( 'Pub\Nsr_Public' ) ) {
  * @since             0.1.0
  * @package           nicescrollr
  * @subpackage        nicescrollr/includes
- * Author:            Demis Patti <demispatti@gmail.com>
- * Author URI:
+ * Author:            demispatti <wp@demispatti.ch>
+ * Author URI:        https://demispatti.ch
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  */
@@ -87,7 +87,7 @@ class Nsr {
 	private function set_instances() {
 
 		$this->Options = new MenuIncludes\Nsr_Options( $this->domain );
-		$this->Nicescroll_Localisation = new Includes\Nsr_Nicescroll_Localisation($this->domain, $this->Options);
+		$this->Nicescroll_Localisation = new Includes\Nsr_Nicescroll_Localisation( $this->domain, $this->Options );
 		$this->Backtop_Localisation = new Includes\Nsr_Backtop_Localisation( $this->domain, $this->Options );
 	}
 
@@ -115,7 +115,7 @@ class Nsr {
 	 */
 	private function set_locale() {
 
-		$Plugin_i18n = new Includes\Nsr_I18n($this->domain);
+		$Plugin_i18n = new Includes\Nsr_I18n( $this->domain );
 		$Plugin_i18n->add_hooks();
 	}
 
@@ -128,7 +128,7 @@ class Nsr {
 	 */
 	private function define_admin_hooks() {
 
-		if( ! is_admin()){
+		if( ! is_admin() ) {
 			return;
 		}
 

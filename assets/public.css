@@ -1,0 +1,22 @@
+html {
+  -ms-overflow-style: none;
+  overflow-style: unset;
+  overflow-y: auto;
+}
+
+body {
+  -ms-overflow-style: none;
+  overflow-style: unset;
+  overflow-y: auto;
+}
+body.nsr-default-scrollbar {
+  -ms-overflow-style: scrollbar;
+  overflow-style: initial;
+  overflow-y: auto;
+}
+body.nsr-is-ie {
+  -ms-overflow-style: none;
+}
+body.nsr-is-ie iframe, body.nsr-is-ie body, body.nsr-is-ie html {
+  -ms-overflow-style: none;
+}

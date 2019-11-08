@@ -15,8 +15,8 @@ if( ! defined( 'WPINC' ) ) {
  * @since             0.1.0
  * @package           nicescrollr
  * @subpackage        nicescrollr/admin/includes
- * Author:            Demis Patti <demispatti@gmail.com>
- * Author URI:
+ * Author:            Demis Patti <wp@demispatti.ch>
+ * Author URI:        https://demispatti.ch
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  */
@@ -59,7 +59,7 @@ class Nsr_Help_Tab {
 	 * Determines if we're on the options page,
 	 * and if so, it hooks the action to load the help tab.
 	 *
-	 * @param  $plugin_domain
+	 * @param  string $domain
 	 *
 	 * @return mixed | void
 	 */
@@ -118,15 +118,22 @@ class Nsr_Help_Tab {
 	 */
 	private function display_content_callback() {
 
-		$html = '<p>' . __( 'Nicescrollr integrates the Nicescroll jQuery library into your WordPress powered website.', $this->domain ) . '</p>';
+		ob_start();
+		?>
 
-		$html .= '<p>' . __( 'This plugin is a wrapper for the popular "Nicescroll" javascript library, which is made by <a href="https://wordpress.org/support/users/inuyaksa/" target="_blank">InuYaksa</a>. You can visit his official Nicescroll homepage <a href="https://www.areaaperta.com/nicescroll/" target="_blank">here</a>. An overview of the default parameters can be found on <a href="https://github.com/inuyaksa/jquery.nicescroll" target="_blank">Github</a> at the bottom of the page.', $this->domain );
+		<p><?php echo __( 'Nicescrollr integrates the Nicescroll jQuery library into your WordPress powered website.', $this->domain ) ?></p>
 
-		$html .= '<p>' . __( "For help regarding 'Nicescroll', please refer to the official <a href='https://areaaperta.com/nicescroll/' target='_blank'>Nicescroll</a> website.", $this->domain ) . '</p>';
+		<p><?php echo __( 'This plugin is a wrapper for the popular "Nicescroll" javascript library, which is made by <a href="https://wordpress.org/support/users/inuyaksa/" target="_blank">InuYaksa</a>. You can visit his official Nicescroll homepage <a href="https://www.areaaperta.com/nicescroll/" target="_blank">here</a>. An overview of the default parameters can be found on <a href="https://github.com/inuyaksa/jquery.nicescroll" target="_blank">Github</a> at the bottom of the page.', $this->domain ) ?>
 
-		$html .= '<p>' . __( "There are also optional 'back to top' buttons for both frontend and backend, which may come in handy. If your theme gets shipped with this functionality already, you can disable the plugin's integrated feature on the 'Plugin' settings page.", $this->domain ) . '</p>';
+		<p><?php echo __( "For help regarding 'Nicescroll', please refer to the official <a href='https://areaaperta.com/nicescroll/' target='_blank'>Nicescroll</a> website.", $this->domain ) ?></p>
 
-		$html .= '<p>' . __( "If you have any questions, comments or issues regarding 'Nicescrollr', please visit the <a href='https://wordpress.org/plugins/nicescrollr/' target='_blank'>Nicescrollr</a> plugin homepage.", $this->domain ) . '</p>';
+		<p><?php echo __( "There are also optional 'back to top' buttons for both frontend and backend, which may come in handy. If your theme gets shipped with this functionality already, you can disable the plugin's integrated feature on the 'Plugin' settings page.", $this->domain ) ?></p>
+
+		<p><?php echo __( "If you have any questions, comments or issues regarding 'Nicescrollr', please visit the <a href='https://wordpress.org/plugins/nicescrollr/' target='_blank'>Nicescrollr</a> plugin homepage.", $this->domain ) ?></p>
+
+		<?php
+		$html = ob_get_contents();
+		ob_end_clean();
 
 		return $html;
 	}

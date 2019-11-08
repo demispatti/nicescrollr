@@ -32,14 +32,11 @@ if( ! class_exists( 'Menu\Nsr_Menu' ) ) {
 if( ! class_exists( 'MenuIncludes\Nsr_Options' ) ) {
 	require_once NICESCROLLR_ROOT_DIR . 'admin/menu/includes/class-options.php';
 }
-if( ! class_exists( 'Includes\Nsr_Localisation' ) ) {
-	require_once NICESCROLLR_ROOT_DIR . 'includes/class-upgrade.php';
+if( ! class_exists( 'MenuIncludes\Nsr_Ajax_Localisation' ) ) {
+	require_once NICESCROLLR_ROOT_DIR . 'admin/menu/includes/class-ajax-localisation.php';
 }
 if( ! class_exists( 'MenuIncludes\Nsr_Menu_Localisation' ) ) {
 	require_once NICESCROLLR_ROOT_DIR . 'admin/menu/includes/class-menu-localisation.php';
-}
-if( ! class_exists( 'MenuIncludes\Nsr_Ajax_Localisation' ) ) {
-	require_once NICESCROLLR_ROOT_DIR . 'admin/menu/includes/class-ajax-localisation.php';
 }
 if( ! class_exists( 'MenuIncludes\Nsr_Reset_Section' ) ) {
 	require_once NICESCROLLR_ROOT_DIR . 'admin/menu/includes/class-reset-section.php';
@@ -51,8 +48,8 @@ if( ! class_exists( 'MenuIncludes\Nsr_Reset_Section' ) ) {
  * @since             0.1.0
  * @package           nicescrollr
  * @subpackage        nicescrollr/admin
- * Author:            Demis Patti <demispatti@gmail.com>
- * Author URI:
+ * Author:            Demis Patti <wp@demispatti.ch>
+ * Author URI:        https://demispatti.ch
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  */
@@ -134,8 +131,8 @@ class Nsr_Admin {
 
 	private function set_prefixes() {
 
-		$this->handle_prefix = defined( 'NICESCROLLR_DEBUG' ) ? '' : '-min';
-		$this->file_prefix = defined( 'NICESCROLLR_DEBUG' ) ? '' : '.min';
+		$this->handle_prefix = defined( 'NICESCROLLR_DEBUG' ) && NICESCROLLR_DEBUG === '1' ? '' : '-min';
+		$this->file_prefix = defined( 'NICESCROLLR_DEBUG' ) && NICESCROLLR_DEBUG === '1' ? '' : '.min';
 	}
 
 	/**
@@ -172,10 +169,8 @@ class Nsr_Admin {
 
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_styles' ), 20 );
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ), 20 );
-		add_action( 'admin_enqueue_scripts', array( $this, 'initialize_localisations' ), 100 );
+		add_action( 'admin_enqueue_scripts', array( $this, 'initialize_localisations' ), 40 );
 		add_filter( 'plugin_row_meta', array( $this, 'plugin_row_meta' ), 10, 2 );
-
-		add_action( 'upgrader_process_complete', array( $this, 'upgrade' ), 20 );
 	}
 
 	/**
@@ -187,14 +182,15 @@ class Nsr_Admin {
 	 * @return void
 	 */
 	public function enqueue_styles() {
-
-		$handle_prefix = $this->handle_prefix;
-		$file_prefix = $this->file_prefix;
+		// Dashicons
+		wp_enqueue_style( 'dashicons' );
 
 		if( isset( $this->settings['backend']['bt_enabled'] ) && $this->settings['backend']['bt_enabled'] ) {
 
-			wp_enqueue_style( 'nicescrollr-backtop' . $handle_prefix . '-css', NICESCROLLR_ROOT_URL . 'assets/backtop' . $file_prefix . '.css', array(), 'all' );
+			wp_enqueue_style( 'nicescrollr-backtop' . $this->handle_prefix . '-css', NICESCROLLR_ROOT_URL . 'assets/backtop' . $this->file_prefix . '.css', array(), 'all' );
 		}
+
+		wp_enqueue_style( 'nicescrollr-admin' . $this->handle_prefix . '-css', NICESCROLLR_ROOT_URL . 'assets/admin' . $this->file_prefix . '.css', array(), 'all' );
 	}
 
 	/**
@@ -207,46 +203,31 @@ class Nsr_Admin {
 	 */
 	public function enqueue_scripts() {
 
-		$handle_prefix = $this->handle_prefix;
-		$file_prefix = $this->file_prefix;
-
 		// Gets executed if Nicescroll is enabled in the frontend.
 		if( isset( $this->settings[$this->view]['enabled'] ) && $this->settings[$this->view]['enabled'] ) {
 
 			// jQuery Easing
-			$easing_url = 'https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js';
-			$easing_cdn = wp_remote_get( $easing_url );
-			if( (int) wp_remote_retrieve_response_code( $easing_cdn ) !== 200 ) {
-
-				$easing_url = NICESCROLLR_ROOT_URL . 'vendor/jquery-easing/jquery.easing.min.js';
-			}
-			wp_enqueue_script( 'nicescrollr-easing-min-js', $easing_url, array( 'jquery' ), 'all' );
+			wp_enqueue_script( 'nicescrollr-inc-easing-min-js', NICESCROLLR_ROOT_URL . 'vendor/jquery-easing/jquery.easing.min.js', array( 'jquery' ), 'all' );
 
 			// Nicescroll Library
 			$nice_url = 'https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js';
 			$nice_cdn = wp_remote_get( $nice_url );
 			if( (int) wp_remote_retrieve_response_code( $nice_cdn ) !== 200 ) {
-
 				$nice_url = NICESCROLLR_ROOT_URL . 'vendor/nicescroll/jquery.nicescroll.min.js';
 			}
-			wp_enqueue_script( 'nicescrollr-inc-nicescroll-min-js', $nice_url, array(
-				'jquery',
-				'nicescrollr-easing-min-js'
-			), 'all' );
+			wp_enqueue_script( 'nicescrollr-inc-nicescroll-min-js', $nice_url, array( 'jquery', 'nicescrollr-inc-easing-min-js' ), 'all' );
 
 			// Nicescroll configuration file
-			wp_enqueue_script( 'nicescrollr-nicescroll' . $handle_prefix . '-js', NICESCROLLR_ROOT_URL . 'assets/nicescroll' . $file_prefix . '.js', array(
+			wp_enqueue_script( 'nicescrollr-nicescroll' . $this->handle_prefix . '-js', NICESCROLLR_ROOT_URL . 'assets/nicescroll' . $this->file_prefix . '.js', array(
 					'jquery',
-					'nicescrollr-inc-nicescroll-min-js',
+					'nicescrollr-inc-nicescroll-min-js'
 				), 'all' );
 		}
 
 		if( isset( $this->settings['backend']['bt_enabled'] ) && $this->settings['backend']['bt_enabled'] ) {
 
 			// Backtop
-			wp_enqueue_script( 'nicescrollr-backtop' . $handle_prefix . '-js', NICESCROLLR_ROOT_URL . 'assets/backtop' . $file_prefix . '.js', array(
-					'jquery',
-				), 'all' );
+			wp_enqueue_script( 'nicescrollr-backtop' . $this->handle_prefix . '-js', NICESCROLLR_ROOT_URL . 'assets/backtop' . $this->file_prefix . '.js', array( 'jquery' ), 'all' );
 		}
 	}
 
@@ -260,8 +241,8 @@ class Nsr_Admin {
 	 */
 	public function initialize_menu() {
 
-		$Menu_Localisation = new MenuIncludes\Nsr_Menu_Localisation($this->domain, $this->Options);
-		$Ajax_Localisation = new MenuIncludes\Nsr_Ajax_Localisation($this->domain);
+		$Menu_Localisation = new MenuIncludes\Nsr_Menu_Localisation( $this->domain, $this->Options );
+		$Ajax_Localisation = new MenuIncludes\Nsr_Ajax_Localisation( $this->domain );
 		$Reset_Section = new MenuIncludes\Nsr_Reset_Section( $this->domain );
 
 		$menu = new Menu\Nsr_Menu( $this->domain, $this->Options, $Menu_Localisation, $Ajax_Localisation, $Reset_Section );
@@ -317,13 +298,11 @@ class Nsr_Admin {
 	 */
 	private function localize_nicescroll() {
 
-		//$this->nicescroll_localisation = new Nsr_Nicescroll_Localisation( $this->domain, $this->options );
 		$this->Nicescroll_Localisation->run( $this->view );
 	}
 
 	private function localize_backtop() {
 
-		//$this->backtop_localisation = new Nsr_Backtop_Localisation( $this->domain, $this->options );
 		$this->Backtop_Localisation->run( $this->view );
 	}
 
@@ -348,20 +327,6 @@ class Nsr_Admin {
 		}
 
 		return $meta;
-	}
-
-	/**
-	 * Calls the class responsible for any eventual upgrade-related functions.
-	 *
-	 * @hooked_action
-	 *
-	 * @since    0.6.0
-	 * @access   public
-	 */
-	public function upgrade() {
-
-		$upgrader = new Includes\Nsr_Upgrade( $this->Options );
-		$upgrader->run();
 	}
 
 }
