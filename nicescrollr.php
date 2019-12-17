@@ -22,12 +22,12 @@ use Nicescrollr\Includes as Includes;
  * Requires at least: 5.1
  * Tested up to: 5.3
  * Requires PHP: 5.6+
- * Version: 0.7.3
- * Stable tag: 0.7.3
+ * Version: 0.7.4
+ * Stable tag: 0.7.4
  * License: GPLv2 or later
  * License URI: http://www.gnu.org/licenses/gpl-2.0.html
- * Author: demispatti
- * Author URI: https://demispatti.ch
+ * Author: Demis Patti
+ * Author URI:
  * Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=XLMMS7C62S76Q
  */
 

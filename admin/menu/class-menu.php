@@ -185,12 +185,12 @@ class Nsr_Menu {
 
 		if( ( isset( $_REQUEST['page'] ) && $_REQUEST['page'] === 'nicescrollr_settings' ) || ( isset( $_REQUEST['option_page'] ) && $_REQUEST['option_page'] === 'nicescrollr_options' ) ) {
 
-			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_styles' ) );
-			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
-			add_action( 'admin_enqueue_scripts', array( $this, 'initialize_localisation' ), 40 );
+			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_styles' ), 10001 );
+			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ), 10002 );
+			add_action( 'admin_enqueue_scripts', array( $this, 'initialize_localisation' ), 10040 );
 			add_action( 'admin_notices', array( $this, 'admin_notice_display' ) );
-			add_action( 'admin_menu', array( $this, 'set_section' ), 10 );
-			add_action( 'admin_menu', array( $this, 'initialize_settings_section' ), 20 );
+			add_action( 'admin_menu', array( $this, 'set_section' ), 10010 );
+			add_action( 'admin_menu', array( $this, 'initialize_settings_section' ), 10020 );
 
 			add_filter( 'admin_body_class', array( $this, 'add_body_class' ) );
 		}

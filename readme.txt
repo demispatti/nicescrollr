@@ -4,12 +4,12 @@ Tags: nicescroll, scroll, scrollbar, back to top, scroll to top, frontend, backe
 Requires at least: 5.1
 Tested up to: 5.3
 Requires PHP: 5.6+
-Version: 0.7.3
-Stable tag: 0.7.3
+Version: 0.7.4
+Stable tag: 0.7.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
-Author: demispatti
-Author URI: https://demispatti.ch
+Author: Demis Patti
+Author URI:
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=XLMMS7C62S76Q
 
 == Description ==
@@ -27,6 +27,7 @@ href="https://wordpress.org/support/users/inuyaksa/" target="_blank">InuYaksa</a
 
 
 == Requirements ==
+
 - PHP 5.6+
 
 
@@ -36,6 +37,10 @@ href="https://wordpress.org/support/users/inuyaksa/" target="_blank">InuYaksa</a
 2. Activate the "Nicescrollr" plugin through the "Plugins" menu in WordPress.
 3. You will find its settings page listed in the "settings" section.
 3. Go to the plugin settings page and fit it to your needs :-) Have fun!
+
+== Known issues ==
+
+- There may be issues with scrolling on the backend, if you are using a pen and a graphics tablet.
 
 
 == Frequently Asked Questions ==
@@ -57,7 +62,12 @@ Well, I provide some basic support on this plugin's support page. I check that p
 2. Extended settings
 3. ScrollTop settings
 
+
 == Changelog ==
+
+= Version 0.7.4 =
+1. Optimized for WordPress version 5.3
+2. Fixed scrolling issues with older IE versions
 
 = Version 0.7.3 =
 1. Removed default scrollbar with nicescroll effects

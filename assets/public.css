@@ -1,22 +1,29 @@
 html {
   -ms-overflow-style: none;
   overflow-style: unset;
-  overflow-y: auto;
+  overflow-y: hidden;
 }
-
-body {
+html body {
   -ms-overflow-style: none;
   overflow-style: unset;
-  overflow-y: auto;
+  overflow-y: hidden;
 }
-body.nsr-default-scrollbar {
-  -ms-overflow-style: scrollbar;
-  overflow-style: initial;
-  overflow-y: auto;
+html.nsr-is-webkit::-webkit-scrollbar {
+  display: none;
 }
-body.nsr-is-ie {
+html.nsr-is-moz {
+  overflow-y: initial;
+  scrollbar-width: none;
+}
+html.nsr-is-edge {
   -ms-overflow-style: none;
+  -ms-overflow-y: initial;
 }
-body.nsr-is-ie iframe, body.nsr-is-ie body, body.nsr-is-ie html {
+html.nsr-is-edge iframe {
   -ms-overflow-style: none;
+  -ms-overflow-y: initial;
+}
+html.nsr-is-msie {
+  -ms-overflow-style: none;
+  -ms-overflow-y: initial !important;
 }

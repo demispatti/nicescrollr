@@ -13,7 +13,7 @@
 "use strict";
 jQuery(function ($) {
 
-	let nicescrollrIsMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+	var nicescrollrIsMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
 	function Nicescrollr () {
 		this.nsr_options = Nsr_Options;
@@ -31,9 +31,11 @@ jQuery(function ($) {
 			this.listenForDocumentChanges();
 		},
 		runNicescroll: function () {
-			let config = this.getNicescrollConfiguration();
+			var config = this.getNicescrollConfiguration();
 			this.body.niceScroll(this.getNicescrollConfiguration());
-			this.runIframeHelper();
+			if(this.body.hasClass('wp-admin')){
+				this.runBackendIframeHelper();
+			}
 		},
 		getNicescrollConfiguration: function () {
 
@@ -88,12 +90,39 @@ jQuery(function ($) {
 				scrollbarid: this.nsr_options.scrollbarid
 			});
 		},
-		runIframeHelper: function() {
+		runFrontendIframeHelper: function () {
 
-			let isIE = false;
-			let ua = window.navigator.userAgent;
-			let old_ie = ua.indexOf('Trident/');
-			let new_ie = ua.indexOf('Edge');
+			var isIE = false;
+			var ua = window.navigator.userAgent;
+			var old_ie = ua.indexOf('Trident/');
+			var new_ie = ua.indexOf('Edge');
+
+			if ((old_ie > - 1) || (new_ie > - 1)) {
+
+				if (old_ie > - 1) {
+					this.addMsieIframeHelper();
+				}
+				else {
+					this.addEdgeIframeHelper();
+				}
+
+				return;
+			}
+			else if (navigator.userAgent.search("Firefox") >= 0) {
+				this.addMozIframeHelper();
+
+				return;
+			}
+			else if (navigator.userAgent.search("Chrome") >= 0) {
+				this.addWebkitIframeHelper();
+			}
+		},
+		runBackendIframeHelper: function() {
+
+			var isIE = false;
+			var ua = window.navigator.userAgent;
+			var old_ie = ua.indexOf('Trident/');
+			var new_ie = ua.indexOf('Edge');
 
 			if((old_ie > - 1) || (new_ie > - 1)){
 
@@ -115,14 +144,6 @@ jQuery(function ($) {
 
 				return;
 			}
-			else if (navigator.userAgent.search("Opera") >= 0) {
-				this.addWebkitIframeHelper();
-
-				return;
-			}
-			else if (navigator.userAgent.search("Safari") >= 0) {
-				this.addWebkitIframeHelper();
-			}
 		},
 
 		retrieveCursorBorder: function () {
@@ -142,7 +163,7 @@ jQuery(function ($) {
 		},
 		retrieveAutohideMode: function () {
 
-			let autohidemode = this.nsr_options.autohidemode;
+			var autohidemode = this.nsr_options.autohidemode;
 
 			if ('enabled' === autohidemode || 'true' === autohidemode) {
 				autohidemode = true;
@@ -155,7 +176,7 @@ jQuery(function ($) {
 		},
 		retrieveRailOffset: function () {
 
-			let Railoffset = this.nsr_options.railoffset;
+			var Railoffset = this.nsr_options.railoffset;
 			if ('false' === Railoffset) {
 				Railoffset = false;
 			}
@@ -163,7 +184,7 @@ jQuery(function ($) {
 		},
 		retrieveCursorFixedHeight: function () {
 
-			let Cursorfixedheight = this.nsr_options.cursorfixedheight;
+			var Cursorfixedheight = this.nsr_options.cursorfixedheight;
 			if ('false' === Cursorfixedheight) {
 				Cursorfixedheight = false;
 			}
@@ -171,10 +192,10 @@ jQuery(function ($) {
 		},
 
 		listenForDocumentChanges: function () {
-			let $this = this;
+			var $this = this;
 
 			MutationObserver = window.MutationObserver || window.WebKitMutationObserver;
-			let observer = new MutationObserver(function () {
+			var observer = new MutationObserver(function () {
 				// fired when a mutation occurs
 				$this.triggerResize();
 			});
@@ -188,8 +209,8 @@ jQuery(function ($) {
 		},
 
 		addWebkitIframeHelper: function() {
-			this.body.addClass('nsr-is-webkit');
-			let $this = this;
+			this.html.addClass('nsr-is-webkit');
+			var $this = this;
 			this.editorContainer.on({
 				mouseenter: function(){
 					$this.body.attr('style', 'overflow-y: initial');
@@ -198,16 +219,11 @@ jQuery(function ($) {
 					$this.body.attr('style', 'overflow-y: hidden');
 				},
 			});
-			if(this.editorContainer.has(':hover')){
-				$this.editorContainer.trigger('mouseenter');
-			} else {
-				$this.editorContainer.trigger('mouseleave');
-			}
 		},
 		addMozIframeHelper: function () {
-			this.body.addClass('nsr-is-moz');
-			let $this = this;
-			let mozBody = this.html;
+			this.html.addClass('nsr-is-moz');
+			var $this = this;
+			var mozBody = this.html;
 			this.editorContainer.on({
 				mouseenter: function () {
 					mozBody.attr('style', 'scrollbar-width: none');
@@ -221,7 +237,7 @@ jQuery(function ($) {
 		},
 		addMsieIframeHelper: function () {
 			this.html.addClass('nsr-is-msie');
-			let $this = this;
+			var $this = this;
 			this.editorContainer.on({
 				mouseenter: function () {
 					$this.body.attr('style', '-ms-overflow-style: none');
@@ -234,8 +250,8 @@ jQuery(function ($) {
 			});
 		},
 		addEdgeIframeHelper: function () {
-			this.body.addClass('nsr-is-edge');
-			let $this = this;
+			this.html.addClass('nsr-is-edge');
+			var $this = this;
 			this.editorContainer.on({
 				mouseenter: function () {
 					$this.body.attr('style', '-ms-overflow-style: none');
@@ -248,17 +264,21 @@ jQuery(function ($) {
 			});
 		},
 		triggerResize: function () {
-			let $this = this;
+			var $this = this;
 
 			setTimeout(function () {
 				$this.body.getNiceScroll().resize();
-			}, 120);
+			}, 300);
+		},
+		mouseWheelScrollHepler: function(){
+
+			// if mousebuttondown && mousewheel -> scroll
 		}
 	};
 
 	$(document).ready(function () {
 		if (false === nicescrollrIsMobile && Nsr_Options.enabled === '1' || true === nicescrollrIsMobile && Nsr_Options.enabled === '1' && Nsr_Options.mobile_devices_enabled === '1') {
-			let nicescrollr = new Nicescrollr();
+			var nicescrollr = new Nicescrollr();
 			nicescrollr.init();
 		}
 	});
