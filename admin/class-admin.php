@@ -2,10 +2,8 @@
 
 namespace Nicescrollr\Admin;
 
-use Nicescrollr\Includes as Includes;
 use Nicescrollr\Admin\Includes as AdminIncludes;
-use Nicescrollr\Admin\Menu as Menu;
-use Nicescrollr\Admin\Menu\Includes as MenuIncludes;
+use Nicescrollr\Shared as Shared;
 
 /**
  * If this file is called directly, abort.
@@ -17,29 +15,23 @@ if( ! defined( 'WPINC' ) ) {
 /**
  * Include dependencies.
  */
-if( ! class_exists( 'Includes\Nsr_Localisation' ) ) {
-	require_once NICESCROLLR_ROOT_DIR . 'includes/class-nicescroll-localisation.php';
-}
-if( ! class_exists( 'Includes\Nsr_Localisation' ) ) {
-	require_once NICESCROLLR_ROOT_DIR . 'includes/class-backtop-localisation.php';
-}
-if( ! class_exists( 'Includes\Nsr_Localisation' ) ) {
+if( ! class_exists( 'AdminIncludes\Nsr_Help_Tab' ) ) {
 	require_once NICESCROLLR_ROOT_DIR . 'admin/includes/class-help-tab.php';
 }
-if( ! class_exists( 'Menu\Nsr_Menu' ) ) {
-	require_once NICESCROLLR_ROOT_DIR . 'admin/menu/class-menu.php';
+if( ! class_exists( 'AdminIncludes\Nsr_Menu' ) ) {
+	require_once NICESCROLLR_ROOT_DIR . 'admin/includes/class-menu.php';
 }
-if( ! class_exists( 'MenuIncludes\Nsr_Options' ) ) {
-	require_once NICESCROLLR_ROOT_DIR . 'admin/menu/includes/class-options.php';
+if( ! class_exists( 'AdminIncludes\Nsr_Options' ) ) {
+	require_once NICESCROLLR_ROOT_DIR . 'admin/includes/class-options.php';
 }
-if( ! class_exists( 'MenuIncludes\Nsr_Ajax_Localisation' ) ) {
-	require_once NICESCROLLR_ROOT_DIR . 'admin/menu/includes/class-ajax-localisation.php';
+if( ! class_exists( 'AdminIncludes\Nsr_Ajax_Localisation' ) ) {
+	require_once NICESCROLLR_ROOT_DIR . 'admin/includes/class-ajax-localisation.php';
 }
-if( ! class_exists( 'MenuIncludes\Nsr_Menu_Localisation' ) ) {
-	require_once NICESCROLLR_ROOT_DIR . 'admin/menu/includes/class-menu-localisation.php';
+if( ! class_exists( 'AdminIncludes\Nsr_Menu_Localisation' ) ) {
+	require_once NICESCROLLR_ROOT_DIR . 'admin/includes/class-menu-localisation.php';
 }
-if( ! class_exists( 'MenuIncludes\Nsr_Reset_Section' ) ) {
-	require_once NICESCROLLR_ROOT_DIR . 'admin/menu/includes/class-reset-section.php';
+if( ! class_exists( 'AdminIncludes\Nsr_Reset_Section' ) ) {
+	require_once NICESCROLLR_ROOT_DIR . 'admin/includes/class-reset-section.php';
 }
 
 /**
@@ -80,7 +72,7 @@ class Nsr_Admin {
 	 *
 	 * @since  0.1.0
 	 * @access private
-	 * @var    MenuIncludes\Nsr_Options $Options
+	 * @var    AdminIncludes\Nsr_Options $Options
 	 */
 	private $Options;
 
@@ -89,7 +81,7 @@ class Nsr_Admin {
 	 *
 	 * @since  0.1.0
 	 * @access private
-	 * @var    Includes\Nsr_Nicescroll_Localisation $Nicescroll_Localisation
+	 * @var    Shared\Nsr_Nicescroll_Localisation $Nicescroll_Localisation
 	 */
 	private $Nicescroll_Localisation;
 
@@ -98,7 +90,7 @@ class Nsr_Admin {
 	 *
 	 * @since  0.1.0
 	 * @access private
-	 * @var    Includes\Nsr_Backtop_Localisation $Backtop_Localisation
+	 * @var    Shared\Nsr_Backtop_Localisation $Backtop_Localisation
 	 */
 	private $Backtop_Localisation;
 
@@ -129,6 +121,14 @@ class Nsr_Admin {
 	 */
 	private $file_prefix;
 
+	/**
+	 * Sets the prefix for the scripts and stylesheets to control
+	 * the inclusion of minified versions of these files.
+	 *
+	 * @return void
+	 *
+	 * @since  0.7.4
+	 */
 	private function set_prefixes() {
 
 		$this->handle_prefix = defined( 'NICESCROLLR_DEBUG' ) && NICESCROLLR_DEBUG === '1' ? '' : '-min';
@@ -139,9 +139,9 @@ class Nsr_Admin {
 	 * Nsr_Admin constructor.
 	 *
 	 * @param string $domain
-	 * @param MenuIncludes\Nsr_Options Nsr_Options $Options
-	 * @param Includes\Nsr_Nicescroll_Localisation $Nicescroll_Localisation
-	 * @param Includes\Nsr_Backtop_Localisation $Backtop_Localisation
+	 * @param AdminIncludes\Nsr_Options $Options
+	 * @param Shared\Nsr_Nicescroll_Localisation $Nicescroll_Localisation
+	 * @param Shared\Nsr_Backtop_Localisation $Backtop_Localisation
 	 */
 	public function __construct( $domain, $Options, $Nicescroll_Localisation, $Backtop_Localisation ) {
 
@@ -156,6 +156,7 @@ class Nsr_Admin {
 
 		$this->initialize_menu();
 		$this->initialize_help_tab();
+		$this->include_backtop();
 	}
 
 	/**
@@ -187,10 +188,12 @@ class Nsr_Admin {
 
 		if( isset( $this->settings['backend']['bt_enabled'] ) && $this->settings['backend']['bt_enabled'] ) {
 
-			wp_enqueue_style( 'nicescrollr-backtop' . $this->handle_prefix . '-css', NICESCROLLR_ROOT_URL . 'assets/backtop' . $this->file_prefix . '.css', array(), 'all' );
+			wp_enqueue_style( 'nicescrollr-backtop' . $this->handle_prefix . '-css', NICESCROLLR_ROOT_URL . 'shared/backtop' . $this->file_prefix . '.css', array(), 'all' );
 		}
 
-		wp_enqueue_style( 'nicescrollr-admin' . $this->handle_prefix . '-css', NICESCROLLR_ROOT_URL . 'assets/admin' . $this->file_prefix . '.css', array(), 'all' );
+		wp_enqueue_style( 'nicescrollr-admin' . $this->handle_prefix . '-css', NICESCROLLR_ROOT_URL . 'admin/css/admin' . $this->file_prefix . '.css', array(), 'all' );
+
+		wp_enqueue_style( 'nicescrollr-menu' . $this->handle_prefix . '-css', NICESCROLLR_ROOT_URL . 'admin/css/menu' . $this->file_prefix . '.css', array(), 'all' );
 	}
 
 	/**
@@ -218,7 +221,7 @@ class Nsr_Admin {
 			wp_enqueue_script( 'nicescrollr-inc-nicescroll-min-js', $nice_url, array( 'jquery', 'nicescrollr-inc-easing-min-js' ), 'all' );
 
 			// Nicescroll configuration file
-			wp_enqueue_script( 'nicescrollr-nicescroll' . $this->handle_prefix . '-js', NICESCROLLR_ROOT_URL . 'assets/nicescroll' . $this->file_prefix . '.js', array(
+			wp_enqueue_script( 'nicescrollr-nicescroll' . $this->handle_prefix . '-js', NICESCROLLR_ROOT_URL . 'shared/nicescroll' . $this->file_prefix . '.js', array(
 					'jquery',
 					'nicescrollr-inc-nicescroll-min-js'
 				), 'all' );
@@ -227,7 +230,7 @@ class Nsr_Admin {
 		if( isset( $this->settings['backend']['bt_enabled'] ) && $this->settings['backend']['bt_enabled'] ) {
 
 			// Backtop
-			wp_enqueue_script( 'nicescrollr-backtop' . $this->handle_prefix . '-js', NICESCROLLR_ROOT_URL . 'assets/backtop' . $this->file_prefix . '.js', array( 'jquery' ), 'all' );
+			wp_enqueue_script( 'nicescrollr-backtop' . $this->handle_prefix . '-js', NICESCROLLR_ROOT_URL . 'shared/backtop' . $this->file_prefix . '.js', array( 'jquery' ), 'all' );
 		}
 	}
 
@@ -241,13 +244,13 @@ class Nsr_Admin {
 	 */
 	public function initialize_menu() {
 
-		$Menu_Localisation = new MenuIncludes\Nsr_Menu_Localisation( $this->domain, $this->Options );
-		$Ajax_Localisation = new MenuIncludes\Nsr_Ajax_Localisation( $this->domain );
-		$Reset_Section = new MenuIncludes\Nsr_Reset_Section( $this->domain );
+		$Menu_Localisation = new AdminIncludes\Nsr_Menu_Localisation( $this->domain, $this->Options );
+		$Ajax_Localisation = new AdminIncludes\Nsr_Ajax_Localisation( $this->domain );
+		$Reset_Section = new AdminIncludes\Nsr_Reset_Section( $this->domain );
 
-		$menu = new Menu\Nsr_Menu( $this->domain, $this->Options, $Menu_Localisation, $Ajax_Localisation, $Reset_Section );
+		$menu = new AdminIncludes\Nsr_Menu( $this->domain, $this->Options, $Menu_Localisation, $Ajax_Localisation, $Reset_Section );
 		// We need to hook this action already here
-		add_action( 'wp_ajax_reset_options', array( $menu, 'MenuIncludes\reset_options' ) );
+		add_action( 'wp_ajax_reset_options', array( $menu, 'AdminIncludes\reset_options' ) );
 		$menu->add_hooks();
 	}
 
@@ -301,6 +304,29 @@ class Nsr_Admin {
 		$this->Nicescroll_Localisation->run( $this->view );
 	}
 
+	/**
+	 * Initializes the components for the backtop functionality.
+	 *
+	 * @return void
+	 *
+	 * @since  0.7.5
+	 */
+	private function include_backtop() {
+
+		if( isset( $this->settings['backend']['bt_enabled'] ) && $this->settings['backend']['bt_enabled'] ) {
+			$Backtop = new Shared\Nsr_Backtop( $this->domain, $this->Options, 'backend' );
+			$Backtop->add_hooks();
+		}
+	}
+
+	/**
+	 * Initiates the localisation of the back top button.
+	 *
+	 * @return void
+	 *
+	 * @access private
+	 * @since  0.7.5
+	 */
 	private function localize_backtop() {
 
 		$this->Backtop_Localisation->run( $this->view );

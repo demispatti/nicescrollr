@@ -4,7 +4,7 @@
  * @link              https://wordpress.org/plugins/nicescrollr/
  * @since             0.1.0
  * @package           nicescrollr
- * @subpackage        nicescrollr/assets
+ * @subpackage        nicescrollr/shared
  * Author:            Demis Patti <wp@demispatti.ch>
  * Author URI:        https://demispatti.ch
  * License:           GPL-2.0+
@@ -30,21 +30,17 @@
 
 	NsrBacktop.prototype = {
 		init: function () {
-			this.createBackTop();
+			this.setBackTop();
 			this.applyBacktopConfiguration();
-			this.bind();
+			this.addEvents();
 		},
-		createBackTop: function () {
-			var size = undefined !== this.nsr_options.bt_size ? this.nsr_options.bt_size : '';
-
-			$(this.body).append("<span class='" + this.bt_class + " " + size + "'></span>");
+		setBackTop: function () {
 			this.nsrBackTop = $('.' + this.bt_class);
 		},
 		applyBacktopConfiguration: function () {
 
 			var config = this.getBacktopConfiguration();
 			this.nsrBackTop.css(config);
-
 			// Create a separate stylesheet so we don't mess up existing styles ;-)
 			var sheet = document.head.appendChild(document.createElement('style')).sheet;
 			// Get the length of the stylesheet so we can apply the rules at continous indices
@@ -55,7 +51,6 @@
 			if ('' !== config["hover-color"]) {
 				sheet.insertRule('.' + this.bt_class + ':hover::before{color:' + config["hover-color"] + ';}', length ++);
 			}
-
 		},
 		getBacktopConfiguration: function () {
 
@@ -74,7 +69,7 @@
 				'border-bottom-right-radius': this.nsr_options.bt_border_radius_bottom_right
 			};
 		},
-		bind: function () {
+		addEvents: function () {
 			this.nsrBackTop.bind('mouseenter', { context: this }, this.backTopOnMouseenter);
 			this.nsrBackTop.bind('mouseleave', { context: this }, this.backTopOnMouseleave);
 			this.nsrBackTop.bind('click', { context: this }, this.backTopOnClick);
@@ -89,6 +84,8 @@
 				'border-color': $this.nsr_options.bt_hover_border_color,
 				'cursor': 'pointer'
 			});
+
+			$("#nsr_backtop #nsrBackTopArrow rect").css({ fill: Nsr_Options.bt_arrow_hover_color });
 		},
 		backTopOnMouseleave: function (event) {
 			var $this = event.data.context;
@@ -96,6 +93,8 @@
 				'background-color': $this.nsr_options.bt_background_color,
 				'border-color': $this.nsr_options.bt_border_color
 			});
+
+			$("#nsr_backtop #nsrBackTopArrow rect").css({ fill: Nsr_Options.bt_arrow_color });
 		},
 		backTopOnClick: function (event) {
 			var $this = event.data.context;

@@ -1,10 +1,10 @@
 /**!
- * Settings Menu.
+ * Settings Menu CSS.
  *
  * @link              https://github.com/demispatti/nicescrollr
  * @since             0.1.0
  * @package           nicescrollr
- * @subpackage        nicescrollr/admin/menu/css
+ * @subpackage        nicescrollr/admin/css
  * Author:            Demis Patti <wp@demispatti.ch>
  * Author URI:        https://demispatti.ch
  * License:           GPL-2.0+
@@ -405,26 +405,11 @@ input {
   overflow: scroll !important;
 }
 
-/**!
- * Settings Menu.
- *
- * @link              https://github.com/demispatti/nicescrollr
- * @since             0.1.0
- * @package           nicescrollr
- * @subpackage        nicescrollr/admin/menu/css
- * Author:            Demis Patti <wp@demispatti.ch>
- * Author URI:        https://demispatti.ch
- * License:           GPL-2.0+
- * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
- */
 /************************************************************\
  *   Page
 \************************************************************/
 html.nsr-is-msie {
   overflow-y: visible !important;
-  /*-ms-overflow-y: unset !important;
-  -ms-overflow-style: unset !important;
-  -ms-touch-action: unset !important;*/
 }
 
 body.nsr-settings-page {

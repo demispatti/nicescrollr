@@ -5,7 +5,8 @@ namespace Nicescrollr\Includes;
 use Nicescrollr\Admin as Admin;
 use Nicescrollr\Pub as Pub;
 use Nicescrollr\Includes as Includes;
-use Nicescrollr\Admin\Menu\Includes as MenuIncludes;
+use Nicescrollr\Admin\Includes as AdminIncludes;
+use Nicescrollr\Shared as Shared;
 
 /**
  * If this file is called directly, abort.
@@ -20,11 +21,17 @@ if( ! defined( 'WPINC' ) ) {
 if( ! class_exists( 'Includes\Nsr_I18n' ) ) {
 	require_once NICESCROLLR_ROOT_DIR . 'includes/class-i18n.php';
 }
-if( ! class_exists( 'Includes\Nsr_Nicescroll_Localisation' ) ) {
-	require_once NICESCROLLR_ROOT_DIR . 'includes/class-nicescroll-localisation.php';
+if( ! class_exists( 'AdminIncludes\Nsr_Options' ) ) {
+	require_once NICESCROLLR_ROOT_DIR . 'admin/includes/class-options.php';
 }
-if( ! class_exists( 'Includes\Nsr_Backtop_Localisation' ) ) {
-	require_once NICESCROLLR_ROOT_DIR . 'includes/class-backtop-localisation.php';
+if( ! class_exists( 'Shared\Nsr_Nicescroll_Localisation' ) ) {
+	require_once NICESCROLLR_ROOT_DIR . 'shared/class-nicescroll-localisation.php';
+}
+if( ! class_exists( 'Shared\Nsr_Backtop' ) ) {
+	require_once NICESCROLLR_ROOT_DIR . 'shared/class-backtop.php';
+}
+if( ! class_exists( 'Shared\Nsr_Backtop_Localisation' ) ) {
+	require_once NICESCROLLR_ROOT_DIR . 'shared/class-backtop-localisation.php';
 }
 if( ! class_exists( 'Admin\Nsr_Admin' ) ) {
 	require_once NICESCROLLR_ROOT_DIR . 'admin/class-admin.php';
@@ -62,7 +69,7 @@ class Nsr {
 	 *
 	 * @since  0.1.0
 	 * @access private
-	 * @var    MenuIncludes\Nsr_Options $Options
+	 * @var    AdminIncludes\Nsr_Options $Options
 	 */
 	private $Options;
 
@@ -71,7 +78,7 @@ class Nsr {
 	 *
 	 * @since  0.1.0
 	 * @access private
-	 * @var    Includes\Nsr_Nicescroll_Localisation $Nicescroll_Localisation
+	 * @var    Shared\Nsr_Nicescroll_Localisation $Nicescroll_Localisation
 	 */
 	private $Nicescroll_Localisation;
 
@@ -80,15 +87,15 @@ class Nsr {
 	 *
 	 * @since  0.1.0
 	 * @access private
-	 * @var    Includes\Nsr_Backtop_Localisation $Backtop_Localisation
+	 * @var    Shared\Nsr_Backtop_Localisation $Backtop_Localisation
 	 */
 	private $Backtop_Localisation;
 
 	private function set_instances() {
 
-		$this->Options = new MenuIncludes\Nsr_Options( $this->domain );
-		$this->Nicescroll_Localisation = new Includes\Nsr_Nicescroll_Localisation( $this->domain, $this->Options );
-		$this->Backtop_Localisation = new Includes\Nsr_Backtop_Localisation( $this->domain, $this->Options );
+		$this->Options = new AdminIncludes\Nsr_Options( $this->domain );
+		$this->Nicescroll_Localisation = new Shared\Nsr_Nicescroll_Localisation( $this->domain, $this->Options );
+		$this->Backtop_Localisation = new Shared\Nsr_Backtop_Localisation( $this->domain, $this->Options );
 	}
 
 	/**

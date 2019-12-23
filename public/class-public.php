@@ -2,8 +2,8 @@
 
 namespace Nicescrollr\Pub;
 
-use Nicescrollr\Includes as Includes;
-use Nicescrollr\Admin\Menu\Includes as MenuIncludes;
+use Nicescrollr\Admin\Includes as AdminIncludes;
+use Nicescrollr\Shared as Shared;
 
 /**
  * If this file is called directly, abort.
@@ -15,14 +15,8 @@ if( ! defined( 'WPINC' ) ) {
 /**
  * Include dependencies.
  */
-if( ! class_exists( 'Includes\Nsr_Nicescroll_Localisation' ) ) {
-	require_once NICESCROLLR_ROOT_DIR . 'includes/class-nicescroll-localisation.php';
-}
-if( ! class_exists( 'Includes\Nsr_Backtop_Localisation' ) ) {
-	require_once NICESCROLLR_ROOT_DIR . 'includes/class-backtop-localisation.php';
-}
-if( ! class_exists( 'MenuIncludes\Nsr_Options' ) ) {
-	require_once NICESCROLLR_ROOT_DIR . 'admin/menu/includes/class-options.php';
+if( ! class_exists( 'AdminIncludes\Nsr_Options' ) ) {
+	require_once NICESCROLLR_ROOT_DIR . 'admin/includes/class-options.php';
 }
 
 /**
@@ -63,7 +57,7 @@ class Nsr_Public {
 	 *
 	 * @since  0.1.0
 	 * @access private
-	 * @var    MenuIncludes\Nsr_Options $Options
+	 * @var    AdminIncludes\Nsr_Options $Options
 	 */
 	private $Options;
 
@@ -72,7 +66,7 @@ class Nsr_Public {
 	 *
 	 * @since  0.1.0
 	 * @access private
-	 * @var    Includes\Nsr_Nicescroll_Localisation $Nicescroll_Localisation
+	 * @var    Shared\Nsr_Nicescroll_Localisation $Nicescroll_Localisation
 	 */
 	private $Nicescroll_Localisation;
 
@@ -81,7 +75,7 @@ class Nsr_Public {
 	 *
 	 * @since  0.1.0
 	 * @access private
-	 * @var    Includes\Nsr_Backtop_Localisation $Backtop_Localisation
+	 * @var    Shared\Nsr_Backtop_Localisation $Backtop_Localisation
 	 */
 	private $Backtop_Localisation;
 
@@ -112,6 +106,14 @@ class Nsr_Public {
 	 */
 	private $file_prefix;
 
+	/**
+	 * Sets the prefix for the scripts and stylesheets to control
+	 * the inclusion of minified versions of these files.
+	 *
+	 * @return void
+	 *
+	 * @since  0.7.4
+	 */
 	private function set_prefixes() {
 
 		$this->handle_prefix = defined( 'NICESCROLLR_DEBUG' ) && NICESCROLLR_DEBUG === '1' ? '' : '-min';
@@ -122,9 +124,9 @@ class Nsr_Public {
 	 * Nsr_Public constructor.
 	 *
 	 * @param $domain
-	 * @param MenuIncludes\Nsr_Options $Options
-	 * @param Includes\Nsr_Nicescroll_Localisation $Nicescroll_Localisation
-	 * @param Includes\Nsr_Backtop_Localisation $Backtop_Localisation
+	 * @param AdminIncludes\Nsr_Options $Options
+	 * @param Shared\Nsr_Nicescroll_Localisation $Nicescroll_Localisation
+	 * @param Shared\Nsr_Backtop_Localisation $Backtop_Localisation
 	 */
 	public function __construct( $domain, $Options, $Nicescroll_Localisation, $Backtop_Localisation ) {
 
@@ -136,6 +138,7 @@ class Nsr_Public {
 		$this->set_prefixes();
 
 		$this->settings = $Options->get_options();
+		$this->include_backtop();
 	}
 
 	/**
@@ -169,10 +172,10 @@ class Nsr_Public {
 
 		if( isset( $this->settings['frontend']['bt_enabled'] ) && $this->settings['frontend']['bt_enabled'] ) {
 
-			wp_enqueue_style( 'nicescrollr-backtop' . $handle_prefix . '-css', NICESCROLLR_ROOT_URL . 'assets/backtop' . $file_prefix . '.css', array(), 'all' );
+			wp_enqueue_style( 'nicescrollr-backtop' . $handle_prefix . '-css', NICESCROLLR_ROOT_URL . 'shared/backtop' . $file_prefix . '.css', array(), 'all' );
 		}
 
-		wp_enqueue_style( 'nicescrollr-public' . $handle_prefix . '-css', NICESCROLLR_ROOT_URL . 'assets/public' . $file_prefix . '.css', array(), 'all' );
+		wp_enqueue_style( 'nicescrollr-public' . $handle_prefix . '-css', NICESCROLLR_ROOT_URL . 'public/css/public' . $file_prefix . '.css', array(), 'all' );
 	}
 
 	/**
@@ -203,7 +206,7 @@ class Nsr_Public {
 			wp_enqueue_script( 'nicescrollr-inc-nicescroll-min-js', $nice_url, array( 'jquery', 'nicescrollr-easing-min-js' ), 'all' );
 
 			// Nicescroll Configuration File
-			wp_enqueue_script( 'nicescrollr-nicescroll' . $handle_prefix . '-js', NICESCROLLR_ROOT_URL . 'assets/nicescroll' . $file_prefix . '.js', array(
+			wp_enqueue_script( 'nicescrollr-nicescroll' . $handle_prefix . '-js', NICESCROLLR_ROOT_URL . 'shared/nicescroll' . $file_prefix . '.js', array(
 					'jquery',
 					'nicescrollr-inc-nicescroll-min-js'
 				), 'all' );
@@ -212,7 +215,7 @@ class Nsr_Public {
 		if( isset( $this->settings['frontend']['bt_enabled'] ) && $this->settings['frontend']['bt_enabled'] ) {
 
 			// Backtop
-			wp_enqueue_script( 'nicescrollr-backtop' . $handle_prefix . '-js', NICESCROLLR_ROOT_URL . 'assets/backtop' . $file_prefix . '.js', array( 'jquery' ), 'all' );
+			wp_enqueue_script( 'nicescrollr-backtop' . $handle_prefix . '-js', NICESCROLLR_ROOT_URL . 'shared/backtop' . $file_prefix . '.js', array( 'jquery' ), 'all' );
 		}
 	}
 
@@ -248,6 +251,29 @@ class Nsr_Public {
 		$this->Nicescroll_Localisation->run( $this->view );
 	}
 
+	/**
+	 * Initializes the components for the backtop functionality.
+	 *
+	 * @return void
+	 *
+	 * @since  0.7.5
+	 */
+	private function include_backtop() {
+
+		if( isset( $this->settings['frontend']['bt_enabled'] ) && $this->settings['frontend']['bt_enabled'] ) {
+			$Backtop = new Shared\Nsr_Backtop($this->domain, $this->Options, 'frontend');
+			$Backtop->add_hooks();
+		}
+	}
+
+	/**
+	 * Initiates the localisation of the back top button.
+	 *
+	 * @return void
+	 *
+	 * @access private
+	 * @since  0.7.5
+	 */
 	private function localize_backtop() {
 
 		$this->Backtop_Localisation->run( $this->view );

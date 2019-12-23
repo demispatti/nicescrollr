@@ -2,7 +2,7 @@
 
 <p align="center">
   <a href="https://wordpress.org/plugins/nicescrollr/" target="_blank">
-    <img src="/assets/icon-128x128.png" alt="Nicescrollr Logo" width="128" height="128">
+    <img src="/shared/icon-128x128.png" alt="Nicescrollr Logo" width="128" height="128">
   </a>
 </p>
 

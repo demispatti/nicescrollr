@@ -2,7 +2,7 @@
 
 namespace Nicescrollr\Includes;
 
-use Nicescrollr\Admin\Menu\Includes as MenuIncludes;
+use Nicescrollr\Admin\Includes as AdminIncludes;
 
 /**
  * If this file is called directly, abort.
@@ -15,7 +15,7 @@ if( ! defined( 'WPINC' ) ) {
  * Include dependencies.
  */
 if( ! class_exists( 'Admin\Menu\Includes\Nsr_Options' ) ) {
-	require_once NICESCROLLR_ROOT_DIR . 'admin/menu/includes/class-options.php';
+	require_once NICESCROLLR_ROOT_DIR . 'admin/includes/class-options.php';
 }
 
 /**
@@ -77,7 +77,7 @@ class Nsr_Activator extends Nsr {
 	 */
 	private function check_for_options() {
 
-		$Options = new MenuIncludes\Nsr_Options( 'nicescrollr' );
+		$Options = new AdminIncludes\Nsr_Options( 'nicescrollr' );
 		$options = get_option( 'nicescrollr_options' );
 
 		// Seed initial options

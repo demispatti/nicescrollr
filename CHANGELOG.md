@@ -1,3 +1,10 @@
+## Version 0.7.5
+### Changed
+- Re-factored and re-organised the code for the admin part
+- Removed redundant code
+- Refactored the backtop functionality
+- Re-evaluated the default settings for mobile devices
+
 ## Version 0.7.4
 ### Changed
 - Optimized for WordPress version 5.3

@@ -1,6 +1,6 @@
 <?php
 
-namespace Nicescrollr\Admin\Menu\Includes;
+namespace Nicescrollr\Admin\Includes;
 
 /**
  * If this file is called directly, abort.

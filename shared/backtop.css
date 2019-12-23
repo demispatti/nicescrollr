@@ -30,30 +30,47 @@
   align-items: center !important;
   justify-content: center !important;
   cursor: pointer;
+  	/*&:before {
+  		box-sizing: border-box;
+  		//font-size: 32px;
+  		color: white;
+  		//font-family: 'dashicons';
+  		//content: "\f343";
+  		position: absolute;
+  		//left: -39px;
+  		left: 50%;
+  		top: -6px;
+  		display: block;
+  		!*height: 48px;
+  		width: 48px;*!
+  		z-index: 100001;
+  		-webkit-transition: all .1s;
+  		-moz-transition: all .1s;
+  		transition: all .1s;
+  		cursor: pointer;
+  
+  		&:hover {
+  			color: white;
+  			-webkit-transition: all .1s;
+  			-moz-transition: all .1s;
+  			transition: all .1s;
+  		}
+  	}*/
 }
 .nsr-backtop:hover {
   -webkit-transition: all .1s;
   -moz-transition: all .1s;
   transition: all .1s;
 }
-.nsr-backtop:before {
-  box-sizing: border-box;
-  color: white;
-  font-family: 'dashicons';
-  content: "\f343";
-  position: absolute;
-  left: -39px;
-  top: -6px;
-  display: block;
-  /*height: 48px;
-  width: 48px;*/
+
+#nsr_backtop #nsrBackTopArrow rect {
   z-index: 100001;
   -webkit-transition: all .1s;
   -moz-transition: all .1s;
   transition: all .1s;
   cursor: pointer;
 }
-.nsr-backtop:before:hover {
+#nsr_backtop #nsrBackTopArrow rect:hover {
   color: white;
   -webkit-transition: all .1s;
   -moz-transition: all .1s;

@@ -1,13 +1,21 @@
-html {
+/**!
+ * Public CSS.
+ *
+ * @link              https://github.com/demispatti/nicescrollr
+ * @since             0.1.0
+ * @package           nicescrollr
+ * @subpackage        nicescrollr/public/css
+ * Author:            Demis Patti <wp@demispatti.ch>
+ * Author URI:        https://demispatti.ch
+ * License:           GPL-2.0+
+ * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
+ */
+html, body {
   -ms-overflow-style: none;
   overflow-style: unset;
   overflow-y: hidden;
 }
-html body {
-  -ms-overflow-style: none;
-  overflow-style: unset;
-  overflow-y: hidden;
-}
+
 html.nsr-is-webkit::-webkit-scrollbar {
   display: none;
 }
