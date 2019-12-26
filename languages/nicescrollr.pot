@@ -3,14 +3,14 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: Nicescrollr\n"
-"POT-Creation-Date: 2019-01-08 05:23+0100\n"
+"POT-Creation-Date: 2019-12-26 01:43+0100\n"
 "PO-Revision-Date: 2019-01-05 23:19+0100\n"
 "Last-Translator: Demis Patti <demispatti@gmail.com>\n"
 "Language-Team: Demis Patti <demispatti@gmail.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.12\n"
+"X-Generator: Poedit 1.8.13\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-WPHeader: nicescrollr.php\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -20,16 +20,71 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: admin/class-admin.php:341
+#: admin/class-admin.php:350
 msgid "Plugin support"
 msgstr ""
 
-#: admin/class-admin.php:342
+#: admin/class-admin.php:351
 msgid "Rate plugin"
 msgstr ""
 
-#: admin/class-admin.php:343
+#: admin/class-admin.php:352
 msgid "Donate"
+msgstr ""
+
+#: admin/includes/class-ajax-localisation.php:81
+#: admin/includes/class-ajax-localisation.php:82
+#: admin/includes/class-ajax-localisation.php:83
+#: admin/includes/class-ajax-localisation.php:84
+#: admin/includes/class-reset-section.php:147
+#: admin/menu/includes/class-ajax-localisation.php:83
+#: admin/menu/includes/class-ajax-localisation.php:97
+#: admin/menu/includes/class-ajax-localisation.php:111
+#: admin/menu/includes/class-ajax-localisation.php:125
+#: admin/menu/includes/class-reset-section.php:146
+msgid "Reset"
+msgstr ""
+
+#: admin/includes/class-ajax-localisation.php:86
+#: admin/menu/includes/class-ajax-localisation.php:139
+msgid "This resets the frontend view to it's defaults. Continue?"
+msgstr ""
+
+#: admin/includes/class-ajax-localisation.php:87
+#: admin/menu/includes/class-ajax-localisation.php:153
+msgid "This resets the backend view to it's defaults. Continue?"
+msgstr ""
+
+#: admin/includes/class-ajax-localisation.php:88
+#: admin/menu/includes/class-ajax-localisation.php:167
+msgid "This resets the plugin to it's defaults. Continue?"
+msgstr ""
+
+#: admin/includes/class-ajax-localisation.php:89
+#: admin/menu/includes/class-ajax-localisation.php:181
+msgid "This resets all Nicescrollr settings to their defaults. Continue?"
+msgstr ""
+
+#: admin/includes/class-ajax-localisation.php:91
+#: admin/menu/includes/class-ajax-localisation.php:218
+msgid "ok"
+msgstr ""
+
+#: admin/includes/class-ajax-localisation.php:92
+#: admin/menu/includes/class-ajax-localisation.php:219
+msgid "cancel"
+msgstr ""
+
+#: admin/includes/class-ajax.php:64 admin/menu/includes/class-ajax.php:64
+msgid "That won't do."
+msgstr ""
+
+#: admin/includes/class-ajax.php:117 admin/menu/includes/class-ajax.php:117
+msgid "Please try again later."
+msgstr ""
+
+#: admin/includes/class-ajax.php:128 admin/menu/includes/class-ajax.php:128
+msgid "Settings set to default."
 msgstr ""
 
 #: admin/includes/class-help-tab.php:54
@@ -40,31 +95,40 @@ msgstr ""
 msgid "Nicescrollr help"
 msgstr ""
 
-#: admin/includes/class-help-tab.php:121
+#: admin/includes/class-help-tab.php:124
 msgid ""
 "Nicescrollr integrates the Nicescroll jQuery library into your WordPress "
 "powered website."
 msgstr ""
 
-#: admin/includes/class-help-tab.php:123
+#: admin/includes/class-help-tab.php:126
 msgid ""
 "This plugin is a wrapper for the popular \"Nicescroll\" javascript library, "
 "which is made by <a href=\"https://wordpress.org/support/users/inuyaksa/\" "
-"target=\"_blank\">InuYaksa</a>. You can visit his official Nicescroll "
-"homepage <a href=\"https://www.areaaperta.com/nicescroll/\" target=\"_blank"
-"\">here</a>. An overview of the default parameters can be found on <a href="
-"\"https://github.com/inuyaksa/jquery.nicescroll\" target=\"_blank\">Github</"
-"a> at the bottom of the page."
+"target=\"_blank\">InuYaksa</a>."
 msgstr ""
 
-#: admin/includes/class-help-tab.php:125
+#: admin/includes/class-help-tab.php:126
+msgid ""
+"You can visit his official Nicescroll homepage <a href=\"https://www."
+"areaaperta.com/nicescroll/\" target=\"_blank\">here</a>."
+msgstr ""
+
+#: admin/includes/class-help-tab.php:126
+msgid ""
+"An overview of the default parameters can be found on <a href=\"https://"
+"github.com/inuyaksa/jquery.nicescroll\" target=\"_blank\">Github</a> at the "
+"bottom of the page."
+msgstr ""
+
+#: admin/includes/class-help-tab.php:128
 msgid ""
 "For help regarding 'Nicescroll', please refer to the official <a "
 "href='https://areaaperta.com/nicescroll/' target='_blank'>Nicescroll</a> "
 "website."
 msgstr ""
 
-#: admin/includes/class-help-tab.php:127
+#: admin/includes/class-help-tab.php:130
 msgid ""
 "There are also optional 'back to top' buttons for both frontend and backend, "
 "which may come in handy. If your theme gets shipped with this functionality "
@@ -72,7 +136,7 @@ msgid ""
 "settings page."
 msgstr ""
 
-#: admin/includes/class-help-tab.php:129
+#: admin/includes/class-help-tab.php:132
 msgid ""
 "If you have any questions, comments or issues regarding 'Nicescrollr', "
 "please visit the <a href='https://wordpress.org/plugins/nicescrollr/' "
@@ -80,764 +144,36 @@ msgid ""
 msgstr ""
 
 #. Plugin Name of the plugin/theme
-#: admin/menu/class-menu.php:376
+#: admin/includes/class-menu.php:372 admin/menu/class-menu.php:364
 msgid "Nicescrollr"
 msgstr ""
 
-#: admin/menu/class-menu.php:393
+#: admin/includes/class-menu.php:389 admin/menu/class-menu.php:381
 msgid "Frontend"
 msgstr ""
 
-#: admin/menu/class-menu.php:395
+#: admin/includes/class-menu.php:391 admin/menu/class-menu.php:383
 msgid "Backend"
 msgstr ""
 
-#: admin/menu/class-menu.php:490
-msgid "One more try and your browser will burst into flames ;-)"
-msgstr ""
-
-#: admin/menu/class-menu.php:501
-msgid "All done! Please refresh the page for the settings to take effect."
-msgstr ""
-
-#: admin/menu/class-menu.php:508
-msgid "Couldn't reset the settings. Please try again."
-msgstr ""
-
-#: admin/menu/includes/class-ajax-localisation.php:83
-#: admin/menu/includes/class-ajax-localisation.php:97
-#: admin/menu/includes/class-ajax-localisation.php:111
-#: admin/menu/includes/class-ajax-localisation.php:125
-#: admin/menu/includes/class-reset-section.php:146
-msgid "Reset"
-msgstr ""
-
-#: admin/menu/includes/class-ajax-localisation.php:139
-msgid "This resets the frontend view to it's defaults. Continue?"
-msgstr ""
-
-#: admin/menu/includes/class-ajax-localisation.php:153
-msgid "This resets the backend view to it's defaults. Continue?"
-msgstr ""
-
-#: admin/menu/includes/class-ajax-localisation.php:167
-msgid "This resets the plugin to it's defaults. Continue?"
-msgstr ""
-
-#: admin/menu/includes/class-ajax-localisation.php:181
-msgid "This resets all Nicescrollr settings to their defaults. Continue?"
-msgstr ""
-
-#: admin/menu/includes/class-ajax-localisation.php:218
-msgid "ok"
-msgstr ""
-
-#: admin/menu/includes/class-ajax-localisation.php:219
-msgid "cancel"
-msgstr ""
-
-#: admin/menu/includes/class-ajax.php:64
-msgid "That won't do."
-msgstr ""
-
-#: admin/menu/includes/class-ajax.php:117
-msgid "Please try again later."
-msgstr ""
-
-#: admin/menu/includes/class-ajax.php:127
-msgid "Settings set to default."
-msgstr ""
-
-#: admin/menu/includes/class-options.php:68
+#: admin/includes/class-options.php:70 admin/menu/includes/class-options.php:68
 msgid "Use Nicescroll"
 msgstr ""
 
-#: admin/menu/includes/class-options.php:71
+#: admin/includes/class-options.php:73 admin/menu/includes/class-options.php:71
 msgid "Enable or disable Nicescroll."
 msgstr ""
 
-#: admin/menu/includes/class-options.php:79
+#: admin/includes/class-options.php:82 admin/menu/includes/class-options.php:79
 msgid "Cursor Color"
 msgstr ""
 
-#: admin/menu/includes/class-options.php:82
+#: admin/includes/class-options.php:85 admin/menu/includes/class-options.php:82
 msgid "Choose cursor color."
 msgstr ""
 
-#: admin/menu/includes/class-options.php:90
-msgid "Cursor Opacity Minimum"
-msgstr ""
-
-#: admin/menu/includes/class-options.php:93
-msgid "Set opacity for when the cursor is inactive."
-msgstr ""
-
-#: admin/menu/includes/class-options.php:101
-msgid "Cursor Opacity Maximum"
-msgstr ""
-
-#: admin/menu/includes/class-options.php:104
-msgid "Set opacity for when the cursor is active."
-msgstr ""
-
-#: admin/menu/includes/class-options.php:112
-msgid "Cursor Width"
-msgstr ""
-
-#: admin/menu/includes/class-options.php:115
-msgid "Set cursor width (in pixel)."
-msgstr ""
-
-#: admin/menu/includes/class-options.php:123
-msgid "Cursor Border Width"
-msgstr ""
-
-#: admin/menu/includes/class-options.php:126
-msgid "Set cursor border width (in pixel)."
-msgstr ""
-
-#: admin/menu/includes/class-options.php:134
-msgid "Cursor Border State"
-msgstr ""
-
-#: admin/menu/includes/class-options.php:137
-msgid "Select cursor border state."
-msgstr ""
-
-#: admin/menu/includes/class-options.php:142
-#: admin/menu/includes/class-options.php:855
-#: admin/menu/includes/class-settings.php:525
-#: admin/menu/includes/class-validation.php:948
-msgid "none"
-msgstr ""
-
-#: admin/menu/includes/class-options.php:145
-msgid "Cursor Border Color"
-msgstr ""
-
-#: admin/menu/includes/class-options.php:148
-msgid "Set cursor border color."
-msgstr ""
-
-#: admin/menu/includes/class-options.php:156
-msgid "Cursor Border Radius"
-msgstr ""
-
-#: admin/menu/includes/class-options.php:159
-msgid "Set cursor border radius (in pixel)."
-msgstr ""
-
-#: admin/menu/includes/class-options.php:167
-msgid "Rail Background"
-msgstr ""
-
-#: admin/menu/includes/class-options.php:170
-msgid "Change the background color of the rail, or leave it blank."
-msgstr ""
-
-#: admin/menu/includes/class-options.php:178
-msgid "Scroll Speed"
-msgstr ""
-
-#: admin/menu/includes/class-options.php:181
-msgid "Set scrolling speed."
-msgstr ""
-
-#: admin/menu/includes/class-options.php:189
-msgid "Mouse Scroll Step"
-msgstr ""
-
-#: admin/menu/includes/class-options.php:192
-msgid "Set scrolling speed for the mousewheel."
-msgstr ""
-
-#: admin/menu/includes/class-options.php:200
-msgid "Autohide Mode"
-msgstr ""
-
-#: admin/menu/includes/class-options.php:203
-msgid "Select auto-hide mode."
-msgstr ""
-
-#: admin/menu/includes/class-options.php:209
-msgid "enabled"
-msgstr ""
-
-#: admin/menu/includes/class-options.php:211
-msgid "disabled"
-msgstr ""
-
-#: admin/menu/includes/class-options.php:218
-msgid "Show Default Scrollbar"
-msgstr ""
-
-#: admin/menu/includes/class-options.php:221
-msgid "Use the browsers default scrollbar look."
-msgstr ""
-
-#: admin/menu/includes/class-options.php:229
-msgid "Enable On Mobile Devices"
-msgstr ""
-
-#: admin/menu/includes/class-options.php:232
-msgid ""
-"Enable or disable Nicescroll on mobile devices. This will only work if "
-"Nicescroll is enabled."
-msgstr ""
-
-#: admin/menu/includes/class-options.php:255
-msgid "Z-Index"
-msgstr ""
-
-#: admin/menu/includes/class-options.php:258
-msgid "Set z-index."
-msgstr ""
-
-#: admin/menu/includes/class-options.php:266
-msgid "Emulate Touch"
-msgstr ""
-
-#: admin/menu/includes/class-options.php:269
-msgid "Enable cursor-drag scrolling like touch devices in desktop computer."
-msgstr ""
-
-#: admin/menu/includes/class-options.php:277
-msgid "Hardware Acceleration"
-msgstr ""
-
-#: admin/menu/includes/class-options.php:280
-msgid "Switch hardware acceleration on or off."
-msgstr ""
-
-#: admin/menu/includes/class-options.php:288
-msgid "Box Zoom"
-msgstr ""
-
-#: admin/menu/includes/class-options.php:291
-msgid "Enable zoom for box content."
-msgstr ""
-
-#: admin/menu/includes/class-options.php:299
-msgid "Double Click Zoom"
-msgstr ""
-
-#: admin/menu/includes/class-options.php:302
-msgid "Zoom activated when double click on box (\"Box Zoom\" must be \"on\")."
-msgstr ""
-
-#: admin/menu/includes/class-options.php:310
-msgid "Gesture Zoom"
-msgstr ""
-
-#: admin/menu/includes/class-options.php:313
-msgid "Zoom on pitch in/out on box (For touch devices, set \"Box Zoom\" on)."
-msgstr ""
-
-#: admin/menu/includes/class-options.php:321
-msgid "Grab-Cursor"
-msgstr ""
-
-#: admin/menu/includes/class-options.php:324
-msgid "Display \"grab\" icon (\"Touch Behavior\" must be possible and \"on\")."
-msgstr ""
-
-#: admin/menu/includes/class-options.php:332
-msgid "iFrame Autoresize"
-msgstr ""
-
-#: admin/menu/includes/class-options.php:335
-msgid "Switch auto-resize for iFrames on or off."
-msgstr ""
-
-#: admin/menu/includes/class-options.php:343
-msgid "Cursor Minimum Height"
-msgstr ""
-
-#: admin/menu/includes/class-options.php:346
-msgid "Set the minimum cursor height."
-msgstr ""
-
-#: admin/menu/includes/class-options.php:354
-msgid "Preserve Native Scrolling"
-msgstr ""
-
-#: admin/menu/includes/class-options.php:357
-msgid "Scroll native scrollable areas with mouse."
-msgstr ""
-
-#: admin/menu/includes/class-options.php:365
-msgid "Rail Offset"
-msgstr ""
-
-#: admin/menu/includes/class-options.php:368
-msgid "Add offset for rail position or disable it."
-msgstr ""
-
-#: admin/menu/includes/class-options.php:374
-#: admin/menu/includes/class-options.php:564
-#: admin/menu/includes/class-options.php:630
-#: admin/menu/includes/class-options.php:652
-#: admin/menu/includes/class-settings.php:536
-#: admin/menu/includes/class-settings.php:555
-#: admin/menu/includes/class-settings.php:604
-msgid "off"
-msgstr ""
-
-#: admin/menu/includes/class-options.php:380
-msgid "Bounce Scroll"
-msgstr ""
-
-#: admin/menu/includes/class-options.php:383
-msgid "Mobile-like scroll bouncing at the end of content."
-msgstr ""
-
-#: admin/menu/includes/class-options.php:391
-msgid "Spacebar"
-msgstr ""
-
-#: admin/menu/includes/class-options.php:394
-msgid "Page down-scrolling with the spacebar."
-msgstr ""
-
-#: admin/menu/includes/class-options.php:402
-msgid "Rail Padding Top"
-msgstr ""
-
-#: admin/menu/includes/class-options.php:405
-msgid "Set rail padding top."
-msgstr ""
-
-#: admin/menu/includes/class-options.php:413
-msgid "Rail Padding Right"
-msgstr ""
-
-#: admin/menu/includes/class-options.php:416
-msgid "Set rail padding right."
-msgstr ""
-
-#: admin/menu/includes/class-options.php:424
-msgid "Rail Padding Bottom"
-msgstr ""
-
-#: admin/menu/includes/class-options.php:427
-msgid "Set rail padding bottom."
-msgstr ""
-
-#: admin/menu/includes/class-options.php:435
-msgid "Rail Padding Left"
-msgstr ""
-
-#: admin/menu/includes/class-options.php:438
-msgid "Set rail padding left."
-msgstr ""
-
-#: admin/menu/includes/class-options.php:446
-msgid "Outline"
-msgstr ""
-
-#: admin/menu/includes/class-options.php:449
-msgid "For chrome browser, disable outline."
-msgstr ""
-
-#: admin/menu/includes/class-options.php:457
-msgid "Horizontal Rail"
-msgstr ""
-
-#: admin/menu/includes/class-options.php:460
-msgid "Let Nicescroll manage horizontal scrolling."
-msgstr ""
-
-#: admin/menu/includes/class-options.php:468
-msgid "Rail Alignment Horizontal"
-msgstr ""
-
-#: admin/menu/includes/class-options.php:471
-msgid "Select alignment of horizontal rail."
-msgstr ""
-
-#: admin/menu/includes/class-options.php:476
-#: admin/menu/includes/class-settings.php:574
-#: admin/menu/includes/class-validation.php:1009
-msgid "right"
-msgstr ""
-
-#: admin/menu/includes/class-options.php:476
-#: admin/menu/includes/class-settings.php:563
-#: admin/menu/includes/class-settings.php:578
-#: admin/menu/includes/class-validation.php:998
-#: admin/menu/includes/class-validation.php:1013
-msgid "left"
-msgstr ""
-
-#: admin/menu/includes/class-options.php:479
-msgid "Rail Alignment Vertical"
-msgstr ""
-
-#: admin/menu/includes/class-options.php:482
-msgid "Select alignment of vertical rail."
-msgstr ""
-
-#: admin/menu/includes/class-options.php:487
-#: admin/menu/includes/class-settings.php:589
-#: admin/menu/includes/class-validation.php:1024
-msgid "bottom"
-msgstr ""
-
-#: admin/menu/includes/class-options.php:487
-#: admin/menu/includes/class-settings.php:559
-#: admin/menu/includes/class-settings.php:593
-#: admin/menu/includes/class-validation.php:994
-#: admin/menu/includes/class-validation.php:1028
-msgid "top"
-msgstr ""
-
-#: admin/menu/includes/class-options.php:490
-msgid "Translate3D"
-msgstr ""
-
-#: admin/menu/includes/class-options.php:493
-msgid "Switch translate3d on or off."
-msgstr ""
-
-#: admin/menu/includes/class-options.php:501
-msgid "Mouse Wheel"
-msgstr ""
-
-#: admin/menu/includes/class-options.php:504
-msgid "Let Nicescroll manage mousewheel events."
-msgstr ""
-
-#: admin/menu/includes/class-options.php:512
-msgid "Keyboard"
-msgstr ""
-
-#: admin/menu/includes/class-options.php:515
-msgid "Let Nicescroll manage keyboard events."
-msgstr ""
-
-#: admin/menu/includes/class-options.php:523
-msgid "Smooth Scroll"
-msgstr ""
-
-#: admin/menu/includes/class-options.php:526
-msgid "Scroll with ease movement."
-msgstr ""
-
-#: admin/menu/includes/class-options.php:534
-msgid "Sensitive Rail"
-msgstr ""
-
-#: admin/menu/includes/class-options.php:537
-msgid "Scrolling trough click on rail."
-msgstr ""
-
-#: admin/menu/includes/class-options.php:545
-msgid "Mouse Lock API"
-msgstr ""
-
-#: admin/menu/includes/class-options.php:547
-msgid "extended"
-msgstr ""
-
-#: admin/menu/includes/class-options.php:556
-msgid "Cursor Fixed Height"
-msgstr ""
-
-#: admin/menu/includes/class-options.php:559
-msgid "Select cursor fixed height or disable it."
-msgstr ""
-
-#: admin/menu/includes/class-options.php:567
-msgid "Direction Lock Dead Zone"
-msgstr ""
-
-#: admin/menu/includes/class-options.php:570
-msgid "Choose dead zone (in pixel) for direction lock activation."
-msgstr ""
-
-#: admin/menu/includes/class-options.php:578
-msgid "Autohide Delay"
-msgstr ""
-
-#: admin/menu/includes/class-options.php:581
-msgid "Delay in miliseconds for fading out the scrollbar."
-msgstr ""
-
-#: admin/menu/includes/class-options.php:589
-msgid "Native Parent Scrolling"
-msgstr ""
-
-#: admin/menu/includes/class-options.php:592
-msgid "Detect bottom of content and let parent scroll, as native scroll does."
-msgstr ""
-
-#: admin/menu/includes/class-options.php:600
-msgid "Scroll On Selection"
-msgstr ""
-
-#: admin/menu/includes/class-options.php:603
-msgid "Auto-scrolling of content while selecting text."
-msgstr ""
-
-#: admin/menu/includes/class-options.php:611
-msgid "Cursor Drag Speed"
-msgstr ""
-
-#: admin/menu/includes/class-options.php:614
-msgid "Choose the momentum on cursor drag."
-msgstr ""
-
-#: admin/menu/includes/class-options.php:622
-msgid "RTL-Mode"
-msgstr ""
-
-#: admin/menu/includes/class-options.php:625
-msgid "Enable or disable rtl-mode."
-msgstr ""
-
-#: admin/menu/includes/class-options.php:633
-msgid "Cursor Drag On Touch"
-msgstr ""
-
-#: admin/menu/includes/class-options.php:636
-msgid "Enable or disable cursor drag on touch."
-msgstr ""
-
-#: admin/menu/includes/class-options.php:644
-msgid "One Axis Mouse Mode"
-msgstr ""
-
-#: admin/menu/includes/class-options.php:647
-msgid ""
-"It permits horizontal scrolling with mousewheel on horizontal only content, "
-"if false (vertical-only) mousewheel don't scroll horizontally, if value is "
-"auto detects two-axis mouse."
-msgstr ""
-
-#: admin/menu/includes/class-options.php:655
-msgid "Prevent Multitouch Scrolling"
-msgstr ""
-
-#: admin/menu/includes/class-options.php:658
-msgid "Prevent scrolling on multitouch events."
-msgstr ""
-
-#: admin/menu/includes/class-options.php:666
-msgid "Disable Mutation Observer"
-msgstr ""
-
-#: admin/menu/includes/class-options.php:669
-msgid "Force MutationObserver disabled."
-msgstr ""
-
-#: admin/menu/includes/class-options.php:677
-msgid "Enable Observer"
-msgstr ""
-
-#: admin/menu/includes/class-options.php:680
-msgid ""
-"Enable DOM changing observer, it tries to resize/hide/show when parent or "
-"content div had changed."
-msgstr ""
-
-#: admin/menu/includes/class-options.php:688
-msgid "Scrollbar ID"
-msgstr ""
-
-#: admin/menu/includes/class-options.php:691
-msgid "Set a custom ID for nicescroll bars."
-msgstr ""
-
-#: admin/menu/includes/class-options.php:715
-msgid "BackTop Button"
-msgstr ""
-
-#: admin/menu/includes/class-options.php:718
-msgid "Enable backtop."
-msgstr ""
-
-#: admin/menu/includes/class-options.php:726
-msgid "BackTop On Mobile Devices"
-msgstr ""
-
-#: admin/menu/includes/class-options.php:729
-msgid "Enable backtop button on mobile devices."
-msgstr ""
-
-#: admin/menu/includes/class-options.php:737
-msgid "Button Width"
-msgstr ""
-
-#: admin/menu/includes/class-options.php:740
-msgid "Set button width in pixels."
-msgstr ""
-
-#: admin/menu/includes/class-options.php:748
-msgid "Button Height"
-msgstr ""
-
-#: admin/menu/includes/class-options.php:751
-msgid "Set button height in pixels."
-msgstr ""
-
-#: admin/menu/includes/class-options.php:759
-msgid "Arrow Color"
-msgstr ""
-
-#: admin/menu/includes/class-options.php:762
-msgid "Set arrow color."
-msgstr ""
-
-#: admin/menu/includes/class-options.php:770
-msgid "Arrow Hover Color"
-msgstr ""
-
-#: admin/menu/includes/class-options.php:773
-msgid "Set arrow hover color."
-msgstr ""
-
-#: admin/menu/includes/class-options.php:781
-msgid "Background Color"
-msgstr ""
-
-#: admin/menu/includes/class-options.php:784
-#: admin/menu/includes/class-options.php:795
-msgid "Set background color."
-msgstr ""
-
-#: admin/menu/includes/class-options.php:792
-msgid "Hover Background Color"
-msgstr ""
-
-#: admin/menu/includes/class-options.php:803
-msgid "Border Color"
-msgstr ""
-
-#: admin/menu/includes/class-options.php:806
-#: admin/menu/includes/class-options.php:817
-msgid "Set border color."
-msgstr ""
-
-#: admin/menu/includes/class-options.php:814
-msgid "Hover Border Color"
-msgstr ""
-
-#: admin/menu/includes/class-options.php:825
-msgid "Border Width"
-msgstr ""
-
-#: admin/menu/includes/class-options.php:828
-msgid "Set border width in pixels."
-msgstr ""
-
-#: admin/menu/includes/class-options.php:836
-msgid "Border Style"
-msgstr ""
-
-#: admin/menu/includes/class-options.php:839
-msgid "Set border style."
-msgstr ""
-
-#: admin/menu/includes/class-options.php:860
-msgid "Position From Right"
-msgstr ""
-
-#: admin/menu/includes/class-options.php:863
-msgid "Set button position from right in pixels."
-msgstr ""
-
-#: admin/menu/includes/class-options.php:871
-msgid "Position From Bottom"
-msgstr ""
-
-#: admin/menu/includes/class-options.php:874
-msgid "Set button position from bottom in pixels."
-msgstr ""
-
-#: admin/menu/includes/class-options.php:883
-msgid "Border Radius Top Left"
-msgstr ""
-
-#: admin/menu/includes/class-options.php:886
-msgid "Set border radius top left in pixels or percent."
-msgstr ""
-
-#: admin/menu/includes/class-options.php:894
-msgid "Border Radius Top Right"
-msgstr ""
-
-#: admin/menu/includes/class-options.php:897
-msgid "Set border radius top right in pixels or percent."
-msgstr ""
-
-#: admin/menu/includes/class-options.php:905
-msgid "Border Radius Bottom Left"
-msgstr ""
-
-#: admin/menu/includes/class-options.php:908
-msgid "Set border radius bottom left in pixels or percent."
-msgstr ""
-
-#: admin/menu/includes/class-options.php:916
-msgid "Border Radius Bottom Right"
-msgstr ""
-
-#: admin/menu/includes/class-options.php:919
-msgid "Set border radius bottom right in pixels or percent."
-msgstr ""
-
-#: admin/menu/includes/class-options.php:1005
-msgid "Failed resetting the settings. Please refresh the page and try again."
-msgstr ""
-
-#: admin/menu/includes/class-options.php:1195
-msgid "Basic Settings"
-msgstr ""
-
-#: admin/menu/includes/class-options.php:1203
-msgid "Extended Settings"
-msgstr ""
-
-#: admin/menu/includes/class-options.php:1211
-msgid "BackTop Settings"
-msgstr ""
-
-#: admin/menu/includes/class-reset-section.php:77
-msgid "Reset Settings"
-msgstr ""
-
-#: admin/menu/includes/class-reset-section.php:113
-msgid "Reset Frontend"
-msgstr ""
-
-#: admin/menu/includes/class-reset-section.php:114
-msgid "Resets the settings for the frontend."
-msgstr ""
-
-#: admin/menu/includes/class-reset-section.php:121
-msgid "Reset Backend"
-msgstr ""
-
-#: admin/menu/includes/class-reset-section.php:122
-msgid "Resets the settings for the backend."
-msgstr ""
-
-#: admin/menu/includes/class-settings.php:177
-msgid "There is no section related to the data."
-msgstr ""
-
-#: admin/menu/includes/class-settings.php:540
-msgid "on"
-msgstr ""
-
-#: admin/menu/includes/class-settings.php:544
-msgid "cursor"
-msgstr ""
-
-#: admin/menu/includes/class-validation.php:990
-msgid "false"
-msgstr ""
-
+#: admin/includes/class-options.php:91 admin/includes/class-options.php:187
+#: admin/includes/class-options.php:844 admin/includes/class-options.php:869
 #: admin/menu/includes/class-validation.php:1064
 #: admin/menu/includes/class-validation.php:1174
 #: admin/menu/includes/class-validation.php:1262
@@ -848,18 +184,50 @@ msgid ""
 "value like '#fff' or '#0073AA'."
 msgstr ""
 
+#: admin/includes/class-options.php:94 admin/menu/includes/class-options.php:90
+msgid "Cursor Opacity Minimum"
+msgstr ""
+
+#: admin/includes/class-options.php:97 admin/menu/includes/class-options.php:93
+msgid "Set opacity for when the cursor is inactive."
+msgstr ""
+
+#: admin/includes/class-options.php:103
 #: admin/menu/includes/class-validation.php:1075
 msgid ""
 "Your input didn't pass validation. This value must be a positive number "
 "between 0 and 1, with max two decimal places (or left blank)."
 msgstr ""
 
+#: admin/includes/class-options.php:106
+#: admin/menu/includes/class-options.php:101
+msgid "Cursor Opacity Maximum"
+msgstr ""
+
+#: admin/includes/class-options.php:109
+#: admin/menu/includes/class-options.php:104
+msgid "Set opacity for when the cursor is active."
+msgstr ""
+
+#: admin/includes/class-options.php:115
 #: admin/menu/includes/class-validation.php:1086
 msgid ""
 "Your input didn't pass validation. This value must be a positive number "
 "between 0 and 1, with max two decimal places. It was reset to it's default."
 msgstr ""
 
+#: admin/includes/class-options.php:118
+#: admin/menu/includes/class-options.php:112
+msgid "Cursor Width"
+msgstr ""
+
+#: admin/includes/class-options.php:121
+#: admin/menu/includes/class-options.php:115
+msgid "Set cursor width (in pixel)."
+msgstr ""
+
+#: admin/includes/class-options.php:127 admin/includes/class-options.php:139
+#: admin/includes/class-options.php:893
 #: admin/menu/includes/class-validation.php:1097
 #: admin/menu/includes/class-validation.php:1108
 #: admin/menu/includes/class-validation.php:1284
@@ -870,6 +238,47 @@ msgid ""
 "pixel value including 0 (zero). It was reset to it's default."
 msgstr ""
 
+#: admin/includes/class-options.php:130
+#: admin/menu/includes/class-options.php:123
+msgid "Cursor Border Width"
+msgstr ""
+
+#: admin/includes/class-options.php:133
+#: admin/menu/includes/class-options.php:126
+msgid "Set cursor border width (in pixel)."
+msgstr ""
+
+#: admin/includes/class-options.php:142
+#: admin/menu/includes/class-options.php:134
+msgid "Cursor Border State"
+msgstr ""
+
+#: admin/includes/class-options.php:145
+#: admin/menu/includes/class-options.php:137
+msgid "Select cursor border state."
+msgstr ""
+
+#: admin/includes/class-options.php:150 admin/includes/class-options.php:915
+#: admin/includes/class-settings.php:525
+#: admin/includes/class-validation.php:524
+#: admin/menu/includes/class-options.php:142
+#: admin/menu/includes/class-options.php:852
+#: admin/menu/includes/class-settings.php:525
+#: admin/menu/includes/class-validation.php:948
+msgid "none"
+msgstr ""
+
+#: admin/includes/class-options.php:154
+#: admin/menu/includes/class-options.php:145
+msgid "Cursor Border Color"
+msgstr ""
+
+#: admin/includes/class-options.php:157
+#: admin/menu/includes/class-options.php:148
+msgid "Set cursor border color."
+msgstr ""
+
+#: admin/includes/class-options.php:163
 #: admin/menu/includes/class-validation.php:1119
 msgid ""
 "Your input didn't pass validation. This value must be a hexadecimal color "
@@ -877,18 +286,44 @@ msgid ""
 "value like '#fff' or '#0073AA'."
 msgstr ""
 
+#: admin/includes/class-options.php:166
+#: admin/menu/includes/class-options.php:156
+msgid "Cursor Border Radius"
+msgstr ""
+
+#: admin/includes/class-options.php:169
+#: admin/menu/includes/class-options.php:159
+msgid "Set cursor border radius (in pixel)."
+msgstr ""
+
+#: admin/includes/class-options.php:175
 #: admin/menu/includes/class-validation.php:1130
 msgid ""
 "Your input didn't pass validation. This value must be a positive, integer "
 "pixel value or left blank. It was reset to it's default."
 msgstr ""
 
-#: admin/menu/includes/class-validation.php:1141
-msgid ""
-"Your input didn't pass validation. This value must be an integer value. It "
-"was reset to it's default."
+#: admin/includes/class-options.php:178
+#: admin/menu/includes/class-options.php:167
+msgid "Rail Background"
 msgstr ""
 
+#: admin/includes/class-options.php:181
+#: admin/menu/includes/class-options.php:170
+msgid "Change the background color of the rail, or leave it blank."
+msgstr ""
+
+#: admin/includes/class-options.php:190
+#: admin/menu/includes/class-options.php:178
+msgid "Scroll Speed"
+msgstr ""
+
+#: admin/includes/class-options.php:193
+#: admin/menu/includes/class-options.php:181
+msgid "Set scrolling speed."
+msgstr ""
+
+#: admin/includes/class-options.php:199
 #: admin/menu/includes/class-validation.php:1152
 msgid ""
 "Your input didn't pass validation. This value must be a positive integer but "
@@ -897,6 +332,17 @@ msgid ""
 "please visit the extended settings panel.)"
 msgstr ""
 
+#: admin/includes/class-options.php:202
+#: admin/menu/includes/class-options.php:189
+msgid "Mouse Scroll Step"
+msgstr ""
+
+#: admin/includes/class-options.php:205
+#: admin/menu/includes/class-options.php:192
+msgid "Set scrolling speed for the mousewheel."
+msgstr ""
+
+#: admin/includes/class-options.php:211
 #: admin/menu/includes/class-validation.php:1163
 msgid ""
 "Your input didn't pass validation. This value must be a positive integer but "
@@ -904,25 +350,415 @@ msgid ""
 "to its default."
 msgstr ""
 
-#: admin/menu/includes/class-validation.php:1185
-msgid ""
-"Your input didn't pass validation. Do not enter '#'. The name must look "
-"somthing like 'nice_scrollbar', 'my-cool-div', 'scrollbar123' etc. It was "
-"reset to it\\'s default value."
+#: admin/includes/class-options.php:214
+#: admin/menu/includes/class-options.php:200
+msgid "Autohide Mode"
 msgstr ""
 
+#: admin/includes/class-options.php:217
+#: admin/menu/includes/class-options.php:203
+msgid "Select auto-hide mode."
+msgstr ""
+
+#: admin/includes/class-options.php:223
+#: admin/menu/includes/class-options.php:209
+msgid "enabled"
+msgstr ""
+
+#: admin/includes/class-options.php:225
+#: admin/menu/includes/class-options.php:211
+msgid "disabled"
+msgstr ""
+
+#: admin/includes/class-options.php:233
+#: admin/menu/includes/class-options.php:218
+msgid "Show Default Scrollbar"
+msgstr ""
+
+#: admin/includes/class-options.php:236
+#: admin/menu/includes/class-options.php:221
+msgid "Use the browsers default scrollbar look."
+msgstr ""
+
+#: admin/includes/class-options.php:245
+#: admin/menu/includes/class-options.php:229
+msgid "Enable On Mobile Devices"
+msgstr ""
+
+#: admin/includes/class-options.php:248
+#: admin/menu/includes/class-options.php:232
+msgid ""
+"Enable or disable Nicescroll on mobile devices. This will only work if "
+"Nicescroll is enabled."
+msgstr ""
+
+#: admin/includes/class-options.php:270
+#: admin/menu/includes/class-options.php:255
+msgid "Z-Index"
+msgstr ""
+
+#: admin/includes/class-options.php:273
+#: admin/menu/includes/class-options.php:258
+msgid "Set z-index."
+msgstr ""
+
+#: admin/includes/class-options.php:279
+#: admin/menu/includes/class-validation.php:1141
+msgid ""
+"Your input didn't pass validation. This value must be an integer value. It "
+"was reset to it's default."
+msgstr ""
+
+#: admin/includes/class-options.php:282
+#: admin/menu/includes/class-options.php:266
+msgid "Emulate Touch"
+msgstr ""
+
+#: admin/includes/class-options.php:285
+#: admin/menu/includes/class-options.php:269
+msgid "Enable cursor-drag scrolling like touch devices in desktop computer."
+msgstr ""
+
+#: admin/includes/class-options.php:294
+#: admin/menu/includes/class-options.php:277
+msgid "Hardware Acceleration"
+msgstr ""
+
+#: admin/includes/class-options.php:297
+#: admin/menu/includes/class-options.php:280
+msgid "Switch hardware acceleration on or off."
+msgstr ""
+
+#: admin/includes/class-options.php:306
+#: admin/menu/includes/class-options.php:288
+msgid "Box Zoom"
+msgstr ""
+
+#: admin/includes/class-options.php:309
+#: admin/menu/includes/class-options.php:291
+msgid "Enable zoom for box content."
+msgstr ""
+
+#: admin/includes/class-options.php:318
+#: admin/menu/includes/class-options.php:299
+msgid "Double Click Zoom"
+msgstr ""
+
+#: admin/includes/class-options.php:321
+#: admin/menu/includes/class-options.php:302
+msgid "Zoom activated when double click on box (\"Box Zoom\" must be \"on\")."
+msgstr ""
+
+#: admin/includes/class-options.php:330
+#: admin/menu/includes/class-options.php:310
+msgid "Gesture Zoom"
+msgstr ""
+
+#: admin/includes/class-options.php:333
+#: admin/menu/includes/class-options.php:313
+msgid "Zoom on pitch in/out on box (For touch devices, set \"Box Zoom\" on)."
+msgstr ""
+
+#: admin/includes/class-options.php:342
+#: admin/menu/includes/class-options.php:321
+msgid "Grab-Cursor"
+msgstr ""
+
+#: admin/includes/class-options.php:345
+#: admin/menu/includes/class-options.php:324
+msgid "Display \"grab\" icon (\"Touch Behavior\" must be possible and \"on\")."
+msgstr ""
+
+#: admin/includes/class-options.php:354
+#: admin/menu/includes/class-options.php:332
+msgid "iFrame Autoresize"
+msgstr ""
+
+#: admin/includes/class-options.php:357
+#: admin/menu/includes/class-options.php:335
+msgid "Switch auto-resize for iFrames on or off."
+msgstr ""
+
+#: admin/includes/class-options.php:366
+#: admin/menu/includes/class-options.php:343
+msgid "Cursor Minimum Height"
+msgstr ""
+
+#: admin/includes/class-options.php:369
+#: admin/menu/includes/class-options.php:346
+msgid "Set the minimum cursor height."
+msgstr ""
+
+#: admin/includes/class-options.php:375
 #: admin/menu/includes/class-validation.php:1196
 msgid ""
 "Your input didn't pass validation. This value must be a positive integer "
 "including 0 (zero). It was reset to it's default."
 msgstr ""
 
+#: admin/includes/class-options.php:378
+#: admin/menu/includes/class-options.php:354
+msgid "Preserve Native Scrolling"
+msgstr ""
+
+#: admin/includes/class-options.php:381
+#: admin/menu/includes/class-options.php:357
+msgid "Scroll native scrollable areas with mouse."
+msgstr ""
+
+#: admin/includes/class-options.php:390
+#: admin/menu/includes/class-options.php:365
+msgid "Rail Offset"
+msgstr ""
+
+#: admin/includes/class-options.php:393
+#: admin/menu/includes/class-options.php:368
+msgid "Add offset for rail position or disable it."
+msgstr ""
+
+#: admin/includes/class-options.php:399 admin/includes/class-options.php:606
+#: admin/includes/class-options.php:678 admin/includes/class-options.php:702
+#: admin/includes/class-settings.php:536 admin/includes/class-settings.php:555
+#: admin/includes/class-settings.php:604
+#: admin/menu/includes/class-options.php:374
+#: admin/menu/includes/class-options.php:564
+#: admin/menu/includes/class-options.php:630
+#: admin/menu/includes/class-options.php:652
+#: admin/menu/includes/class-settings.php:536
+#: admin/menu/includes/class-settings.php:555
+#: admin/menu/includes/class-settings.php:604
+msgid "off"
+msgstr ""
+
+#: admin/includes/class-options.php:406
+#: admin/menu/includes/class-options.php:380
+msgid "Bounce Scroll"
+msgstr ""
+
+#: admin/includes/class-options.php:409
+#: admin/menu/includes/class-options.php:383
+msgid "Mobile-like scroll bouncing at the end of content."
+msgstr ""
+
+#: admin/includes/class-options.php:418
+#: admin/menu/includes/class-options.php:391
+msgid "Spacebar"
+msgstr ""
+
+#: admin/includes/class-options.php:421
+#: admin/menu/includes/class-options.php:394
+msgid "Page down-scrolling with the spacebar."
+msgstr ""
+
+#: admin/includes/class-options.php:430
+#: admin/menu/includes/class-options.php:402
+msgid "Rail Padding Top"
+msgstr ""
+
+#: admin/includes/class-options.php:433
+#: admin/menu/includes/class-options.php:405
+msgid "Set rail padding top."
+msgstr ""
+
+#: admin/includes/class-options.php:439 admin/includes/class-options.php:451
+#: admin/includes/class-options.php:463 admin/includes/class-options.php:475
 #: admin/menu/includes/class-validation.php:1207
 msgid ""
 "Your input didn't pass validation. This value must be a positive integer "
 "including 0 (zero) or left blank."
 msgstr ""
 
+#: admin/includes/class-options.php:442
+#: admin/menu/includes/class-options.php:413
+msgid "Rail Padding Right"
+msgstr ""
+
+#: admin/includes/class-options.php:445
+#: admin/menu/includes/class-options.php:416
+msgid "Set rail padding right."
+msgstr ""
+
+#: admin/includes/class-options.php:454
+#: admin/menu/includes/class-options.php:424
+msgid "Rail Padding Bottom"
+msgstr ""
+
+#: admin/includes/class-options.php:457
+#: admin/menu/includes/class-options.php:427
+msgid "Set rail padding bottom."
+msgstr ""
+
+#: admin/includes/class-options.php:466
+#: admin/menu/includes/class-options.php:435
+msgid "Rail Padding Left"
+msgstr ""
+
+#: admin/includes/class-options.php:469
+#: admin/menu/includes/class-options.php:438
+msgid "Set rail padding left."
+msgstr ""
+
+#: admin/includes/class-options.php:478
+#: admin/menu/includes/class-options.php:446
+msgid "Outline"
+msgstr ""
+
+#: admin/includes/class-options.php:481
+#: admin/menu/includes/class-options.php:449
+msgid "For chrome browser, disable outline."
+msgstr ""
+
+#: admin/includes/class-options.php:490
+#: admin/menu/includes/class-options.php:457
+msgid "Horizontal Rail"
+msgstr ""
+
+#: admin/includes/class-options.php:493
+#: admin/menu/includes/class-options.php:460
+msgid "Let Nicescroll manage horizontal scrolling."
+msgstr ""
+
+#: admin/includes/class-options.php:502
+#: admin/menu/includes/class-options.php:468
+msgid "Rail Alignment Horizontal"
+msgstr ""
+
+#: admin/includes/class-options.php:505
+#: admin/menu/includes/class-options.php:471
+msgid "Select alignment of horizontal rail."
+msgstr ""
+
+#: admin/includes/class-options.php:510 admin/includes/class-settings.php:574
+#: admin/includes/class-validation.php:585
+#: admin/menu/includes/class-options.php:476
+#: admin/menu/includes/class-settings.php:574
+#: admin/menu/includes/class-validation.php:1009
+msgid "right"
+msgstr ""
+
+#: admin/includes/class-options.php:510 admin/includes/class-settings.php:563
+#: admin/includes/class-settings.php:578
+#: admin/includes/class-validation.php:574
+#: admin/includes/class-validation.php:589
+#: admin/menu/includes/class-options.php:476
+#: admin/menu/includes/class-settings.php:563
+#: admin/menu/includes/class-settings.php:578
+#: admin/menu/includes/class-validation.php:998
+#: admin/menu/includes/class-validation.php:1013
+msgid "left"
+msgstr ""
+
+#: admin/includes/class-options.php:514
+#: admin/menu/includes/class-options.php:479
+msgid "Rail Alignment Vertical"
+msgstr ""
+
+#: admin/includes/class-options.php:517
+#: admin/menu/includes/class-options.php:482
+msgid "Select alignment of vertical rail."
+msgstr ""
+
+#: admin/includes/class-options.php:522 admin/includes/class-settings.php:589
+#: admin/includes/class-validation.php:600
+#: admin/menu/includes/class-options.php:487
+#: admin/menu/includes/class-settings.php:589
+#: admin/menu/includes/class-validation.php:1024
+msgid "bottom"
+msgstr ""
+
+#: admin/includes/class-options.php:522 admin/includes/class-settings.php:559
+#: admin/includes/class-settings.php:593
+#: admin/includes/class-validation.php:570
+#: admin/includes/class-validation.php:604
+#: admin/menu/includes/class-options.php:487
+#: admin/menu/includes/class-settings.php:559
+#: admin/menu/includes/class-settings.php:593
+#: admin/menu/includes/class-validation.php:994
+#: admin/menu/includes/class-validation.php:1028
+msgid "top"
+msgstr ""
+
+#: admin/includes/class-options.php:526
+#: admin/menu/includes/class-options.php:490
+msgid "Translate3D"
+msgstr ""
+
+#: admin/includes/class-options.php:529
+#: admin/menu/includes/class-options.php:493
+msgid "Switch translate3d on or off."
+msgstr ""
+
+#: admin/includes/class-options.php:538
+#: admin/menu/includes/class-options.php:501
+msgid "Mouse Wheel"
+msgstr ""
+
+#: admin/includes/class-options.php:541
+#: admin/menu/includes/class-options.php:504
+msgid "Let Nicescroll manage mousewheel events."
+msgstr ""
+
+#: admin/includes/class-options.php:550
+#: admin/menu/includes/class-options.php:512
+msgid "Keyboard"
+msgstr ""
+
+#: admin/includes/class-options.php:553
+#: admin/menu/includes/class-options.php:515
+msgid "Let Nicescroll manage keyboard events."
+msgstr ""
+
+#: admin/includes/class-options.php:562
+#: admin/menu/includes/class-options.php:523
+msgid "Smooth Scroll"
+msgstr ""
+
+#: admin/includes/class-options.php:565
+#: admin/menu/includes/class-options.php:526
+msgid "Scroll with ease movement."
+msgstr ""
+
+#: admin/includes/class-options.php:574
+#: admin/menu/includes/class-options.php:534
+msgid "Sensitive Rail"
+msgstr ""
+
+#: admin/includes/class-options.php:577
+#: admin/menu/includes/class-options.php:537
+msgid "Scrolling trough click on rail."
+msgstr ""
+
+#: admin/includes/class-options.php:586
+#: admin/menu/includes/class-options.php:545
+msgid "Mouse Lock API"
+msgstr ""
+
+#: admin/includes/class-options.php:588
+#: admin/menu/includes/class-options.php:547
+msgid "extended"
+msgstr ""
+
+#: admin/includes/class-options.php:598
+#: admin/menu/includes/class-options.php:556
+msgid "Cursor Fixed Height"
+msgstr ""
+
+#: admin/includes/class-options.php:601
+#: admin/menu/includes/class-options.php:559
+msgid "Select cursor fixed height or disable it."
+msgstr ""
+
+#: admin/includes/class-options.php:610
+#: admin/menu/includes/class-options.php:567
+msgid "Direction Lock Dead Zone"
+msgstr ""
+
+#: admin/includes/class-options.php:613
+#: admin/menu/includes/class-options.php:570
+msgid "Choose dead zone (in pixel) for direction lock activation."
+msgstr ""
+
+#: admin/includes/class-options.php:619
 #: admin/menu/includes/class-validation.php:1218
 msgid ""
 "Your input didn't pass validation. This value must be a positive integer "
@@ -930,28 +766,415 @@ msgid ""
 "placeholder."
 msgstr ""
 
+#: admin/includes/class-options.php:622
+#: admin/menu/includes/class-options.php:578
+msgid "Autohide Delay"
+msgstr ""
+
+#: admin/includes/class-options.php:625
+#: admin/menu/includes/class-options.php:581
+msgid "Delay in miliseconds for fading out the scrollbar."
+msgstr ""
+
+#: admin/includes/class-options.php:631
 #: admin/menu/includes/class-validation.php:1229
 msgid ""
 "Your input didn't pass validation. This value must be a positive integer "
 "including 0 (zero) or left blank. It represents the delay in miliseconds. "
 msgstr ""
 
+#: admin/includes/class-options.php:634
+#: admin/menu/includes/class-options.php:589
+msgid "Native Parent Scrolling"
+msgstr ""
+
+#: admin/includes/class-options.php:637
+#: admin/menu/includes/class-options.php:592
+msgid "Detect bottom of content and let parent scroll, as native scroll does."
+msgstr ""
+
+#: admin/includes/class-options.php:646
+#: admin/menu/includes/class-options.php:600
+msgid "Scroll On Selection"
+msgstr ""
+
+#: admin/includes/class-options.php:649
+#: admin/menu/includes/class-options.php:603
+msgid "Auto-scrolling of content while selecting text."
+msgstr ""
+
+#: admin/includes/class-options.php:658
+#: admin/menu/includes/class-options.php:611
+msgid "Cursor Drag Speed"
+msgstr ""
+
+#: admin/includes/class-options.php:661
+#: admin/menu/includes/class-options.php:614
+msgid "Choose the momentum on cursor drag."
+msgstr ""
+
+#: admin/includes/class-options.php:667
 #: admin/menu/includes/class-validation.php:1240
 msgid ""
 "Your input didn't pass validation. This value must be a positive number with "
 "max two decimal places or left blank. Please review its placeholder."
 msgstr ""
 
+#: admin/includes/class-options.php:670
+#: admin/menu/includes/class-options.php:622
+msgid "RTL-Mode"
+msgstr ""
+
+#: admin/includes/class-options.php:673
+#: admin/menu/includes/class-options.php:625
+msgid "Enable or disable rtl-mode."
+msgstr ""
+
+#: admin/includes/class-options.php:682
+#: admin/menu/includes/class-options.php:633
+msgid "Cursor Drag On Touch"
+msgstr ""
+
+#: admin/includes/class-options.php:685
+#: admin/menu/includes/class-options.php:636
+msgid "Enable or disable cursor drag on touch."
+msgstr ""
+
+#: admin/includes/class-options.php:694
+#: admin/menu/includes/class-options.php:644
+msgid "One Axis Mouse Mode"
+msgstr ""
+
+#: admin/includes/class-options.php:697
+#: admin/menu/includes/class-options.php:647
+msgid ""
+"It permits horizontal scrolling with mousewheel on horizontal only content, "
+"if false (vertical-only) mousewheel don't scroll horizontally, if value is "
+"auto detects two-axis mouse."
+msgstr ""
+
+#: admin/includes/class-options.php:706
+#: admin/menu/includes/class-options.php:655
+msgid "Prevent Multitouch Scrolling"
+msgstr ""
+
+#: admin/includes/class-options.php:709
+#: admin/menu/includes/class-options.php:658
+msgid "Prevent scrolling on multitouch events."
+msgstr ""
+
+#: admin/includes/class-options.php:718
+#: admin/menu/includes/class-options.php:666
+msgid "Disable Mutation Observer"
+msgstr ""
+
+#: admin/includes/class-options.php:721
+#: admin/menu/includes/class-options.php:669
+msgid "Force MutationObserver disabled."
+msgstr ""
+
+#: admin/includes/class-options.php:730
+#: admin/menu/includes/class-options.php:677
+msgid "Enable Observer"
+msgstr ""
+
+#: admin/includes/class-options.php:733
+#: admin/menu/includes/class-options.php:680
+msgid ""
+"Enable DOM changing observer, it tries to resize/hide/show when parent or "
+"content div had changed."
+msgstr ""
+
+#: admin/includes/class-options.php:742
+#: admin/menu/includes/class-options.php:688
+msgid "Scrollbar ID"
+msgstr ""
+
+#: admin/includes/class-options.php:745
+#: admin/menu/includes/class-options.php:691
+msgid "Set a custom ID for nicescroll bars."
+msgstr ""
+
+#: admin/includes/class-options.php:751
+#: admin/menu/includes/class-validation.php:1185
+msgid ""
+"Your input didn't pass validation. Do not enter '#'. The name must look "
+"somthing like 'nice_scrollbar', 'my-cool-div', 'scrollbar123' etc. It was "
+"reset to it\\'s default value."
+msgstr ""
+
+#: admin/includes/class-options.php:768
+#: admin/menu/includes/class-options.php:715
+msgid "BackTop Button"
+msgstr ""
+
+#: admin/includes/class-options.php:771
+#: admin/menu/includes/class-options.php:718
+msgid "Enable backtop."
+msgstr ""
+
+#: admin/includes/class-options.php:780
+#: admin/menu/includes/class-options.php:726
+msgid "BackTop On Mobile Devices"
+msgstr ""
+
+#: admin/includes/class-options.php:783
+#: admin/menu/includes/class-options.php:729
+msgid "Enable backtop button on mobile devices."
+msgstr ""
+
+#: admin/includes/class-options.php:792
+#: admin/menu/includes/class-options.php:737
+msgid "Button Size"
+msgstr ""
+
+#: admin/includes/class-options.php:795
+#: admin/menu/includes/class-options.php:740
+msgid "Set button size."
+msgstr ""
+
+#: admin/includes/class-options.php:801
+#: admin/menu/includes/class-options.php:746
+msgid "small"
+msgstr ""
+
+#: admin/includes/class-options.php:802
+#: admin/menu/includes/class-options.php:747
+msgid "medium"
+msgstr ""
+
+#: admin/includes/class-options.php:803
+#: admin/menu/includes/class-options.php:748
+msgid "default"
+msgstr ""
+
+#: admin/includes/class-options.php:804
+#: admin/menu/includes/class-options.php:749
+msgid "large"
+msgstr ""
+
+#: admin/includes/class-options.php:810
+#: admin/menu/includes/class-options.php:754
+msgid "Arrow Color"
+msgstr ""
+
+#: admin/includes/class-options.php:813
+#: admin/menu/includes/class-options.php:757
+msgid "Set arrow color."
+msgstr ""
+
+#: admin/includes/class-options.php:822
+#: admin/menu/includes/class-options.php:765
+msgid "Arrow Hover Color"
+msgstr ""
+
+#: admin/includes/class-options.php:825
+#: admin/menu/includes/class-options.php:768
+msgid "Set arrow hover color."
+msgstr ""
+
+#: admin/includes/class-options.php:835
+#: admin/menu/includes/class-options.php:777
+msgid "Background Color"
+msgstr ""
+
+#: admin/includes/class-options.php:838 admin/includes/class-options.php:850
+#: admin/menu/includes/class-options.php:780
+#: admin/menu/includes/class-options.php:791
+msgid "Set background color."
+msgstr ""
+
+#: admin/includes/class-options.php:847
+#: admin/menu/includes/class-options.php:788
+msgid "Hover Background Color"
+msgstr ""
+
+#: admin/includes/class-options.php:860
+#: admin/menu/includes/class-options.php:800
+msgid "Border Color"
+msgstr ""
+
+#: admin/includes/class-options.php:863 admin/includes/class-options.php:875
+#: admin/menu/includes/class-options.php:803
+#: admin/menu/includes/class-options.php:814
+msgid "Set border color."
+msgstr ""
+
+#: admin/includes/class-options.php:872
+#: admin/menu/includes/class-options.php:811
+msgid "Hover Border Color"
+msgstr ""
+
+#: admin/includes/class-options.php:884
+#: admin/menu/includes/class-options.php:822
+msgid "Border Width"
+msgstr ""
+
+#: admin/includes/class-options.php:887
+#: admin/menu/includes/class-options.php:825
+msgid "Set border width in pixels."
+msgstr ""
+
+#: admin/includes/class-options.php:896
+#: admin/menu/includes/class-options.php:833
+msgid "Border Style"
+msgstr ""
+
+#: admin/includes/class-options.php:899
+#: admin/menu/includes/class-options.php:836
+msgid "Set border style."
+msgstr ""
+
+#: admin/includes/class-options.php:922
+#: admin/menu/includes/class-options.php:858
+msgid "Position From Right"
+msgstr ""
+
+#: admin/includes/class-options.php:925
+#: admin/menu/includes/class-options.php:861
+msgid "Set button position from right in pixels."
+msgstr ""
+
+#: admin/includes/class-options.php:934
+#: admin/menu/includes/class-options.php:869
+msgid "Position From Bottom"
+msgstr ""
+
+#: admin/includes/class-options.php:937
+#: admin/menu/includes/class-options.php:872
+msgid "Set button position from bottom in pixels."
+msgstr ""
+
+#: admin/includes/class-options.php:947
+#: admin/menu/includes/class-options.php:881
+msgid "Border Radius Top Left"
+msgstr ""
+
+#: admin/includes/class-options.php:950
+#: admin/menu/includes/class-options.php:884
+msgid "Set border radius top left in pixels or percent."
+msgstr ""
+
+#: admin/includes/class-options.php:956 admin/includes/class-options.php:968
+#: admin/includes/class-options.php:980 admin/includes/class-options.php:992
+#: admin/menu/includes/class-validation.php:1317
+msgid ""
+"Your input didn't pass validation. This value must be a positive, integer "
+"pixel- or percent- value including 0 (zero). It was reset to it's default."
+msgstr ""
+
+#: admin/includes/class-options.php:959
+#: admin/menu/includes/class-options.php:892
+msgid "Border Radius Top Right"
+msgstr ""
+
+#: admin/includes/class-options.php:962
+#: admin/menu/includes/class-options.php:895
+msgid "Set border radius top right in pixels or percent."
+msgstr ""
+
+#: admin/includes/class-options.php:971
+#: admin/menu/includes/class-options.php:903
+msgid "Border Radius Bottom Left"
+msgstr ""
+
+#: admin/includes/class-options.php:974
+#: admin/menu/includes/class-options.php:906
+msgid "Set border radius bottom left in pixels or percent."
+msgstr ""
+
+#: admin/includes/class-options.php:983
+#: admin/menu/includes/class-options.php:914
+msgid "Border Radius Bottom Right"
+msgstr ""
+
+#: admin/includes/class-options.php:986
+#: admin/menu/includes/class-options.php:917
+msgid "Set border radius bottom right in pixels or percent."
+msgstr ""
+
+#: admin/includes/class-options.php:1071
+#: admin/menu/includes/class-options.php:1003
+msgid "Failed resetting the settings. Please refresh the page and try again."
+msgstr ""
+
+#: admin/includes/class-options.php:1261
+#: admin/menu/includes/class-options.php:1193
+msgid "Basic Settings"
+msgstr ""
+
+#: admin/includes/class-options.php:1268
+#: admin/menu/includes/class-options.php:1200
+msgid "Extended Settings"
+msgstr ""
+
+#: admin/includes/class-options.php:1275
+#: admin/menu/includes/class-options.php:1207
+msgid "BackTop Settings"
+msgstr ""
+
+#: admin/includes/class-reset-section.php:77
+#: admin/menu/includes/class-reset-section.php:77
+msgid "Reset Settings"
+msgstr ""
+
+#: admin/includes/class-reset-section.php:113
+#: admin/menu/includes/class-reset-section.php:113
+msgid "Reset Frontend"
+msgstr ""
+
+#: admin/includes/class-reset-section.php:114
+#: admin/menu/includes/class-reset-section.php:114
+msgid "Resets the settings for the frontend."
+msgstr ""
+
+#: admin/includes/class-reset-section.php:121
+#: admin/menu/includes/class-reset-section.php:121
+msgid "Reset Backend"
+msgstr ""
+
+#: admin/includes/class-reset-section.php:122
+#: admin/menu/includes/class-reset-section.php:122
+msgid "Resets the settings for the backend."
+msgstr ""
+
+#: admin/includes/class-settings.php:179
+#: admin/menu/includes/class-settings.php:178
+msgid "There is no section related to the data."
+msgstr ""
+
+#: admin/includes/class-settings.php:540
+#: admin/menu/includes/class-settings.php:540
+msgid "on"
+msgstr ""
+
+#: admin/includes/class-settings.php:544
+#: admin/menu/includes/class-settings.php:544
+msgid "cursor"
+msgstr ""
+
+#: admin/includes/class-validation.php:344
 #: admin/menu/includes/class-validation.php:1251
 msgid ""
 "Your input didn't pass validation. Please use numbers and/or alphabetical "
 "characters."
 msgstr ""
 
-#: admin/menu/includes/class-validation.php:1317
-msgid ""
-"Your input didn't pass validation. This value must be a positive, integer "
-"pixel- or percent- value including 0 (zero). It was reset to it's default."
+#: admin/includes/class-validation.php:566
+#: admin/menu/includes/class-validation.php:990
+msgid "false"
+msgstr ""
+
+#: admin/menu/class-menu.php:478
+msgid "One more try and your browser will burst into flames ;-)"
+msgstr ""
+
+#: admin/menu/class-menu.php:489
+msgid "All done! Please refresh the page for the settings to take effect."
+msgstr ""
+
+#: admin/menu/class-menu.php:496
+msgid "Couldn't reset the settings. Please try again."
 msgstr ""
 
 #. Plugin URI of the plugin/theme
@@ -970,9 +1193,5 @@ msgid ""
 msgstr ""
 
 #. Author of the plugin/theme
-msgid "demispatti"
-msgstr ""
-
-#. Author URI of the plugin/theme
-msgid "https://demispatti.ch"
+msgid "Demis Patti"
 msgstr ""

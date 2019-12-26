@@ -123,7 +123,7 @@ class Nsr_Help_Tab {
 
 		<p><?php echo __( 'Nicescrollr integrates the Nicescroll jQuery library into your WordPress powered website.', $this->domain ) ?></p>
 
-		<p><?php echo __( 'This plugin is a wrapper for the popular "Nicescroll" javascript library, which is made by <a href="https://wordpress.org/support/users/inuyaksa/" target="_blank">InuYaksa</a>. You can visit his official Nicescroll homepage <a href="https://www.areaaperta.com/nicescroll/" target="_blank">here</a>. An overview of the default parameters can be found on <a href="https://github.com/inuyaksa/jquery.nicescroll" target="_blank">Github</a> at the bottom of the page.', $this->domain ) ?>
+		<p><?php echo __( 'This plugin is a wrapper for the popular "Nicescroll" javascript library, which is made by <a href="https://wordpress.org/support/users/inuyaksa/" target="_blank">InuYaksa</a>.', $this->domain) . __( 'You can visit his official Nicescroll homepage <a href="https://www.areaaperta.com/nicescroll/" target="_blank">here</a>.') . __( 'An overview of the default parameters can be found on <a href="https://github.com/inuyaksa/jquery.nicescroll" target="_blank">Github</a> at the bottom of the page.', $this->domain ) ?>
 
 		<p><?php echo __( "For help regarding 'Nicescroll', please refer to the official <a href='https://areaaperta.com/nicescroll/' target='_blank'>Nicescroll</a> website.", $this->domain ) ?></p>
 
