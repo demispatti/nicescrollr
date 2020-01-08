@@ -11,10 +11,11 @@
   A WordPress plugin that acts as a wrapper for <a href="https://github.com/inuyaksa" target="_blank">Inuyaksa's</a> <a href="https://nicescroll.areaaperta.com/" target="_blank">Nicescroll.js</a> library.
   <br>
   <br>
-  <a href="https://wordpress.org/plugins/nicescrollr/" target="_blank"><strong>WordPress Plugin Repository Page</strong></a> <a href="https://downloads.wordpress.org/plugin/nicescrollr.zip"><strong>Download</strong></a>
+  <a href="https://wordpress.org/plugins/nicescrollr/" target="_blank"><strong>WordPress Plugin Repository Page</strong></a><br>
+<a href="https://downloads.wordpress.org/plugin/nicescrollr.zip"><strong>Download</strong></a>
   <br>
   <br>
-  <a href="https://github.com/demispatti/nicescrollr/issues/new?template=bug.md">Report A Bug</a>
+  <a href="https://github.com/demispatti/nicescrollr/issues/new?template=bug.md">Report A Bug</a><br>
   <a href="https://github.com/demispatti/nicescrollr/issues/new?template=feature.md&labels=feature">Request Feature</a>
 </p>
 
