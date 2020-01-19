@@ -112,8 +112,6 @@ class Nsr_Backtop_Localisation {
 	public function get_backtop_configuration( $view ) {
 
 		$configuration = (array) $this->Options->get_options( $view );
-		// Add the value which defines the view ( front- or backend) to the config-array.
-		$configuration['view'] = $view;
 
 		foreach( $configuration as $key => $value ) {
 			if( 'false' === $value ) {

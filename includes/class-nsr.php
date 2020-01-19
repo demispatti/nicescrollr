@@ -21,9 +21,6 @@ if( ! defined( 'WPINC' ) ) {
 if( ! class_exists( 'Includes\Nsr_I18n' ) ) {
 	require_once NICESCROLLR_ROOT_DIR . 'includes/class-i18n.php';
 }
-if( ! class_exists( 'AdminIncludes\Nsr_Options' ) ) {
-	require_once NICESCROLLR_ROOT_DIR . 'admin/includes/class-options.php';
-}
 if( ! class_exists( 'Shared\Nsr_Nicescroll_Localisation' ) ) {
 	require_once NICESCROLLR_ROOT_DIR . 'shared/class-nicescroll-localisation.php';
 }

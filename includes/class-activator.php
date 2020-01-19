@@ -61,8 +61,8 @@ class Nsr_Activator extends Nsr {
 		}
 
 		// Checks for already stored options.
-		$Activator = new self();
-		$Activator->check_for_options();
+		$self = new self();
+		$self->check_for_options();
 	}
 
 	/**
@@ -77,25 +77,13 @@ class Nsr_Activator extends Nsr {
 	 */
 	private function check_for_options() {
 
-		$Options = new AdminIncludes\Nsr_Options( 'nicescrollr' );
+		$Options_Instance = new AdminIncludes\Nsr_Options( 'nicescrollr' );
 		$options = get_option( 'nicescrollr_options' );
-
 		// Seed initial options
-		if( false === $options ) {
-			foreach( $Options::$settings_tabs as $i => $section ) {
-				$Options->seed_options( $section );
-			}
+		if( false === $options || "" === $options || 3 !== count($options) ) {
+			$Options_Instance->seed_options();
 
 			return;
-		}
-
-		// Else add initial options per section if necessary
-		$options = get_option( 'nicescrollr_options' );
-		if( null === $options['frontend'] ) {
-			$Options->seed_options( 'frontend' );
-		}
-		if( null === $options['backend'] ) {
-			$Options->seed_options( 'backend' );
 		}
 	}
 }

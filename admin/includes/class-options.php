@@ -2,8 +2,6 @@
 
 namespace Nicescrollr\Admin\Includes;
 
-use WP_Error;
-
 /**
  * If this file is called directly, abort.
  */
@@ -59,13 +57,13 @@ class Nsr_Options {
 	/**
 	 * Returns the basic nicescroll options and their meta data.
 	 *
+	 * @return array $basic_options
 	 * @since  0.1.0
 	 * @access private
-	 * @return array
 	 */
 	private function basic_settings() {
 
-		return array(
+		$basic_options = array(
 			'enabled' => array(
 				'name' => __( 'Use Nicescroll', $this->domain ),
 				'callback' => 'render_settings_field_callback',
@@ -76,7 +74,6 @@ class Nsr_Options {
 				'input_type' => 'checkbox',
 				'notice_level' => 'none',
 				'select_values' => 'none',
-				'validation_error_message' => ''
 			),
 			'cursorcolor' => array(
 				'name' => __( 'Cursor Color', $this->domain ),
@@ -88,7 +85,6 @@ class Nsr_Options {
 				'input_type' => 'color',
 				'notice_level' => 'notice-correction',
 				'select_values' => 'none',
-				'validation_error_message' => __( "Your input didn't pass validation. This value must be a hexadecimal color value. It was reset to its default. To customize it, please input a color value like '#fff' or '#0073AA'.", $this->domain )
 			),
 			'cursoropacitymin' => array(
 				'name' => __( 'Cursor Opacity Minimum', $this->domain ),
@@ -100,7 +96,6 @@ class Nsr_Options {
 				'input_type' => 'text',
 				'notice_level' => 'notice-warning',
 				'select_values' => 'none',
-				'validation_error_message' => __( "Your input didn't pass validation. This value must be a positive number between 0 and 1, with max two decimal places (or left blank).", $this->domain )
 			),
 			'cursoropacitymax' => array(
 				'name' => __( 'Cursor Opacity Maximum', $this->domain ),
@@ -112,7 +107,6 @@ class Nsr_Options {
 				'input_type' => 'text',
 				'notice_level' => 'notice-correction',
 				'select_values' => 'none',
-				'validation_error_message' => __( "Your input didn't pass validation. This value must be a positive number between 0 and 1, with max two decimal places. It was reset to it's default.", $this->domain )
 			),
 			'cursorwidth' => array(
 				'name' => __( 'Cursor Width', $this->domain ),
@@ -124,7 +118,6 @@ class Nsr_Options {
 				'input_type' => 'text',
 				'notice_level' => 'notice-correction',
 				'select_values' => 'none',
-				'validation_error_message' => __( "Your input didn't pass validation. This value must be a positive, integer pixel value including 0 (zero). It was reset to it's default.", $this->domain )
 			),
 			'cursorborderwidth' => array(
 				'name' => __( 'Cursor Border Width', $this->domain ),
@@ -136,7 +129,6 @@ class Nsr_Options {
 				'input_type' => 'text',
 				'notice_level' => 'notice-correction',
 				'select_values' => 'none',
-				'validation_error_message' => __( "Your input didn't pass validation. This value must be a positive, integer pixel value including 0 (zero). It was reset to it's default.", $this->domain )
 			),
 			'cursorborderstate' => array(
 				'name' => __( 'Cursor Border State', $this->domain ),
@@ -148,7 +140,6 @@ class Nsr_Options {
 				'input_type' => 'select',
 				'notice_level' => 'none',
 				'select_values' => array( 'solid' => 'solid', 'dashed' => 'dashed', 'dotted' => 'dotted', 'double' => 'double', 'none' => __( 'none', $this->domain ) ),
-				'validation_error_message' => ''
 			),
 			'cursorbordercolor' => array(
 				'name' => __( 'Cursor Border Color', $this->domain ),
@@ -160,7 +151,6 @@ class Nsr_Options {
 				'input_type' => 'color',
 				'notice_level' => 'notice-correction',
 				'select_values' => 'none',
-				'validation_error_message' => __( "Your input didn't pass validation. This value must be a hexadecimal color value. (It was reset to its default.) To customize it, please input a color value like '#fff' or '#0073AA'.", $this->domain )
 			),
 			'cursorborderradius' => array(
 				'name' => __( 'Cursor Border Radius', $this->domain ),
@@ -172,7 +162,6 @@ class Nsr_Options {
 				'input_type' => 'text',
 				'notice_level' => 'notice-correction',
 				'select_values' => 'none',
-				'validation_error_message' => __( "Your input didn't pass validation. This value must be a positive, integer pixel value or left blank. It was reset to it's default.", $this->domain )
 			),
 			'background' => array(
 				'name' => __( 'Rail Background', $this->domain ),
@@ -184,7 +173,6 @@ class Nsr_Options {
 				'input_type' => 'color',
 				'notice_level' => 'notice-correction',
 				'select_values' => 'none',
-				'validation_error_message' => __( "Your input didn't pass validation. This value must be a hexadecimal color value. It was reset to its default. To customize it, please input a color value like '#fff' or '#0073AA'.", $this->domain )
 			),
 			'scrollspeed' => array(
 				'name' => __( 'Scroll Speed', $this->domain ),
@@ -196,7 +184,6 @@ class Nsr_Options {
 				'input_type' => 'text',
 				'notice_level' => 'notice-correction',
 				'select_values' => 'none',
-				'validation_error_message' => __( "Your input didn't pass validation. This value must be a positive integer but must not be 0 (zero). To aviod unwanted scrolling behaviour, the scrollspeed was reset to its default. (Note: If you intended to disable the mousewheel, please visit the extended settings panel.)", $this->domain )
 			),
 			'mousescrollstep' => array(
 				'name' => __( 'Mouse Scroll Step', $this->domain ),
@@ -208,7 +195,6 @@ class Nsr_Options {
 				'input_type' => 'text',
 				'notice_level' => 'notice-correction',
 				'select_values' => 'none',
-				'validation_error_message' => __( "Your input didn't pass validation. This value must be a positive integer but it must not be 0 (zero). To aviod unwanted scrolling behaviour, it was reset to its default.", $this->domain )
 			),
 			'autohidemode' => array(
 				'name' => __( 'Autohide Mode', $this->domain ),
@@ -227,7 +213,6 @@ class Nsr_Options {
 					'hidden' => 'hidden',
 					'scroll' => 'scroll'
 				),
-				'validation_error_message' => ''
 			),
 			'default_scrollbar' => array(
 				'name' => __( 'Show Default Scrollbar', $this->domain ),
@@ -239,7 +224,6 @@ class Nsr_Options {
 				'input_type' => 'checkbox',
 				'notice_level' => 'none',
 				'select_values' => 'none',
-				'validation_error_message' => ''
 			),
 			'mobile_devices_enabled' => array(
 				'name' => __( 'Enable On Mobile Devices', $this->domain ),
@@ -251,21 +235,22 @@ class Nsr_Options {
 				'input_type' => 'checkbox',
 				'notice_level' => 'none',
 				'select_values' => 'none',
-				'validation_error_message' => ''
 			),
 		);
+
+		return $basic_options;
 	}
 
 	/**
 	 * Returns all extended nicescroll options and their meta data.
 	 *
+	 * @return array $extended_options
 	 * @since  0.1.0
 	 * @access private
-	 * @return array
 	 */
 	private function extended_settings() {
 
-		return array(
+		$extended_options = array(
 			'zindex' => array(
 				'name' => __( 'Z-Index', $this->domain ),
 				'callback' => 'render_settings_field_callback',
@@ -276,7 +261,6 @@ class Nsr_Options {
 				'input_type' => 'text',
 				'notice_level' => 'notice-correction',
 				'select_values' => 'none',
-				'validation_error_message' => __( "Your input didn't pass validation. This value must be an integer value. It was reset to it's default.", $this->domain )
 			),
 			'emulatetouch' => array(
 				'name' => __( 'Emulate Touch', $this->domain ),
@@ -288,7 +272,6 @@ class Nsr_Options {
 				'input_type' => 'checkbox',
 				'notice_level' => 'none',
 				'select_values' => 'none',
-				'validation_error_message' => ''
 			),
 			'hwacceleration' => array(
 				'name' => __( 'Hardware Acceleration', $this->domain ),
@@ -300,7 +283,6 @@ class Nsr_Options {
 				'input_type' => 'checkbox',
 				'notice_level' => 'none',
 				'select_values' => 'none',
-				'validation_error_message' => ''
 			),
 			'boxzoom' => array(
 				'name' => __( 'Box Zoom', $this->domain ),
@@ -312,7 +294,6 @@ class Nsr_Options {
 				'input_type' => 'checkbox',
 				'notice_level' => 'none',
 				'select_values' => 'none',
-				'validation_error_message' => ''
 			),
 			'dblclickzoom' => array(
 				'name' => __( 'Double Click Zoom', $this->domain ),
@@ -324,7 +305,6 @@ class Nsr_Options {
 				'input_type' => 'checkbox',
 				'notice_level' => 'none',
 				'select_values' => 'none',
-				'validation_error_message' => ''
 			),
 			'gesturezoom' => array(
 				'name' => __( 'Gesture Zoom', $this->domain ),
@@ -336,7 +316,6 @@ class Nsr_Options {
 				'input_type' => 'checkbox',
 				'notice_level' => 'none',
 				'select_values' => 'none',
-				'validation_error_message' => ''
 			),
 			'grabcursorenabled' => array(
 				'name' => __( 'Grab-Cursor', $this->domain ),
@@ -348,7 +327,6 @@ class Nsr_Options {
 				'input_type' => 'checkbox',
 				'notice_level' => 'none',
 				'select_values' => 'none',
-				'validation_error_message' => ''
 			),
 			'iframeautoresize' => array(
 				'name' => __( 'iFrame Autoresize', $this->domain ),
@@ -360,7 +338,6 @@ class Nsr_Options {
 				'input_type' => 'checkbox',
 				'notice_level' => 'none',
 				'select_values' => 'none',
-				'validation_error_message' => ''
 			),
 			'cursorminheight' => array(
 				'name' => __( 'Cursor Minimum Height', $this->domain ),
@@ -372,7 +349,6 @@ class Nsr_Options {
 				'input_type' => 'text',
 				'notice_level' => 'notice-correction',
 				'select_values' => 'none',
-				'validation_error_message' => __( "Your input didn't pass validation. This value must be a positive integer including 0 (zero). It was reset to it's default.", $this->domain )
 			),
 			'preservenativescrolling' => array(
 				'name' => __( 'Preserve Native Scrolling', $this->domain ),
@@ -384,7 +360,6 @@ class Nsr_Options {
 				'input_type' => 'checkbox',
 				'notice_level' => 'none',
 				'select_values' => 'none',
-				'validation_error_message' => ''
 			),
 			'railoffset' => array(
 				'name' => __( 'Rail Offset', $this->domain ),
@@ -400,7 +375,6 @@ class Nsr_Options {
 					'top' => 'top',
 					'left' => 'left',
 				),
-				'validation_error_message' => ''
 			),
 			'bouncescroll' => array(
 				'name' => __( 'Bounce Scroll', $this->domain ),
@@ -412,7 +386,6 @@ class Nsr_Options {
 				'input_type' => 'checkbox',
 				'notice_level' => 'none',
 				'select_values' => 'none',
-				'validation_error_message' => ''
 			),
 			'spacebarenabled' => array(
 				'name' => __( 'Spacebar', $this->domain ),
@@ -424,7 +397,6 @@ class Nsr_Options {
 				'input_type' => 'checkbox',
 				'notice_level' => 'none',
 				'select_values' => 'none',
-				'validation_error_message' => ''
 			),
 			'railpaddingtop' => array(
 				'name' => __( 'Rail Padding Top', $this->domain ),
@@ -436,7 +408,6 @@ class Nsr_Options {
 				'input_type' => 'text',
 				'notice_level' => 'notice-warning',
 				'select_values' => 'none',
-				'validation_error_message' => __( "Your input didn't pass validation. This value must be a positive integer including 0 (zero) or left blank.", $this->domain )
 			),
 			'railpaddingright' => array(
 				'name' => __( 'Rail Padding Right', $this->domain ),
@@ -448,7 +419,6 @@ class Nsr_Options {
 				'input_type' => 'text',
 				'notice_level' => 'notice-warning',
 				'select_values' => 'none',
-				'validation_error_message' => __( "Your input didn't pass validation. This value must be a positive integer including 0 (zero) or left blank.", $this->domain )
 			),
 			'railpaddingbottom' => array(
 				'name' => __( 'Rail Padding Bottom', $this->domain ),
@@ -460,7 +430,6 @@ class Nsr_Options {
 				'input_type' => 'text',
 				'notice_level' => 'notice-warning',
 				'select_values' => 'none',
-				'validation_error_message' => __( "Your input didn't pass validation. This value must be a positive integer including 0 (zero) or left blank.", $this->domain )
 			),
 			'railpaddingleft' => array(
 				'name' => __( 'Rail Padding Left', $this->domain ),
@@ -472,7 +441,6 @@ class Nsr_Options {
 				'input_type' => 'text',
 				'notice_level' => 'notice-warning',
 				'select_values' => 'none',
-				'validation_error_message' => __( "Your input didn't pass validation. This value must be a positive integer including 0 (zero) or left blank.", $this->domain )
 			),
 			'disableoutline' => array(
 				'name' => __( 'Outline', $this->domain ),
@@ -484,7 +452,6 @@ class Nsr_Options {
 				'input_type' => 'checkbox',
 				'notice_level' => 'none',
 				'select_values' => 'none',
-				'validation_error_message' => ''
 			),
 			'horizrailenabled' => array(
 				'name' => __( 'Horizontal Rail', $this->domain ),
@@ -496,7 +463,6 @@ class Nsr_Options {
 				'input_type' => 'checkbox',
 				'notice_level' => 'none',
 				'select_values' => 'none',
-				'validation_error_message' => ''
 			),
 			'railalign' => array(
 				'name' => __( 'Rail Alignment Horizontal', $this->domain ),
@@ -508,7 +474,6 @@ class Nsr_Options {
 				'input_type' => 'select',
 				'notice_level' => 'none',
 				'select_values' => array( 'right' => __( 'right', $this->domain ), 'left' => __( 'left', $this->domain ) ),
-				'validation_error_message' => ''
 			),
 			'railvalign' => array(
 				'name' => __( 'Rail Alignment Vertical', $this->domain ),
@@ -520,7 +485,6 @@ class Nsr_Options {
 				'input_type' => 'select',
 				'notice_level' => 'none',
 				'select_values' => array( 'bottom' => __( 'bottom', $this->domain ), 'top' => __( 'top', $this->domain ) ),
-				'validation_error_message' => ''
 			),
 			'enabletranslate3d' => array(
 				'name' => __( 'Translate3D', $this->domain ),
@@ -532,7 +496,6 @@ class Nsr_Options {
 				'input_type' => 'checkbox',
 				'notice_level' => 'none',
 				'select_values' => 'none',
-				'validation_error_message' => ''
 			),
 			'enablemousewheel' => array(
 				'name' => __( 'Mouse Wheel', $this->domain ),
@@ -544,7 +507,6 @@ class Nsr_Options {
 				'input_type' => 'checkbox',
 				'notice_level' => 'none',
 				'select_values' => 'none',
-				'validation_error_message' => ''
 			),
 			'enablekeyboard' => array(
 				'name' => __( 'Keyboard', $this->domain ),
@@ -556,7 +518,6 @@ class Nsr_Options {
 				'input_type' => 'checkbox',
 				'notice_level' => 'none',
 				'select_values' => 'none',
-				'validation_error_message' => ''
 			),
 			'smoothscroll' => array(
 				'name' => __( 'Smooth Scroll', $this->domain ),
@@ -568,7 +529,6 @@ class Nsr_Options {
 				'input_type' => 'checkbox',
 				'notice_level' => 'none',
 				'select_values' => 'none',
-				'validation_error_message' => ''
 			),
 			'sensitiverail' => array(
 				'name' => __( 'Sensitive Rail', $this->domain ),
@@ -580,7 +540,6 @@ class Nsr_Options {
 				'input_type' => 'checkbox',
 				'notice_level' => 'none',
 				'select_values' => 'none',
-				'validation_error_message' => ''
 			),
 			'enablemouselockapi' => array(
 				'name' => __( 'Mouse Lock API', $this->domain ),
@@ -592,7 +551,6 @@ class Nsr_Options {
 				'input_type' => 'checkbox',
 				'notice_level' => 'none',
 				'select_values' => 'none',
-				'validation_error_message' => ''
 			),
 			'cursorfixedheight' => array(
 				'name' => __( 'Cursor Fixed Height', $this->domain ),
@@ -604,7 +562,6 @@ class Nsr_Options {
 				'input_type' => 'select',
 				'notice_level' => 'none',
 				'select_values' => array( 'false' => __( 'off', $this->domain ), '60' => '60', '100' => '100', '160' => '160', '220' => '220', '280' => '280' ),
-				'validation_error_message' => ''
 			),
 			'directionlockdeadzone' => array(
 				'name' => __( 'Direction Lock Dead Zone', $this->domain ),
@@ -616,7 +573,6 @@ class Nsr_Options {
 				'input_type' => 'text',
 				'notice_level' => 'notice-warning',
 				'select_values' => 'none',
-				'validation_error_message' => __( "Your input didn't pass validation. This value must be a positive integer including 0 (zero) or left blank. To customize it, please have a look at its placeholder.", $this->domain )
 			),
 			'hidecursordelay' => array(
 				'name' => __( 'Autohide Delay', $this->domain ),
@@ -628,7 +584,6 @@ class Nsr_Options {
 				'input_type' => 'text',
 				'notice_level' => 'notice-warning',
 				'select_values' => 'none',
-				'validation_error_message' => __( "Your input didn't pass validation. This value must be a positive integer including 0 (zero) or left blank. It represents the delay in miliseconds. ", $this->domain )
 			),
 			'nativeparentscrolling' => array(
 				'name' => __( 'Native Parent Scrolling', $this->domain ),
@@ -640,7 +595,6 @@ class Nsr_Options {
 				'input_type' => 'checkbox',
 				'notice_level' => 'none',
 				'select_values' => 'none',
-				'validation_error_message' => ''
 			),
 			'enablescrollonselection' => array(
 				'name' => __( 'Scroll On Selection', $this->domain ),
@@ -652,7 +606,6 @@ class Nsr_Options {
 				'input_type' => 'checkbox',
 				'notice_level' => 'none',
 				'select_values' => 'none',
-				'validation_error_message' => ''
 			),
 			'cursordragspeed' => array(
 				'name' => __( 'Cursor Drag Speed', $this->domain ),
@@ -664,7 +617,6 @@ class Nsr_Options {
 				'input_type' => 'text',
 				'notice_level' => 'notice-warning',
 				'select_values' => 'none',
-				'validation_error_message' => __( "Your input didn't pass validation. This value must be a positive number with max two decimal places or left blank. Please review its placeholder.", $this->domain )
 			),
 			'rtlmode' => array(
 				'name' => __( 'RTL-Mode', $this->domain ),
@@ -676,7 +628,6 @@ class Nsr_Options {
 				'input_type' => 'select',
 				'notice_level' => 'none',
 				'select_values' => array( 'auto' => 'auto', 'false' => __( 'off', $this->domain ) ),
-				'validation_error_message' => ''
 			),
 			'cursordragontouch' => array(
 				'name' => __( 'Cursor Drag On Touch', $this->domain ),
@@ -688,7 +639,6 @@ class Nsr_Options {
 				'input_type' => 'checkbox',
 				'notice_level' => 'none',
 				'select_values' => 'none',
-				'validation_error_message' => ''
 			),
 			'oneaxismousemode' => array(
 				'name' => __( 'One Axis Mouse Mode', $this->domain ),
@@ -700,7 +650,6 @@ class Nsr_Options {
 				'input_type' => 'select',
 				'notice_level' => 'none',
 				'select_values' => array( 'auto' => 'auto', 'false' => __( 'off', $this->domain ) ),
-				'validation_error_message' => ''
 			),
 			'preventmultitouchscrolling' => array(
 				'name' => __( 'Prevent Multitouch Scrolling', $this->domain ),
@@ -712,7 +661,6 @@ class Nsr_Options {
 				'input_type' => 'checkbox',
 				'notice_level' => 'none',
 				'select_values' => 'none',
-				'validation_error_message' => ''
 			),
 			'disablemutationobserver' => array(
 				'name' => __( 'Disable Mutation Observer', $this->domain ),
@@ -724,7 +672,6 @@ class Nsr_Options {
 				'input_type' => 'checkbox',
 				'notice_level' => 'none',
 				'select_values' => 'none',
-				'validation_error_message' => ''
 			),
 			'enableobserver' => array(
 				'name' => __( 'Enable Observer', $this->domain ),
@@ -736,7 +683,6 @@ class Nsr_Options {
 				'input_type' => 'checkbox',
 				'notice_level' => 'none',
 				'select_values' => 'none',
-				'validation_error_message' => ''
 			),
 			'scrollbarid' => array(
 				'name' => __( 'Scrollbar ID', $this->domain ),
@@ -748,21 +694,22 @@ class Nsr_Options {
 				'input_type' => 'text',
 				'notice_level' => 'notice-correction',
 				'select_values' => 'none',
-				'validation_error_message' => __( "Your input didn't pass validation. Do not enter '#'. The name must look somthing like 'nice_scrollbar', 'my-cool-div', 'scrollbar123' etc. It was reset to it\'s default value.", $this->domain )
 			),
 		);
+
+		return $extended_options;
 	}
 
 	/**
 	 * Returns all backtop options and their meta data.
 	 *
+	 * @return array $plugin_options
 	 * @since  0.1.0
 	 * @access private
-	 * @return array
 	 */
 	private function backtop_settings() {
 
-		return array(
+		$plugin_options = array(
 
 			'bt_enabled' => array(
 				'name' => __( 'BackTop Button', $this->domain ),
@@ -774,7 +721,6 @@ class Nsr_Options {
 				'input_type' => 'checkbox',
 				'notice_level' => 'notice-correction',
 				'select_values' => 'none',
-				'validation_error_message' => ''
 			),
 			'bt_mobile_enabled' => array(
 				'name' => __( 'BackTop On Mobile Devices', $this->domain ),
@@ -786,7 +732,6 @@ class Nsr_Options {
 				'input_type' => 'checkbox',
 				'notice_level' => 'notice-correction',
 				'select_values' => 'none',
-				'validation_error_message' => ''
 			),
 			'bt_size' => array(
 				'name' => __( 'Button Size', $this->domain ),
@@ -803,7 +748,6 @@ class Nsr_Options {
 					'default' => __( 'default', $this->domain ),
 					'large' => __( 'large', $this->domain )
 				),
-				'validation_error_message' => ''
 			),
 
 			'bt_arrow_color' => array(
@@ -816,7 +760,6 @@ class Nsr_Options {
 				'input_type' => 'color',
 				'notice_level' => 'notice-correction',
 				'select_values' => 'none',
-				'validation_error_message' => ''
 			),
 			'bt_arrow_hover_color' => array(
 				'name' => __( 'Arrow Hover Color', $this->domain ),
@@ -828,7 +771,6 @@ class Nsr_Options {
 				'input_type' => 'color',
 				'notice_level' => 'notice-correction',
 				'select_values' => 'none',
-				'validation_error_message' => ''
 			),
 
 			'bt_background_color' => array(
@@ -841,7 +783,6 @@ class Nsr_Options {
 				'input_type' => 'color',
 				'notice_level' => 'notice-correction',
 				'select_values' => 'none',
-				'validation_error_message' => __( "Your input didn't pass validation. This value must be a hexadecimal color value. It was reset to its default. To customize it, please input a color value like '#fff' or '#0073AA'.", $this->domain )
 			),
 			'bt_hover_background_color' => array(
 				'name' => __( 'Hover Background Color', $this->domain ),
@@ -853,7 +794,6 @@ class Nsr_Options {
 				'input_type' => 'color',
 				'notice_level' => 'notice-correction',
 				'select_values' => 'none',
-				'validation_error_message' => ''
 			),
 
 			'bt_border_color' => array(
@@ -866,7 +806,6 @@ class Nsr_Options {
 				'input_type' => 'color',
 				'notice_level' => 'notice-correction',
 				'select_values' => 'none',
-				'validation_error_message' => __( "Your input didn't pass validation. This value must be a hexadecimal color value. It was reset to its default. To customize it, please input a color value like '#fff' or '#0073AA'.", $this->domain )
 			),
 			'bt_hover_border_color' => array(
 				'name' => __( 'Hover Border Color', $this->domain ),
@@ -878,7 +817,6 @@ class Nsr_Options {
 				'input_type' => 'color',
 				'notice_level' => 'notice-correction',
 				'select_values' => 'none',
-				'validation_error_message' => ''
 			),
 			'bt_border_width' => array(
 				'name' => __( 'Border Width', $this->domain ),
@@ -890,7 +828,6 @@ class Nsr_Options {
 				'input_type' => 'text',
 				'notice_level' => 'notice-correction',
 				'select_values' => 'none',
-				'validation_error_message' => __( "Your input didn't pass validation. This value must be a positive, integer pixel value including 0 (zero). It was reset to it's default.", $this->domain )
 			),
 			'bt_border_style' => array(
 				'name' => __( 'Border Style', $this->domain ),
@@ -915,7 +852,6 @@ class Nsr_Options {
 					'none' => __( 'none', $this->domain ),
 					'hidden' => 'hidden'
 				),
-				'validation_error_message' => ''
 			),
 
 			'bt_posx_from_right' => array(
@@ -928,7 +864,6 @@ class Nsr_Options {
 				'input_type' => 'text',
 				'notice_level' => 'notice-correction',
 				'select_values' => 'none',
-				'validation_error_message' => ''
 			),
 			'bt_posy_from_bottom' => array(
 				'name' => __( 'Position From Bottom', $this->domain ),
@@ -940,7 +875,6 @@ class Nsr_Options {
 				'input_type' => 'text',
 				'notice_level' => 'notice-correction',
 				'select_values' => 'none',
-				'validation_error_message' => ''
 			),
 
 			'bt_border_radius_top_left' => array(
@@ -953,7 +887,6 @@ class Nsr_Options {
 				'input_type' => 'text',
 				'notice_level' => 'notice-correction',
 				'select_values' => 'none',
-				'validation_error_message' => __( "Your input didn't pass validation. This value must be a positive, integer pixel- or percent- value including 0 (zero). It was reset to it's default.", $this->domain )
 			),
 			'bt_border_radius_top_right' => array(
 				'name' => __( 'Border Radius Top Right', $this->domain ),
@@ -965,7 +898,6 @@ class Nsr_Options {
 				'input_type' => 'text',
 				'notice_level' => 'notice-correction',
 				'select_values' => 'none',
-				'validation_error_message' => __( "Your input didn't pass validation. This value must be a positive, integer pixel- or percent- value including 0 (zero). It was reset to it's default.", $this->domain )
 			),
 			'bt_border_radius_bottom_left' => array(
 				'name' => __( 'Border Radius Bottom Left', $this->domain ),
@@ -977,7 +909,6 @@ class Nsr_Options {
 				'input_type' => 'text',
 				'notice_level' => 'notice-correction',
 				'select_values' => 'none',
-				'validation_error_message' => __( "Your input didn't pass validation. This value must be a positive, integer pixel- or percent- value including 0 (zero). It was reset to it's default.", $this->domain )
 			),
 			'bt_border_radius_bottom_right' => array(
 				'name' => __( 'Border Radius Bottom Right', $this->domain ),
@@ -989,20 +920,21 @@ class Nsr_Options {
 				'input_type' => 'text',
 				'notice_level' => 'notice-correction',
 				'select_values' => 'none',
-				'validation_error_message' => __( "Your input didn't pass validation. This value must be a positive, integer pixel- or percent- value including 0 (zero). It was reset to it's default.", $this->domain )
 			),
 
 		);
+
+		return $plugin_options;
 	}
 
 	/**
 	 * Writes the requested option group(s) values to the database.
 	 *
-	 * @since  0.1.0
-	 *
-	 * @param  string $settings_tab | null
+	 * @param string $settings_tab | null
 	 *
 	 * @return void
+	 * @since  0.1.0
+	 *
 	 */
 	public function seed_options( $settings_tab = null ) {
 
@@ -1043,10 +975,10 @@ class Nsr_Options {
 	/**
 	 * Updates the database with the default values for the requested settings section.
 	 *
-	 * @param  string $settings_tab | null
+	 * @param string $settings_tab | null
 	 *
-	 * @return bool|WP_Error
-	 *@since  0.1.0
+	 * @return bool|\WP_Error
+	 * @since  0.1.0
 	 *
 	 */
 	public function reset_settings( $settings_tab ) {
@@ -1068,13 +1000,13 @@ class Nsr_Options {
 			}
 		}
 
-		return new WP_Error( - 1, __( 'Failed resetting the settings. Please refresh the page and try again.', $this->domain ) );
+		return new \WP_Error( - 1, __( 'Failed resetting the settings. Please refresh the page and try again.', $this->domain ) );
 	}
 
 	/**
 	 * Retrieves the options array for the requested settings section.
 	 *
-	 * @param  string $settings_section
+	 * @param string $settings_section
 	 *
 	 * @access public
 	 * @return mixed array $settings / bool false
@@ -1100,12 +1032,12 @@ class Nsr_Options {
 	/**
 	 * Processes the basic options array and returns the id/value pair.
 	 *
+	 * @param string $view
+	 *
+	 * @return array  $basic_options
 	 * @since  0.1.0
 	 * @access private
 	 *
-	 * @param  string $view
-	 *
-	 * @return array  $basic_options
 	 */
 	private function get_basic_settings( $view ) {
 
@@ -1124,12 +1056,12 @@ class Nsr_Options {
 	/**
 	 * Processes the extended options array and returns the id/value pair.
 	 *
+	 * @param string $view
+	 *
+	 * @return array  $extended_options
 	 * @since  0.1.0
 	 * @access private
 	 *
-	 * @param  string $view
-	 *
-	 * @return array  $extended_options
 	 */
 	private function get_extended_settings( $view ) {
 
@@ -1169,12 +1101,12 @@ class Nsr_Options {
 	/**
 	 * Retrieves the default options per requested section.
 	 *
+	 * @param bool false|string $view
+	 *
+	 * @return mixed
 	 * @since  0.1.0
 	 * @access private
 	 *
-	 * @param  bool false|string $view
-	 *
-	 * @return mixed
 	 */
 	public function get_options( $view = false ) {
 
@@ -1189,29 +1121,36 @@ class Nsr_Options {
 		}
 
 		if( false === $view ) {
-			return get_option( 'nicescrollr_options' );
+
+			return $options;
 		}
 
-		$stored_options = get_option( 'nicescrollr_options' );
-		if( ! isset( $stored_options[$view] ) ) {
+		if( ! isset( $options[$view] ) ) {
 
 			return $this->get_default_settings( $view );
 		}
 
-		return $stored_options[$view];
+		return $options[$view];
 	}
 
 	/**
 	 * Retrieves the default options per requested section.
 	 *
+	 * @param string $view
+	 *
+	 * @return array $section_defaults
 	 * @since  0.1.0
 	 * @access private
 	 *
-	 * @param  string $view
-	 *
-	 * @return array $section_defaults
 	 */
-	public function get_default_settings( $view ) {
+	public function get_default_settings( $view = null ) {
+
+		if( null === $view ) {
+			$frontend = 'frontend';
+			$backend = 'backend';
+
+			return array_merge( array_merge( $this->get_basic_settings( $frontend ), $this->get_extended_settings( $frontend ), $this->get_backtop_settings( $frontend ) ), array_merge( $this->get_basic_settings( $backend ), $this->get_extended_settings( $backend ), $this->get_backtop_settings( $backend ) ) );
+		}
 
 		return array_merge( $this->get_basic_settings( $view ), $this->get_extended_settings( $view ), $this->get_backtop_settings( $view ) );
 	}
@@ -1219,7 +1158,7 @@ class Nsr_Options {
 	/**
 	 * Extracts the necessary meta data from the requested options array.
 	 *
-	 * @param  string $settings_section
+	 * @param string $settings_section
 	 *
 	 * @access private
 	 * @return array  $args
@@ -1246,13 +1185,41 @@ class Nsr_Options {
 	}
 
 	/**
+	 * Checks the stored options for missing ones. Some may do not exist yet since last update.
+	 * If so, we populate the respective option with it's default value and update the stored options.
+	 *
+	 * @since 0.7.6
+	 */
+	public function maybe_fill_missing_options() {
+
+		$views = Nsr_Options::$settings_tabs;
+		$options = get_option( 'nicescrollr_options' );
+		$default_options = $this->get_default_settings();
+		if( is_array( $options ) ) {
+			foreach( $views as $view ) {
+				$default_options = $this->get_default_settings( $view );
+				foreach( $default_options as $key => $default_option ) {
+					if( null === $options[$view][$key] || '' === $options[$view][$key] ) {
+						$options[$view][$key] = $default_option;
+					}
+				}
+			}
+
+			update_option( 'nicescrollr_options', $options, true );
+		}
+		else {
+			$this->seed_options();
+		}
+	}
+
+	/**
 	 * Returns the meta data necessary for rendering the requested settings section heading.
 	 *
-	 * @since  0.1.0
-	 *
-	 * @param  string $section
+	 * @param string $section
 	 *
 	 * @return mixed
+	 * @since  0.1.0
+	 *
 	 */
 	public function get_section_heading( $section ) {
 
@@ -1305,8 +1272,8 @@ class Nsr_Options {
 	/**
 	 * Retrieves the notice levels for the validation errors.
 	 *
-	 * @since  0.1.0
 	 * @return array $notice_levels
+	 * @since  0.1.0
 	 */
 	public function get_notice_levels() {
 
@@ -1328,10 +1295,10 @@ class Nsr_Options {
 	/**
 	 * Returns the basic options count (the amount of basic option settings fields), which gets localized.
 	 *
-	 * @since  0.1.0
-	 * @see    admin/js/menu.js
-	 * @see    admin/includes/menu-localisation.php
 	 * @return array
+	 * @see    admin/menu/js/menu.js
+	 * @see    admin/menu/includes/menu-localisation.php
+	 * @since  0.1.0
 	 */
 	public function count_basic_settings() {
 
@@ -1343,10 +1310,10 @@ class Nsr_Options {
 	/**
 	 * Returns the basic options count (the amount of basic option settings fields), which gets localized.
 	 *
-	 * @since  0.1.0
-	 * @see    admin/js/menu.js
-	 * @see    admin/includes/menu-localisation.php
 	 * @return array
+	 * @see    admin/menu/js/menu.js
+	 * @see    admin/menu/includes/menu-localisation.php
+	 * @since  0.1.0
 	 */
 	public function count_extended_settings() {
 

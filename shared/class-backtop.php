@@ -104,9 +104,9 @@ class Nsr_Backtop {
 
 		$Nsr_Backtop_Localisation = new Nsr_Backtop_Localisation( $this->domain, $this->Options );
 		$config = $Nsr_Backtop_Localisation->get_backtop_configuration( $this->view );
+
 		$bt_class = $config['bt_size'];
 		$bt_arrow_color = $config['bt_arrow_color'];
-
 		$bt_arrow = '<?xml version="1.0" encoding="UTF-8" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg id="nsrBackTopArrow" width="66%" height="66%" viewBox="0 0 256 256" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.41421;"><g id="Ebene1"></g><g transform="matrix(0.689387,-0.6898,0.707291,0.706868,-129.386,75.0026)"><rect x="26.023" y="158.089" width="185.738" height="35.456" style="fill:' . $bt_arrow_color . ';"/></g><g transform="matrix(-0.547574,-0.547901,-0.707291,0.706868,381.27,69.9762)"><rect x="26.023" y="158.089" width="185.738" height="35.456" style="fill:' . $bt_arrow_color . ';"/></g></svg>';
 
 		echo "<span id='nsr_backtop' class='nsr-backtop " . $bt_class . "'>" . $bt_arrow . "</span>";

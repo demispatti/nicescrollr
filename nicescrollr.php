@@ -2,6 +2,7 @@
 
 namespace Nicescrollr;
 
+use Nicescrollr\Admin\Includes as AdminIncludes;
 use Nicescrollr\Includes as Includes;
 
 /**
@@ -22,12 +23,12 @@ use Nicescrollr\Includes as Includes;
  * Requires at least: 5.1
  * Tested up to: 5.3
  * Requires PHP: 5.6+
- * Version: 0.7.5
- * Stable tag: 0.7.5
+ * Version: 0.7.6.2
+ * Stable tag: 0.7.6.2
  * License: GPLv2 or later
  * License URI: http://www.gnu.org/licenses/gpl-2.0.html
  * Author: Demis Patti
- * Author URI:
+ * Author URI: https://demispatti.ch
  * Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=XLMMS7C62S76Q
  */
 
@@ -37,7 +38,7 @@ use Nicescrollr\Includes as Includes;
 if( ! defined( 'WPINC' ) ) {
 	die;
 }
-
+// Leave this to '1' until the minified scripts work as expected
 define( 'NICESCROLLR_DEBUG', '1' );
 
 /**
@@ -61,6 +62,9 @@ if( ! class_exists( 'Includes\Nsr_Activator' ) ) {
 }
 if( ! class_exists( 'Includes\Nsr_Deactivator' ) ) {
 	require_once NICESCROLLR_ROOT_DIR . 'includes/class-deactivator.php';
+}
+if( ! class_exists( 'AdminIncludes\Nsr_Options' ) ) {
+	require_once NICESCROLLR_ROOT_DIR . 'admin/includes/class-options.php';
 }
 
 /**
@@ -96,9 +100,12 @@ register_deactivation_hook( __FILE__, 'Nicescrollr\deactivate_nsr' );
  * @since 0.1.0
  */
 function run_nsr() {
+	// @fix, else add these options during next update routine and remove fix
+	$Options = new AdminIncludes\Nsr_Options( 'nicescrollr' );
+	$Options->maybe_fill_missing_options();
 
-	$plugin = new Includes\Nsr();
-	$plugin->run();
+	$Plugin = new Includes\Nsr();
+	$Plugin->run();
 }
 
 add_action( 'plugins_loaded', 'Nicescrollr\run_nsr' );

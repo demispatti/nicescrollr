@@ -14,7 +14,7 @@ if( ! defined( 'WPINC' ) ) {
  *
  * @since             0.1.0
  * @package           nicescrollr
- * @subpackage        nicescrollr/admin/menu/includes
+ * @subpackage        nicescrollr/admin/includes
  * Author:            Demis Patti <wp@demispatti.ch>
  * Author URI:        https://demispatti.ch
  * License:           GPL-2.0+

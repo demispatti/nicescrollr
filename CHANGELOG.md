@@ -1,3 +1,15 @@
+## Version 0.7.6.2
+### Added
+- Fixed the options issue
+
+## Version 0.7.6.1
+### Added
+- Fixed missing style sheet for backtop
+
+## Version 0.7.6
+### Changed
+- Fixed an issue regarding options that may be missing since v0.7.5
+
 ## Version 0.7.5
 ### Changed
 - Re-factored and re-organised the code for the admin part

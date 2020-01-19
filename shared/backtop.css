@@ -4,12 +4,10 @@
 .nsr-backtop {
   box-sizing: border-box;
   z-index: 100000;
-  /*height: 48px;
-  width: 48px;*/
   position: fixed;
   bottom: 32px;
   right: 32px;
-  overflow: visible;
+  overflow: hidden;
   text-indent: 100%;
   white-space: nowrap;
   visibility: hidden;
@@ -30,32 +28,6 @@
   align-items: center !important;
   justify-content: center !important;
   cursor: pointer;
-  	/*&:before {
-  		box-sizing: border-box;
-  		//font-size: 32px;
-  		color: white;
-  		//font-family: 'dashicons';
-  		//content: "\f343";
-  		position: absolute;
-  		//left: -39px;
-  		left: 50%;
-  		top: -6px;
-  		display: block;
-  		!*height: 48px;
-  		width: 48px;*!
-  		z-index: 100001;
-  		-webkit-transition: all .1s;
-  		-moz-transition: all .1s;
-  		transition: all .1s;
-  		cursor: pointer;
-  
-  		&:hover {
-  			color: white;
-  			-webkit-transition: all .1s;
-  			-moz-transition: all .1s;
-  			transition: all .1s;
-  		}
-  	}*/
 }
 .nsr-backtop:hover {
   -webkit-transition: all .1s;
