@@ -48,16 +48,15 @@ class Nsr_Ajax {
 	 */
 	private $nonce_error_text;
 
-	/**
-	 * Nsr_Ajax constructor.
-	 *
-	 * @param string $domain
-	 * @param Nsr_Options $Options
-	 *
-	 * @since 0.7.0
-	 * @return void
-	 */
-	public function __construct( $domain, $Options ) {
+    /**
+     * Nsr_Ajax constructor.
+     *
+     * @param string $domain
+     * @param Nsr_Options $Options
+     *
+     * @since 0.7.0
+     */
+	public function __construct($domain, $Options) {
 
 		$this->domain = $domain;
 		$this->Options = $Options;

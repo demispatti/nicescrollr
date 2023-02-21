@@ -33,31 +33,30 @@ class Nsr_Reset_Section {
 	 */
 	private $domain;
 
-	/**
-	 * Assigns the required parameter to its instance.
-	 *
-	 * @since 0.1.0
-	 *
-	 * @param string $domain
-	 *
-	 * @return void
-	 */
-	public function __construct( $domain ) {
+    /**
+     * Assigns the required parameter to its instance.
+     *
+     * @param string $domain
+     *
+     * @since 0.1.0
+     *
+     */
+	public function __construct($domain) {
 
 		$this->domain = $domain;
 	}
 
-	/**
-	 * Echoes the html that defines the reset area and its content.
-	 *
-	 * @param string $view
-	 *
-	 * @since  0.1.0
-	 * @uses   get_section_heading()
-	 * @uses   get_table()
-	 * @return void / echo string $html
-	 */
-	public function echo_section( $view ) {
+    /**
+     * Echoes the html that defines the reset area and its content.
+     *
+     * @param string $view
+     *
+     * @return void / echo string $html
+     * @since  0.1.0
+     * @uses   get_section_heading()
+     * @uses   get_table()
+     */
+	public function echo_section($view) {
 
 		$html = $this->get_section_heading();
 		$html .= $this->get_table( $view );
@@ -72,38 +71,41 @@ class Nsr_Reset_Section {
 	 * @access private
 	 * @return string $html
 	 */
-	private function get_section_heading() {
+	private function get_section_heading()
+    {
 
 		return '<h2 class="settings-toggle reset nicescrollr_settings_toggle"><span class="dashicons dashicons-menu"></span>' . __( 'Reset Settings', $this->domain ) . '</h2>';
 	}
 
-	/**
-	 * Returns the html that defines the content of the reset area.
-	 *
-	 * @param string $view
-	 *
-	 * @since  0.1.0
-	 * @uses   reset_buttons()
-	 * @access private
-	 * @return string $html
-	 */
-	private function get_table( $view ) {
+    /**
+     * Returns the html that defines the content of the reset area.
+     *
+     * @param string $view
+     *
+     * @return string $html
+     * @since  0.1.0
+     * @uses   reset_buttons()
+     * @access private
+     */
+	private function get_table($view)
+    {
 
 		$args = $this->get_reset_button_args( $view );
 
 		return $this->create_table( $args );
 	}
 
-	/**
-	 * Returns the meta data for the reset buttons.
-	 *
-	 * @param string $view
-	 *
-	 * @since  0.1.0
-	 * @access private
-	 * @return array $reset_buttons
-	 */
-	private function get_reset_button_args( $view ) {
+    /**
+     * Returns the meta data for the reset buttons.
+     *
+     * @param string $view
+     *
+     * @return array $reset_buttons
+     * @since  0.1.0
+     * @access private
+     */
+	private function get_reset_button_args($view)
+    {
 
 		if( 'frontend' === $view ) {
 
@@ -131,7 +133,8 @@ class Nsr_Reset_Section {
 	 *
 	 * @return string
 	 */
-	private function create_table( $args ) {
+	private function create_table( $args )
+    {
 
 		$html = '<table class="form-table reset-panel" style="display: inline-block;">';
 		$html .= '<tbody>';

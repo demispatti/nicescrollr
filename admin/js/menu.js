@@ -14,7 +14,6 @@
 (function ($) {
 
 	function NsrMenu () {
-
 		// Default elements
 		this.nsr_menu = Nsr_Menu;
 		this.document = $(document);
@@ -24,7 +23,6 @@
 		this.nice = $('#ascrail2000');
 		this.colorpicker = this.initColorPicker(this.colorpicker);
 		this.wrap = $('.form-table td');
-
 		// Settings Toggles and their settings sections
 		this.basicSettingsToggle = $('h2.settings-toggle.basic');
 		this.upperPanel = this.basicSettingsToggle.next('table');
@@ -47,11 +45,10 @@
 			this.initExtendedSettingsPanel();
 			this.initBacktopSettingsPanel();
 			this.initResetSettingsPanel();
-			this.bind();
+			this.addEvents();
 		},
 		initColorPicker: function (element) {
 			element = $('.nsr-color-picker').wpColorPicker();
-
 			return element;
 		},
 		wrapTable: function () {
@@ -60,78 +57,64 @@
 		// Settings section
 		initBasicSettingsPanel: function () {
 			this.basicSettingsToggle.addClass('nicescrollr_settings_toggle');
-			// Adds the class.
 			this.upperPanel.addClass('upper-panel');
-			// Sets the initial display.
 			this.upperPanel.css('display', 'inline-block').animate({
 				height: '100%'
 			}, 320);
 		},
 		initExtendedSettingsPanel: function () {
 			this.advancedSettingsToggle.addClass('nicescrollr_settings_toggle');
-			// Wrap it for styling purposes
 			this.lowerPanel.addClass('lower-panel');
-			// Set the initial display
 			this.lowerPanel.css('display', 'none');
 		},
 		initBacktopSettingsPanel: function () {
 			this.backtopSettingsToggle.addClass('nicescrollr_settings_toggle');
-			// Wrap it for styling purposes
 			this.backtopPanel.addClass('backtop-panel');
-			// Set the initial display
 			this.backtopPanel.css('display', 'none');
 		},
 		initResetSettingsPanel: function () {
 			this.resetSettingsToggle.addClass('nicescrollr_settings_toggle');
-			// Wrap it for styling purposes
 			this.resetPanel.addClass('reset-panel');
-			// Set the initial display
 			this.resetPanel.css('display', 'none');
 		},
 		localizeCheckboxes: function () {
 			$('<style>.nsr-switch-label:before{content:"' + this.nsr_menu.Off + '";}</style>').appendTo('head');
 			$('<style>.nsr-switch-label:after{content:"' + this.nsr_menu.On + '";}</style>').appendTo('head');
 		},
-		bind: function () {
-			this.basicSettingsToggle.bind('click', { context: this }, this.basicSettingsToggleOnClick);
-			this.advancedSettingsToggle.bind('click', { context: this }, this.extendedSettingsToggleOnClick);
-			this.backtopSettingsToggle.bind('click', { context: this }, this.backtopSettingsToggleOnClick);
-			this.resetSettingsToggle.bind('click', { context: this }, this.resetSettingsToggleOnClick);
+		addEvents: function () {
+			this.basicSettingsToggle.on('click', { context: this }, this.basicSettingsToggleOnClick);
+			this.advancedSettingsToggle.on('click', { context: this }, this.extendedSettingsToggleOnClick);
+			this.backtopSettingsToggle.on('click', { context: this }, this.backtopSettingsToggleOnClick);
+			this.resetSettingsToggle.on('click', { context: this }, this.resetSettingsToggleOnClick);
 		},
 
 		basicSettingsToggleOnClick: function (event) {
 			var $this = event.data.context;
-
 			$this.upperPanel.slideToggle(320);
 		},
 		extendedSettingsToggleOnClick: function (event) {
 			var $this = event.data.context;
-
 			$this.lowerPanel.slideToggle(320);
 		},
 		backtopSettingsToggleOnClick: function (event) {
 			var $this = event.data.context;
-
 			$this.backtopPanel.slideToggle(320);
 		},
 		resetSettingsToggleOnClick: function (event) {
 			var $this = event.data.context;
-
 			$this.resetPanel.slideToggle(320);
 		},
 
 		enableScrollTo: function () {
 			this.errorLink = $('.error a');
-			this.errorLink.bind('click', { context: this }, this.scrollToOnClick);
+			this.errorLink.on('click', { context: this }, this.scrollToOnClick);
 		},
 		scrollToOnClick: function (event) {
 			event.preventDefault();
-
 			var $this = event.data.context;
 			var address = $(this).attr('href');
-			var target = null;
-			var href = /*'input' +*/ address;
-
+			var target;
+			var href = address;
 			// If the target is a color picker and thus it is an anchor with an id and not an input element,
 			// we change the targeted element to keep the scrollTo-functionality fully functional.
 			if (address === '#cursorcolor' || address === '#cursorbordercolor' || address === '#background') {

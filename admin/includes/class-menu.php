@@ -1,4 +1,7 @@
-<?php
+<?php /** @noinspection ALL */
+/** @noinspection ALL */
+
+/** @noinspection ALL */
 
 namespace Nicescrollr\Admin\Includes;
 
@@ -159,16 +162,16 @@ class Nsr_Menu {
 		$this->file_prefix = defined( 'NICESCROLLR_DEBUG' ) && NICESCROLLR_DEBUG === '1' ? '' : '.min';
 	}
 
-	/**
-	 * Nsr_Menu constructor.
-	 *
-	 * @param $domain
-	 * @param AdminIncludes\Nsr_Options $Options
-	 * @param AdminIncludes\Nsr_Menu_Localisation $Menu_Localisation
-	 * @param AdminIncludes\Nsr_Ajax_Localisation $Ajax_Localisation
-	 * @param AdminIncludes\Nsr_Reset_Section $Reset_Section
-	 */
-	public function __construct( $domain, $Options, $Menu_Localisation, $Ajax_Localisation, $Reset_Section ) {
+    /**
+     * Nsr_Menu constructor.
+     *
+     * @param $domain
+     * @param AdminIncludes\Nsr_Options $Options
+     * @param AdminIncludes\Nsr_Menu_Localisation $Menu_Localisation
+     * @param AdminIncludes\Nsr_Ajax_Localisation $Ajax_Localisation
+     * @param AdminIncludes\Nsr_Reset_Section $Reset_Section
+     */
+	public function __construct($domain, $Options, $Menu_Localisation, $Ajax_Localisation, $Reset_Section) {
 
 		$this->domain = $domain;
 		$this->Options = $Options;
@@ -204,17 +207,17 @@ class Nsr_Menu {
 		}
 	}
 
-	/**
-	 * Registers the st<les for the admin menu.
-	 *
-	 * @param string $hook_suffix
-	 *
-	 * @hooked_action
-	 *
-	 * @since  0.1.0
-	 * @return void
-	 */
-	public function enqueue_styles( $hook_suffix ) {
+    /**
+     * Registers the st<les for the admin menu.
+     *
+     * @param string $hook_suffix
+     *
+     * @return void
+     * @hooked_action
+     *
+     * @since  0.1.0
+     */
+	public function enqueue_styles($hook_suffix) {
 
 		$handle_prefix = $this->handle_prefix;
 		$file_prefix = $this->file_prefix;
@@ -229,17 +232,17 @@ class Nsr_Menu {
 		}
 	}
 
-	/**
-	 * Registers the scripts for the admin menu.
-	 *
-	 * @param string $hook_suffix
-	 *
-	 * @hooked_action
-	 *
-	 * @since  0.1.0
-	 * @return void
-	 */
-	public function enqueue_scripts( $hook_suffix ) {
+    /**
+     * Registers the scripts for the admin menu.
+     *
+     * @param string $hook_suffix
+     *
+     * @return void
+     * @hooked_action
+     *
+     * @since  0.1.0
+     */
+	public function enqueue_scripts($hook_suffix) {
 
 		$handle_prefix = $this->handle_prefix;
 		$file_prefix = $this->file_prefix;
@@ -266,16 +269,17 @@ class Nsr_Menu {
 		}
 	}
 
-	/**
-	 * Localizes an ajax related script.
-	 *
-	 * @param string $classes
-	 *
-	 * @since  0.1.0
-	 * @access private
-	 * @return string $classes
-	 */
-	public function add_body_class( $classes ) {
+    /**
+     * Localizes an ajax related script.
+     *
+     * @param string $classes
+     *
+     * @return string $classes
+     * @since  0.1.0
+     * @access private
+     */
+	public function add_body_class($classes)
+    {
 
 		if( isset( $_REQUEST['page'] ) && $_REQUEST['page'] === 'nicescrollr_settings' ) {
 
@@ -427,7 +431,7 @@ class Nsr_Menu {
 	 * @since  0.1.0
 	 * @uses   get_errors_meta_data()
 	 * @see    admin/includes/class-nsr-options.php
-	 * @return void | echo $html
+	 * @return void | $html
 	 */
 	public function admin_notice_display() {
 

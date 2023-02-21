@@ -20,11 +20,11 @@ use Nicescrollr\Includes as Includes;
  * Plugin URI:        https://wordpress.org/plugins/nicescrollr/
  * Description:       This plugin is a wrapper for the popular "Nicescroll" javascript library, which is made by <a href="https://wordpress.org/support/users/inuyaksa/" target="_blank">InuYaksa</a>. You can use it on both the frontend and the backend. It is fully customizable, so you can tweak and tune every single parameter Nicescroll has to offer! You can style it totally different for both parts of your website. You can even keep the default scrollbar if you like. It's all up to you.
  * Tags: nicescroll, scroll, scrollbar, back to top, scroll to top, frontend, backend
- * Requires at least: 5.1
- * Tested up to: 5.3
+ * Requires at least: 5.5
+ * Tested up to: 6.1.1
  * Requires PHP: 5.6+
- * Version: 0.7.6.2
- * Stable tag: 0.7.6.2
+ * Version: 0.9.0
+ * Stable tag: 0.9.0
  * License: GPLv2 or later
  * License URI: http://www.gnu.org/licenses/gpl-2.0.html
  * Author: Demis Patti
@@ -101,11 +101,11 @@ register_deactivation_hook( __FILE__, 'Nicescrollr\deactivate_nsr' );
  */
 function run_nsr() {
 	// @fix, else add these options during next update routine and remove fix
-	$Options = new AdminIncludes\Nsr_Options( 'nicescrollr' );
-	$Options->maybe_fill_missing_options();
+	$options = new AdminIncludes\Nsr_Options( 'nicescrollr' );
+	$options->maybe_fill_missing_options();
 
-	$Plugin = new Includes\Nsr();
-	$Plugin->run();
+	$plugin = new Includes\Nsr();
+	$plugin->run();
 }
 
 add_action( 'plugins_loaded', 'Nicescrollr\run_nsr' );

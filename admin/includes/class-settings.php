@@ -1,4 +1,6 @@
-<?php
+<?php /** @noinspection ALL */
+
+/** @noinspection ALL */
 
 namespace Nicescrollr\Admin\Includes;
 
@@ -91,15 +93,15 @@ class Nsr_Settings {
 	 */
 	private $stored_options;
 
-	/**
-	 * Nsr_Settings constructor.
-	 *
-	 * @param $domain
-	 * @param $section
-	 * @param AdminIncludes\Nsr_Options $Options
-	 * @param AdminIncludes\Nsr_Validation $Validation
-	 */
-	public function __construct( $domain, $section, $Options, $Validation ) {
+    /**
+     * Nsr_Settings constructor.
+     *
+     * @param $domain
+     * @param $section
+     * @param AdminIncludes\Nsr_Options $Options
+     * @param AdminIncludes\Nsr_Validation $Validation
+     */
+	public function __construct($domain, $section, $Options, $Validation) {
 
 		$this->domain = $domain;
 		$this->section = $section;
@@ -129,7 +131,8 @@ class Nsr_Settings {
 	 * @since  0.1.0
 	 * @return Nsr_Options $options
 	 */
-	public function get_options_instance() {
+	public function get_options_instance()
+    {
 
 		return $this->Options;
 	}
@@ -142,7 +145,8 @@ class Nsr_Settings {
 	 * @since  0.1.0
 	 * @return string $section
 	 */
-	public function get_section() {
+	public function get_section()
+    {
 
 		return $this->section;
 	}
@@ -160,15 +164,15 @@ class Nsr_Settings {
 		register_setting( 'nicescrollr_options', 'nicescrollr_options', array( $this, 'run_validation' ) );
 	}
 
-	/**
-	 * Kicks off the validation process.
-	 *
-	 * @param array $input
-	 *
-	 * @return array|WP_Error
-	 *@since  0.1.0
-	 */
-	public function run_validation( $input ) {
+    /**
+     * Kicks off the validation process.
+     *
+     * @param array $input
+     *
+     * @return array|WP_Error
+     * @since  0.1.0
+     */
+	public function run_validation($input) {
 
 		if( isset( $_REQUEST['section'] ) ) {
 
@@ -260,7 +264,7 @@ class Nsr_Settings {
 	public function initialize_options() {
 
 		$this->add_settings_section( $this->Options->get_section_heading( 'basic' ) );
-		$this->add_settings_field( $this->Options->get_args( 'basic' ) );
+		$this->add_settings_field( $this->Options->get_args() );
 
 		$this->add_settings_section( $this->Options->get_section_heading( 'extended' ) );
 		$this->add_settings_field( $this->Options->get_args( 'extended' ) );
@@ -342,16 +346,16 @@ class Nsr_Settings {
 		//echo '<h2 class="backtop nicescrollr_settings_toggle"><i class="fa fa-sliders" aria-hidden="true"></i>' . __( 'Plugin Settings', $this->domain ) . '</h2>';
 	}
 
-	/**
-	 * Calls the corresponding callback function that renders the section field.
-	 *
-	 * @since  0.1.0
-	 *
-	 * @param  array $args
-	 *
-	 * @return void / echo
-	 */
-	public function render_settings_field_callback( $args ) {
+    /**
+     * Calls the corresponding callback function that renders the section field.
+     *
+     * @param array $args
+     *
+     * @return void / echo
+     * @since  0.1.0
+     *
+     */
+	public function render_settings_field_callback($args) {
 
 		switch( $args['input_type'] ) {
 
@@ -498,24 +502,25 @@ class Nsr_Settings {
 		echo $html;
 	}
 
-	/**
-	 * Translation helper function for some select box values.
-	 * Since Nicescroll makes use of strings as parameters - and it does only "speak" English -
-	 * this function translates the values that were stored in the default locale into strings of the current locale.
-	 * This way, the localisation feature remains fully functional.
-	 *
-	 * @param string $string
-	 * @param string $option_key
-	 *
-	 * @since  0.1.0
-	 *
-	 * @see    admin/includes/class-nsr-validation.php | translate_to_default_locale()
-	 *
-	 * @return string $output
-	 *
-	 * @deprecated
-	 */
-	public function translate_to_custom_locale( $string, $option_key ) {
+    /**
+     * Translation helper function for some select box values.
+     * Since Nicescroll makes use of strings as parameters - and it does only "speak" English -
+     * this function translates the values that were stored in the default locale into strings of the current locale.
+     * This way, the localisation feature remains fully functional.
+     *
+     * @param string $string
+     * @param string $option_key
+     *
+     * @return string $output
+     *
+     * @since  0.1.0
+     *
+     * @see    admin/includes/class-nsr-validation.php | translate_to_default_locale()
+     *
+     * @deprecated
+     */
+	public function translate_to_custom_locale($string, $option_key)
+    {
 
 		switch( $option_key ) {
 

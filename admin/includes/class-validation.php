@@ -45,32 +45,31 @@ class Nsr_Validation {
 	 */
 	private $Options;
 
-	/**
-	 * Assigns the required parameters to its instance.
-	 *
-	 * @param string $domain
-	 * @param Nsr_Options $Options
-	 *
-	 *@since 0.1.0
-	 *
-	 */
-	public function __construct( $domain, $Options ) {
+    /**
+     * Assigns the required parameters to its instance.
+     *
+     * @param string $domain
+     * @param Nsr_Options $Options
+     *
+     * @since 0.1.0
+     */
+	public function __construct($domain, $Options) {
 
 		$this->domain = $domain;
 		$this->Options = $Options;
 	}
 
-	/**
-	 * Kicks off sanitisation and validation - if there's any input given.
-	 *
-	 * @since  0.1.0
-	 *
-	 * @param  array $input
-	 * @param  string $section
-	 *
-	 * @return array
-	 */
-	public function run( $input, $section ) {
+    /**
+     * Kicks off sanitisation and validation - if there's any input given.
+     *
+     * @param array $input
+     * @param string $section
+     *
+     * @return array
+     * @since  0.1.0
+     */
+	public function run($input, $section)
+    {
 
 		if( isset( $_SESSION['Nsr_Upgrade'] ) || isset( $input['internal'] ) ) {
 
@@ -85,22 +84,23 @@ class Nsr_Validation {
 		return $this->merge_options( $valid, $section );
 	}
 
-	/**
-	 * Sanitizes the input.
-	 *
-	 * @since  0.1.0
-	 *
-	 * @param  array $input
-	 *
-	 * @return array $output
-	 */
-	private function sanitize( $input ) {
+    /**
+     * Sanitizes the input.
+     *
+     * @param array $input
+     *
+     * @return array $output
+     * @since  0.1.0
+     *
+     */
+	private function sanitize($input)
+    {
 
 		$output = array();
 
 		foreach( $input as $key => $value ) {
 
-			if( isset ( $input[$key] ) ) {
+			if( isset ( $value ) ) {
 				$output[$key] = strip_tags( stripslashes( $value ) );
 			}
 		}
@@ -108,22 +108,22 @@ class Nsr_Validation {
 		return apply_filters( 'sanitize', $output, $input );
 	}
 
-	/**
-	 * Validates the input.
-	 *
-	 * since  0.1.0
-	 * @uses   get_default_settings()
-	 * @see    admin/includes/class-Nsr-options.php
-	 * @uses   translate_to_default_locale()
-	 *
-	 * @param  array $input
-	 * @param  string $section
-	 *
-	 * @return array $output
-	 */
-	private function validate( $input, $section ) {
+    /**
+     * Validates the input.
+     *
+     * since  0.1.0
+     * @param array $input
+     * @param string $section
+     *
+     * @return array $output
+     * @uses   get_default_settings()
+     * @see    admin/includes/class-Nsr-options.php
+     * @uses   translate_to_default_locale()
+     */
+	private function validate($input, $section)
+    {
 
-		$defaults = (array) $this->Options->get_default_settings( $section );
+		$defaults = $this->Options->get_default_settings( $section );
 		$options_meta = $this->Options->get_options_meta();
 		$notice_levels = $this->Options->get_notice_levels();
 		$output = array();
@@ -318,7 +318,7 @@ class Nsr_Validation {
 		}
 
 		// If there were errors and transients were created, we create one more containing the ids of the previously created ones.
-		if( null !== $errors && ( ! empty( $errors ) ) ) {
+		if( /*null !== $errors && (*/ ! empty( $errors ) /*)*/ ) {
 
 			set_transient( 'nicescrollr_validation_transient', $errors, 60 );
 		}
@@ -339,7 +339,7 @@ class Nsr_Validation {
 			return $value;
 		}
 
-		if( '' !== $value && ! preg_match( '/^([A-Za-z0-9\_ ().-]-)*[A-Za-z0-9\_ ().-]+$/', $value ) ) {
+		if( /*'' !== $value &&*/ ! preg_match( '/^([A-Za-z0-9_ ().-]-)*[A-Za-z0-9\_().-]+$/', $value ) ) {
 
 			return new WP_Error( 'broke', __( "Your input didn't pass validation. Please use numbers and/or alphabetical characters.", $this->domain ) );
 		}
@@ -347,19 +347,19 @@ class Nsr_Validation {
 		return (string) $value;
 	}
 
-	/**
-	 * Fill options that are not set and give them a specified default value.
-	 *
-	 * @since  0.2.1
-	 *
-	 * @param array $valid
-	 * @param string $section
-	 *
-	 * @access private
-	 *
-	 * @return array $valid
-	 */
-	private function fill( $valid, $section ) {
+    /**
+     * Fill options that are not set and give them a specified default value.
+     *
+     * @param array $valid
+     * @param string $section
+     *
+     * @return array $valid
+     * @access private
+     *
+     * @since  0.2.1
+     */
+	private function fill($valid, $section)
+    {
 
 		if( 'frontend' === $section || 'backend' === $section ) {
 
@@ -391,7 +391,8 @@ class Nsr_Validation {
 	 *
 	 * @return array $options
 	 */
-	private function merge_options( $valid, $section ) {
+	private function merge_options( $valid, $section )
+    {
 
 		$options = get_option( 'nicescrollr_options' );
 
@@ -411,7 +412,8 @@ class Nsr_Validation {
 	 *
 	 * @return string
 	 */
-	private function make_readable( $string ) {
+	private function make_readable( $string )
+    {
 
 		// Remove the file extension
 		$name = preg_replace( array( '/-/', '/_/' ), array( ' ', ' ' ), $string );
@@ -642,7 +644,8 @@ class Nsr_Validation {
 	 * @since  0.7.5
 	 * @access private
 	 */
-	private function add_error($i, $option_key, $options_meta, $notice_levels) {
+	private function add_error($i, $option_key, $options_meta, $notice_levels)
+    {
 
 		return array(
 			'option_key' => $option_key,
@@ -653,18 +656,18 @@ class Nsr_Validation {
 		);
 }
 
-	/**
-	 * Creates and returns a WP_Error instance for the given option.
-	 *
-	 * @param array $options_meta
-	 * @param string $option_key
-	 *
-	 * @return string|WP_Error
-	 *
-	 * @since  0.7.5
-	 * @access private
-	 */
-	private function get_wp_error( $options_meta, $option_key) {
+    /**
+     * Creates and returns a WP_Error instance for the given option.
+     *
+     * @param array $options_meta
+     * @param string $option_key
+     *
+     * @return WP_Error
+     *
+     * @since  0.7.5
+     * @access private
+     */
+	private function get_wp_error($options_meta, $option_key) {
 		
 		return new WP_Error( -1, $options_meta[$option_key]['validation_error_message'] );
 	}

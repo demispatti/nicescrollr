@@ -1,4 +1,10 @@
-<?php
+<?php /** @noinspection ALL */
+/** @noinspection ALL */
+/** @noinspection ALL */
+/** @noinspection ALL */
+/** @noinspection ALL */
+
+/** @noinspection ALL */
 
 namespace Nicescrollr\Admin;
 
@@ -135,15 +141,15 @@ class Nsr_Admin {
 		$this->file_prefix = defined( 'NICESCROLLR_DEBUG' ) && NICESCROLLR_DEBUG === '1' ? '' : '.min';
 	}
 
-	/**
-	 * Nsr_Admin constructor.
-	 *
-	 * @param string $domain
-	 * @param AdminIncludes\Nsr_Options $Options
-	 * @param Shared\Nsr_Nicescroll_Localisation $Nicescroll_Localisation
-	 * @param Shared\Nsr_Backtop_Localisation $Backtop_Localisation
-	 */
-	public function __construct( $domain, $Options, $Nicescroll_Localisation, $Backtop_Localisation ) {
+    /**
+     * Nsr_Admin constructor.
+     *
+     * @param string $domain
+     * @param AdminIncludes\Nsr_Options $Options
+     * @param Shared\Nsr_Nicescroll_Localisation $Nicescroll_Localisation
+     * @param Shared\Nsr_Backtop_Localisation $Backtop_Localisation
+     */
+	public function __construct($domain, $Options, $Nicescroll_Localisation, $Backtop_Localisation) {
 
 		$this->domain = $domain;
 		$this->Options = $Options;
@@ -212,12 +218,13 @@ class Nsr_Admin {
 			// jQuery Easing
 			wp_enqueue_script( 'nicescrollr-inc-easing-min-js', NICESCROLLR_ROOT_URL . 'vendor/jquery-easing/jquery.easing.min.js', array( 'jquery' ), 'all' );
 
-			// Nicescroll Library
-			$nice_url = 'https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js';
+			// Nicescroll CDN -> excluded in favor of local, edited version to prevent error messages regarding passive listener.
+			//$nice_url = 'https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js';
+            $nice_url = NICESCROLLR_ROOT_URL . 'vendor/nicescroll/jquery.nicescroll.min.js';
 			$nice_cdn = wp_remote_get( $nice_url );
-			if( (int) wp_remote_retrieve_response_code( $nice_cdn ) !== 200 ) {
+			/*if( (int) wp_remote_retrieve_response_code( $nice_cdn ) !== 200 ) {
 				$nice_url = NICESCROLLR_ROOT_URL . 'vendor/nicescroll/jquery.nicescroll.min.js';
-			}
+			}*/
 			wp_enqueue_script( 'nicescrollr-inc-nicescroll-min-js', $nice_url, array( 'jquery', 'nicescrollr-inc-easing-min-js' ), 'all' );
 
 			// Nicescroll configuration file
@@ -244,7 +251,7 @@ class Nsr_Admin {
 	 */
 	public function initialize_menu() {
 
-		$Menu_Localisation = new AdminIncludes\Nsr_Menu_Localisation( $this->domain, $this->Options );
+		$Menu_Localisation = new AdminIncludes\Nsr_Menu_Localisation( $this->Options );
 		$Ajax_Localisation = new AdminIncludes\Nsr_Ajax_Localisation( $this->domain );
 		$Reset_Section = new AdminIncludes\Nsr_Reset_Section( $this->domain );
 
@@ -332,17 +339,17 @@ class Nsr_Admin {
 		$this->Backtop_Localisation->run( $this->view );
 	}
 
-	/**
-	 * Adds support, rating, and donation links to the plugin row meta on the plugins admin screen.
-	 *
-	 * @since  0.1.0
-	 *
-	 * @param  array $meta
-	 * @param  string $file
-	 *
-	 * @return array  $meta
-	 */
-	public function plugin_row_meta( $meta, $file ) {
+    /**
+     * Adds support, rating, and donation links to the plugin row meta on the plugins admin screen.
+     *
+     * @param array $meta
+     * @param string $file
+     *
+     * @return array  $meta
+     * @since  0.1.0
+     */
+	public function plugin_row_meta($meta, $file)
+    {
 
 		$plugin = plugin_basename( 'nicescrollr/nsr.php' );
 

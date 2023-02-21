@@ -31,15 +31,14 @@ class Nsr_I18n {
 	 */
 	private $domain;
 
-	/**
-	 * Bonaire_i18n constructor.
-	 *
-	 * @param string $domain
-	 *
-	 * @since 1.0.0
-	 * @return void
-	 */
-	public function __construct( $domain ) {
+    /**
+     * Bonaire_i18n constructor.
+     *
+     * @param string $domain
+     *
+     * @since 1.0.0
+     */
+	public function __construct($domain) {
 
 		$this->domain = $domain;
 	}

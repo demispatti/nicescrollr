@@ -25,17 +25,6 @@ if( ! defined( 'WPINC' ) ) {
 class Nsr_Menu_Localisation {
 
 	/**
-	 * The domain of the plugin.
-	 *
-	 * @since  0.1.0
-	 *
-	 * @access private
-	 *
-	 * @var string $domain
-	 */
-	private $domain;
-
-	/**
 	 * The reference to the options class.
 	 *
 	 * @since  0.1.0
@@ -44,15 +33,13 @@ class Nsr_Menu_Localisation {
 	 */
 	private $Options;
 
-	/**
-	 * Nsr_Menu_Localisation constructor.
-	 *
-	 * @param $domain
-	 * @param Nsr_Options $Options
-	 */
-	public function __construct( $domain, $Options ) {
+    /**
+     * Nsr_Menu_Localisation constructor.
+     *
+     * @param Nsr_Options $Options
+     */
+	public function __construct($Options) {
 
-		$this->domain = $domain;
 		$this->Options = $Options;
 	}
 
@@ -89,7 +76,8 @@ class Nsr_Menu_Localisation {
 	 * @access private
 	 * @return array
 	 */
-	private function get_localized_strings_for_switches() {
+	private function get_localized_strings_for_switches()
+    {
 
 		$current_locale = get_locale();
 

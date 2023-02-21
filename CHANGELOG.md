@@ -1,3 +1,31 @@
+# Changelog
+
+## Version 0.9.0
+### Changed
+- Bug fixes
+
+## Version 0.8.3
+### Changed
+- Made code compatible with PHP version 5.6 again
+
+## Version 0.8.2
+### Changed
+- Fixed grab cursor bug
+- Fixed text selection problem (thanks peopleinside)
+- Fixed css errors (thanks Malae)
+- Fixed deprecated js symbol (thanks Malae)
+- Fixed Chrome issue with passive event listener
+- Fixed parse error in class-nsr.php (thanks Malae)
+- "Show on mobile" and "show default scrollbar" options disabled until a fix is available
+
+## Version 0.8.1
+### Changed
+- Replaced deprecated jQuery .bind() method (Thanks to Malae for pointing this out)
+
+## Version 0.8
+### Updated
+- Checked for compatibility with WordPress version 5.6
+
 ## Version 0.7.6.2
 ### Added
 - Fixed the options issue

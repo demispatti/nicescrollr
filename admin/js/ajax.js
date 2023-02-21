@@ -15,17 +15,18 @@
 
 	function NsrAjax () {
 
-		this.nsr_ajax = Nsr_Ajax;
+		// noinspection JSUnresolvedVariable
+        this.nsr_ajax = Nsr_Ajax;
 		this.resetbutton = $(".nsr-reset-button");
 	}
 
 	NsrAjax.prototype = {
 
 		init: function () {
-			this.bind();
+			this.addEvents();
 		},
-		bind: function () {
-			this.resetbutton.bind('click', { context: this }, this.resetButtonOnClick);
+		addEvents: function () {
+			this.resetbutton.on('click', { context: this }, this.resetButtonOnClick);
 		},
 		resetButtonOnClick: function (event) {
 			event.preventDefault();
@@ -49,7 +50,7 @@
 				if (response.success === true) {
 					var message = response.data.message;
 					alert(message);
-					location.reload(true);
+					location.reload();
 				}
 				else {
 					alert('Error! Please reload the page and try again.');

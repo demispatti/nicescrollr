@@ -105,7 +105,6 @@ class Nsr {
 
 		$this->domain = 'nicescrollr';
 		$this->set_instances();
-
 		$this->set_locale();
 	}
 
@@ -136,6 +135,11 @@ class Nsr {
 			return;
 		}
 
+        /**
+         * @param AdminIncludes\Nsr_Options $Options
+         * @param Shared\Nsr_Nicescroll_Localisation $Nicescroll_Localisation
+         * @param Shared\Nsr_Backtop_Localisation $Backtop_Localisation
+         */
 		$admin = new Admin\Nsr_Admin( $this->domain, $this->Options, $this->Nicescroll_Localisation, $this->Backtop_Localisation );
 		$admin->add_hooks();
 	}

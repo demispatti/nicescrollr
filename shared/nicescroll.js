@@ -13,7 +13,7 @@
 "use strict";
 jQuery(function ($) {
 
-	var nicescrollrIsMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+	var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
 	function Nicescrollr () {
 		this.nsr_options = Nsr_Options;
@@ -27,11 +27,15 @@ jQuery(function ($) {
 
 	Nicescrollr.prototype = {
 		init: function () {
+			//this.addEvents();
 			this.runNicescroll();
 			this.listenForDocumentChanges();
 		},
+		addEvents: function(){
+			//this.document.on('mousedown', {context: this}, this.mouseWheelScrollHepler);
+			//this.document.on('mousedown', {context: this}, this.autoscrollHelper);
+		},
 		runNicescroll: function () {
-			var config = this.getNicescrollConfiguration();
 			this.body.niceScroll(this.getNicescrollConfiguration());
 			if(this.body.hasClass('wp-admin')){
 				this.runBackendIframeHelper();
@@ -91,8 +95,6 @@ jQuery(function ($) {
 			});
 		},
 		runFrontendIframeHelper: function () {
-
-			var isIE = false;
 			var ua = window.navigator.userAgent;
 			var old_ie = ua.indexOf('Trident/');
 			var new_ie = ua.indexOf('Edge');
@@ -114,8 +116,6 @@ jQuery(function ($) {
 			}
 		},
 		runBackendIframeHelper: function() {
-
-			var isIE = false;
 			var ua = window.navigator.userAgent;
 			var old_ie = ua.indexOf('Trident/');
 			var new_ie = ua.indexOf('Edge');
@@ -259,15 +259,26 @@ jQuery(function ($) {
 			setTimeout(function () {
 				$this.body.getNiceScroll().resize();
 			}, 300);
-		},
-		mouseWheelScrollHepler: function(){
-
-			// add "if mousebuttondown && mousewheel -> scroll" fn
 		}
+		/*mouseWheelScrollHepler: function(event){
+			var $this = event.data.context;
+			$this.document.one("mouseup", function (e2) {
+				if (el.button == 2 || e1.which == 2 && e1.target == e2.target) {
+					var e3 = $.event.fix(e2);
+					e3.type = "middleclick";
+					$(e2.target).trigger(e3)
+				}
+			});
+		},*/
+		/*autoscrollHelper: function(event) {
+			var $this = event.data.context;
+			$this.window.scrollBy(0, 1);
+			scrolldelay = setTimeout($this.pageScroll, 10);
+		}*/
 	};
 
 	$(document).ready(function () {
-		if (false === nicescrollrIsMobile && Nsr_Options.enabled === '1' || true === nicescrollrIsMobile && Nsr_Options.enabled === '1' && Nsr_Options.mobile_devices_enabled === '1') {
+		if (false === isMobile && Nsr_Options.enabled === '1') {
 			var nicescrollr = new Nicescrollr();
 			nicescrollr.init();
 		}

@@ -1,4 +1,4 @@
-<?php
+<?php /** @noinspection ALL */
 
 namespace Nicescrollr\Pub;
 
@@ -120,15 +120,15 @@ class Nsr_Public {
 		$this->file_prefix = defined( 'NICESCROLLR_DEBUG' ) && NICESCROLLR_DEBUG === '1' ? '' : '.min';
 	}
 
-	/**
-	 * Nsr_Public constructor.
-	 *
-	 * @param $domain
-	 * @param AdminIncludes\Nsr_Options $Options
-	 * @param Shared\Nsr_Nicescroll_Localisation $Nicescroll_Localisation
-	 * @param Shared\Nsr_Backtop_Localisation $Backtop_Localisation
-	 */
-	public function __construct( $domain, $Options, $Nicescroll_Localisation, $Backtop_Localisation ) {
+    /**
+     * Nsr_Public constructor.
+     *
+     * @param $domain
+     * @param AdminIncludes\Nsr_Options $Options
+     * @param Shared\Nsr_Nicescroll_Localisation $Nicescroll_Localisation
+     * @param Shared\Nsr_Backtop_Localisation $Backtop_Localisation
+     */
+	public function __construct($domain, $Options, $Nicescroll_Localisation, $Backtop_Localisation) {
 
 		$this->domain = $domain;
 		$this->Options = $Options;
@@ -170,12 +170,12 @@ class Nsr_Public {
 		$handle_prefix = $this->handle_prefix;
 		$file_prefix = $this->file_prefix;
 
-		if( isset( $this->settings['frontend']['bt_enabled'] ) && $this->settings['frontend']['bt_enabled'] ) {
-
-			wp_enqueue_style( 'nicescrollr-backtop' . $handle_prefix . '-css', NICESCROLLR_ROOT_URL . 'shared/backtop' . $file_prefix . '.css', array(), 'all' );
-		}
-
 		wp_enqueue_style( 'nicescrollr-public' . $handle_prefix . '-css', NICESCROLLR_ROOT_URL . 'public/css/public' . $file_prefix . '.css', array(), 'all' );
+
+        if (isset($this->settings['frontend']['bt_enabled']) && $this->settings['frontend']['bt_enabled']) {
+
+            wp_enqueue_style('nicescrollr-backtop' . $handle_prefix . '-css', NICESCROLLR_ROOT_URL . 'shared/backtop' . $file_prefix . '.css', array(), 'all');
+        }
 	}
 
 	/**
@@ -197,18 +197,19 @@ class Nsr_Public {
 			// jQuery Easing
 			wp_enqueue_script( 'nicescrollr-easing-min-js', NICESCROLLR_ROOT_URL . 'vendor/jquery-easing/jquery.easing.min.js', array( 'jquery' ), 'all' );
 
-			// Nicescroll Library
-			$nice_url = 'https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js';
-			$nice_cdn = wp_remote_get( $nice_url );
-			if( (int) wp_remote_retrieve_response_code( $nice_cdn ) !== 200 ) {
-				$nice_url = NICESCROLLR_ROOT_URL . 'vendor/nicescroll/jquery.nicescroll.min.js';
-			}
-			wp_enqueue_script( 'nicescrollr-inc-nicescroll-min-js', $nice_url, array( 'jquery', 'nicescrollr-easing-min-js' ), 'all' );
+			// Nicescroll CDN -> excluded in favor of local, edited version to prevent error messages regarding passive listener.
+            //$nice_url = 'https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll' . $file_prefix . '.js';
+            $nice_url = NICESCROLLR_ROOT_URL . 'vendor/nicescroll/jquery.nicescroll' . $file_prefix . '.js';
+            /*$nice_cdn = wp_remote_get( $nice_url );
+            if( (int) wp_remote_retrieve_response_code( $nice_cdn ) !== 200 ) {
+                $nice_url = NICESCROLLR_ROOT_URL . 'vendor/nicescroll/jquery.nicescroll' . $file_prefix . '.js';
+            }*/
+			wp_enqueue_script( 'nicescrollr-inc-nicescroll-js', $nice_url, array( 'jquery', 'nicescrollr-easing-min-js' ), 'all' );
 
 			// Nicescroll Configuration File
 			wp_enqueue_script( 'nicescrollr-nicescroll' . $handle_prefix . '-js', NICESCROLLR_ROOT_URL . 'shared/nicescroll' . $file_prefix . '.js', array(
 					'jquery',
-					'nicescrollr-inc-nicescroll-min-js'
+					'nicescrollr-inc-nicescroll-js'
 				), 'all' );
 		}
 

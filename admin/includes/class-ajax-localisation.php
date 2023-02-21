@@ -33,14 +33,14 @@ class Nsr_Ajax_Localisation {
 	 */
 	private $domain;
 
-	/**
-	 * Assigns the required parameters to its instance.
-	 *
-	 * @since 0.1.0
-	 *
-	 * @param string $domain
-	 */
-	public function __construct( $domain ) {
+    /**
+     * Assigns the required parameters to its instance.
+     *
+     * @param string $domain
+     * @since 0.1.0
+     *
+     */
+	public function __construct($domain) {
 
 		$this->domain = $domain;
 	}
@@ -75,7 +75,8 @@ class Nsr_Ajax_Localisation {
 	 * @since    0.1.0
 	 * @return   array $texts
 	 */
-	public function get_confirmation_texts() {
+	public function get_confirmation_texts()
+    {
 
 		return array(
 			'resetFrontendConfirmationHeading' => __( 'Reset', $this->domain ),

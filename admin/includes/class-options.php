@@ -2,6 +2,8 @@
 
 namespace Nicescrollr\Admin\Includes;
 
+use WP_Error;
+
 /**
  * If this file is called directly, abort.
  */
@@ -44,12 +46,12 @@ class Nsr_Options {
 	 */
 	public static $settings_tabs = array( 'frontend', 'backend' );
 
-	/**
-	 * Assigns the required parameters to its instance.
-	 *
-	 * @param string $domain
-	 */
-	public function __construct( $domain ) {
+    /**
+     * Assigns the required parameters to its instance.
+     *
+     * @param string $domain
+     */
+	public function __construct($domain) {
 
 		$this->domain = $domain;
 	}
@@ -61,9 +63,10 @@ class Nsr_Options {
 	 * @since  0.1.0
 	 * @access private
 	 */
-	private function basic_settings() {
+	private function basic_settings()
+    {
 
-		$basic_options = array(
+		return array(
 			'enabled' => array(
 				'name' => __( 'Use Nicescroll', $this->domain ),
 				'callback' => 'render_settings_field_callback',
@@ -214,7 +217,7 @@ class Nsr_Options {
 					'scroll' => 'scroll'
 				),
 			),
-			'default_scrollbar' => array(
+			/*'default_scrollbar' => array(
 				'name' => __( 'Show Default Scrollbar', $this->domain ),
 				'callback' => 'render_settings_field_callback',
 				'settings_group' => 'basic',
@@ -224,8 +227,7 @@ class Nsr_Options {
 				'input_type' => 'checkbox',
 				'notice_level' => 'none',
 				'select_values' => 'none',
-			),
-			'mobile_devices_enabled' => array(
+			),'mobile_devices_enabled' => array(
 				'name' => __( 'Enable On Mobile Devices', $this->domain ),
 				'callback' => 'render_settings_field_callback',
 				'settings_group' => 'basic',
@@ -235,10 +237,8 @@ class Nsr_Options {
 				'input_type' => 'checkbox',
 				'notice_level' => 'none',
 				'select_values' => 'none',
-			),
+			),*/
 		);
-
-		return $basic_options;
 	}
 
 	/**
@@ -248,9 +248,10 @@ class Nsr_Options {
 	 * @since  0.1.0
 	 * @access private
 	 */
-	private function extended_settings() {
+	private function extended_settings()
+    {
 
-		$extended_options = array(
+        return array(
 			'zindex' => array(
 				'name' => __( 'Z-Index', $this->domain ),
 				'callback' => 'render_settings_field_callback',
@@ -300,8 +301,8 @@ class Nsr_Options {
 				'callback' => 'render_settings_field_callback',
 				'settings_group' => 'extended',
 				'title' => __( 'Zoom activated when double click on box ("Box Zoom" must be "on").', $this->domain ),
-				'frontend_value' => true,
-				'backend_value' => true,
+				'frontend_value' => false,
+				'backend_value' => false,
 				'input_type' => 'checkbox',
 				'notice_level' => 'none',
 				'select_values' => 'none',
@@ -311,8 +312,8 @@ class Nsr_Options {
 				'callback' => 'render_settings_field_callback',
 				'settings_group' => 'extended',
 				'title' => __( 'Zoom on pitch in/out on box (For touch devices, set "Box Zoom" on).', $this->domain ),
-				'frontend_value' => true,
-				'backend_value' => true,
+				'frontend_value' => false,
+				'backend_value' => false,
 				'input_type' => 'checkbox',
 				'notice_level' => 'none',
 				'select_values' => 'none',
@@ -355,8 +356,8 @@ class Nsr_Options {
 				'callback' => 'render_settings_field_callback',
 				'settings_group' => 'extended',
 				'title' => __( 'Scroll native scrollable areas with mouse.', $this->domain ),
-				'frontend_value' => true,
-				'backend_value' => true,
+				'frontend_value' => false,
+				'backend_value' => false,
 				'input_type' => 'checkbox',
 				'notice_level' => 'none',
 				'select_values' => 'none',
@@ -392,8 +393,8 @@ class Nsr_Options {
 				'callback' => 'render_settings_field_callback',
 				'settings_group' => 'extended',
 				'title' => __( 'Page down-scrolling with the spacebar.', $this->domain ),
-				'frontend_value' => true,
-				'backend_value' => true,
+				'frontend_value' => false,
+				'backend_value' => false,
 				'input_type' => 'checkbox',
 				'notice_level' => 'none',
 				'select_values' => 'none',
@@ -656,8 +657,8 @@ class Nsr_Options {
 				'callback' => 'render_settings_field_callback',
 				'settings_group' => 'extended',
 				'title' => __( 'Prevent scrolling on multitouch events.', $this->domain ),
-				'frontend_value' => true,
-				'backend_value' => true,
+				'frontend_value' => false,
+				'backend_value' => false,
 				'input_type' => 'checkbox',
 				'notice_level' => 'none',
 				'select_values' => 'none',
@@ -696,8 +697,6 @@ class Nsr_Options {
 				'select_values' => 'none',
 			),
 		);
-
-		return $extended_options;
 	}
 
 	/**
@@ -707,9 +706,10 @@ class Nsr_Options {
 	 * @since  0.1.0
 	 * @access private
 	 */
-	private function backtop_settings() {
+	private function backtop_settings()
+    {
 
-		$plugin_options = array(
+        return array(
 
 			'bt_enabled' => array(
 				'name' => __( 'BackTop Button', $this->domain ),
@@ -923,8 +923,6 @@ class Nsr_Options {
 			),
 
 		);
-
-		return $plugin_options;
 	}
 
 	/**
@@ -972,20 +970,19 @@ class Nsr_Options {
 		}
 	}
 
-	/**
-	 * Updates the database with the default values for the requested settings section.
-	 *
-	 * @param string $settings_tab | null
-	 *
-	 * @return bool|\WP_Error
-	 * @since  0.1.0
-	 *
-	 */
-	public function reset_settings( $settings_tab ) {
+    /**
+     * Updates the database with the default values for the requested settings section.
+     *
+     * @param string $settings_tab | null
+     *
+     * @return bool|WP_Error
+     * @since  0.1.0
+     */
+	public function reset_settings($settings_tab) {
 
 		$options = get_option( 'nicescrollr_options' );
 
-		if( false !== $options || ! empty( $options ) ) {
+		if( false !== $options /*|| ! empty( $options )*/ ) {
 
 			unset( $options[$settings_tab] );
 
@@ -1000,18 +997,18 @@ class Nsr_Options {
 			}
 		}
 
-		return new \WP_Error( - 1, __( 'Failed resetting the settings. Please refresh the page and try again.', $this->domain ) );
+		return new WP_Error( - 1, __( 'Failed resetting the settings. Please refresh the page and try again.', $this->domain ) );
 	}
 
-	/**
-	 * Retrieves the options array for the requested settings section.
-	 *
-	 * @param string $settings_section
-	 *
-	 * @access public
-	 * @return mixed array $settings / bool false
-	 */
-	public function get_settings_per_section( $settings_section ) {
+    /**
+     * Retrieves the options array for the requested settings section.
+     *
+     * @param string $settings_section
+     *
+     * @return bool
+     * @access public
+     */
+	public function get_settings_per_section($settings_section) {
 
 		$settings = null;
 
@@ -1029,17 +1026,17 @@ class Nsr_Options {
 		return false;
 	}
 
-	/**
-	 * Processes the basic options array and returns the id/value pair.
-	 *
-	 * @param string $view
-	 *
-	 * @return array  $basic_options
-	 * @since  0.1.0
-	 * @access private
-	 *
-	 */
-	private function get_basic_settings( $view ) {
+    /**
+     * Processes the basic options array and returns the id/value pair.
+     *
+     * @param string $view
+     *
+     * @return array  $basic_options
+     * @since  0.1.0
+     * @access private
+     */
+	private function get_basic_settings($view)
+    {
 
 		$basic_options = array();
 
@@ -1053,17 +1050,17 @@ class Nsr_Options {
 		return $basic_options;
 	}
 
-	/**
-	 * Processes the extended options array and returns the id/value pair.
-	 *
-	 * @param string $view
-	 *
-	 * @return array  $extended_options
-	 * @since  0.1.0
-	 * @access private
-	 *
-	 */
-	private function get_extended_settings( $view ) {
+    /**
+     * Processes the extended options array and returns the id/value pair.
+     *
+     * @param string $view
+     *
+     * @return array  $extended_options
+     * @since  0.1.0
+     * @access private
+     */
+	private function get_extended_settings($view)
+    {
 
 		$extended_options = array();
 
@@ -1084,7 +1081,8 @@ class Nsr_Options {
 	 *
 	 * @return array
 	 */
-	public function get_backtop_settings( $view ) {
+	public function get_backtop_settings( $view )
+    {
 
 		$backtop_options = array();
 
@@ -1143,7 +1141,8 @@ class Nsr_Options {
 	 * @access private
 	 *
 	 */
-	public function get_default_settings( $view = null ) {
+	public function get_default_settings( $view = null )
+    {
 
 		if( null === $view ) {
 			$frontend = 'frontend';
@@ -1163,7 +1162,8 @@ class Nsr_Options {
 	 * @access private
 	 * @return array  $args
 	 */
-	public function get_args( $settings_section = 'basic' ) {
+	public function get_args( $settings_section = 'basic' )
+    {
 
 		$options = (array) $this->get_settings_per_section( $settings_section );
 		$args = array();
@@ -1194,10 +1194,9 @@ class Nsr_Options {
 
 		$views = Nsr_Options::$settings_tabs;
 		$options = get_option( 'nicescrollr_options' );
-		$default_options = $this->get_default_settings();
 		if( is_array( $options ) ) {
+            $default_options = $this->get_default_settings();
 			foreach( $views as $view ) {
-				$default_options = $this->get_default_settings( $view );
 				foreach( $default_options as $key => $default_option ) {
 					if( null === $options[$view][$key] || '' === $options[$view][$key] ) {
 						$options[$view][$key] = $default_option;
@@ -1212,16 +1211,15 @@ class Nsr_Options {
 		}
 	}
 
-	/**
-	 * Returns the meta data necessary for rendering the requested settings section heading.
-	 *
-	 * @param string $section
-	 *
-	 * @return mixed
-	 * @since  0.1.0
-	 *
-	 */
-	public function get_section_heading( $section ) {
+    /**
+     * Returns the meta data necessary for rendering the requested settings section heading.
+     *
+     * @param string $section
+     *
+     * @return bool | string
+     * @since  0.1.0
+     */
+	public function get_section_heading($section) {
 
 		$basic_settings = array(
 			'settings_group' => 'basic',
@@ -1275,7 +1273,8 @@ class Nsr_Options {
 	 * @return array $notice_levels
 	 * @since  0.1.0
 	 */
-	public function get_notice_levels() {
+	public function get_notice_levels()
+    {
 
 		$notice_levels = array();
 
@@ -1300,7 +1299,8 @@ class Nsr_Options {
 	 * @see    admin/menu/includes/menu-localisation.php
 	 * @since  0.1.0
 	 */
-	public function count_basic_settings() {
+	public function count_basic_settings()
+    {
 
 		$count = count( $this->basic_settings() );
 
@@ -1315,7 +1315,8 @@ class Nsr_Options {
 	 * @see    admin/menu/includes/menu-localisation.php
 	 * @since  0.1.0
 	 */
-	public function count_extended_settings() {
+	public function count_extended_settings()
+    {
 
 		$count = count( $this->extended_settings() );
 
@@ -1327,7 +1328,8 @@ class Nsr_Options {
 	 *
 	 * @return array
 	 */
-	public function get_options_meta() {
+	public function get_options_meta()
+    {
 
 		return array_merge( $this->basic_settings(), $this->extended_settings(), $this->backtop_settings() );
 	}

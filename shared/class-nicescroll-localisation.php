@@ -1,4 +1,4 @@
-<?php
+<?php /** @noinspection ALL */
 
 namespace Nicescrollr\Shared;
 
@@ -60,45 +60,46 @@ class Nsr_Nicescroll_Localisation {
 	 */
 	public $view;
 
-	/**
-	 * Nsr_Nicescroll_Localisation constructor.
-	 *
-	 * @param $domain
-	 * @param AdminIncludes\Nsr_Options $Options
-	 */
-	public function __construct( $domain, $Options ) {
+    /**
+     * Nsr_Nicescroll_Localisation constructor.
+     *
+     * @param $domain
+     * @param AdminIncludes\Nsr_Options $Options
+     */
+	public function __construct($domain, $Options) {
 
 		$this->domain = $domain;
 		$this->Options = $Options;
 	}
 
-	/**
-	 * Calls the function that passes the parameters to the Nicescroll library.
-	 *
-	 * @since  0.1.0
-	 *
-	 * @param  string $view
-	 *
-	 * @return void
-	 */
-	public function run( $view ) {
+    /**
+     * Calls the function that passes the parameters to the Nicescroll library.
+     *
+     * @param string $view
+     *
+     * @return void
+     * @since  0.1.0
+     *
+     */
+	public function run($view) {
 
 		$this->localize_nicescroll( $view );
 	}
 
-	/**
-	 * Retrieves the options per requested view from the database
-	 * and removes the determined prefix so that
-	 * the option keys correspond to the naming conventions of the Nicescroll library.
-	 * it contains a fallback to prevent "undefined"-errors in the script that's to be localized.
-	 *
-	 * @since  0.1.0
-	 *
-	 * @param  string $view
-	 *
-	 * @return array
-	 */
-	public function get_nicescroll_configuration( $view ) {
+    /**
+     * Retrieves the options per requested view from the database
+     * and removes the determined prefix so that
+     * the option keys correspond to the naming conventions of the Nicescroll library.
+     * it contains a fallback to prevent "undefined"-errors in the script that's to be localized.
+     *
+     * @param string $view
+     *
+     * @return array
+     * @since  0.1.0
+     *
+     */
+	public function get_nicescroll_configuration($view)
+    {
 
 		$configuration = (array) $this->Options->get_options( $view );
 
@@ -108,15 +109,15 @@ class Nsr_Nicescroll_Localisation {
 		return $configuration;
 	}
 
-	/**
-	 * Localzes the Nicescroll instance.
-	 * @since  0.1.0
-	 *
-	 * @param  string $view
-	 *
-	 * @return void
-	 */
-	private function localize_nicescroll( $view ) {
+    /**
+     * Localzes the Nicescroll instance.
+     * @param string $view
+     *
+     * @return void
+     * @since  0.1.0
+     *
+     */
+	private function localize_nicescroll($view) {
 
 		wp_localize_script( 'nicescrollr-nicescroll-js', 'Nsr_Options', $this->get_nicescroll_configuration( $view ) );
 	}

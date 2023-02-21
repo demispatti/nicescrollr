@@ -1,4 +1,4 @@
-<?php
+<?php /** @noinspection ALL */
 
 namespace Nicescrollr\Shared;
 
@@ -60,56 +60,57 @@ class Nsr_Backtop_Localisation {
 	 */
 	public $view;
 
-	/**
-	 * Nsr_Backtop_Localisation constructor.
-	 *
-	 * @param $domain
-	 * @param AdminIncludes\Nsr_Options $Options
-	 */
-	public function __construct( $domain, $Options ) {
+    /**
+     * Nsr_Backtop_Localisation constructor.
+     *
+     * @param $domain
+     * @param AdminIncludes\Nsr_Options $Options
+     */
+	public function __construct($domain, $Options) {
 
 		$this->domain = $domain;
 		$this->Options = $Options;
 	}
 
-	/**
-	 * Calls the function that passes the parameters to the Nicescroll library.
-	 *
-	 * @since  0.1.0
-	 *
-	 * @param  string $view
-	 *
-	 * @return void
-	 */
-	public function run( $view ) {
+    /**
+     * Calls the function that passes the parameters to the Nicescroll library.
+     *
+     * @param string $view
+     *
+     * @return void
+     * @since  0.1.0
+     *
+     */
+	public function run($view) {
 
 		$this->localize_backtop( $view );
 	}
 
-	/**
-	 * Localzes the backtop script.
-	 * @since  0.1.0
-	 *
-	 * @param  string $view
-	 *
-	 * @return void
-	 */
-	private function localize_backtop( $view ) {
+    /**
+     * Localzes the backtop script.
+     * @param string $view
+     *
+     * @return void
+     * @since  0.1.0
+     *
+     */
+	private function localize_backtop($view) {
 
 		wp_localize_script( 'nicescrollr-backtop-js', 'Nsr_Options', array_merge( $this->get_backtop_configuration( $view ), array( 'nicescrollr_root_dir' =>
 			NICESCROLLR_ROOT_URL ) ) );
 	}
 
-	/**
-	 * Retrieves the options for the backtop functionality.
-	 *
-	 * @since  0.1.0
-	 *
-	 * @param  string $view
-	 *
-	 * @return array
-	 */
-	public function get_backtop_configuration( $view ) {
+    /**
+     * Retrieves the options for the backtop functionality.
+     *
+     * @param string $view
+     *
+     * @return array
+     * @since  0.1.0
+     *
+     */
+	public function get_backtop_configuration($view)
+    {
 
 		$configuration = (array) $this->Options->get_options( $view );
 

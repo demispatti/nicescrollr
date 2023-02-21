@@ -43,7 +43,7 @@
 			this.nsrBackTop.css(config);
 			// Create a separate stylesheet so we don't mess up existing styles ;-)
 			var sheet = document.head.appendChild(document.createElement('style')).sheet;
-			// Get the length of the stylesheet so we can apply the rules at continous indices
+			// Get the length of the stylesheet so we can apply the rules at continuous indices
 			var length = sheet.cssRules.length;
 			if ('' !== config["color"]) {
 				sheet.insertRule('.' + this.bt_class + '::before {color:' + config["color"] + ';}', length ++);
@@ -57,12 +57,10 @@
 			return {
 				'color': this.nsr_options.bt_arrow_color,
 				'hover-color': this.nsr_options.bt_arrow_hover_color,
-
 				'background-color': this.nsr_options.bt_background_color,
 				'border-color': this.nsr_options.bt_border_color,
 				'border-width': this.nsr_options.bt_border_width,
 				'border-style': this.nsr_options.bt_border_style,
-
 				'border-top-left-radius': this.nsr_options.bt_border_radius_top_left,
 				'border-top-right-radius': this.nsr_options.bt_border_radius_top_right,
 				'border-bottom-left-radius': this.nsr_options.bt_border_radius_bottom_left,
@@ -70,10 +68,10 @@
 			};
 		},
 		addEvents: function () {
-			this.nsrBackTop.bind('mouseenter', { context: this }, this.backTopOnMouseenter);
-			this.nsrBackTop.bind('mouseleave', { context: this }, this.backTopOnMouseleave);
-			this.nsrBackTop.bind('click', { context: this }, this.backTopOnClick);
-			this.window.bind('scroll', { context: this }, this.backTopOnScroll);
+			this.nsrBackTop.on('mouseenter', { context: this }, this.backTopOnMouseenter);
+			this.nsrBackTop.on('mouseleave', { context: this }, this.backTopOnMouseleave);
+			this.nsrBackTop.on('click', { context: this }, this.backTopOnClick);
+			this.window.on('scroll', { context: this }, this.backTopOnScroll);
 			$(this.window).trigger('scroll');
 		},
 		// Events

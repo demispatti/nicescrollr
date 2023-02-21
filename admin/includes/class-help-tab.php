@@ -54,16 +54,15 @@ class Nsr_Help_Tab {
 		$this->tabs = array( __( 'HELP', $this->domain ) => array( 'title' => __( 'Nicescrollr help', $this->domain ) ) );
 	}
 
-	/**
-	 * Sets the tab.
-	 * Determines if we're on the options page,
-	 * and if so, it hooks the action to load the help tab.
-	 *
-	 * @param  string $domain
-	 *
-	 * @return mixed | void
-	 */
-	public function __construct( $domain ) {
+    /**
+     * Sets the tab.
+     * Determines if we're on the options page,
+     * and if so, it hooks the action to load the help tab.
+     *
+     * @param string $domain
+     *
+     */
+	public function __construct($domain) {
 
 		$this->domain = $domain;
 
@@ -93,7 +92,7 @@ class Nsr_Help_Tab {
 	 *
 	 * @hooked_action
 	 * @since  0.1.0
-	 * @return mixed | void
+	 * @return void
 	 */
 	public function add_nsr_help_tab() {
 
@@ -116,7 +115,8 @@ class Nsr_Help_Tab {
 	 * @access private
 	 * @return string  $html
 	 */
-	private function display_content_callback() {
+	private function display_content_callback()
+    {
 
 		ob_start();
 		?>

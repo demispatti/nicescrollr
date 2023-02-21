@@ -1,4 +1,4 @@
-<?php
+<?php /** @noinspection ALL */
 
 namespace Nicescrollr\Shared;
 
@@ -60,14 +60,14 @@ class Nsr_Backtop {
 	 */
 	public $view;
 
-	/**
-	 * Nsr_Backtop constructor.
-	 *
-	 * @param $domain
-	 * @param AdminIncludes\Nsr_Options $Options
-	 * @param string $view
-	 */
-	public function __construct( $domain, $Options, $view ) {
+    /**
+     * Nsr_Backtop constructor.
+     *
+     * @param $domain
+     * @param AdminIncludes\Nsr_Options $Options
+     * @param string $view
+     */
+	public function __construct($domain, $Options, $view) {
 
 		$this->domain = $domain;
 		$this->Options = $Options;
