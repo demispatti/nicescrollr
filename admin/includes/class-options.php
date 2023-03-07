@@ -1,5 +1,4 @@
 <?php
-
 namespace Nicescrollr\Admin\Includes;
 
 use WP_Error;
@@ -216,28 +215,7 @@ class Nsr_Options {
 					'hidden' => 'hidden',
 					'scroll' => 'scroll'
 				),
-			),
-			/*'default_scrollbar' => array(
-				'name' => __( 'Show Default Scrollbar', $this->domain ),
-				'callback' => 'render_settings_field_callback',
-				'settings_group' => 'basic',
-				'title' => __( 'Use the browsers default scrollbar look.', $this->domain ),
-				'frontend_value' => false,
-				'backend_value' => false,
-				'input_type' => 'checkbox',
-				'notice_level' => 'none',
-				'select_values' => 'none',
-			),'mobile_devices_enabled' => array(
-				'name' => __( 'Enable On Mobile Devices', $this->domain ),
-				'callback' => 'render_settings_field_callback',
-				'settings_group' => 'basic',
-				'title' => __( 'Enable or disable Nicescroll on mobile devices. This will only work if Nicescroll is enabled.', $this->domain ),
-				'frontend_value' => false,
-				'backend_value' => false,
-				'input_type' => 'checkbox',
-				'notice_level' => 'none',
-				'select_values' => 'none',
-			),*/
+			)
 		);
 	}
 

@@ -12,7 +12,6 @@
  */
 "use strict";
 (function ($) {
-
 	function NsrMenu () {
 		// Default elements
 		this.nsr_menu = Nsr_Menu;

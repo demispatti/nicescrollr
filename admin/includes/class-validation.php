@@ -1,5 +1,4 @@
 <?php
-
 namespace Nicescrollr\Admin\Includes;
 
 use Nicescrollr\Admin\Includes as AdminIncludes;
@@ -318,7 +317,7 @@ class Nsr_Validation {
 		}
 
 		// If there were errors and transients were created, we create one more containing the ids of the previously created ones.
-		if( /*null !== $errors && (*/ ! empty( $errors ) /*)*/ ) {
+		if( ! empty( $errors )) {
 
 			set_transient( 'nicescrollr_validation_transient', $errors, 60 );
 		}
@@ -339,7 +338,7 @@ class Nsr_Validation {
 			return $value;
 		}
 
-		if( /*'' !== $value &&*/ ! preg_match( '/^([A-Za-z0-9_ ().-]-)*[A-Za-z0-9\_().-]+$/', $value ) ) {
+		if( ! preg_match( '/^([A-Za-z0-9_ ().-]-)*[A-Za-z0-9\_().-]+$/', $value ) ) {
 
 			return new WP_Error( 'broke', __( "Your input didn't pass validation. Please use numbers and/or alphabetical characters.", $this->domain ) );
 		}

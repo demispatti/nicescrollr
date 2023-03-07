@@ -1,5 +1,4 @@
 <?php
-
 namespace Nicescrollr\Admin\Includes;
 
 /**
@@ -31,7 +30,7 @@ class Nsr_Ajax_Localisation {
 	 *
 	 * @var string $domain
 	 */
-	private $domain;
+	private string $domain;
 
     /**
      * Assigns the required parameters to its instance.
@@ -40,7 +39,7 @@ class Nsr_Ajax_Localisation {
      * @since 0.1.0
      *
      */
-	public function __construct($domain) {
+	public function __construct(string $domain) {
 
 		$this->domain = $domain;
 	}

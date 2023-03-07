@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 0.9.2
+### Changed
+- Code cleanup
+
 ## Version 0.9.0
 ### Changed
 - Bug fixes

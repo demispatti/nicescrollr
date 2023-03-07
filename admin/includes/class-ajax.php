@@ -1,5 +1,4 @@
 <?php
-
 namespace Nicescrollr\Admin\Includes;
 
 /**
@@ -28,7 +27,7 @@ class Nsr_Ajax {
 	 *
 	 * @var string $domain
 	 */
-	protected $domain;
+	protected string $domain;
 
 	/**
 	 * The reference to the options class.
@@ -56,7 +55,7 @@ class Nsr_Ajax {
      *
      * @since 0.7.0
      */
-	public function __construct($domain, $Options) {
+	public function __construct(string $domain, Nsr_Options $Options) {
 
 		$this->domain = $domain;
 		$this->Options = $Options;

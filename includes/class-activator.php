@@ -1,5 +1,4 @@
-<?php /** @noinspection ALL */
-
+<?php
 namespace Nicescrollr\Includes;
 
 use Nicescrollr\Admin\Includes as AdminIncludes;
@@ -82,8 +81,6 @@ class Nsr_Activator extends Nsr {
 		// Seed initial options
 		if( false === $options || "" === $options || 3 !== count($options) ) {
 			$Options_Instance->seed_options();
-
-			return;
 		}
 	}
 }

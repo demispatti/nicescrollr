@@ -1,5 +1,4 @@
 <?php
-
 namespace Nicescrollr;
 
 use Nicescrollr\Admin\Includes as AdminIncludes;
@@ -22,13 +21,13 @@ use Nicescrollr\Includes as Includes;
  * Tags: nicescroll, scroll, scrollbar, back to top, scroll to top, frontend, backend
  * Requires at least: 5.5
  * Tested up to: 6.1.1
- * Requires PHP: 5.6+
- * Version: 0.9.0
- * Stable tag: 0.9.0
+ * Requires PHP: 5.6
+ * Max. PHP version: 7.4.21
+ * Version: 0.9.2
+ * Stable tag: 0.9.2
  * License: GPLv2 or later
  * License URI: http://www.gnu.org/licenses/gpl-2.0.html
  * Author: Demis Patti
- * Author URI: https://demispatti.ch
  * Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=XLMMS7C62S76Q
  */
 
@@ -74,8 +73,8 @@ if( ! class_exists( 'AdminIncludes\Nsr_Options' ) ) {
  * @uses  activate_nsr()
  * @see   includes/class-Nsr-activator.php
  */
-function activate_nsr() {
-
+function activate_nsr(): void
+{
 	Includes\nsr_activator::activate();
 }
 
@@ -86,12 +85,12 @@ function activate_nsr() {
  * @uses  deactivate_nsr()
  * @see   includes/class-Nsr-deactivator.php
  */
-function deactivate_nsr() {
-
+function deactivate_nsr(): void
+{
 	Includes\nsr_deactivator::deactivate();
 }
 
-register_activation_hook( __FILE__, "Nicescrollr\activate_nsr" );
+register_activation_hook( __FILE__, 'Nicescrollr\activate_nsr');
 register_deactivation_hook( __FILE__, 'Nicescrollr\deactivate_nsr' );
 
 /**
@@ -99,7 +98,8 @@ register_deactivation_hook( __FILE__, 'Nicescrollr\deactivate_nsr' );
  *
  * @since 0.1.0
  */
-function run_nsr() {
+function run_nsr(): void
+{
 	// @fix, else add these options during next update routine and remove fix
 	$options = new AdminIncludes\Nsr_Options( 'nicescrollr' );
 	$options->maybe_fill_missing_options();

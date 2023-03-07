@@ -1,11 +1,4 @@
-<?php /** @noinspection ALL */
-/** @noinspection ALL */
-/** @noinspection ALL */
-/** @noinspection ALL */
-/** @noinspection ALL */
-
-/** @noinspection ALL */
-
+<?php
 namespace Nicescrollr\Admin;
 
 use Nicescrollr\Admin\Includes as AdminIncludes;
@@ -218,13 +211,7 @@ class Nsr_Admin {
 			// jQuery Easing
 			wp_enqueue_script( 'nicescrollr-inc-easing-min-js', NICESCROLLR_ROOT_URL . 'vendor/jquery-easing/jquery.easing.min.js', array( 'jquery' ), 'all' );
 
-			// Nicescroll CDN -> excluded in favor of local, edited version to prevent error messages regarding passive listener.
-			//$nice_url = 'https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js';
             $nice_url = NICESCROLLR_ROOT_URL . 'vendor/nicescroll/jquery.nicescroll.min.js';
-			$nice_cdn = wp_remote_get( $nice_url );
-			/*if( (int) wp_remote_retrieve_response_code( $nice_cdn ) !== 200 ) {
-				$nice_url = NICESCROLLR_ROOT_URL . 'vendor/nicescroll/jquery.nicescroll.min.js';
-			}*/
 			wp_enqueue_script( 'nicescrollr-inc-nicescroll-min-js', $nice_url, array( 'jquery', 'nicescrollr-inc-easing-min-js' ), 'all' );
 
 			// Nicescroll configuration file

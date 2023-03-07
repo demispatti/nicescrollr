@@ -1,5 +1,4 @@
 <?php
-
 namespace Nicescrollr\Admin\Includes;
 
 use Nicescrollr\Admin\Includes as AdminIncludes;
@@ -31,14 +30,14 @@ class Nsr_Menu_Localisation {
 	 * @access private
 	 * @var    AdminIncludes\Nsr_Options $Options
 	 */
-	private $Options;
+	private Nsr_Options $Options;
 
     /**
      * Nsr_Menu_Localisation constructor.
      *
      * @param Nsr_Options $Options
      */
-	public function __construct($Options) {
+	public function __construct(Nsr_Options $Options) {
 
 		$this->Options = $Options;
 	}
@@ -49,7 +48,8 @@ class Nsr_Menu_Localisation {
 	 * @since  0.1.0
 	 * @return void
 	 */
-	public function run() {
+	public function run(): void
+    {
 
 		$this->localize_script();
 	}
@@ -62,7 +62,8 @@ class Nsr_Menu_Localisation {
 	 * @access private
 	 * @return void
 	 */
-	private function localize_script() {
+	private function localize_script(): void
+    {
 
 		wp_localize_script( 'nicescrollr-menu-js', 'Nsr_Menu', array_merge( $this->Options->count_basic_settings(), $this->Options->count_extended_settings(), $this->get_localized_strings_for_switches() ) );
 	}
@@ -76,22 +77,16 @@ class Nsr_Menu_Localisation {
 	 * @access private
 	 * @return array
 	 */
-	private function get_localized_strings_for_switches()
+	private function get_localized_strings_for_switches(): array
     {
-
 		$current_locale = get_locale();
 
-		switch( $current_locale ) {
-
-			case( $current_locale === 'de_DE' );
-				$labels = array( 'locale' => $current_locale, 'On' => 'Ein', 'Off' => 'Aus' );
-				break;
-
-			default:
-				$labels = array( 'locale' => 'default', 'On' => 'On', 'Off' => 'Off' );
-		}
-
-		return $labels;
+        if($current_locale == "de_DE") {
+            return array('locale' => $current_locale, 'On' => 'Ein', 'Off' => 'Aus');
+        }
+        else {
+            return array('locale' => 'default', 'On' => 'On', 'Off' => 'Off');
+        }
 	}
 
 }

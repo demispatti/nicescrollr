@@ -1,7 +1,4 @@
-<?php /** @noinspection ALL */
-
-/** @noinspection ALL */
-
+<?php
 namespace Nicescrollr\Admin\Includes;
 
 use Nicescrollr\Admin\Includes as AdminIncludes;
