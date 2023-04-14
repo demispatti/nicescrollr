@@ -1,0 +1,12 @@
+{
+	"version": 3,
+	"file": "public.css",
+	"sources": [
+		"../../../scss/public/css/public.scss"
+	],
+	"sourcesContent": [
+		"/**!\r\n * Public CSS.\r\n *\r\n * @link              https://github.com/demispatti/nicescrollr\r\n * @since             0.1.0\r\n * @package           nicescrollr\r\n * @subpackage        nicescrollr/public/css\r\n * Author:            Demis Patti <wp@demispatti.ch>\r\n * Author URI:        https://demispatti.ch\r\n * License:           GPL-2.0+\r\n * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt\r\n * Copyright:\t\t  Demis Patti © 2023\r\n */\r\nhtml, body {\r\n\t-ms-overflow-style: none;\r\n\toverflow-style: unset;\r\n\toverflow-y: hidden;\r\n}\r\n\r\nhtml {\r\n\r\n\t&.nsr-is-webkit::-webkit-scrollbar {\r\n\t\tdisplay: none;\r\n\t}\r\n\r\n\t&.nsr-is-moz {\r\n\t\toverflow-y: initial;\r\n\t\tscrollbar-width: none;\r\n\t}\r\n\r\n\t&.nsr-is-edge {\r\n\t\t-ms-overflow-style: none;\r\n\t\t-ms-overflow-y: initial;\r\n\r\n\t\tiframe {\r\n\t\t\t-ms-overflow-style: none;\r\n\t\t\t-ms-overflow-y: initial;\r\n\t\t}\r\n\t}\r\n\r\n\t&.nsr-is-msie {\r\n\t\t-ms-overflow-style: none;\r\n\t\t-ms-overflow-y: initial !important;\r\n\t}\r\n}\r\n"
+	],
+	"names": [],
+	"mappings": ";AAAA;;;;;;;;;;;;GAYG;;AACH,AAAA,IAAI,EAAE,IAAI,CAAC;EACV,kBAAkB,EAAE,IAAI;EACxB,cAAc,EAAE,KAAK;EACrB,UAAU,EAAE,MAAM;CAClB;;;AAED,AAEC,IAFG,AAEF,cAAc,AAAA,mBAAmB,CAAC;EAClC,OAAO,EAAE,IAAI;CACb;;;AAJF,AAMC,IANG,AAMF,WAAW,CAAC;EACZ,UAAU,EAAE,OAAO;EACnB,eAAe,EAAE,IAAI;CACrB;;;AATF,AAWC,IAXG,AAWF,YAAY,CAAC;EACb,kBAAkB,EAAE,IAAI;EACxB,cAAc,EAAE,OAAO;CAMvB;;;AAnBF,AAeE,IAfE,AAWF,YAAY,CAIZ,MAAM,CAAC;EACN,kBAAkB,EAAE,IAAI;EACxB,cAAc,EAAE,OAAO;CACvB;;;AAlBH,AAqBC,IArBG,AAqBF,YAAY,CAAC;EACb,kBAAkB,EAAE,IAAI;EACxB,cAAc,EAAE,kBAAkB;CAClC"
+}

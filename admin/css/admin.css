@@ -1,1 +1,50 @@
-html.nsr-is-webkit::-webkit-scrollbar{display:none}html.nsr-is-moz{overflow-y:initial;scrollbar-width:none}html.nsr-is-edge{-ms-overflow-style:none;-ms-overflow-y:initial}html.nsr-is-edge iframe{-ms-overflow-style:none;-ms-overflow-y:initial}html.nsr-is-msie{-ms-overflow-style:none;-ms-overflow-y:initial !important}@media (prefers-color-scheme: dark){body.nsr-settings-page{background-color:#444 !important;color:#e4e4e4 !important}a{color:#e39777}img{filter:grayscale(30%)}}
+@charset "UTF-8";
+/**!
+ * Admin CSS.
+ *
+ * @link              https://github.com/demispatti/nicescrollr
+ * @since             0.1.0
+ * @package           nicescrollr
+ * @subpackage        nicescrollr/admin/css
+ * Author:            Demis Patti <wp@demispatti.ch>
+ * Author URI:        https://demispatti.ch
+ * License:           GPL-2.0+
+ * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
+ * Copyright:		  Demis Patti © 2023
+ */
+html.nsr-is-webkit::-webkit-scrollbar {
+  display: none;
+}
+
+html.nsr-is-moz {
+  overflow-y: initial;
+  scrollbar-width: none;
+}
+
+html.nsr-is-edge {
+  -ms-overflow-style: none;
+  -ms-overflow-y: initial;
+}
+
+html.nsr-is-edge iframe {
+  -ms-overflow-style: none;
+  -ms-overflow-y: initial;
+}
+
+html.nsr-is-msie {
+  -ms-overflow-style: none;
+  -ms-overflow-y: initial !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  body.nsr-settings-page {
+    background-color: #444 !important;
+    color: #e4e4e4 !important;
+  }
+  a {
+    color: #e39777;
+  }
+  img {
+    filter: grayscale(30%);
+  }
+}
