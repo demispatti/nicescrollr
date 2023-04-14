@@ -1,10 +1,10 @@
 === Nicescrollr ===
 Tags: nicescroll, scroll, scrollbar, back to top, scroll to top, frontend, backend
 Requires at least: 5.5
-Tested up to: 6.1.1
+Tested up to: 6.2
 Requires PHP: 5.6+
-Version: 0.9.0
-Stable tag: 0.9.0
+Version: 0.9.3
+Stable tag: 0.9.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Author: Demis Patti
@@ -34,6 +34,9 @@ target="_blank">Github</a> at the bottom of the page. This plugin enables you to
 
 == Known issues ==
 - There may be issues with scrolling, if you are trying to scroll with a pen or the middle mouse button.
+
+== Limitations ==
+- Not yet compatible with PHP version 8 and above
 
 == Frequently Asked Questions ==
 = Why doesn't it work with my theme? =

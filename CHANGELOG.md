@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 0.9.3
+### Changed
+- Resolved problem where the page is not scrolling on mobile devices
+
 ## Version 0.9.2
 ### Changed
 - Code cleanup

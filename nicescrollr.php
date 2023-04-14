@@ -5,30 +5,31 @@ use Nicescrollr\Admin\Includes as AdminIncludes;
 use Nicescrollr\Includes as Includes;
 
 /**
- * The plugin bootstrap file.
+ * The plugin bootstrap file
  *
  * This plugin provides a simple interface for the included jQuery Nicescroll library.
  * It comes with an extensive options panel giving you
  * full control over almost all available options the Nicescroll library gets shipped with.
  *
- *
- * @since             0.1.0
- * @package           Nsr
  * @wordpress-plugin
- * Plugin Name:       Nicescrollr
+ * @package:          Nicescrollr
+ * @since             0.1.0
+ * @package           nicescrollr
+ * @author            Demis Patti
+ * @link:             https://wordpress.org/plugins/nicescrollr/
  * Plugin URI:        https://wordpress.org/plugins/nicescrollr/
+ * Plugin Name:       Nicescrollr
  * Description:       This plugin is a wrapper for the popular "Nicescroll" javascript library, which is made by <a href="https://wordpress.org/support/users/inuyaksa/" target="_blank">InuYaksa</a>. You can use it on both the frontend and the backend. It is fully customizable, so you can tweak and tune every single parameter Nicescroll has to offer! You can style it totally different for both parts of your website. You can even keep the default scrollbar if you like. It's all up to you.
- * Tags: nicescroll, scroll, scrollbar, back to top, scroll to top, frontend, backend
+ * License:           GPL-2.0+
+ * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
+ * Text Domain:       nicescrollr
+ * Domain Path:       /languages
+ * Version:           0.9.3
+ * Stable tag:        0.9.3
  * Requires at least: 5.5
- * Tested up to: 6.1.1
- * Requires PHP: 5.6
- * Max. PHP version: 7.4.21
- * Version: 0.9.2
- * Stable tag: 0.9.2
- * License: GPLv2 or later
- * License URI: http://www.gnu.org/licenses/gpl-2.0.html
- * Author: Demis Patti
- * Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=XLMMS7C62S76Q
+ * Tested up to:      6.2
+ * Requires PHP:      5.6
+ * Max. PHP version:  7.4.21
  */
 
 /**
