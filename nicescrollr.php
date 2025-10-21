@@ -38,8 +38,14 @@ use Nicescrollr\Includes as Includes;
 if( ! defined( 'WPINC' ) ) {
 	die;
 }
-// Leave this to '1' until the minified scripts work as expected
-define( 'NICESCROLLR_DEBUG', '1' );
+
+/**
+ * Define debug mode - uses WordPress WP_DEBUG constant or can be overridden
+ * Set to true to use unminified assets for development/debugging
+ */
+if( ! defined( 'NICESCROLLR_DEBUG' ) ) {
+	define( 'NICESCROLLR_DEBUG', defined( 'WP_DEBUG' ) && WP_DEBUG ? '1' : '0' );
+}
 
 /**
  * Define plugin constants.

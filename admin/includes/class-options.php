@@ -26,6 +26,12 @@ if( ! defined( 'WPINC' ) ) {
 class Nsr_Options {
 
 	/**
+	 * View constants
+	 */
+	const VIEW_FRONTEND = 'frontend';
+	const VIEW_BACKEND = 'backend';
+
+	/**
 	 * The domain of the plugin.
 	 *
 	 * @since  0.1.0
@@ -43,14 +49,14 @@ class Nsr_Options {
 	 * @access static
 	 * @var    array $settings_tabs
 	 */
-	public static $settings_tabs = array( 'frontend', 'backend' );
+	public static $settings_tabs = array( self::VIEW_FRONTEND, self::VIEW_BACKEND );
 
     /**
      * Assigns the required parameters to its instance.
      *
-     * @param string $domain
+     * @param string $domain The text domain for translations
      */
-	public function __construct($domain) {
+	public function __construct( string $domain ) {
 
 		$this->domain = $domain;
 	}
@@ -1086,7 +1092,9 @@ class Nsr_Options {
 	 */
 	public function get_options( $view = false ) {
 
-		if( isset( $_REQUEST['action'] ) && $_REQUEST['action'] === 'heartbeat' ) {
+		// Check for heartbeat action to prevent unnecessary database queries
+		$action = isset( $_POST['action'] ) ? sanitize_text_field( wp_unslash( $_POST['action'] ) ) : '';
+		if( $action === 'heartbeat' ) {
 			die();
 		}
 

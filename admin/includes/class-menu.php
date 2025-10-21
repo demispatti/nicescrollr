@@ -126,9 +126,9 @@ class Nsr_Menu {
 		$active_tab = null;
 		$section = null;
 
-		if( isset( $_REQUEST['tab'] ) ) {
+		if( isset( $_GET['tab'] ) ) {
 
-			$tab = $_REQUEST['tab'];
+			$tab = sanitize_text_field( wp_unslash( $_GET['tab'] ) );
 
 			$this->section = 'frontend';
 
@@ -190,7 +190,10 @@ class Nsr_Menu {
 
 		add_action( 'admin_menu', array( $this, 'add_options_page' ), 20 );
 
-		if( ( isset( $_REQUEST['page'] ) && $_REQUEST['page'] === 'nicescrollr_settings' ) || ( isset( $_REQUEST['option_page'] ) && $_REQUEST['option_page'] === 'nicescrollr_options' ) ) {
+		$page = isset( $_GET['page'] ) ? sanitize_text_field( wp_unslash( $_GET['page'] ) ) : '';
+		$option_page = isset( $_POST['option_page'] ) ? sanitize_text_field( wp_unslash( $_POST['option_page'] ) ) : '';
+
+		if( ( $page === 'nicescrollr_settings' ) || ( $option_page === 'nicescrollr_options' ) ) {
 
 			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_styles' ), 10001 );
 			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ), 10002 );
@@ -277,16 +280,18 @@ class Nsr_Menu {
 	public function add_body_class($classes)
     {
 
-		if( isset( $_REQUEST['page'] ) && $_REQUEST['page'] === 'nicescrollr_settings' ) {
+		$page = isset( $_GET['page'] ) ? sanitize_text_field( wp_unslash( $_GET['page'] ) ) : '';
+
+		if( $page === 'nicescrollr_settings' ) {
 
 			$ci = 'nsr';
 			$prefix = $ci . '-';
 
-			$section = isset( $_REQUEST['tab'] ) ? $_REQUEST['tab'] : '';
+			$section = isset( $_GET['tab'] ) ? sanitize_text_field( wp_unslash( $_GET['tab'] ) ) : '';
 
 			$class = '';
 
-			if( isset( $_REQUEST['tab'] ) ) {
+			if( isset( $_GET['tab'] ) ) {
 
 				switch( $section ) {
 					case 'frontend':
@@ -316,7 +321,9 @@ class Nsr_Menu {
 	 */
 	public function initialize_localisation() {
 
-		if( isset( $_REQUEST['page'] ) && $_REQUEST['page'] === 'nicescrollr_settings' ) {
+		$page = isset( $_GET['page'] ) ? sanitize_text_field( wp_unslash( $_GET['page'] ) ) : '';
+
+		if( $page === 'nicescrollr_settings' ) {
 
 			$this->Menu_Localisation->run();
 			$this->Ajax_Localisation->run();

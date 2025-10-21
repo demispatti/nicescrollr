@@ -41,16 +41,8 @@
 
 			var config = this.getBacktopConfiguration();
 			this.nsrBackTop.css(config);
-			// Create a separate stylesheet so we don't mess up existing styles ;-)
-			var sheet = document.head.appendChild(document.createElement('style')).sheet;
-			// Get the length of the stylesheet so we can apply the rules at continuous indices
-			var length = sheet.cssRules.length;
-			if ('' !== config["color"]) {
-				sheet.insertRule('.' + this.bt_class + '::before {color:' + config["color"] + ';}', length ++);
-			}
-			if ('' !== config["hover-color"]) {
-				sheet.insertRule('.' + this.bt_class + ':hover::before{color:' + config["hover-color"] + ';}', length ++);
-			}
+			// Colors are applied directly to SVG elements via event handlers (see backTopOnMouseenter/leave)
+			// No need for dynamic CSS rule injection which could pose security risks
 		},
 		getBacktopConfiguration: function () {
 

@@ -81,7 +81,8 @@ class Nsr_Ajax {
 	 */
 	public function nicescrollr_reset_options() {
 
-		$nonce = $_REQUEST['nonce'];
+		// Verify nonce from POST request
+		$nonce = isset( $_POST['nonce'] ) ? sanitize_text_field( wp_unslash( $_POST['nonce'] ) ) : '';
 
 		if( false === wp_verify_nonce( $nonce, 'nicescrollr_reset_options_nonce' ) ) {
 
@@ -93,8 +94,11 @@ class Nsr_Ajax {
 			wp_send_json_error( $response );
 		}
 
+		// Sanitize section parameter
+		$section = isset( $_POST['section'] ) ? sanitize_text_field( wp_unslash( $_POST['section'] ) ) : '';
+
 		// Save options
-		$result = $this->Options->reset_settings( $_REQUEST['section'] );
+		$result = $this->Options->reset_settings( $section );
 		if( is_wp_error( $result ) ) {
 
 			$code = $result->get_error_code();

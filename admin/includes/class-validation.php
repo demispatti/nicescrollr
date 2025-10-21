@@ -84,12 +84,13 @@ class Nsr_Validation {
 	}
 
     /**
-     * Sanitizes the input.
+     * Sanitizes the input using WordPress sanitization functions.
      *
      * @param array $input
      *
      * @return array $output
      * @since  0.1.0
+     * @updated 0.9.4 - Replaced deprecated strip_tags/stripslashes with sanitize_text_field
      *
      */
 	private function sanitize($input)
@@ -100,7 +101,9 @@ class Nsr_Validation {
 		foreach( $input as $key => $value ) {
 
 			if( isset ( $value ) ) {
-				$output[$key] = strip_tags( stripslashes( $value ) );
+				// Use WordPress's modern sanitization function instead of deprecated strip_tags/stripslashes
+				// sanitize_text_field removes tags, extra whitespace, and validates UTF-8
+				$output[$key] = sanitize_text_field( $value );
 			}
 		}
 

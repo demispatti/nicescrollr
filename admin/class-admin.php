@@ -137,12 +137,17 @@ class Nsr_Admin {
     /**
      * Nsr_Admin constructor.
      *
-     * @param string $domain
-     * @param AdminIncludes\Nsr_Options $Options
-     * @param Shared\Nsr_Nicescroll_Localisation $Nicescroll_Localisation
-     * @param Shared\Nsr_Backtop_Localisation $Backtop_Localisation
+     * @param string $domain The text domain for translations
+     * @param AdminIncludes\Nsr_Options $Options Options manager instance
+     * @param Shared\Nsr_Nicescroll_Localisation $Nicescroll_Localisation Nicescroll localisation instance
+     * @param Shared\Nsr_Backtop_Localisation $Backtop_Localisation Backtop localisation instance
      */
-	public function __construct($domain, $Options, $Nicescroll_Localisation, $Backtop_Localisation) {
+	public function __construct(
+		string $domain,
+		AdminIncludes\Nsr_Options $Options,
+		Shared\Nsr_Nicescroll_Localisation $Nicescroll_Localisation,
+		Shared\Nsr_Backtop_Localisation $Backtop_Localisation
+	) {
 
 		$this->domain = $domain;
 		$this->Options = $Options;
@@ -258,7 +263,7 @@ class Nsr_Admin {
 	 */
 	private function initialize_help_tab() {
 
-		if( isset( $_REQUEST['page'] ) && $_REQUEST['page'] === 'nicescrollr_settings' ) {
+		if( isset( $_GET['page'] ) && sanitize_text_field( wp_unslash( $_GET['page'] ) ) === 'nicescrollr_settings' ) {
 
 			$help_Tab = new AdminIncludes\Nsr_Help_Tab( $this->domain );
 			$help_Tab->add_hooks();

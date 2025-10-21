@@ -171,9 +171,9 @@ class Nsr_Settings {
      */
 	public function run_validation($input) {
 
-		if( isset( $_REQUEST['section'] ) ) {
+		if( isset( $_POST['section'] ) ) {
 
-			$section = $_REQUEST['section'];
+			$section = sanitize_text_field( wp_unslash( $_POST['section'] ) );
 		}
 		else {
 

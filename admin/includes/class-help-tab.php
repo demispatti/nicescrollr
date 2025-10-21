@@ -68,7 +68,9 @@ class Nsr_Help_Tab {
 		$this->set_tab();
 
 		// We do only add the help tab on the plugin options page.
-		if( isset( $_REQUEST['page'] ) && $_REQUEST['page'] === 'nicescrollr_settings' ) {
+		$page = isset( $_GET['page'] ) ? sanitize_text_field( wp_unslash( $_GET['page'] ) ) : '';
+
+		if( $page === 'nicescrollr_settings' ) {
 
 			add_action( "load-{$GLOBALS['pagenow']}", array( $this, 'add_nsr_help_tab' ), 15 );
 		}
