@@ -209,10 +209,10 @@ class Nsr_Admin {
 		if( isset( $this->settings[$this->view]['enabled'] ) && $this->settings[$this->view]['enabled'] ) {
 
 			// jQuery Easing
-			wp_enqueue_script( 'nicescrollr-inc-easing-min-js', NICESCROLLR_ROOT_URL . 'vendor/jquery-easing/jquery.easing.min.js', array( 'jquery' ), 'all' );
+			wp_enqueue_script( 'nicescrollr-inc-easing-min-js', NICESCROLLR_ROOT_URL . 'vendor/jquery-easing/jquery.easing.min.js', array( 'jquery' ), '1.4.1' );
 
             $nice_url = NICESCROLLR_ROOT_URL . 'vendor/nicescroll/jquery.nicescroll.min.js';
-			wp_enqueue_script( 'nicescrollr-inc-nicescroll-min-js', $nice_url, array( 'jquery', 'nicescrollr-inc-easing-min-js' ), 'all' );
+			wp_enqueue_script( 'nicescrollr-inc-nicescroll-min-js', $nice_url, array( 'jquery', 'nicescrollr-inc-easing-min-js' ), '3.7.6' );
 
 			// Nicescroll configuration file
 			wp_enqueue_script( 'nicescrollr-nicescroll' . $this->handle_prefix . '-js', NICESCROLLR_ROOT_URL . 'shared/nicescroll' . $this->file_prefix . '.js', array(

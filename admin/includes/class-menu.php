@@ -255,12 +255,13 @@ class Nsr_Menu {
 			wp_enqueue_script( 'wp-color-picker-alpha', NICESCROLLR_ROOT_URL . 'vendor/color-picker-alpha/wp-color-picker-alpha.min.js', array(
 					'jquery',
 					'wp-color-picker'
-				), 'all', true );
+				), '2.1.4', true );
 
 			// Settings Menu
 			wp_enqueue_script( 'nicescrollr-menu' . $handle_prefix . '-js', NICESCROLLR_ROOT_URL . 'admin/js/menu' . $file_prefix . '.js', array(
 					'jquery',
 					'wp-color-picker',
+					'wp-color-picker-alpha',
 				), 'all' );
 		}
 	}
