@@ -6,15 +6,15 @@ use Nicescrollr\Admin\Includes as AdminIncludes;
 /**
  * If this file is called directly, abort.
  */
-if( ! defined( 'WPINC' ) ) {
-	die;
+if (!defined('WPINC')) {
+    die;
 }
 
 /**
  * Include dependencies.
  */
-if( ! class_exists( 'AdminIncludes\Nsr_Options' ) ) {
-	require_once NICESCROLLR_ROOT_DIR . 'admin/includes/class-options.php';
+if (!class_exists('AdminIncludes\Nsr_Options')) {
+    require_once NICESCROLLR_ROOT_DIR.'admin/includes/class-options.php';
 }
 
 /**
@@ -28,36 +28,37 @@ if( ! class_exists( 'AdminIncludes\Nsr_Options' ) ) {
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  */
-class Nsr_Nicescroll_Localisation {
-
-	/**
-	 * The domain of the plugin.
-	 *
-	 * @since  0.1.0
-	 *
-	 * @access private
-	 *
-	 * @var string $domain
-	 */
-	private $domain;
-
-	/**
-	 * The reference to the options class.
-	 *
-	 * @since  0.1.0
-	 * @access private
-	 * @var    AdminIncludes\Nsr_Options $Options
-	 */
-	private $Options;
-
-	/**
-	 * The name of the view for the admin area.
-	 *
-	 * @since  0.1.0
-	 * @access private
-	 * @var    string $view
-	 */
-	public $view;
+class Nsr_Nicescroll_Localisation
+{
+    
+    /**
+     * The domain of the plugin.
+     *
+     * @since  0.1.0
+     *
+     * @access private
+     *
+     * @var string $domain
+     */
+    private $domain;
+    
+    /**
+     * The reference to the options class.
+     *
+     * @since  0.1.0
+     * @access private
+     * @var    AdminIncludes\Nsr_Options $Options
+     */
+    private $Options;
+    
+    /**
+     * The name of the view for the admin area.
+     *
+     * @since  0.1.0
+     * @access private
+     * @var    string $view
+     */
+    public $view;
 
     /**
      * Nsr_Nicescroll_Localisation constructor.
@@ -65,11 +66,11 @@ class Nsr_Nicescroll_Localisation {
      * @param $domain
      * @param AdminIncludes\Nsr_Options $Options
      */
-	public function __construct($domain, $Options) {
-
-		$this->domain = $domain;
-		$this->Options = $Options;
-	}
+    public function __construct($domain, $Options)
+    {
+        $this->domain = $domain;
+        $this->Options = $Options;
+    }
 
     /**
      * Calls the function that passes the parameters to the Nicescroll library.
@@ -80,10 +81,10 @@ class Nsr_Nicescroll_Localisation {
      * @since  0.1.0
      *
      */
-	public function run($view) {
-
-		$this->localize_nicescroll( $view );
-	}
+    public function run($view)
+    {
+        $this->localize_nicescroll($view);
+    }
 
     /**
      * Retrieves the options per requested view from the database
@@ -97,28 +98,28 @@ class Nsr_Nicescroll_Localisation {
      * @since  0.1.0
      *
      */
-	public function get_nicescroll_configuration($view)
+    public function get_nicescroll_configuration($view)
     {
-
-		$configuration = (array) $this->Options->get_options( $view );
-
-		// Add the value which defines the view ( front- or backend) to the config-array.
-		$configuration['view'] = $view;
-
-		return $configuration;
-	}
-
+        $configuration = (array) $this->Options->get_options($view);
+        
+        // Add the value which defines the view ( front- or backend) to the config-array.
+        $configuration['view'] = $view;
+        
+        return $configuration;
+    }
+    
     /**
      * Localzes the Nicescroll instance.
+     *
      * @param string $view
      *
      * @return void
      * @since  0.1.0
      *
      */
-	private function localize_nicescroll($view) {
-
-		wp_localize_script( 'nicescrollr-nicescroll-js', 'Nsr_Options', $this->get_nicescroll_configuration( $view ) );
-	}
+    private function localize_nicescroll($view)
+    {
+        wp_localize_script('nicescrollr-nicescroll-js', 'Nsr_Options', $this->get_nicescroll_configuration($view));
+    }
 
 }

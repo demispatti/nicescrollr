@@ -1,5 +1,52 @@
 # Changelog
 
+## Version 1.1.0
+
+### Security
+
+- Added capability and nonce enforcement to AJAX resets
+- Added strict allowlists for settings sections and select values
+- Escaped stored settings and Back-to-top markup at output
+- Rejected malformed CSS color values before they reach generated styles
+
+### Fixed
+
+- Fixed script localization in production mode
+- Fixed wrapper activation and deactivation hooks
+- Fixed mobile scrolling when Nicescroll is not initialized
+- Fixed reset responses and atomic option updates
+- Fixed option migration notices and repeated database writes
+- Fixed validation errors producing undefined-index warnings and empty messages
+- Fixed PHP 8.5 nullable parameter deprecation
+
+### Changed
+
+- Updated WordPress compatibility to 7.1
+- Updated WP Color Picker Alpha to 3.0.4
+- Added stable asset handles, versioned cache busting, and footer script loading
+- Removed the redundant document-wide mutation observer
+- Removed the bundled library's unexpected third-party cursor request
+- Improved Back-to-top accessibility and multisite uninstall cleanup
+
+## Version 1.0.0
+
+### Fixed
+
+- Fixed PHP 8+ compatibility issues with switch statement syntax
+- Fixed translation loading timing for WordPress 6.7+
+- Fixed rail padding bug in nicescroll.js (bottom was using left value)
+- Fixed select dropdown CSS scoping issue
+
+### Changed
+
+- Improved default scroll settings for better user experience
+- Updated minimum PHP requirement to 7.4
+- Updated WordPress tested up to 6.7
+
+### Added
+
+- Added expandable arrows to settings toggles for better UX
+
 ## Version 0.9.3
 ### Changed
 - Resolved problem where the page is not scrolling on mobile devices
@@ -71,7 +118,8 @@
 ## Version 0.7.1
 ### Added
 - Added an option to enable / disable the scrollTop button on mobile devices
-- Added four predefined sizes for the scrollTop button. NOTE: You will have to visit the plugin settings page and manually save the options for both the frontend and the backend in order to activate the new options
+- Added four predefined sizes for the scrollTop button. NOTE: You will have to visit the plugin settings page and manually save the options for
+  both the frontend and the backend in order to activate the new options
 
 ## Version 0.7.0
 ### Changed
@@ -83,7 +131,7 @@
 - Added minified versions of js and css files
 - Added Dashicons
 - Added custom scroll-to
-- Added option to change the arrow color of the backtop arrow (NOTE: width and height must be 48px for it to be centered,  for now)
+- Added option to change the arrow color of the backtop arrow (NOTE: width and height must be 48px for it to be centered, for now)
 ### Removed
 - Removed Font Awesome Fonts
 - Removed Fancy Select Library
@@ -115,6 +163,7 @@
 
 ## Version 0.6.2
 ### Changed
+
 - Renamed css class "top-is-visible"  to "nsr-backtop-is-visible" due to compatibility reasons with buttons that are shipped with themes
 - Renamed the plugin's js instances to avoid any possible conflicts with other js libraries
 - Changed the element type for the backtop button, since no anchor is needed
@@ -152,7 +201,8 @@
 - Updated the note regarding my support forum visits
 - Moved the reset buttons to the respective settings tabs
 ### Added
-- Added some styling Options for the backtop buttons. I advise you to navigate to the settings 
+
+- Added some styling Options for the backtop buttons. I advise you to navigate to the settings
 - Added credit to the author of Nicescroll in the description text
 ### Removed
 - Removed the deprecated plugin settings tab
@@ -189,7 +239,9 @@
 
 ## Version 0.5.0
 ### Changed
-- Upgraded Nicescroll to version 3.6.8. Scroll behaviour may has changed since the library changed. Tweak the settings mentioned under 4. in this list if necessary
+
+- Upgraded Nicescroll to version 3.6.8. Scroll behaviour may has changed since the library changed. Tweak the settings mentioned under 4. in this
+  list if necessary
 - Added easing
 - Upgraded Alertify
 - Replaced IcoMoon icons in favour of Font Awesome 4.7.0 ( loads via CDN with local fallback )
@@ -214,7 +266,9 @@
 
 ## Version 0.2.2
 ### Changed
-- Nicescroll is now being disabled on mobile devices with a screen width below 960px to enhance user experience and prevent touch-related incompatibilities
+
+- Nicescroll is now being disabled on mobile devices with a screen width below 960px to enhance user experience and prevent touch-related
+  incompatibilities
 
 ## Version 0.2.1.1
 ### Changed
@@ -232,7 +286,8 @@
 ### Changed
 - Resolved the translation bugs
 - Optimized the default settings for both the frontend and the backend
-- Implemented the nicescroll.plus-library. It basically widens the rail and the cursor if their width is below 16px to 16px on hover so it's easier to grab it
+- Implemented the nicescroll.plus-library. It basically widens the rail and the cursor if their width is below 16px to 16px on hover so it's
+  easier to grab it
 - Modified the interface
 - Updated the screenshots
 

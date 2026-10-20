@@ -6,8 +6,8 @@ use Nicescrollr\Admin\Includes as AdminIncludes;
 /**
  * If this file is called directly, abort.
  */
-if( ! defined( 'WPINC' ) ) {
-	die;
+if (!defined('WPINC')) {
+    die;
 }
 
 /**
@@ -21,72 +21,78 @@ if( ! defined( 'WPINC' ) ) {
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  */
-class Nsr_Menu_Localisation {
-
-	/**
-	 * The reference to the options class.
-	 *
-	 * @since  0.1.0
-	 * @access private
-	 * @var    AdminIncludes\Nsr_Options $Options
-	 */
-	private Nsr_Options $Options;
+class Nsr_Menu_Localisation
+{
+    
+    /**
+     * The reference to the options class.
+     *
+     * @since  0.1.0
+     * @access private
+     * @var    AdminIncludes\Nsr_Options $Options
+     */
+    private Nsr_Options $Options;
 
     /**
      * Nsr_Menu_Localisation constructor.
      *
      * @param Nsr_Options $Options
      */
-	public function __construct(Nsr_Options $Options) {
-
-		$this->Options = $Options;
-	}
-
-	/**
-	 * Kicks off localisation of the menu.
-	 *
-	 * @since  0.1.0
-	 * @return void
-	 */
-	public function run(): void
+    public function __construct(Nsr_Options $Options)
     {
-
-		$this->localize_script();
-	}
-
-	/**
-	 * Localizes the menu.
-	 *
-	 * @since  0.1.0
-	 * @see    admin/menu/js/menu.js
-	 * @access private
-	 * @return void
-	 */
-	private function localize_script(): void
+        $this->Options = $Options;
+    }
+    
+    /**
+     * Kicks off localisation of the menu.
+     *
+     * @return void
+     * @since  0.1.0
+     */
+    public function run() : void
     {
-
-		wp_localize_script( 'nicescrollr-menu-js', 'Nsr_Menu', array_merge( $this->Options->count_basic_settings(), $this->Options->count_extended_settings(), $this->get_localized_strings_for_switches() ) );
-	}
-
-	/**
-	 * Retrieves - so far German - strings to localize some css-pseudo-selectors.
-	 *
-	 * @since  0.1.0
-	 * @see    admin/settings-menu/css/checkboxes.css
-	 * @see    admin/settings-menu/js/menu.js
-	 * @access private
-	 * @return array
-	 */
-	private function get_localized_strings_for_switches(): array
+        $this->localize_script();
+    }
+    
+    /**
+     * Localizes the menu.
+     *
+     * @return void
+     * @see    admin/menu/js/menu.js
+     * @access private
+     * @since  0.1.0
+     */
+    private function localize_script() : void
+    {
+        wp_localize_script('nicescrollr-menu-js', 'Nsr_Menu', array_merge($this->Options->count_basic_settings(), $this->Options->count_extended_settings(), $this->get_localized_strings_for_switches()));
+    }
+    
+    /**
+     * Retrieves - so far German - strings to localize some css-pseudo-selectors.
+     *
+     * @return array
+     * @see    admin/settings-menu/css/checkboxes.css
+     * @see    admin/settings-menu/js/menu.js
+     * @access private
+     * @since  0.1.0
+     */
+    private function get_localized_strings_for_switches() : array
     {
 		$current_locale = get_locale();
-
-        if($current_locale == "de_DE") {
-            return array('locale' => $current_locale, 'On' => 'Ein', 'Off' => 'Aus');
+        
+        if ($current_locale == 'de_DE') {
+            return array(
+                'locale' => $current_locale,
+                'On'     => 'Ein',
+                'Off'    => 'Aus'
+            );
+        } else {
+            return array(
+                'locale' => 'default',
+                'On'     => 'On',
+                'Off'    => 'Off'
+            );
         }
-        else {
-            return array('locale' => 'default', 'On' => 'On', 'Off' => 'Off');
-        }
-	}
-
+    }
+    
 }

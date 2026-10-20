@@ -1,8 +1,8 @@
 <?php
 namespace Nicescrollr;
 
-use Nicescrollr\Admin\Includes as AdminIncludes;
 use Nicescrollr\Includes as Includes;
+use Nicescrollr\Admin\Includes as AdminIncludes;
 
 /**
  * The plugin bootstrap file
@@ -16,55 +16,68 @@ use Nicescrollr\Includes as Includes;
  * @since             0.1.0
  * @package           nicescrollr
  * @author            Demis Patti
- * @link:             https://wordpress.org/plugins/nicescrollr/
+ * @link   :             https://wordpress.org/plugins/nicescrollr/
  * Plugin URI:        https://wordpress.org/plugins/nicescrollr/
  * Plugin Name:       Nicescrollr
- * Description:       This plugin is a wrapper for the popular "Nicescroll" javascript library, which is made by <a href="https://wordpress.org/support/users/inuyaksa/" target="_blank">InuYaksa</a>. You can use it on both the frontend and the backend. It is fully customizable, so you can tweak and tune every single parameter Nicescroll has to offer! You can style it totally different for both parts of your website. You can even keep the default scrollbar if you like. It's all up to you.
+ * Description:       Configurable Nicescroll scrollbars and back-to-top buttons for the WordPress frontend and admin area.
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       nicescrollr
  * Domain Path:       /languages
- * Version:           0.9.3
- * Stable tag:        0.9.3
- * Requires at least: 5.5
- * Tested up to:      6.2
- * Requires PHP:      5.6
- * Max. PHP version:  7.4.21
+ * Version:           1.1.0
+ * Stable tag:        1.1.0
+ * Requires at least: 5.6
+ * Tested up to:      7.1
+ * Requires PHP:      7.4
  */
 
 /**
  * If this file is called directly, abort.
  */
-if( ! defined( 'WPINC' ) ) {
-	die;
+if (!defined('WPINC')) {
+    die;
 }
-// Leave this to '1' until the minified scripts work as expected
-define( 'NICESCROLLR_DEBUG', '1' );
+
+if (!defined('NICESCROLLR_PLUGIN_FILE')) {
+    define('NICESCROLLR_PLUGIN_FILE', __FILE__);
+}
+
+if (!defined('NICESCROLLR_VERSION')) {
+    define('NICESCROLLR_VERSION', '1.1.0');
+}
+
+/**
+ * Define debug mode - uses WordPress WP_DEBUG constant or can be overridden
+ * Set to true to use unminified assets for development/debugging
+ */
+if (!defined('NICESCROLLR_DEBUG')) {
+    define('NICESCROLLR_DEBUG', defined('WP_DEBUG') && WP_DEBUG ? '1' : '0');
+}
 
 /**
  * Define plugin constants.
  */
-if( ! defined( 'NICESCROLLR_ROOT_DIR' ) ) {
-	define( 'NICESCROLLR_ROOT_DIR', plugin_dir_path( __FILE__ ) );
+if (!defined('NICESCROLLR_ROOT_DIR')) {
+    define('NICESCROLLR_ROOT_DIR', plugin_dir_path(__FILE__));
 }
-if( ! defined( 'NICESCROLLR_ROOT_URL' ) ) {
-	define( 'NICESCROLLR_ROOT_URL', plugin_dir_url( __FILE__ ) );
+if (!defined('NICESCROLLR_ROOT_URL')) {
+    define('NICESCROLLR_ROOT_URL', plugin_dir_url(__FILE__));
 }
 
 /**
  * Include dependencies.
  */
-if( ! class_exists( 'Includes\Nsr' ) ) {
-	require_once NICESCROLLR_ROOT_DIR . 'includes/class-nsr.php';
+if (!class_exists(Includes\Nsr::class)) {
+    require_once NICESCROLLR_ROOT_DIR.'includes/class-nsr.php';
 }
-if( ! class_exists( 'Includes\Nsr_Activator' ) ) {
-	require_once NICESCROLLR_ROOT_DIR . 'includes/class-activator.php';
+if (!class_exists(Includes\Nsr_Activator::class)) {
+    require_once NICESCROLLR_ROOT_DIR.'includes/class-activator.php';
 }
-if( ! class_exists( 'Includes\Nsr_Deactivator' ) ) {
-	require_once NICESCROLLR_ROOT_DIR . 'includes/class-deactivator.php';
+if (!class_exists(Includes\Nsr_Deactivator::class)) {
+    require_once NICESCROLLR_ROOT_DIR.'includes/class-deactivator.php';
 }
-if( ! class_exists( 'AdminIncludes\Nsr_Options' ) ) {
-	require_once NICESCROLLR_ROOT_DIR . 'admin/includes/class-options.php';
+if (!class_exists(AdminIncludes\Nsr_Options::class)) {
+    require_once NICESCROLLR_ROOT_DIR.'admin/includes/class-options.php';
 }
 
 /**
@@ -74,9 +87,9 @@ if( ! class_exists( 'AdminIncludes\Nsr_Options' ) ) {
  * @uses  activate_nsr()
  * @see   includes/class-Nsr-activator.php
  */
-function activate_nsr(): void
+function activate_nsr() : void
 {
-	Includes\nsr_activator::activate();
+    Includes\nsr_activator::activate();
 }
 
 /**
@@ -86,27 +99,27 @@ function activate_nsr(): void
  * @uses  deactivate_nsr()
  * @see   includes/class-Nsr-deactivator.php
  */
-function deactivate_nsr(): void
+function deactivate_nsr() : void
 {
-	Includes\nsr_deactivator::deactivate();
+    Includes\nsr_deactivator::deactivate();
 }
 
-register_activation_hook( __FILE__, 'Nicescrollr\activate_nsr');
-register_deactivation_hook( __FILE__, 'Nicescrollr\deactivate_nsr' );
+register_activation_hook(NICESCROLLR_PLUGIN_FILE, 'Nicescrollr\activate_nsr');
+register_deactivation_hook(NICESCROLLR_PLUGIN_FILE, 'Nicescrollr\deactivate_nsr');
 
 /**
  * Begins execution of the plugin.
  *
  * @since 0.1.0
  */
-function run_nsr(): void
+function run_nsr() : void
 {
-	// @fix, else add these options during next update routine and remove fix
-	$options = new AdminIncludes\Nsr_Options( 'nicescrollr' );
-	$options->maybe_fill_missing_options();
-
-	$plugin = new Includes\Nsr();
-	$plugin->run();
+    // @fix, else add these options during next update routine and remove fix
+    $options = new AdminIncludes\Nsr_Options('nicescrollr');
+    $options->maybe_fill_missing_options();
+    
+    $plugin = new Includes\Nsr();
+    $plugin->run();
 }
 
-add_action( 'plugins_loaded', 'Nicescrollr\run_nsr' );
+add_action('init', 'Nicescrollr\run_nsr');
