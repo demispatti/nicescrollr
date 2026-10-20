@@ -2,7 +2,7 @@
 Tags: nicescroll, scroll, scrollbar, back to top, scroll to top, frontend, backend
 Requires at least: 5.6
 Tested up to: 6.5.2
-Requires PHP: 5.6+
+Requires PHP: 7.1+
 Version: 0.9.3
 Stable tag: 0.9.3
 License: GPLv2 or later
