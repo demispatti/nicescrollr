@@ -1,4 +1,4 @@
-<?php
+ýK®ÏÝzh¬¥«m‹úï›û®*m³úï›oh¥êÚ¶*'ž‹iz¹¢¶×¦ÏÔ±êìý×¦ŠÊZ¶Ø¿®ù¿±Êâ¦Û?®ù¶öŠ^­«b¢yè¶—«š+myÚl<?php
 namespace Nicescrollr\Admin\Includes;
 
 use Nicescrollr\Admin\Includes as AdminIncludes;
@@ -135,7 +135,7 @@ class Nsr_Validation {
 
 			switch( $option_key ) {
 
-				case ( $option_key === 'cursoropacitymin' );
+				case ( $option_key === 'cursoropacitymin' ):
 
 					if( $value !== '' ) {
 
@@ -148,7 +148,7 @@ class Nsr_Validation {
 
 					break;
 
-				case ( $option_key === 'cursoropacitymax' );
+				case ( $option_key === 'cursoropacitymax' ):
 
 					if( ( ! ( (int) $value >= 0 ) && ! ( (int) $value <= 1.00 ) ) || ! preg_match( '/^[0-9]+(\.[0-9]{1,2})?$/', $value ) ) {
 
@@ -158,7 +158,7 @@ class Nsr_Validation {
 
 					break;
 
-				case ( $option_key === 'cursorbordercolor' );
+				case ( $option_key === 'cursorbordercolor' ):
 
 					if( isset( $value ) && ! preg_match( $rgba_pattern, $value ) ) {
 
@@ -168,7 +168,7 @@ class Nsr_Validation {
 
 					break;
 
-				case( $option_key === 'zindex' );
+				case( $option_key === 'zindex' ):
 
 					if( ! ctype_digit( $value ) ) {
 
@@ -181,7 +181,7 @@ class Nsr_Validation {
 
 					break;
 
-				case ( $option_key === 'scrollspeed' );
+				case ( $option_key === 'scrollspeed' ):
 
 					if( $value === '0' || ! ctype_digit( $value ) ) {
 
@@ -191,7 +191,7 @@ class Nsr_Validation {
 
 					break;
 
-				case ( $option_key === 'background' );
+				case ( $option_key === 'background' ):
 
 					if( '' !== $value && ! preg_match( $rgba_pattern, $value ) ) {
 
@@ -201,7 +201,7 @@ class Nsr_Validation {
 
 					break;
 
-				case( $option_key === 'hidecursordelay' );
+				case( $option_key === 'hidecursordelay' ):
 
 					if( $value !== '' ) {
 
@@ -214,7 +214,7 @@ class Nsr_Validation {
 
 					break;
 
-				case( $option_key === 'cursordragspeed' || $option_key === 'mousescrollstep' );
+				case( $option_key === 'cursordragspeed' || $option_key === 'mousescrollstep' ):
 
 					if( $value !== '' ) {
 
@@ -227,7 +227,7 @@ class Nsr_Validation {
 
 					break;
 
-				case( $option_key === 'scrollbarid' );
+				case( $option_key === 'scrollbarid' ):
 
 					if( '' || false !== $value ) {
 
@@ -242,7 +242,7 @@ class Nsr_Validation {
 
 					break;
 
-				case ( $option_key === 'bt_arrow_color' || $option_key === 'bt_arrow_hover_color' || $option_key === 'bt_background_color' || $option_key === 'bt_hover_background_color' || $option_key === 'bt_border_color' || $option_key === 'bt_hover_border_color' || $option_key === 'cursorcolor' );
+				case ( $option_key === 'bt_arrow_color' || $option_key === 'bt_arrow_hover_color' || $option_key === 'bt_background_color' || $option_key === 'bt_hover_background_color' || $option_key === 'bt_border_color' || $option_key === 'bt_hover_border_color' || $option_key === 'cursorcolor' ):
 
 					if( ! preg_match( $rgba_pattern, $value ) ) {
 
@@ -253,7 +253,7 @@ class Nsr_Validation {
 					break;
 
 				case( $option_key === 'bt_posx_from_right' || $option_key === 'bt_posy_from_bottom' || $option_key === 'bt_width' || $option_key === 'bt_height' ||
-					$option_key === 'bt_border_width' || $option_key === 'directionlockdeadzone' || $option_key === 'railpaddingtop' || $option_key === 'railpaddingright' || $option_key === 'railpaddingbottom' || $option_key === 'railpaddingleft' || $option_key === 'cursorminheight' || $option_key === 'cursorborderradius' || $option_key === 'cursorborderwidth' || $option_key === 'cursorwidth' );
+					$option_key === 'bt_border_width' || $option_key === 'directionlockdeadzone' || $option_key === 'railpaddingtop' || $option_key === 'railpaddingright' || $option_key === 'railpaddingbottom' || $option_key === 'railpaddingleft' || $option_key === 'cursorminheight' || $option_key === 'cursorborderradius' || $option_key === 'cursorborderwidth' || $option_key === 'cursorwidth' ):
 
 					if( $value !== '' ) {
 
@@ -275,7 +275,7 @@ class Nsr_Validation {
 
 					break;
 
-				case( $option_key === 'bt_border_radius_top_left' || $option_key === 'bt_border_radius_top_right' || $option_key === 'bt_border_radius_bottom_left' || $option_key === 'bt_border_radius_bottom_right' );
+				case( $option_key === 'bt_border_radius_top_left' || $option_key === 'bt_border_radius_top_right' || $option_key === 'bt_border_radius_bottom_left' || $option_key === 'bt_border_radius_bottom_right' ):
 
 					if( $value !== '' ) {
 
@@ -521,7 +521,7 @@ class Nsr_Validation {
 
 			switch( $option_key ) {
 
-				case( $option_key === 'cursorborderstate' );
+				case( $option_key === 'cursorborderstate' ):
 					if( null !== $value && $value === __( 'none', $this->domain ) ) {
 
 						$output[$option_key] = 'none';
@@ -531,7 +531,7 @@ class Nsr_Validation {
 					}
 					break;
 
-				case( $option_key === 'autohidemode' );
+				case( $option_key === 'autohidemode' ):
 
 					if( true === $value || 'enabled' === $value ) {
 
@@ -562,7 +562,7 @@ class Nsr_Validation {
 					}
 					break;
 
-				case( $option_key === 'railoffset' );
+				case( $option_key === 'railoffset' ):
 
 					if( null !== $value && $value === __( 'false', $this->domain ) ) {
 
@@ -581,7 +581,7 @@ class Nsr_Validation {
 					}
 					break;
 
-				case( $option_key === 'railalign' );
+				case( $option_key === 'railalign' ):
 
 					if( null !== $value && $value === __( 'right', $this->domain ) ) {
 
@@ -596,7 +596,7 @@ class Nsr_Validation {
 					}
 					break;
 
-				case( $option_key === 'railvalign' );
+				case( $option_key === 'railvalign' ):
 
 					if( null !== $value && $value === __( 'bottom', $this->domain ) ) {
 
@@ -611,7 +611,7 @@ class Nsr_Validation {
 					}
 					break;
 
-				case( $option_key === 'cursorfixedheight' );
+				case( $option_key === 'cursorfixedheight' ):
 
 					if( false === $value ) {
 

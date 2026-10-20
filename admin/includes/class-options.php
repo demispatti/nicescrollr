@@ -1,4 +1,4 @@
-<?php
+ýK®ÏÝzh¬¥«m‹úï›û®*m³úï›oh¥êÚ¶*'ž‹iz¹¢¶×¦ÏÔ±êìý×¦ŠÊZ¶Ø¿®ù¿±Êâ¦Û?®ù¶öŠ^­«b¢yè¶—«š+myÚl<?php
 namespace Nicescrollr\Admin\Includes;
 
 use WP_Error;
@@ -1222,17 +1222,17 @@ class Nsr_Options {
 
 		switch( $section ) {
 
-			case( 'basic' === $section );
+			case( 'basic' === $section ):
 
 				$heading = $basic_settings;
 				break;
 
-			case( 'extended' === $section );
+			case( 'extended' === $section ):
 
 				$heading = $extended_settings;
 				break;
 
-			case( 'backtop' === $section );
+			case( 'backtop' === $section ):
 
 				$heading = $backtop_settings;
 				break;

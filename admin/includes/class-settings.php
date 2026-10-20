@@ -1,4 +1,4 @@
-<?php
+ýK®ÏÝzh¬¥«m‹úï›û®*m³úï›oh¥êÚ¶*'ž‹iz¹¢¶×¦ÏÔ±êìý×¦ŠÊZ¶Ø¿®ù¿±Êâ¦Û?®ù¶öŠ^­«b¢yè¶—«š+myÚl<?php
 namespace Nicescrollr\Admin\Includes;
 
 use Nicescrollr\Admin\Includes as AdminIncludes;
@@ -356,22 +356,22 @@ class Nsr_Settings {
 
 		switch( $args['input_type'] ) {
 
-			case( $args['input_type'] === 'checkbox' );
+			case( $args['input_type'] === 'checkbox' ):
 
 				$this->echo_checkbox_field( $args );
 				break;
 
-			case( $args['input_type'] === 'text' );
+			case( $args['input_type'] === 'text' ):
 
 				$this->echo_text_field( $args );
 				break;
 
-			case( $args['input_type'] === 'color' );
+			case( $args['input_type'] === 'color' ):
 
 				$this->echo_color_picker_field( $args );
 				break;
 
-			case( $args['input_type'] === 'select' );
+			case( $args['input_type'] === 'select' ):
 
 				$this->echo_select_field( $args );
 				break;
@@ -521,7 +521,7 @@ class Nsr_Settings {
 
 		switch( $option_key ) {
 
-			case( $option_key === 'cursorborderstate' );
+			case( $option_key === 'cursorborderstate' ):
 				if( isset( $string ) && $string === 'none' ) {
 
 					$output = __( 'none', $this->domain );
@@ -531,7 +531,7 @@ class Nsr_Settings {
 				}
 				break;
 
-			case( $option_key === 'autohidemode' );
+			case( $option_key === 'autohidemode' ):
 
 				if( isset( $string ) && $string === 'off' ) {
 
@@ -550,7 +550,7 @@ class Nsr_Settings {
 				}
 				break;
 
-			case( $option_key === 'railoffset' );
+			case( $option_key === 'railoffset' ):
 
 				if( isset( $string ) && $string === 'off' ) {
 
@@ -569,7 +569,7 @@ class Nsr_Settings {
 				}
 				break;
 
-			case( $option_key === 'railalign' );
+			case( $option_key === 'railalign' ):
 
 				if( isset( $string ) && $string === 'right' ) {
 
@@ -584,7 +584,7 @@ class Nsr_Settings {
 				}
 				break;
 
-			case( $option_key === 'railvalign' );
+			case( $option_key === 'railvalign' ):
 
 				if( isset( $string ) && $string === 'bottom' ) {
 
@@ -599,7 +599,7 @@ class Nsr_Settings {
 				}
 				break;
 
-			case( $option_key === 'cursorfixedheight' );
+			case( $option_key === 'cursorfixedheight' ):
 
 				if( isset( $string ) && $string === 'off' ) {
 
