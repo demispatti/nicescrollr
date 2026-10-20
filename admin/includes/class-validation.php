@@ -326,7 +326,7 @@ class Nsr_Validation
         }
         
         if (!preg_match('/^([A-Za-z0-9_ ().-]-)*[A-Za-z0-9\_().-]+$/', $value)) {
-            return new WP_Error('broke', __("Your input didn't pass validation. Please use numbers and/or alphabetical characters.", $this->domain));
+            return new WP_Error('broke', __("Your input didn't pass validation. Please use numbers and/or alphabetical characters.", "nicescrollr"));
         }
         
         return (string) $value;
@@ -500,7 +500,7 @@ class Nsr_Validation
         foreach ((array) $input as $option_key => $value) {
             switch ($option_key) {
                 case 'cursorborderstate':
-                    if (null !== $value && $value === __('none', $this->domain)) {
+                    if (null !== $value && $value === __('none', "nicescrollr")) {
                         $output[$option_key] = 'none';
                     } else {
                         $output[$option_key] = $value;
@@ -538,13 +538,13 @@ class Nsr_Validation
                 
                 case 'railoffset':
                     
-                    if (null !== $value && $value === __('false', $this->domain)) {
+                    if (null !== $value && $value === __('false', "nicescrollr")) {
                         $output[$option_key] = 'false';
                     } else {
-                        if (null !== $value && $value === __('top', $this->domain)) {
+                        if (null !== $value && $value === __('top', "nicescrollr")) {
                             $output[$option_key] = 'top';
                         } else {
-                            if (null !== $value && $value === __('left', $this->domain)) {
+                            if (null !== $value && $value === __('left', "nicescrollr")) {
                                 $output[$option_key] = 'left';
                             } else {
                                 $output[$option_key] = $value;
@@ -555,10 +555,10 @@ class Nsr_Validation
                 
                 case 'railalign':
                     
-                    if (null !== $value && $value === __('right', $this->domain)) {
+                    if (null !== $value && $value === __('right', "nicescrollr")) {
                         $output[$option_key] = 'right';
                     } else {
-                        if (null !== $value && $value === __('left', $this->domain)) {
+                        if (null !== $value && $value === __('left', "nicescrollr")) {
                             $output[$option_key] = 'left';
                         } else {
                             $output[$option_key] = $value;
@@ -568,10 +568,10 @@ class Nsr_Validation
                 
                 case 'railvalign':
                     
-                    if (null !== $value && $value === __('bottom', $this->domain)) {
+                    if (null !== $value && $value === __('bottom', "nicescrollr")) {
                         $output[$option_key] = 'bottom';
                     } else {
-                        if (null !== $value && $value === __('top', $this->domain)) {
+                        if (null !== $value && $value === __('top', "nicescrollr")) {
                             $output[$option_key] = 'top';
                         } else {
                             $output[$option_key] = $value;
@@ -636,7 +636,7 @@ class Nsr_Validation
         $label = isset($options_meta[$option_key]['name']) ? $options_meta[$option_key]['name'] : $this->make_readable($option_key);
         
         /* translators: %s: settings field label. */
-        $message = sprintf(__('Invalid value for “%s”. The default value was restored.', $this->domain), $label);
+        $message = sprintf(__('Invalid value for “%s”. The default value was restored.', "nicescrollr"), $label);
         
         return new WP_Error('nicescrollr_invalid_option', $message );
 	}

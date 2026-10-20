@@ -60,7 +60,7 @@ class Nsr_Ajax
     {
         $this->domain = $domain;
         $this->Options = $Options;
-        $this->nonce_error_text = __('That won\'t do.', $this->domain);
+        $this->nonce_error_text = __('That won\'t do.', "nicescrollr");
     }
     
     /**
@@ -86,7 +86,7 @@ class Nsr_Ajax
     public function nicescrollr_reset_options()
     {
         if (!current_user_can('manage_options')) {
-            wp_send_json_error(array('message' => __('You are not allowed to change these settings.', $this->domain)), 403);
+            wp_send_json_error(array('message' => __('You are not allowed to change these settings.', "nicescrollr")), 403);
         }
         
         // Verify nonce from POST request
@@ -102,17 +102,17 @@ class Nsr_Ajax
             Nsr_Options::VIEW_FRONTEND,
             Nsr_Options::VIEW_BACKEND
         ), true)) {
-            wp_send_json_error(array('message' => __('Invalid settings section.', $this->domain)), 400);
+            wp_send_json_error(array('message' => __('Invalid settings section.', "nicescrollr")), 400);
         }
         
         // Save options
         $result = $this->Options->reset_settings($section);
         if (is_wp_error($result)) {
             wp_send_json_error(array(
-                    'message' => $result->get_error_message().' '.__('Please try again later.', $this->domain),
+                    'message' => $result->get_error_message().' '.__('Please try again later.', "nicescrollr"),
                 ), 500);
         } else {
-            wp_send_json_success(array('message' => __('Settings set to default.', $this->domain)));
+            wp_send_json_success(array('message' => __('Settings set to default.', "nicescrollr")));
         }
     }
 

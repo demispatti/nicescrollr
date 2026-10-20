@@ -73,7 +73,7 @@ class Nsr_Reset_Section
      */
     private function get_section_heading()
     {
-        return '<h2 class="settings-toggle reset nicescrollr_settings_toggle"><span class="dashicons dashicons-menu"></span>'.esc_html__('Reset Settings', $this->domain).'</h2>';
+        return '<h2 class="settings-toggle reset nicescrollr_settings_toggle"><span class="dashicons dashicons-menu"></span>'.esc_html__('Reset Settings', "nicescrollr").'</h2>';
     }
     
     /**
@@ -108,16 +108,16 @@ class Nsr_Reset_Section
             return array(
                 'id'    => 'reset_frontend',
                 'class' => 'nsr-reset-button',
-                'name'  => __('Reset Frontend', $this->domain),
-                'title' => __('Resets the settings for the frontend.', $this->domain),
+                'name'  => __('Reset Frontend', "nicescrollr"),
+                'title' => __('Resets the settings for the frontend.', "nicescrollr"),
             );
         }
         
         return array(
             'id'    => 'reset_backend',
             'class' => 'nsr-reset-button',
-            'name'  => __('Reset Backend', $this->domain),
-            'title' => __('Resets the settings for the backend.', $this->domain),
+            'name'  => __('Reset Backend', "nicescrollr"),
+            'title' => __('Resets the settings for the backend.', "nicescrollr"),
         );
     }
     
@@ -141,7 +141,7 @@ class Nsr_Reset_Section
         $html .= '<td>';
         $html .= '<div class="form-table-td-wrap">';
         $html .= '<p class="nsr-input-container">';
-        $html .= '<a href="#" data-name="'.esc_attr($args['id']).'" id="'.esc_attr($args['id']).'" class="button button-secondary dp-button float-left '.esc_attr($args['class']).'" title="'.esc_attr($args['title']).'" data-nonce="'.esc_attr($nonce).'">'.esc_html__('Reset', $this->domain).'</a>';
+        $html .= '<a href="#" data-name="'.esc_attr($args['id']).'" id="'.esc_attr($args['id']).'" class="button button-secondary dp-button float-left '.esc_attr($args['class']).'" title="'.esc_attr($args['title']).'" data-nonce="'.esc_attr($nonce).'">'.esc_html__('Reset', "nicescrollr").'</a>';
         $html .= '</p>';
         $html .= '</div>';
         $html .= '</td>';

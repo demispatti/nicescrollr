@@ -353,9 +353,9 @@ class Nsr_Admin
         $plugin = plugin_basename(NICESCROLLR_PLUGIN_FILE);
         
         if ($file === $plugin) {
-            $meta[] = '<a href="https://wordpress.org/support/plugin/nicescrollr" target="_blank" rel="noopener noreferrer">'.esc_html__('Plugin support', $this->domain).'</a>';
-            $meta[] = '<a href="https://wordpress.org/support/plugin/nicescrollr/reviews/" target="_blank" rel="noopener noreferrer">'.esc_html__('Rate plugin', $this->domain).'</a>';
-            $meta[] = '<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=XLMMS7C62S76Q" target="_blank" rel="noopener noreferrer">'.esc_html__('Donate', $this->domain).'</a>';
+            $meta[] = '<a href="https://wordpress.org/support/plugin/nicescrollr" target="_blank" rel="noopener noreferrer">'.esc_html__('Plugin support', "nicescrollr").'</a>';
+            $meta[] = '<a href="https://wordpress.org/support/plugin/nicescrollr/reviews/" target="_blank" rel="noopener noreferrer">'.esc_html__('Rate plugin', "nicescrollr").'</a>';
+            $meta[] = '<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=XLMMS7C62S76Q" target="_blank" rel="noopener noreferrer">'.esc_html__('Donate', "nicescrollr").'</a>';
         }
         
         return $meta;

@@ -194,12 +194,12 @@ class Nsr_Settings
         if (isset($_POST['section'])) {
             $section = sanitize_text_field(wp_unslash($_POST['section']));
             if (!in_array($section, Nsr_Options::$settings_tabs, true)) {
-                add_settings_error('nicescrollr_options', 'invalid_section', __('Invalid settings section.', $this->domain));
+                add_settings_error('nicescrollr_options', 'invalid_section', __('Invalid settings section.', "nicescrollr"));
                 
                 return get_option('nicescrollr_options', array());
             }
         } else {
-            return new WP_Error(-1, __('There is no section related to the data.', $this->domain));
+            return new WP_Error(-1, __('There is no section related to the data.', "nicescrollr"));
         }
         
         return $this->Validation->run($input, $section);
@@ -339,7 +339,7 @@ class Nsr_Settings
      */
     public function basic_settings_section_callback()
     {
-        //echo '<h2 class="basic nicescrollr_settings_toggle wtf"><i class="fa fa-sliders" aria-hidden="true"></i>' . __( 'Basic Settings', $this->domain ) . '</h2>';
+        //echo '<h2 class="basic nicescrollr_settings_toggle wtf"><i class="fa fa-sliders" aria-hidden="true"></i>' . __( 'Basic Settings', "nicescrollr" ) . '</h2>';
     }
     
     /**
@@ -350,7 +350,7 @@ class Nsr_Settings
      */
     public function extended_settings_section_callback()
     {
-        //echo '<h2 class="extended nicescrollr_settings_toggle"><i class="fa fa-sliders" aria-hidden="true"></i>' . __( 'Extended Settings', $this->domain ) . '</h2>';
+        //echo '<h2 class="extended nicescrollr_settings_toggle"><i class="fa fa-sliders" aria-hidden="true"></i>' . __( 'Extended Settings', "nicescrollr" ) . '</h2>';
     }
     
     /**
@@ -361,7 +361,7 @@ class Nsr_Settings
      */
     public function backtop_settings_section_callback()
     {
-        //echo '<h2 class="backtop nicescrollr_settings_toggle"><i class="fa fa-sliders" aria-hidden="true"></i>' . __( 'Plugin Settings', $this->domain ) . '</h2>';
+        //echo '<h2 class="backtop nicescrollr_settings_toggle"><i class="fa fa-sliders" aria-hidden="true"></i>' . __( 'Plugin Settings', "nicescrollr" ) . '</h2>';
     }
     
     /**
@@ -434,6 +434,7 @@ class Nsr_Settings
         $html .= '<span class="nsr-switch-handle"></span>';
         $html .= '</label>';
         
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Markup is assembled above exclusively from static HTML and escaped values.
         echo $html;
     }
     
@@ -458,6 +459,7 @@ class Nsr_Settings
         $html .= '<input type="text" id="'.esc_attr($option_key).'" class="nsr-input-text" title="'.esc_attr($title).'" name="nicescrollr_options['.esc_attr($option_key).']" placeholder="'.esc_attr($this->default_options[$option_key]).'" value="'.esc_attr($value).'">';
         $html .= '</p>';
         
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Markup is assembled above exclusively from static HTML and escaped values.
         echo $html;
     }
     
@@ -482,6 +484,7 @@ class Nsr_Settings
         $html .= '<input type="text" id="'.esc_attr($option_key).'" title="'.esc_attr($title).'" name="nicescrollr_options['.esc_attr($option_key).']" placeholder="'.esc_attr($this->default_options[$option_key]).'" value="'.esc_attr($value).'" class="'.esc_attr($option_key).' nsr-color-picker nsr-input-color-picker" data-alpha-enabled="true">';
         $html .= '</p>';
         
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Markup is assembled above exclusively from static HTML and escaped values.
         echo $html;
     }
     
@@ -511,6 +514,7 @@ class Nsr_Settings
         $html .= '</select>';
         $html .= '</p>';
         
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Markup is assembled above exclusively from static HTML and escaped values.
         echo $html;
     }
     
@@ -536,7 +540,7 @@ class Nsr_Settings
         switch( $option_key) {
             case 'cursorborderstate':
                 if (isset($string) && $string === 'none') {
-                    $output = __('none', $this->domain);
+                    $output = __('none', "nicescrollr");
                 } else {
                     $output = $string;
                 }
@@ -544,13 +548,13 @@ class Nsr_Settings
             
             case 'autohidemode':
                 if (isset($string) && $string === 'off') {
-                    $output = __('off', $this->domain);
+                    $output = __('off', "nicescrollr");
                 } else {
                     if (isset($string) && $string === 'on') {
-                        $output = __('on', $this->domain);
+                        $output = __('on', "nicescrollr");
                     } else {
                         if (isset($string) && $string === 'cursor') {
-                            $output = __('cursor', $this->domain);
+                            $output = __('cursor', "nicescrollr");
                         } else {
                             $output = $string;
                         }
@@ -560,13 +564,13 @@ class Nsr_Settings
             
             case 'railoffset':
                 if (isset($string) && $string === 'off') {
-                    $output = __('off', $this->domain);
+                    $output = __('off', "nicescrollr");
                 } else {
                     if (isset($string) && $string === 'top') {
-                        $output = __('top', $this->domain);
+                        $output = __('top', "nicescrollr");
                     } else {
                         if (isset($string) && $string === 'left') {
-                            $output = __('left', $this->domain);
+                            $output = __('left', "nicescrollr");
                         } else {
                             $output = $string;
                         }
@@ -576,10 +580,10 @@ class Nsr_Settings
             
             case 'railalign':
                 if (isset($string) && $string === 'right') {
-                    $output = __('right', $this->domain);
+                    $output = __('right', "nicescrollr");
                 } else {
                     if (isset($string) && $string === 'left') {
-                        $output = __('left', $this->domain);
+                        $output = __('left', "nicescrollr");
                     } else {
                         $output = $string;
                     }
@@ -588,10 +592,10 @@ class Nsr_Settings
             
             case 'railvalign':
                 if (isset($string) && $string === 'bottom') {
-                    $output = __('bottom', $this->domain);
+                    $output = __('bottom', "nicescrollr");
                 } else {
                     if (isset($string) && $string === 'top') {
-                        $output = __('top', $this->domain);
+                        $output = __('top', "nicescrollr");
                     } else {
                         $output = $string;
                     }
@@ -600,7 +604,7 @@ class Nsr_Settings
             
             case 'cursorfixedheight':
                 if (isset($string) && $string === 'off') {
-                    $output = __('off', $this->domain);
+                    $output = __('off', "nicescrollr");
                 } else {
                     $output = $string;
                 }

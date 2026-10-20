@@ -122,9 +122,10 @@ class Nsr_Backtop
         }
         
         $color = esc_attr($bt_arrow_color);
-        $label = esc_attr__('Back to top', $this->domain);
+        $label = esc_attr__('Back to top', "nicescrollr");
         $bt_arrow = '<svg id="nsrBackTopArrow" width="66%" height="66%" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><g transform="matrix(0.689387,-0.6898,0.707291,0.706868,-129.386,75.0026)"><rect x="26.023" y="158.089" width="185.738" height="35.456" style="fill:'.$color.';"/></g><g transform="matrix(-0.547574,-0.547901,-0.707291,0.706868,381.27,69.9762)"><rect x="26.023" y="158.089" width="185.738" height="35.456" style="fill:'.$color.';"/></g></svg>';
         
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- The class and label are escaped above; the SVG is static apart from the validated, escaped color.
         echo '<button type="button" id="nsr_backtop" class="nsr-backtop '.esc_attr($bt_class).'" aria-label="'.$label.'">'.$bt_arrow.'</button>';
     }
 

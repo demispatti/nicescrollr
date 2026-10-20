@@ -78,18 +78,18 @@ class Nsr_Ajax_Localisation
     public function get_confirmation_texts()
     {
         return array(
-            'resetFrontendConfirmationHeading' => __('Reset', $this->domain),
-            'resetBackendConfirmationHeading'  => __('Reset', $this->domain),
-            'resetPluginConfirmationHeading'   => __('Reset', $this->domain),
-            'resetAllConfirmationHeading'      => __('Reset', $this->domain),
+            'resetFrontendConfirmationHeading' => __('Reset', "nicescrollr"),
+            'resetBackendConfirmationHeading'  => __('Reset', "nicescrollr"),
+            'resetPluginConfirmationHeading'   => __('Reset', "nicescrollr"),
+            'resetAllConfirmationHeading'      => __('Reset', "nicescrollr"),
             
-            'resetFrontendConfirmation' => __('This resets the frontend view to it\'s defaults. Continue?', $this->domain),
-            'resetBackendConfirmation'  => __('This resets the backend view to it\'s defaults. Continue?', $this->domain),
-            'resetPluginConfirmation'   => __('This resets the plugin to it\'s defaults. Continue?', $this->domain),
-            'resetAllConfirmation'      => __('This resets all Nicescrollr settings to their defaults. Continue?', $this->domain),
+            'resetFrontendConfirmation' => __('This resets the frontend view to it\'s defaults. Continue?', "nicescrollr"),
+            'resetBackendConfirmation'  => __('This resets the backend view to it\'s defaults. Continue?', "nicescrollr"),
+            'resetPluginConfirmation'   => __('This resets the plugin to it\'s defaults. Continue?', "nicescrollr"),
+            'resetAllConfirmation'      => __('This resets all Nicescrollr settings to their defaults. Continue?', "nicescrollr"),
             
-            'okiDoki'   => __('ok', $this->domain),
-            'noWayJose' => __('cancel', $this->domain)
+            'okiDoki'   => __('ok', "nicescrollr"),
+            'noWayJose' => __('cancel', "nicescrollr")
         );
     }
     

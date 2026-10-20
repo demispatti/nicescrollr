@@ -51,7 +51,7 @@ class Nsr_Help_Tab
      */
     private function set_tab()
     {
-        $this->tabs = array('nicescrollr-help' => array('title' => __('Nicescrollr help', $this->domain)));
+        $this->tabs = array('nicescrollr-help' => array('title' => __('Nicescrollr help', "nicescrollr")));
     }
 
     /**
@@ -130,28 +130,28 @@ class Nsr_Help_Tab
         ob_start();
         ?>
 
-        <p><?php echo esc_html__('Nicescrollr integrates the Nicescroll jQuery library into your WordPress powered website.', $this->domain); ?></p>
+        <p><?php echo esc_html__('Nicescrollr integrates the Nicescroll jQuery library into your WordPress powered website.', "nicescrollr"); ?></p>
 
         <p><?php
             /* translators: 1: opening author link, 2: closing author link. */
-            echo wp_kses_post(sprintf(__('This plugin is a wrapper for the popular "Nicescroll" JavaScript library, which was made by %1$sInuYaksa%2$s.', $this->domain), $inuyaksa_link, $link_close));
+            echo wp_kses_post(sprintf(__('This plugin is a wrapper for the popular "Nicescroll" JavaScript library, which was made by %1$sInuYaksa%2$s.', "nicescrollr"), $inuyaksa_link, $link_close));
             ?></p>
 
         <p><?php
             /* translators: 1: opening Nicescroll link, 2: closing link, 3: opening GitHub link. */
-            echo wp_kses_post(sprintf(__('Visit the official %1$sNicescroll homepage%2$s or see the default parameters on %3$sGitHub%2$s.', $this->domain), $nicescroll_link, $link_close, $github_link));
+            echo wp_kses_post(sprintf(__('Visit the official %1$sNicescroll homepage%2$s or see the default parameters on %3$sGitHub%2$s.', "nicescrollr"), $nicescroll_link, $link_close, $github_link));
             ?></p>
 
         <p><?php
             /* translators: 1: opening Nicescroll link, 2: closing link. */
-            echo wp_kses_post(sprintf(__('For help with Nicescroll, please refer to the official %1$sNicescroll website%2$s.', $this->domain), $nicescroll_link, $link_close));
+            echo wp_kses_post(sprintf(__('For help with Nicescroll, please refer to the official %1$sNicescroll website%2$s.', "nicescrollr"), $nicescroll_link, $link_close));
             ?></p>
 
-        <p><?php echo esc_html__("There are also optional 'back to top' buttons for both frontend and backend, which may come in handy. If your theme gets shipped with this functionality already, you can disable the plugin's integrated feature on the 'Plugin' settings page.", $this->domain); ?></p>
+        <p><?php echo esc_html__("There are also optional 'back to top' buttons for both frontend and backend, which may come in handy. If your theme gets shipped with this functionality already, you can disable the plugin's integrated feature on the 'Plugin' settings page.", "nicescrollr"); ?></p>
 
         <p><?php
             /* translators: 1: opening plugin link, 2: closing link. */
-            echo wp_kses_post(sprintf(__('For questions, comments, or issues with Nicescrollr, please visit the %1$splugin homepage%2$s.', $this->domain), $plugin_link, $link_close));
+            echo wp_kses_post(sprintf(__('For questions, comments, or issues with Nicescrollr, please visit the %1$splugin homepage%2$s.', "nicescrollr"), $plugin_link, $link_close));
             ?></p>
 
         <?php

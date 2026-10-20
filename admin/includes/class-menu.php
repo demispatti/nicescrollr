@@ -385,7 +385,7 @@ class Nsr_Menu
     public function menu_display()
     {
         if (!current_user_can('manage_options')) {
-            wp_die(esc_html__('You are not allowed to access this page.', $this->domain));
+            wp_die(esc_html__('You are not allowed to access this page.', "nicescrollr"));
         }
 
         $active_tab = $this->section;
@@ -405,9 +405,9 @@ class Nsr_Menu
             <header class="nsr-page-heading">
                 <span class="nsr-page-mark" aria-hidden="true"><span></span></span>
                 <div>
-                    <p class="nsr-page-eyebrow"><?php esc_html_e('Scroll experience', $this->domain); ?></p>
-                    <h1 class="nsr-page-title"><?php esc_html_e('Nicescrollr', $this->domain); ?></h1>
-                    <p class="nsr-page-description"><?php esc_html_e('Shape smooth, comfortable movement across your site and dashboard.', $this->domain); ?></p>
+                    <p class="nsr-page-eyebrow"><?php esc_html_e('Scroll experience', "nicescrollr"); ?></p>
+                    <h1 class="nsr-page-title"><?php esc_html_e('Nicescrollr', "nicescrollr"); ?></h1>
+                    <p class="nsr-page-description"><?php esc_html_e('Shape smooth, comfortable movement across your site and dashboard.', "nicescrollr"); ?></p>
                 </div>
             </header>
 
@@ -424,10 +424,10 @@ class Nsr_Menu
                 <!-- Nav tab -->
                 <div class="nav-tab-wrapper">
                     <a href="<?php echo esc_url($frontend_url); ?>" class="nav-tab <?php echo $active_tab === 'frontend' ? 'nav-tab-active' : ''; ?> "><span
-                                class="dashicons dashicons-menu"></span><?php esc_html_e('Frontend', $this->domain); ?>
+                                class="dashicons dashicons-menu"></span><?php esc_html_e('Frontend', "nicescrollr"); ?>
                     </a>
                     <a href="<?php echo esc_url($backend_url); ?>" class="nav-tab <?php echo $active_tab === 'backend' ? 'nav-tab-active' : ''; ?> "><span
-                                class="dashicons dashicons-menu"></span><?php esc_html_e('Backend', $this->domain); ?>
+                                class="dashicons dashicons-menu"></span><?php esc_html_e('Backend', "nicescrollr"); ?>
                     </a>
                 </div>
 
