@@ -12,32 +12,33 @@
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Copyright:		  Demis Patti © 2023
  */
-html, body {
-  -ms-overflow-style: none;
-  overflow-style: unset;
-  overflow-y: hidden;
+html.nsr-active,
+html.nsr-active body {
+    -ms-overflow-style: none;
+    overflow-style: unset;
+    overflow-y: hidden;
 }
 
 html.nsr-is-webkit::-webkit-scrollbar {
-  display: none;
+    display: none;
 }
 
 html.nsr-is-moz {
-  overflow-y: initial;
-  scrollbar-width: none;
+    overflow-y: initial;
+    scrollbar-width: none;
 }
 
 html.nsr-is-edge {
-  -ms-overflow-style: none;
-  -ms-overflow-y: initial;
+    -ms-overflow-style: none;
+    -ms-overflow-y: initial;
 }
 
 html.nsr-is-edge iframe {
-  -ms-overflow-style: none;
-  -ms-overflow-y: initial;
+    -ms-overflow-style: none;
+    -ms-overflow-y: initial;
 }
 
 html.nsr-is-msie {
-  -ms-overflow-style: none;
-  -ms-overflow-y: initial !important;
+    -ms-overflow-style: none;
+    -ms-overflow-y: initial !important;
 }
