@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased
+
+### Changed
+
+- Modernized the settings-page switches and alpha color pickers
+- Added accessible switch semantics and clearer keyboard focus states
+- Scoped the large settings stylesheet to the Nicescrollr settings screen
+
 ## Version 1.1.1
 
 ### Changed

@@ -996,6 +996,241 @@ form#nsr_form table,
     border-left-color: var(--nsr-warning) !important;
 }
 
+/* Integrated switches ---------------------------------------------------- */
+.nsr-settings-page .nsr-switch {
+    position: relative;
+    display: inline-block;
+    box-sizing: border-box;
+    width: 54px;
+    height: 30px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 999px;
+    background: transparent;
+    background-image: none;
+    box-shadow: none;
+    cursor: pointer;
+    isolation: isolate;
+}
+
+.nsr-settings-page .nsr-switch-input {
+    position: absolute;
+    z-index: 3;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.nsr-settings-page .nsr-switch-label {
+    position: absolute;
+    inset: 0;
+    display: block;
+    height: auto;
+    border: 1px solid rgba(39, 50, 44, 0.14);
+    border-radius: inherit;
+    background: #deddd7;
+    box-shadow: inset 0 1px 2px rgba(39, 50, 44, 0.08);
+    transition: background-color 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.nsr-settings-page .nsr-switch-label::before,
+.nsr-settings-page .nsr-switch-label::after {
+    display: none;
+}
+
+.nsr-settings-page .nsr-switch-handle {
+    position: absolute;
+    z-index: 2;
+    top: 4px;
+    left: 4px;
+    width: 22px;
+    height: 22px;
+    border: 0;
+    border-radius: 50%;
+    background: #fffdf9;
+    background-image: none;
+    box-shadow: 0 2px 6px rgba(39, 50, 44, 0.2), 0 0 0 1px rgba(39, 50, 44, 0.04);
+    pointer-events: none;
+    transition: left 0.18s cubic-bezier(0.2, 0.7, 0.2, 1), box-shadow 0.18s ease;
+}
+
+.nsr-settings-page .nsr-switch-handle::before {
+    display: none;
+}
+
+.nsr-settings-page .nsr-switch-input:checked ~ .nsr-switch-label {
+    border-color: var(--nsr-primary);
+    background: var(--nsr-primary);
+    box-shadow: inset 0 1px 2px rgba(18, 42, 27, 0.18);
+}
+
+.nsr-settings-page .nsr-switch-input:checked ~ .nsr-switch-handle {
+    left: 28px;
+    box-shadow: 0 2px 7px rgba(18, 42, 27, 0.3), 0 0 0 1px rgba(39, 50, 44, 0.04);
+}
+
+.nsr-settings-page .nsr-switch:hover .nsr-switch-label {
+    border-color: rgba(54, 91, 66, 0.42);
+}
+
+.nsr-settings-page .nsr-switch-input:focus-visible ~ .nsr-switch-label {
+    box-shadow: 0 0 0 4px rgba(54, 91, 66, 0.18);
+}
+
+.nsr-settings-page .nsr-switch-input:disabled ~ .nsr-switch-label,
+.nsr-settings-page .nsr-switch-input:disabled ~ .nsr-switch-handle {
+    opacity: 0.52;
+}
+
+/* Integrated alpha color pickers ---------------------------------------- */
+.nsr-settings-page .nsr-color-field {
+    position: relative;
+    width: 100%;
+    max-width: 320px;
+    margin: 0;
+}
+
+.nsr-settings-page .nsr-color-field .wp-picker-container {
+    position: relative;
+    display: block;
+    width: 100%;
+}
+
+.nsr-settings-page .nsr-color-field .wp-color-result.button {
+    position: relative;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 320px;
+    min-height: 44px;
+    margin: 0 !important;
+    padding: 0 42px 0 58px !important;
+    overflow: hidden;
+    border: 1px solid var(--nsr-border) !important;
+    border-radius: 11px !important;
+    background: #fff !important;
+    box-shadow: 0 1px 2px rgba(53, 67, 57, 0.035) !important;
+    color: var(--nsr-text) !important;
+    text-align: left;
+    line-height: 1.2;
+}
+
+.nsr-settings-page .nsr-color-field .wp-color-result.button::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 17px;
+    width: 7px;
+    height: 7px;
+    margin-top: -5px;
+    border-right: 2px solid var(--nsr-text-soft);
+    border-bottom: 2px solid var(--nsr-text-soft);
+    transform: rotate(45deg);
+    transition: margin-top 0.18s ease, transform 0.18s ease;
+}
+
+.nsr-settings-page .nsr-color-field .wp-color-result.button.wp-picker-open::after {
+    margin-top: -1px;
+    transform: rotate(225deg);
+}
+
+.nsr-settings-page .nsr-color-field .wp-color-result.button:hover {
+    border-color: rgba(54, 91, 66, 0.44) !important;
+    background: #fbfaf5 !important;
+}
+
+.nsr-settings-page .nsr-color-field .wp-color-result.button:focus-visible,
+.nsr-settings-page .nsr-color-field .wp-color-result.button.wp-picker-open {
+    border-color: var(--nsr-primary) !important;
+    box-shadow: 0 0 0 3px rgba(54, 91, 66, 0.15) !important;
+    outline: 0;
+}
+
+.nsr-settings-page .nsr-color-field .wp-color-result-text {
+    display: block;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
+    background: transparent;
+    color: var(--nsr-text-soft);
+    font-weight: 600;
+    line-height: 42px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.nsr-settings-page .nsr-color-field .wp-color-result .color-alpha {
+    top: 0 !important;
+    left: 0 !important;
+    box-sizing: border-box !important;
+    width: 44px !important;
+    height: 100% !important;
+    border: 0 !important;
+    border-right: 1px solid rgba(39, 50, 44, 0.12) !important;
+    border-radius: 10px 0 0 10px !important;
+}
+
+.nsr-settings-page .nsr-color-field .wp-picker-input-wrap {
+    box-sizing: border-box;
+    width: 100%;
+    margin: 10px 0 0;
+    padding: 0;
+    white-space: nowrap;
+}
+
+.nsr-settings-page .nsr-color-field .wp-picker-input-wrap label {
+    display: inline-block;
+    width: calc(100% - 100px);
+    vertical-align: top;
+}
+
+.nsr-settings-page #nsr_form .nsr-color-field .wp-picker-input-wrap input.wp-color-picker {
+    width: 100% !important;
+    max-width: none;
+    min-height: 40px;
+    margin: 0;
+    border-radius: 10px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 12px;
+}
+
+.nsr-settings-page .nsr-color-field .wp-picker-input-wrap .button {
+    min-height: 40px;
+    margin: 0 0 0 8px;
+    padding: 0 14px;
+    border: 1px solid var(--nsr-border) !important;
+    border-radius: 10px;
+    background: var(--nsr-surface-soft);
+    color: var(--nsr-text-soft);
+    line-height: 38px;
+}
+
+.nsr-settings-page .nsr-color-field .wp-picker-holder {
+    position: absolute;
+    z-index: 100;
+    top: calc(100% + 10px);
+    left: 0;
+}
+
+.nsr-settings-page .nsr-color-field .iris-picker {
+    margin: 0;
+    overflow: hidden;
+    border: 1px solid var(--nsr-border) !important;
+    border-radius: 14px;
+    background: var(--nsr-surface) !important;
+    box-shadow: 0 18px 44px rgba(39, 50, 44, 0.2), 0 3px 10px rgba(39, 50, 44, 0.08);
+}
+
+.nsr-settings-page .form-table tr:has(.wp-picker-open) {
+    z-index: 20;
+    background: #fbfaf5;
+}
+
 @media (prefers-reduced-motion: reduce) {
     .nsr-settings-page *,
     .nsr-settings-page *::before,
@@ -1054,6 +1289,10 @@ form#nsr_form table,
     .nsr-settings-page #nsr_form input[type=text],
     .nsr-settings-page #nsr_form input[type=number],
     .nsr-settings-page #nsr_form select {
+        max-width: none;
+    }
+
+    .nsr-settings-page .nsr-color-field {
         max-width: none;
     }
 
