@@ -24,8 +24,8 @@ use Nicescrollr\Admin\Includes as AdminIncludes;
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       nicescrollr
  * Domain Path:       /languages
- * Version:           1.1.0
- * Stable tag:        1.1.0
+ * Version:           1.1.1
+ * Stable tag:        1.1.1
  * Requires at least: 5.6
  * Tested up to:      7.1
  * Requires PHP:      7.4
@@ -43,7 +43,7 @@ if (!defined('NICESCROLLR_PLUGIN_FILE')) {
 }
 
 if (!defined('NICESCROLLR_VERSION')) {
-    define('NICESCROLLR_VERSION', '1.1.0');
+    define('NICESCROLLR_VERSION', '1.1.1');
 }
 
 /**

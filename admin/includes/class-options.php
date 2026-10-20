@@ -970,7 +970,7 @@ class Nsr_Options
                 $options[$settings_section] = $this->get_default_settings($settings_section);
             }
             
-            $options['nicescrollr']['version'] = defined('NICESCROLLR_VERSION') ? NICESCROLLR_VERSION : '1.1.0';
+            $options['nicescrollr']['version'] = defined('NICESCROLLR_VERSION') ? NICESCROLLR_VERSION : '1.1.1';
             ksort($options);
             update_option('nicescrollr_options', $options, true);
         }
@@ -994,7 +994,7 @@ class Nsr_Options
         
         if (is_array($options)) {
             $options[$settings_tab] = $this->get_default_settings($settings_tab);
-            $options['nicescrollr']['version'] = defined('NICESCROLLR_VERSION') ? NICESCROLLR_VERSION : '1.1.0';
+            $options['nicescrollr']['version'] = defined('NICESCROLLR_VERSION') ? NICESCROLLR_VERSION : '1.1.1';
             
             $result = update_option('nicescrollr_options', $options, true);
             
@@ -1211,7 +1211,7 @@ class Nsr_Options
                 }
             }
             
-            $version = defined('NICESCROLLR_VERSION') ? NICESCROLLR_VERSION : '1.1.0';
+            $version = defined('NICESCROLLR_VERSION') ? NICESCROLLR_VERSION : '1.1.1';
             if (!isset($options['nicescrollr']['version']) || $version !== $options['nicescrollr']['version']) {
                 $options['nicescrollr']['version'] = $version;
                 $changed = true;

@@ -4,8 +4,8 @@ Tags: nicescroll, scrollbar, scroll, back-to-top, scrolling
 Requires at least: 5.6
 Tested up to: 7.1
 Requires PHP: 7.4
-Version: 1.1.0
-Stable tag: 1.1.0
+Version: 1.1.1
+Stable tag: 1.1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -60,6 +60,9 @@ I provide basic support on this plugin's support page. I check that place period
 
 == Upgrade Notice ==
 
+= 1.1.1 =
+Dependency, licensing, and WordPress Plugin Check maintenance update.
+
 = 1.1.0 =
 Security hardening, reliable production asset loading, WordPress 7.1 compatibility, and performance fixes.
 
@@ -67,6 +70,12 @@ Security hardening, reliable production asset loading, WordPress 7.1 compatibili
 Major update with PHP 8 compatibility, bug fixes, and improved default settings. Requires PHP 7.4+.
 
 == Changelog ==
+
+= 1.1.1 =
+* Updated WP Color Picker Alpha to 3.0.4 and jQuery Easing to 1.4.1.
+* Added third-party license and source documentation.
+* Retained the hardened Nicescroll source without its unexpected external cursor request.
+* Improved output escaping, internationalization, and WordPress coding-standards compliance.
 
 = 1.1.0 =
 * Added authorization checks and strict section validation to settings reset requests

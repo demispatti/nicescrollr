@@ -1,5 +1,14 @@
 # Changelog
 
+## Version 1.1.1
+
+### Changed
+
+- Updated WP Color Picker Alpha to 3.0.4 and jQuery Easing to 1.4.1
+- Added third-party license and source documentation
+- Retained the hardened Nicescroll source without its unexpected external cursor request
+- Improved output escaping, internationalization, and WordPress coding-standards compliance
+
 ## Version 1.1.0
 
 ### Security
