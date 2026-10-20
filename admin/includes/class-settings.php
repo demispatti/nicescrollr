@@ -429,9 +429,10 @@ class Nsr_Settings
         $value = $this->get_option_value($section, $option_key);
         
         $html = '<label class="nsr-switch label-for-nsr-switch" title="'.esc_attr($title).'">';
-        $html .= '<input type="checkbox" id="'.esc_attr($option_key).'" class="nsr-switch-input nsr-input-checkbox" name="nicescrollr_options['.esc_attr($option_key).']" value="1" '.checked(1, isset($value) ? $value : 0, false).'>';
+        $html .= '<input type="checkbox" role="switch" aria-label="'.esc_attr($title).'" id="'.esc_attr($option_key).'" class="nsr-switch-input nsr-input-checkbox" name="nicescrollr_options['.esc_attr($option_key).']" value="1" '.checked(1, isset($value) ? $value : 0, false).'>';
         $html .= '<span class="nsr-switch-label" data-on="On" data-off="Off"></span>';
         $html .= '<span class="nsr-switch-handle"></span>';
+        $html .= '<span class="screen-reader-text">'.esc_html($title).'</span>';
         $html .= '</label>';
         
         // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Markup is assembled above exclusively from static HTML and escaped values.
@@ -480,8 +481,8 @@ class Nsr_Settings
         
         $value = $this->get_option_value($section, $option_key);
         
-        $html = '<p class="nsr-input-container">';
-        $html .= '<input type="text" id="'.esc_attr($option_key).'" title="'.esc_attr($title).'" name="nicescrollr_options['.esc_attr($option_key).']" placeholder="'.esc_attr($this->default_options[$option_key]).'" value="'.esc_attr($value).'" class="'.esc_attr($option_key).' nsr-color-picker nsr-input-color-picker" data-alpha-enabled="true">';
+        $html = '<p class="nsr-input-container nsr-color-field">';
+        $html .= '<input type="text" id="'.esc_attr($option_key).'" title="'.esc_attr($title).'" name="nicescrollr_options['.esc_attr($option_key).']" placeholder="'.esc_attr($this->default_options[$option_key]).'" value="'.esc_attr($value).'" class="'.esc_attr($option_key).' nsr-color-picker nsr-input-color-picker" data-alpha-enabled="true" data-default-color="'.esc_attr($this->default_options[$option_key]).'">';
         $html .= '</p>';
         
         // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Markup is assembled above exclusively from static HTML and escaped values.

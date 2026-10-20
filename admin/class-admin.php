@@ -205,9 +205,6 @@ class Nsr_Admin
         
         wp_enqueue_style('nicescrollr-admin-css', NICESCROLLR_ROOT_URL.'admin/css/admin'.$this->file_prefix.'.css', array(), NICESCROLLR_VERSION);
         
-        $menu_stylesheet = NICESCROLLR_ROOT_DIR.'admin/css/menu'.$this->file_prefix.'.css';
-        $menu_version = file_exists($menu_stylesheet) ? (string) filemtime($menu_stylesheet) : NICESCROLLR_VERSION;
-        wp_enqueue_style('nicescrollr-menu-css', NICESCROLLR_ROOT_URL.'admin/css/menu'.$this->file_prefix.'.css', array(), $menu_version);
     }
     
     /**
