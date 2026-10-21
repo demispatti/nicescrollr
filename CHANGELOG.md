@@ -1,17 +1,12 @@
 # Changelog
 
-## Unreleased
+## Version 1.1.1
 
 ### Changed
 
 - Modernized the settings-page switches and alpha color pickers
 - Added accessible switch semantics and clearer keyboard focus states
 - Scoped the large settings stylesheet to the Nicescrollr settings screen
-
-## Version 1.1.1
-
-### Changed
-
 - Updated WP Color Picker Alpha to 3.0.4 and jQuery Easing to 1.4.1
 - Added third-party license and source documentation
 - Retained the hardened Nicescroll source without its unexpected external cursor request

@@ -75,6 +75,9 @@ Major update with PHP 8 compatibility, bug fixes, and improved default settings.
 * Updated WP Color Picker Alpha to 3.0.4 and jQuery Easing to 1.4.1.
 * Added third-party license and source documentation.
 * Retained the hardened Nicescroll source without its unexpected external cursor request.
+* Modernized and integrated the settings-page switches and alpha color pickers.
+* Added accessible switch semantics and clearer keyboard focus states.
+* Scoped the settings stylesheet to the Nicescrollr settings screen.
 * Improved output escaping, internationalization, and WordPress coding-standards compliance.
 
 = 1.1.0 =
